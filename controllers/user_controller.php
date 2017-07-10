@@ -30,8 +30,12 @@ class UserController
   }
 
   function passwordReset(){
-    User::sendResetEmail("jacob.hall1@maine.edu");
-    echo "good";
+    $code = $_GET['code'];
+    echo $code;
+  }
+
+  function passwordResetRequest(){
+      User::sendResetEmail("jacob.hall1@maine.edu");
   }
 }
 
