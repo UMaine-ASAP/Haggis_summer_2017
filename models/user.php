@@ -20,7 +20,8 @@
 
     	}
 
-    	public static function create(){
+    	public static function create(){		//inserts user information into database
+				
 
     	}
 
