@@ -19,7 +19,7 @@ class UserController
     echo User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
   }
 
-  function index()
+  function index() 
   {
     $results = User::all();
     echo sizeof($results)."<br>";
@@ -27,6 +27,11 @@ class UserController
     {
       echo $result->id." ".$result->firstName. "<br>";
     }
+  }
+
+  function passwordReset(){
+    User::sendResetEmail("jacob.hall1@maine.edu");
+    echo "good";
   }
 }
 

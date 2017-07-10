@@ -38,22 +38,43 @@
 
     	}
 
-    	public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
-				$db = Db::getInstance();
-				$sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
+    	public function resetPassword($code, $password){
+    		$db = Db::getInstance();
+			$sql = "SELECT * FROM user WHERE resetCode = $code";
+    	}
 
-				try
-				{
-					$stmt = $db->prepare($sql);
-					$data = array($fn, $ln, $mi, $em, $pw,"user");
-					$stmt->execute($data);
-					return "Successfully registered ".$fn." ".$mi.". ".$ln;
-				}
-				catch(PDOException $e)
-				{
-					return "Error: " . $e->getMessage();
-				}
+    	public static function sendResetEmail($email){
+    		$db = Db::getInstance();
+
+			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    		$result = '';
+    		for ($i = 0; $i < 19; $i++){
+        		$result .= $characters[mt_rand(0, 61)];    		
+    		}
+			$req = $db->prepare("UPDATE user SET resetCode = '$result' WHERE email = '$email'");
+			$req->execute();
+
+			$to = $email;
+			$subject = 'Haggis Password Reset';
+			$message = 'hello';
+			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
+			mail($to, $subject, $message, $headers);
+
+    	}
+
+    	public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
+			$db = Db::getInstance();
+			$sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
+
+			try{
+				$stmt = $db->prepare($sql);
+				$data = array($fn, $ln, $mi, $em, $pw,"user");
+				$stmt->execute($data);
+				return "Successfully registered ".$fn." ".$mi.". ".$ln;
+			}catch(PDOException $e) {
+				return "Error: " . $e->getMessage();
 			}
+		}
 
 
 
