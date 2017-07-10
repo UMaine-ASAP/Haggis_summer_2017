@@ -38,9 +38,10 @@
 
     	}
 
-    	public function resetPassword($code, $password){
+    	public static function resetPassword($code, $password){
     		$db = Db::getInstance();
-			$sql = "SELECT * FROM user WHERE resetCode = $code";
+			$req = $db->prepare("UPDATE user SET password = '$password', resetCode = '' WHERE resetCode = '$code'");
+			$req->execute();
     	}
 
     	public static function sendResetEmail($email){

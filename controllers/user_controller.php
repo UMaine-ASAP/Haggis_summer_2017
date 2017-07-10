@@ -31,11 +31,19 @@ class UserController
 
   function passwordReset(){
     $code = $_GET['code'];
-    echo $code;
+    require_once('views/user/passwordReset.php');
+    if (isset($_POST['submit'])){
+      User::resetPassword($code, $_POST["password"]);
+    }
+    
   }
 
   function passwordResetRequest(){
-      User::sendResetEmail("jacob.hall1@maine.edu");
+    require_once('views/user/passwordResetRequest.php');
+    if (isset($_POST['submit'])){
+      User::sendResetEmail($_POST['email']);
+    }
+      
   }
 }
 
