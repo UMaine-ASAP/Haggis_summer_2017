@@ -4,11 +4,14 @@ class UserController
 {
   function register()
   {
-    echo "<input type='text' name='firstname'>";
-    echo "<input type='text' name='lastname'>";
-    echo "<input type='text' name='middleinitial'>";
-    echo "<input type='text' name='email'>";
-    echo "<input type='text' name='password'>";
+    echo "<form action='?controller=user&action=insertUser' method='post'>";
+    echo "<input type='text' name='firstname' placeholder='First Name'> ";
+    echo "<input type='text' name='middleinitial' placeholder='Middle Initial'> ";
+    echo "<input type='text' name='lastname' placeholder='Last Name'><br>";
+    echo "<input type='text' name='email' placeholder='E-Mail'><br>";
+    echo "<input type='text' name='password' placeholder='Password'><br>";
+    echo "<input type='submit' value='Add User'>";
+    echo "</form>";
   }
 
   function insertUser()
@@ -19,10 +22,11 @@ class UserController
   function index()
   {
     $results = User::all();
-    foreach($results as $result)
-    {
-      echo $result['id']." ".$result['firstName']." ".$result['lastName'];
-    }
+    echo sizeof($results);
+    // foreach($results as $result)
+    // {
+    //   echo $result['id']." ".$result['firstName']." ".$result['lastName'];
+    // }
   }
 }
 
