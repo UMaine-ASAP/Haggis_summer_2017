@@ -22,11 +22,11 @@ class UserController
   function index()
   {
     $results = User::all();
-    echo sizeof($results);
-    // foreach($results as $result)
-    // {
-    //   echo $result['id']." ".$result['firstName']." ".$result['lastName'];
-    // }
+    echo sizeof($results)."<br>";
+    foreach($results as $result)
+    {
+      echo $result->id." ".$result->firstName. "<br>";
+    }
   }
 }
 
