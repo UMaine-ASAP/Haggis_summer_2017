@@ -25,6 +25,7 @@
 					{
 						$userList[] = new User($result['userID'], $result['firstName'], $result['lastName'], $result['email']);
 					}
+					return $userList;
 
 				}
 				catch(PDOException $e)
