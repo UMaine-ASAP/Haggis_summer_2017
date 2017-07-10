@@ -56,8 +56,8 @@
 
 			$to = $email;
 			$subject = 'Haggis Password Reset';
-			$message = 'You requested a password reset. If you requested a password reset click the link below.\n' . 
-			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=passwordReset&id='$result'" .
+			$message = 'You requested a password reset. If you requested a password reset click the link below.  ' . 
+			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=passwordReset&code=$result" .
 			"  If you didn't request a password reset ignore this email";
 			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
 			mail($to, $subject, $message, $headers);
