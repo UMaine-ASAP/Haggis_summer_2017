@@ -7,6 +7,7 @@
   <body>
     <header>
     </header>
+
     <div class = "body">
       <?php require_once('routes.php'); ?>
     </div>
@@ -17,4 +18,3 @@
     </footer>
   </body>
   </html>
-  
