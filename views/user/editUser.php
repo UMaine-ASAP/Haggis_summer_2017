@@ -17,7 +17,7 @@ if(!$userSelected)
 else
 {
   echo "<form action='?controller=user&action=editUser' method='post'>";
-  echo "<input type='hidden' name='userid' value='".$selectedUser->userID."'>";
+  echo "<input type='hidden' name='userid' value='".$selectedUser->id."'>";
   echo "<input type='text' name='firstname' value='".$selectedUser->firstName."'>";
   echo "<input type='text' name='middleinitial' value='".$selectedUser->middleInitial."'>";
   echo "<input type='text' name='lastname' value='".$selectedUser->lastName."'><br>";
