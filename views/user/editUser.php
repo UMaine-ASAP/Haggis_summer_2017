@@ -25,13 +25,13 @@ else
   echo "<select name='usertype'>";
   if($selectedUser->usertype == "admin")
   {
-    echo "<option value='admin' checked>Administrator</option>";
+    echo "<option value='admin' selected>Administrator</option>";
     echo "<option value='user'>User</option>";
   }
   else
   {
     echo "<option value='admin'>Administrator</option>";
-    echo "<option value='user' checked>User</option>";
+    echo "<option value='user' selected>User</option>";
   }
   echo "</select><br>";
   echo "<input type='submit' value='Modify User'>";
