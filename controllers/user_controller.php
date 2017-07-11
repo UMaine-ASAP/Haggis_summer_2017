@@ -28,6 +28,27 @@ class UserController
     echo User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
   }
 
+  function editUser()
+  {
+    $userSelected = false;
+    $selectedUser = "";
+    $userList = User::all();
+    if(isset($_POST['user']))
+    {
+      $userSelected = true;
+      $selectedUser = User::id($_POST['user']);
+    }
+    else if(isset($_POST['firstname']))
+    {
+      $data = array($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
+      User::update($data);
+      $userSelected = false;
+    }
+
+
+    require_once('views/user/editUser.php');
+  }
+
   function index()
   {
     $results = User::all();
@@ -44,7 +65,6 @@ class UserController
     if (isset($_POST['submit'])){
       User::resetPassword($code, $_POST["password"]);
     }
-
   }
 
   function passwordResetRequest(){

@@ -6,6 +6,7 @@
     switch ($controller)
     {
       case 'home':
+        require_once('models/user.php');
         $controller = new HomeController();
         break;
       case 'user':
@@ -16,8 +17,9 @@
     $controller->{$action}();
   }
 
+
   $controllers = array (  'home'      => ['index','error'],
-                          'user'      => ['index','register','insertUser', 'passwordReset', 'passwordResetRequest','login','logout']);
+                          'user'      => ['index','register','insertUser', 'passwordReset', 'passwordResetRequest','login','logout','editUser']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
