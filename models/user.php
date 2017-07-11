@@ -92,6 +92,41 @@
 				}
 		}
 
+		public static function login($email, $password){
+
+			$db= Db::getInstance();
+			$sql = "SELECT * FROM user WHERE password = ? AND email = ?";
+			$data = array($password, $email);
+			try
+			{
+				$stmt = $db->prepare($sql);
+				$stmt->execute($data);
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);
+				if($result)
+				{
+					$_SESSION['firstName'] = $result['firstName'];
+					$_SESSION['lastName'] = $result['lastName'];
+					$_SESSION['middleInitial'] = $result['middleInitial'];
+					$_SESSION['token'] = $result['userID'];
+					header('Location: index.php');
+				}
+				else
+					echo "The user credentials you provided do not match any on record";
+				}
+				catch(PDOException $e)
+				{
+					echo "Error: ". $e->getMessage();
+				}
+
+			// echo "DOING STUFF";
+
+		}
+
+		public static function logout()
+		{
+			session_unset();
+		}
+
 
 
     	public static function update(){

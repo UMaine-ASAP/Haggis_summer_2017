@@ -17,7 +17,7 @@
   }
 
   $controllers = array (  'home'      => ['index','error'],
-                          'user'      => ['index','register','insertUser', 'passwordReset', 'passwordResetRequest']);
+                          'user'      => ['index','register','insertUser', 'passwordReset', 'passwordResetRequest','login','logout']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

@@ -4,15 +4,24 @@ class UserController
 {
   function register()
   {
-    echo "<form action='?controller=user&action=insertUser' method='post'>";
-    echo "<input type='text' name='firstname' placeholder='First Name'> ";
-    echo "<input type='text' name='middleinitial' placeholder='Middle Initial'> ";
-    echo "<input type='text' name='lastname' placeholder='Last Name'><br>";
-    echo "<input type='text' name='email' placeholder='E-Mail'><br>";
-    echo "<input type='text' name='password' placeholder='Password'><br>";
-    echo "<input type='submit' value='Add User'>";
-    echo "</form>";
+      require_once('views/user/userRegistration.php');
   }
+
+  function login()
+  {
+    require_once('views/user/login.php');
+    if(isset($_POST['email']))
+    {
+      User::login($_POST['email'], $_POST['password']);
+    }
+  }
+
+  function logout()
+  {
+    User::logout();
+    require_once('views/home/index.php');
+  }
+
 
   function insertUser()
   {
