@@ -44,8 +44,6 @@ class UserController
       User::update($data);
       $userSelected = false;
     }
-
-
     require_once('views/user/editUser.php');
   }
 
@@ -72,7 +70,6 @@ class UserController
     if (isset($_POST['submit'])){
       User::sendResetEmail($_POST['email']);
     }
-
   }
 }
 
