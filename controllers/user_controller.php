@@ -36,7 +36,7 @@ class UserController
     if(isset($_POST['user']))
     {
       $userSelected = true;
-      $selectedUser = User::id($_POST['user']);
+      $selectedUser = User::id($_POST['userid']);
     }
     else if(isset($_POST['firstname']))
     {
