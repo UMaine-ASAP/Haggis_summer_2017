@@ -9,6 +9,8 @@
     </header>
 
     <div class = "body">
+      <button onclick="goBack()">Return to previous page</button><br><br>
+
       <?php require_once('routes.php'); ?>
     </div>
     <footer>
@@ -18,3 +20,10 @@
     </footer>
   </body>
   </html>
+
+  <script>
+  function goBack()
+  {
+    window.history.back();
+  }
+  </script>

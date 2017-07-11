@@ -19,7 +19,7 @@ class UserController
     echo User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
   }
 
-  function index() 
+  function index()
   {
     $results = User::all();
     echo sizeof($results)."<br>";
@@ -35,7 +35,7 @@ class UserController
     if (isset($_POST['submit'])){
       User::resetPassword($code, $_POST["password"]);
     }
-    
+
   }
 
   function passwordResetRequest(){
@@ -43,7 +43,7 @@ class UserController
     if (isset($_POST['submit'])){
       User::sendResetEmail($_POST['email']);
     }
-      
+
   }
 }
 

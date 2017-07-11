@@ -13,7 +13,7 @@
     	}
 
 
-    	public static function all(){															//collects user ID's from Database
+    	public static function all(){																//collects user ID's from Database
 				$db = Db::getInstance();
 				$sql = "SELECT * FROM user";
 				$userList = array();
@@ -50,14 +50,14 @@
 			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     		$result = '';
     		for ($i = 0; $i < 19; $i++){
-        		$result .= $characters[mt_rand(0, 61)];    		
+        		$result .= $characters[mt_rand(0, 61)];
     		}
 			$req = $db->prepare("UPDATE user SET resetCode = '$result' WHERE email = '$email'");
 			$req->execute();
 
 			$to = $email;
 			$subject = 'Haggis Password Reset';
-			$message = 'You requested a password reset. If you requested a password reset click the link below.  ' . 
+			$message = 'You requested a password reset. If you requested a password reset click the link below.  ' .
 			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=passwordReset&code=$result" .
 			"  If you didn't request a password reset ignore this email";
 			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
@@ -66,17 +66,30 @@
     	}
 
     	public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
-			$db = Db::getInstance();
-			$sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
+				$currentUsers = User::all();
+				$conflict = false;
+				foreach($currentUsers as $user)
+				{
+					if($user->email == $em)
+					$conflict = true;
+				}
 
-			try{
-				$stmt = $db->prepare($sql);
-				$data = array($fn, $ln, $mi, $em, $pw,"user");
-				$stmt->execute($data);
-				return "Successfully registered ".$fn." ".$mi.". ".$ln;
-			}catch(PDOException $e) {
-				return "Error: " . $e->getMessage();
-			}
+				if($conflict)
+					return "The email '".$em."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+				else
+				{
+					$db = Db::getInstance();
+					$sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
+
+					try{
+						$stmt = $db->prepare($sql);
+						$data = array($fn, $ln, $mi, $em, $pw,"user");
+						$stmt->execute($data);
+						return "Successfully registered ".$fn." ".$mi.". ".$ln;
+					}catch(PDOException $e) {
+						return "Error: " . $e->getMessage();
+					}
+				}
 		}
 
 
