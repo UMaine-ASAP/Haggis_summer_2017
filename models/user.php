@@ -63,6 +63,7 @@
 			mail($to, $subject, $message, $headers);
 			$message = "Check your e-mail for a password reset link";
 			echo "<script type='text/javascript'>alert('$message');</script>";
+			header('Location: index.php');													//load our page back to the index
 
     	}
 //=================================================================================== CREATE
