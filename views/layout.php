@@ -9,7 +9,10 @@
     </header>
 
     <div class = "body">
-      <button onclick="goBack()">Return to previous page</button><br><br>
+      <form action="index.php">
+          <input type="submit" value="Home" />
+      </form>
+
 
       <?php require_once('routes.php'); ?>
     </div>
@@ -25,5 +28,9 @@
   function goBack()
   {
     window.history.back();
+  }
+  function goHome()
+  {
+    header('Location: index.php');
   }
   </script>
