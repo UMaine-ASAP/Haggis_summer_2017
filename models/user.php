@@ -67,10 +67,10 @@
 
     	}
 //=================================================================================== CONFIRM EMAIL
-			public static function confirmEmail($code, $email)
+			public static function confirmEmail($code)
 			{
 				$db = Db::getInstance();
-			$req = $db->prepare("UPDATE user SET emailConfirmed = '1'  WHERE emailConfirmedCode = '$code'");
+			$req = $db->prepare("UPDATE user SET emailConfirmed = '1', emailConfirmedCode ='' WHERE emailConfirmedCode = '$code'");
 			$req->execute();
 
 			}
