@@ -10,7 +10,7 @@ if(!$userSelected)
   echo "<select name='user'>";
   foreach($userList as $user)
   {
-    echo "<option value='".$user->id."'>".$user->firstName."</option>";
+    echo "<option value='".$user->id."'>".$user->firstName." ".$user->middleInitial." ".$user->lastName."</option>";
   }
   echo "</select>";
   echo "<input type='submit' value='Submit'></form></div>";
