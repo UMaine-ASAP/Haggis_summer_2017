@@ -62,8 +62,8 @@
 			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
 			mail($to, $subject, $message, $headers);
 			$message = "Check your e-mail for a password reset link";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			header('Location: index.php');													//load our page back to the index
+
+			echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
 
     	}
 //=================================================================================== CREATE

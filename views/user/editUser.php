@@ -1,8 +1,11 @@
 <?php
-
+if($userEdited)
+{
+  echo "<div>User has been updated</div>";
+}
 if(!$userSelected)
 {
-  echo "SELECT A USER<br><br>";
+  echo "<div>SELECT A USER<br><br>";
   echo "<form action='?controller=user&action=editUser' method='post'>";
   echo "<select name='user'>";
   foreach($userList as $user)
@@ -10,7 +13,7 @@ if(!$userSelected)
     echo "<option value='".$user->id."'>".$user->firstName."</option>";
   }
   echo "</select>";
-  echo "<input type='submit' value='Submit'></form>";
+  echo "<input type='submit' value='Submit'></form></div>";
 
 }
 

@@ -31,6 +31,7 @@ class UserController
   function editUser()
   {
     $userSelected = false;
+    $userEdited = false;
     $selectedUser = "";
     $userList = User::all();
     if(isset($_POST['user']))
@@ -43,6 +44,7 @@ class UserController
       $data = array($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
       User::update($data);
       $userSelected = false;
+      $userEdited = true;
     }
     require_once('views/user/editUser.php');
   }
