@@ -44,11 +44,12 @@ class UserController
 
   function login()
   {
-    require_once('views/user/login.php');
+
     if(isset($_POST['email']))
     {
-      User::login($_POST['email'], $_POST['password']);
+      $message = User::login($_POST['email'], $_POST['password']);
     }
+    require_once('views/user/login.php');
   }
 
   function logout()

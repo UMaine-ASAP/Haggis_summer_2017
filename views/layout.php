@@ -18,19 +18,8 @@
     </div>
     <footer>
       <div class = "content">
-        Footer Text
+        <!-- Footer Text -->
       </div>
     </footer>
   </body>
   </html>
-
-  <script>
-  function goBack()
-  {
-    window.history.back();
-  }
-  function goHome()
-  {
-    header('Location: index.php');
-  }
-  </script>
