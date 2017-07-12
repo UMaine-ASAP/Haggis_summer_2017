@@ -163,22 +163,22 @@
 						}
 						else
 						{
-							echo "Your email has not yet been confirmed. Please check your email for a confirmation link.<a href='?controller=user&action=sendEmailConfirmation&email=".$result['email']."'>Request a new link?</a>";
+							return "Your email has not yet been confirmed. Please check your email for a confirmation link.<a href='?controller=user&action=sendEmailConfirmation&email=".$result['email']."'>Request a new link?</a>";
 						}
 					}
 					else
 					{
-						echo "Your password was incorrect";
+						return "Your password was incorrect";
 					}
 				}
 				else
 				{
-					echo "The email address you provided do not match any on record";
+					return "The email address you provided do not match any on record";
 				}
 			}
 			catch(PDOException $e)
 			{
-				echo "Error: ". $e->getMessage();
+				return "Error: ". $e->getMessage();
 			}
 		}
 //=================================================================================== LOGOUT
