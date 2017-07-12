@@ -4,6 +4,40 @@ class UserController
 {
   function register()
   {
+      $message = "";
+      $firstName = "";
+      $middleInitial = "";
+      $lastName = "";
+      $email = "";
+
+      $passwordsMatch = false;
+      if(isset($_POST['firstname']))
+      {
+        $firstName = $_POST['firstname'];
+        $middleInitial = $_POST['middleinitial'];
+        $lastName = $_POST['lastname'];
+        $email = $_POST['email'];
+        if($_POST['password'] == $_POST['passwordconfirm'])
+          $passwordsMatch = true;
+
+        if($passwordsMatch)
+        {
+          $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
+          if($outcome == '1')
+          {
+            $message = "Successfully registered ".$firstName." ".$lastName;
+            $firstName = $middleInitial = $lastName = $email = "";
+          }
+          if($outcome == '2')
+          {
+            $message = "The email '".$email."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+          }
+        }
+        else
+        {
+          $message = "Passwords do not match";
+        }
+      }
       require_once('views/user/userRegistration.php');
   }
 
@@ -20,12 +54,6 @@ class UserController
   {
     User::logout();
     require_once('views/home/index.php');
-  }
-
-
-  function insertUser()
-  {
-    echo User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
   }
 
   function editUser()
@@ -71,6 +99,21 @@ class UserController
     require_once('views/user/passwordResetRequest.php');
     if (isset($_POST['submit'])){
       User::sendResetEmail($_POST['email']);
+    }
+  }
+
+  function sendConfirmationEmail(){
+    $code = $_GET['code'];
+    require_once('views/user/passwordReset.php');
+    if (isset($_POST['submit'])){
+      User::resetPassword($code, $_POST["password"]);
+    }
+  }
+
+  function sendConfirmEmail(){
+    require_once('views/user/passwordResetRequest.php');
+    if (isset($_POST['submit'])){
+      User::sendConfirmEmail($_POST['email']);
     }
   }
 }

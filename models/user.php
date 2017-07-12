@@ -66,6 +66,40 @@
 			echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
 
     	}
+//=================================================================================== CONFIRM EMAIL
+			public static function confirmEmail($code, $email)
+			{
+				$db = Db::getInstance();
+			$req = $db->prepare("UPDATE user SET emailConfirmed = '1'  WHERE emailConfirmedCode = '$code'");
+			$req->execute();
+
+			}
+//=================================================================================== SEND CONFIRM EMAIL
+			public static function sendConfirmEmail($email)
+			{
+				$db = Db::getInstance();
+			$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    		$result = '';
+    		for ($i = 0; $i < 19; $i++){
+        		$result .= $characters[mt_rand(0, 61)];
+    		}
+			$req = $db->prepare("UPDATE user SET emailConfirmedCode = ? WHERE email = ?");
+			$data = array($result, $email);
+			$req->execute($data);
+
+			$to = $email;
+			$subject = 'Haggis Email confirmation';
+			$message = 'You registered for an account. Click the link below to confirm your email address  ' .
+			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=passwordReset&code=$result" .
+			"  If you didn't register for an account ignore this email";
+			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
+			mail($to, $subject, $message, $headers);
+			$message = "Check your e-mail for an email confirmation link";
+
+			echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
+
+
+			}
 //=================================================================================== CREATE
     	public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
 				$currentUsers = User::all();					//Get a list of users
@@ -76,7 +110,7 @@
 					$conflict = true;
 				}
 				if($conflict)													//if email already exists, tell the user.
-					return "The email '".$em."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+					return '2';
 				else 																	//else, we insert our new user into the database
 				{
 					$db = Db::getInstance();
@@ -85,7 +119,8 @@
 						$stmt = $db->prepare($sql);
 						$data = array($fn, $ln, $mi, $em, $pw,"user");
 						$stmt->execute($data);
-						return "Successfully registered ".$fn." ".$mi.". ".$ln;
+						User::sendConfirmEmail($em);
+						return '1';
 					}catch(PDOException $e) {
 						return "Error: " . $e->getMessage();
 					}
@@ -93,7 +128,7 @@
 		}
 //=================================================================================== LOGIN
 		public static function login($email, $password){
-
+			$userID ='';
 			$db= Db::getInstance();
 			$sql = "SELECT * FROM user WHERE password = ? AND email = ?";		//Pull from the database anything that matches both email and password
 			$data = array($password, $email);
@@ -107,7 +142,16 @@
 					$_SESSION['firstName'] = $result['firstName'];					//first name of user
 					$_SESSION['lastName'] = $result['lastName'];						//last name of user
 					$_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
-					$_SESSION['token'] = $result['userID'];									//token of user (currentl using userID)
+					$userID = $result['userID'];									//token of user (currentl using userID)
+					$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		    		$result = '';
+		    		for ($i = 0; $i < 20; $i++){
+		        		$result .= $characters[mt_rand(0, 61)];
+		    		}
+					$req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
+					$data = array($result, $userID);
+					$req->execute($data);
+					$_SESSION['token'] = $result;
 					header('Location: index.php');													//load our page back to the index
 				}
 				else
@@ -121,14 +165,18 @@
 //=================================================================================== LOGOUT
 		public static function logout()
 		{
+			$db = Db::getInstance();
+			$req = $db->prepare("UPDATE user SET token = '' WHERE token = ?");
+			$data = array($_SESSION['token']);
+			$req->execute($data);
 			session_unset();													//unsets all Session variables effecitvly logging the user out of current session
 		}
 //=================================================================================== CHECK ADMIN
-		public static function checkAdmin($token)
+		public static function checkAdmin()
 		{
 			$db = Db::getInstance();
-			$sql = "SELECT userType FROM user WHERE userID = ?";
-			$data = array($token);
+			$sql = "SELECT userType FROM user WHERE token = ?";
+			$data = array($_SESSION['token']);
 			$stmt = $db->prepare($sql);
 			$stmt ->execute($data);
 			$output = false;

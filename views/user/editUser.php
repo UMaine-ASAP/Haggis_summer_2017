@@ -22,9 +22,9 @@ else
   echo "<form action='?controller=user&action=editUser' method='post'>";
   echo "<input type='hidden' name='userid' value='".$selectedUser->id."'>";
   echo "<input type='text' name='firstname' value='".$selectedUser->firstName."'>";
-  echo "<input type='text' name='middleinitial' value='".$selectedUser->middleInitial."'>";
+  echo "<input type='text' size='1' maxlength='1' name='middleinitial' value='".$selectedUser->middleInitial."'>";
   echo "<input type='text' name='lastname' value='".$selectedUser->lastName."'><br>";
-  echo "<input type='text' name='email' value='".$selectedUser->email."'><br>";
+  echo "<input type='email' name='email' value='".$selectedUser->email."'><br>";
   echo "<select name='usertype'>";
   if($selectedUser->usertype == "admin")
   {
