@@ -140,7 +140,8 @@
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($result)																									//if we have a result, we pull data out
 				{
-					if(password_verify($password, $result['password']))
+					$hash = $result['password'];
+					if(password_verify($password, $hash))
 					{
 						$emailconfirmed = $result['emailConfirmed'];
 						if($emailconfirmed == '1')
