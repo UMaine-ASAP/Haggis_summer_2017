@@ -141,7 +141,6 @@
 				if($result)																									//if we have a result, we pull data out
 				{
 					$hash = $result['password'];
-					echo $hash;
 					if(password_verify($password, $hash))
 					{
 						$emailconfirmed = $result['emailConfirmed'];
