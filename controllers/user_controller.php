@@ -82,10 +82,12 @@ class UserController
   {
     $results = User::all();
     echo sizeof($results)." Users are registered.<br>";
+    echo "<table>";
     foreach($results as $result)
     {
-      echo $result->id." ".$result->usertype ." ".$result->firstName." ".$result->lastName. "<br>";
+      echo "<tr><td>".$result->id."</td><td>".$result->usertype ."</td><td>".$result->firstName."</td><td>".$result->lastName. "</td></tr>";
     }
+    echo "</table>";
   }
 
   function passwordReset(){
