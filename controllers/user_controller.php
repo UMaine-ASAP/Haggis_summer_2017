@@ -83,6 +83,7 @@ class UserController
     $results = User::all();
     echo sizeof($results)." Users are registered.<br>";
     echo "<table>";
+    echo "<tr><th>UserID</th><th>UserType</th><th>First Name</th><th>LastName</th>";
     foreach($results as $result)
     {
       echo "<tr><td>".$result->id."</td><td>".$result->usertype ."</td><td>".$result->firstName."</td><td>".$result->lastName. "</td></tr>";
