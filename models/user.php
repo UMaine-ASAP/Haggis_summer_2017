@@ -159,7 +159,7 @@
 					}
 					else
 					{
-						echo "Your email has not yet been confirmed. Please check your email for a confirmation link.";
+						echo "Your email has not yet been confirmed. Please check your email for a confirmation link.<a href='?controller=user&action=sendEmailConfirmation&email=".$result['email']."'>Request a new link?</a>";
 					}
 				}
 				else

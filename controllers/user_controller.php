@@ -108,6 +108,15 @@ class UserController
     $message = "Email has been confirmed, you may now login";
     require_once('views/home/index.php');
   }
+
+  function sendEmailConfirmation()
+  {
+    $email = $_GET['email'];
+    User::sendConfirmEmail($email);
+    $message = "Confirmation email sent";
+    require_once('views/user/login.php');
+
+  }
 }
 
 
