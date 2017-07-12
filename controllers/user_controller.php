@@ -23,6 +23,7 @@ class UserController
         if($passwordsMatch)
         {
           $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
+          echo $outcome;
           if($outcome == '1')
           {
             $message = "Successfully registered ".$firstName." ".$lastName;

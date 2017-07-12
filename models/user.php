@@ -113,11 +113,12 @@
 					return '2';
 				else 																	//else, we insert our new user into the database
 				{
+					$salted = password_hash($pw, PASSWORD_DEFAULT);
 					$db = Db::getInstance();
 					$sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
 					try{
 						$stmt = $db->prepare($sql);
-						$data = array($fn, $ln, $mi, $em, $pw,"user");
+						$data = array($fn, $ln, $mi, $em, $salted,"user");
 						$stmt->execute($data);
 						User::sendConfirmEmail($em);
 						return '1';
@@ -130,8 +131,8 @@
 		public static function login($email, $password){
 			$userID ='';
 			$db= Db::getInstance();
-			$sql = "SELECT * FROM user WHERE password = ? AND email = ?";		//Pull from the database anything that matches both email and password
-			$data = array($password, $email);
+			$sql = "SELECT * FROM user WHERE email = ?";		//Pull from the database anything that matches both email and password
+			$data = array($email);
 			try
 			{
 				$stmt = $db->prepare($sql);
@@ -139,23 +140,30 @@
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($result)																									//if we have a result, we pull data out
 				{
-					$emailconfirmed = $result['emailConfirmed'];
-					if($emailconfirmed == '1')
+					if(password_verify($password, $result['password']))
 					{
-						$_SESSION['firstName'] = $result['firstName'];					//first name of user
-						$_SESSION['lastName'] = $result['lastName'];						//last name of user
-						$_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
-						$userID = $result['userID'];									//token of user (currentl using userID)
-						$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-			    		$result = '';
-			    		for ($i = 0; $i < 20; $i++){
-			        		$result .= $characters[mt_rand(0, 61)];
-			    		}
-						$req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
-						$data = array($result, $userID);
-						$req->execute($data);
-						$_SESSION['token'] = $result;
-						header('Location: index.php');													//load our page back to the index
+						$emailconfirmed = $result['emailConfirmed'];
+						if($emailconfirmed == '1')
+						{
+							$_SESSION['firstName'] = $result['firstName'];					//first name of user
+							$_SESSION['lastName'] = $result['lastName'];						//last name of user
+							$_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
+							$userID = $result['userID'];									//token of user (currentl using userID)
+							$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+				    		$result = '';
+				    		for ($i = 0; $i < 20; $i++){
+				        		$result .= $characters[mt_rand(0, 61)];
+				    		}
+							$req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
+							$data = array($result, $userID);
+							$req->execute($data);
+							$_SESSION['token'] = $result;
+							header('Location: index.php');													//load our page back to the index
+						}
+						else
+						{
+							echo "Your password was incorrect";
+						}
 					}
 					else
 					{
@@ -163,7 +171,7 @@
 					}
 				}
 				else
-					echo "The user credentials you provided do not match any on record";
+					echo "The email address you provided do not match any on record";
 				}
 				catch(PDOException $e)
 				{
