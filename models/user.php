@@ -162,11 +162,12 @@
 							$_SESSION['token'] = $result;
 							header('Location: index.php');													//load our page back to the index
 						}
+					}
 						else
 						{
 							echo "Your password was incorrect";
 						}
-					}
+
 					else
 					{
 						echo "Your email has not yet been confirmed. Please check your email for a confirmation link.<a href='?controller=user&action=sendEmailConfirmation&email=".$result['email']."'>Request a new link?</a>";
