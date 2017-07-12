@@ -102,19 +102,11 @@ class UserController
     }
   }
 
-  function sendConfirmationEmail(){
+  function emailConfirmation(){
     $code = $_GET['code'];
-    require_once('views/user/passwordReset.php');
-    if (isset($_POST['submit'])){
-      User::resetPassword($code, $_POST["password"]);
-    }
-  }
-
-  function sendConfirmEmail(){
-    require_once('views/user/passwordResetRequest.php');
-    if (isset($_POST['submit'])){
-      User::sendConfirmEmail($_POST['email']);
-    }
+    User::confirmEmail($code, $_POST["password"]);
+    $message = "Email has been confirmed, you may now login";
+    require_once('views/home/index.php');
   }
 }
 

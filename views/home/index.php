@@ -1,3 +1,6 @@
+<div>
+  <?php if(isset($message)) echo $message; ?>
+</div>
 
 <table>
   <tr>
@@ -30,6 +33,8 @@
         {
           echo "Not Logged in";
         }
+
+
 
       ?>
     </td>

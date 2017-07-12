@@ -90,7 +90,7 @@
 			$to = $email;
 			$subject = 'Haggis Email confirmation';
 			$message = 'You registered for an account. Click the link below to confirm your email address  ' .
-			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=passwordReset&code=$result" .
+			"chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=emailConfirmation&code=$result" .
 			"  If you didn't register for an account ignore this email";
 			$headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
 			mail($to, $subject, $message, $headers);
