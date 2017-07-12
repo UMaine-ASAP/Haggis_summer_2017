@@ -84,7 +84,7 @@ class UserController
     echo sizeof($results)." Users are registered.<br>";
     foreach($results as $result)
     {
-      echo $result->id." ".$result->userType ." ".$result->firstName." ".$result->lastName. "<br>";
+      echo $result->id." ".$result->usertype ." ".$result->firstName." ".$result->lastName. "<br>";
     }
   }
 
