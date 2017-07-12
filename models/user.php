@@ -139,20 +139,28 @@
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);
 				if($result)																									//if we have a result, we pull data out
 				{
-					$_SESSION['firstName'] = $result['firstName'];					//first name of user
-					$_SESSION['lastName'] = $result['lastName'];						//last name of user
-					$_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
-					$userID = $result['userID'];									//token of user (currentl using userID)
-					$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-		    		$result = '';
-		    		for ($i = 0; $i < 20; $i++){
-		        		$result .= $characters[mt_rand(0, 61)];
-		    		}
-					$req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
-					$data = array($result, $userID);
-					$req->execute($data);
-					$_SESSION['token'] = $result;
-					header('Location: index.php');													//load our page back to the index
+					$emailconfirmed = $result['emailConfirmed'];
+					if($emailconfirmed == '1')
+					{
+						$_SESSION['firstName'] = $result['firstName'];					//first name of user
+						$_SESSION['lastName'] = $result['lastName'];						//last name of user
+						$_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
+						$userID = $result['userID'];									//token of user (currentl using userID)
+						$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+			    		$result = '';
+			    		for ($i = 0; $i < 20; $i++){
+			        		$result .= $characters[mt_rand(0, 61)];
+			    		}
+						$req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
+						$data = array($result, $userID);
+						$req->execute($data);
+						$_SESSION['token'] = $result;
+						header('Location: index.php');													//load our page back to the index
+					}
+					else
+					{
+						echo "Your email has not yet been confirmed. Please check your email for a confirmation link.";
+					}
 				}
 				else
 					echo "The user credentials you provided do not match any on record";
