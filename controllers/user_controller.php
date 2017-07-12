@@ -81,10 +81,10 @@ class UserController
   function index()
   {
     $results = User::all();
-    echo sizeof($results)."<br>";
+    echo sizeof($results)." Users are registered.<br>";
     foreach($results as $result)
     {
-      echo $result->id." ".$result->firstName. "<br>";
+      echo $result->id." ".$result->userType ." ".$result->firstName." ".$result->lastName. "<br>";
     }
   }
 
