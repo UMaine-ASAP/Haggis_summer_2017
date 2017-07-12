@@ -167,6 +167,7 @@
 						{
 							echo "Your password was incorrect";
 						}
+					}
 
 					else
 					{
