@@ -55,6 +55,7 @@ class UserController
   function logout()
   {
     UserSession::logout();
+    $userFunctions = UserFunctions::public();
     require_once('views/home/index.php');
   }
 
@@ -71,12 +72,44 @@ class UserController
     }
     else if(isset($_POST['firstname']))
     {
-      $data = array($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
-      UserUpdate::update($data);
+      UserUpdate::update($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
       $userSelected = false;
       $userEdited = true;
     }
     require_once('views/user/editUser.php');
+  }
+
+  function delete()
+  {
+    $message = "Select a User";
+    $userSelected = false;
+    $userEdited = false;
+    $selectedUser = "";
+    $userList = UserPull::all();
+    if(isset($_POST['user']))
+    {
+      $message = "Confirm deletion of user";
+      $userSelected = true;
+      $selectedUser = UserPull::id($_POST['user']);
+    }
+    else if(isset($_POST['confirm']))
+    {
+      if($_POST['confirm'] == "yes")
+      {
+        $message = "User has been deleted";
+        UserDelete::id($_POST['userid']);
+        $userSelected = false;
+        $userEdited = true;
+        $userList = UserPull::all();
+      }
+      else
+      {
+        $message = "User has not been deleted";
+        $userSelected = false;
+        $userEdited = false;
+      }
+    }
+    require_once('views/user/userDelete.php');
   }
 
   function index()

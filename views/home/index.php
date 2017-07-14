@@ -8,12 +8,7 @@
       <div class = "menuLinks">
         User Functions<br>
         <ul>
-          <li><a href="?controller=user&action=login">Login</a></li>
-          <li><a href="?controller=user&action=logout">Logout</a></li>
-          <li><a href="?controller=user&action=register">Register</a></li>
-          <li><a href="?controller=user&action=editUser">Edit User</a></li>
-          <li><a href="?controller=user&action=index">List Users</a></li>
-          <li><a href="?controller=user&action=passwordResetRequest">Forgot Password?</a></li>
+          <?php echo $userFunctions; ?>
         </ul>
       </div>
     </td>
