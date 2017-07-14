@@ -13,8 +13,9 @@
           $userFunctions = UserFunctions::user();
         }
       else
+      {
         $userFunctions = UserFunctions::public();
-
+      }
       require_once('views/home/index.php');
     }
 
