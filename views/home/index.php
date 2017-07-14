@@ -20,13 +20,13 @@
     <td>
       <?php
 
-        if(isset($_SESSION['firstName']))
+        if(isset($user))
         {
           echo "Logged in as ". $_SESSION['firstName'] ." ". $_SESSION['middleInitial'] ." ". $_SESSION['lastName'];
-          if(User::checkAdmin($_SESSION['token']))
-          echo "<br>ADMIN USER";
+          if($user)
+            echo "<br>ADMIN USER";
           else
-          echo "<br>NON ADMIN";
+            echo "<br>NON ADMIN";
         }
 
         else

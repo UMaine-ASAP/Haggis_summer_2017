@@ -1,0 +1,11 @@
+<?php
+require_once('models/user/user.php');
+require_once('models/user/pull.php');
+require_once('models/user/update.php');
+require_once('models/user/checkAdmin.php');
+require_once('models/user/creation.php');
+require_once('models/user/delete.php');
+require_once('models/user/email.php');
+require_once('models/user/password.php');
+require_once('models/user/session.php');
+?>

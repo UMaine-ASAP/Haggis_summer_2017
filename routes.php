@@ -6,11 +6,11 @@
     switch ($controller)
     {
       case 'home':
-        require_once('models/user.php');
+        require_once('models/userFunctionAccess.php');
         $controller = new HomeController();
         break;
       case 'user':
-        require_once('models/user.php');
+        require_once('models/userFunctionAccess.php');
         $controller = new UserController();
         break;
     }
