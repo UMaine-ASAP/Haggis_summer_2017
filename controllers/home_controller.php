@@ -14,7 +14,7 @@
         }
       else
       {
-        $userFunctions = UserFunctions::public();
+        $userFunctions = UserFunctions::anon();
       }
       require_once('views/home/index.php');
     }

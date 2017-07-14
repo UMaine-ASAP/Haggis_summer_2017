@@ -12,7 +12,7 @@ require_once('models/user/session.php');
 
 class UserFunctions
 {
-  public static function public()
+  public static function anon()
   {
     return  '<li><a href="?controller=user&action=login">Login</a></li>'.
             '<li><a href="?controller=user&action=register">Register</a></li>'.
