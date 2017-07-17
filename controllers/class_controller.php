@@ -59,7 +59,7 @@ class ClassController
 
   public function listCourses()
   {
-    $classes = PullClass::()all();
+    $classes = PullClass::all();
     foreach($classes as $class)
     {
       echo $class->title;
