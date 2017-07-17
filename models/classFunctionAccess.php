@@ -1,4 +1,7 @@
 <?php
+require_once('models/class/course.php');
+require_once('models/class/insertCourse.php');
+require_once('models/class/pullCourse.php');
 require_once('models/class/archiveClass.php');
 require_once('models/class/getUserbyClass.php');
 require_once('models/class/insertClass.php');
@@ -24,6 +27,7 @@ class ClassFunctions
             '<li><a href="?controller=class&action=getUserbyClass">Users by Class</a></li>'.
             '<li><a href="?controller=class&action=insertClass">Add a Class</a></li>'.
             '<li><a href="?controller=class&action=updateClass">Edit a Class</a></li>'.
+            '<li><a href="?controller=class&action=listCourses">Show all Courses</a></li>'.
             '<li><a href="?controller=class&action=joinClass">Join a Class</a></li>';
   }
 }

@@ -20,9 +20,29 @@ class ClassController
   public function insertClass()
   {
     $message='';
+    $courseID='';
+    $courselisting = PullCourse::all();
     if(isset($_POST['token']))
     {
-      $message = AddClass::insert($_POST['title'],$_POST['courseid'],$_POST['sessiontime'],$_POST['description'],$_POST['location']);
+      $courestitle ='';
+      $coursecode='';
+      $coursedescription='';
+      if($_POST['newCourse'] == "yes")
+      {
+        $coursetitle=$_POST['coursetitle'];
+        $coursecode = $_POST['coursecode'];
+        $coursedescription = $_POST['coursedescription'];
+        $courseID = AddCourse::insert($coursetitle,$coursecode,$coursedescription);
+      }
+      else
+      {
+        $course = PullCourse::id($_POST['courselisting']);
+        $courseID = $_POST['courselisting'];
+        $coursetitle=$course->title;
+        $coursecode = $course->code;
+        $coursedescription = $course->description;
+      }
+      $message = AddClass::insert($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
     }
     require_once('views/class/insertClass.php');
   }
@@ -35,6 +55,13 @@ class ClassController
   public function updateClass()
   {
     echo "updateClass";
+  }
+
+  public function listCourses()
+  {
+    $courses = PullCourse::all();
+    require_once('views/class/listCourses.php');
+
   }
 
 

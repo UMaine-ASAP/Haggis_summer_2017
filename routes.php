@@ -22,7 +22,7 @@
 
   $controllers = array (  'home'      => ['index','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
-                          'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass']);
+                          'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
