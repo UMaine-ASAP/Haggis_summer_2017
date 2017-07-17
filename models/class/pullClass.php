@@ -21,7 +21,7 @@ class PullClass
   {
     $classes = array();
     $db = Db::getInstance();
-    $sql = "SELECT * FROM class WHERE classID = ?";
+    $sql = "SELECT * FROM class WHERE courseID = ?";
     $data = array($id);
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
