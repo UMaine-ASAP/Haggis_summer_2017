@@ -59,6 +59,11 @@ class ClassController
 
   public function listCourses()
   {
+    $classes = PullClass::()all();
+    foreach($classes as $class)
+    {
+      echo $class->title;
+    }
     $courses = PullCourse::all();
     require_once('views/class/listCourses.php');
 

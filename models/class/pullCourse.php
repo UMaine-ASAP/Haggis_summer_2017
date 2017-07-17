@@ -20,7 +20,6 @@ class PullCourse
 
   public static function id($id)
   {
-    $courses = array();
     $db = Db::getInstance();
     $sql = "SELECT * FROM course WHERE courseID = ?";
     $data = array($id);
