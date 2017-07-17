@@ -1,5 +1,7 @@
 <?php
 require_once('models/class/course.php');
+require_once('models/class/class.php');
+require_once('models/class/pullClass.php');
 require_once('models/class/insertCourse.php');
 require_once('models/class/pullCourse.php');
 require_once('models/class/archiveClass.php');

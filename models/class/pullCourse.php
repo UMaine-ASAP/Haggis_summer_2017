@@ -12,7 +12,8 @@ class PullCourse
 
     while($result = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $courses[]= new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'] );
+      $classes = PullClass::courseid($result['courseID']);
+      $courses[]= new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'], $classes );
     }
     return $courses;
   }
@@ -26,7 +27,8 @@ class PullCourse
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'] );
+    $classes = PullClass::courseid($result['courseID']);
+    return new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'],$classes );
   }
 }
 ?>
