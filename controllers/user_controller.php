@@ -56,6 +56,7 @@ class UserController
   {
     UserSession::logout();
     $userFunctions = UserFunctions::anon();
+    $classFunctions = ClassFunctions::anon();
     require_once('views/home/index.php');
   }
 

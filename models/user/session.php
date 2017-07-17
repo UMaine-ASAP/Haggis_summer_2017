@@ -60,8 +60,11 @@ class UserSession
   {
     $db = Db::getInstance();
     $req = $db->prepare("UPDATE user SET token = '' WHERE token = ?");
-    $data = array($_SESSION['token']);
-    $req->execute($data);
+    if(isset($_SESSION['token']))
+    {
+      $data = array($_SESSION['token']);
+      $req->execute($data);
+    }
     session_unset();													//unsets all Session variables effecitvly logging the user out of current session
   }
 

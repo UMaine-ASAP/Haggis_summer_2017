@@ -34,4 +34,14 @@
       ?>
     </td>
   </tr>
+  <tr>
+    <td>
+      <div class = "menuLinks">
+        Class Functions<br>
+        <ul>
+          <?php echo $classFunctions; ?>
+        </ul>
+      </div>
+    </td>
+  </tr>
 </table>
