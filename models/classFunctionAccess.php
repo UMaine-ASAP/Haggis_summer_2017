@@ -25,12 +25,14 @@ class ClassFunctions
 
   public static function admin()
   {
-    return  '<li><a href="?controller=class&action=archiveClass">ArchiveClass</a></li>'.
+    return  '<ul>'.
+            '<li><a href="?controller=class&action=archiveClass">ArchiveClass</a></li>'.
             '<li><a href="?controller=class&action=getUserbyClass">Users by Class</a></li>'.
             '<li><a href="?controller=class&action=insertClass">Add a Class</a></li>'.
             '<li><a href="?controller=class&action=updateClass">Edit a Class</a></li>'.
             '<li><a href="?controller=class&action=listCourses">Show all Courses</a></li>'.
-            '<li><a href="?controller=class&action=joinClass">Join a Class</a></li>';
+            '<li><a href="?controller=class&action=joinClass">Join a Class</a></li>'.
+            '</ul>';
   }
 }
 ?>

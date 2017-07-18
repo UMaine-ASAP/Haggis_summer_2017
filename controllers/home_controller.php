@@ -5,6 +5,7 @@
     {
       $userFunctions ="";
       $classFunctions = "";
+      $groupFunctions = "";
       if(isset($_SESSION['token']))
       {
         $user = true;
@@ -12,17 +13,20 @@
         {
           $userFunctions = UserFunctions::admin();
           $classFunctions = ClassFunctions::admin();
+          $groupFunctions = GroupFunctions::admin();
         }
         else
           {
             $userFunctions = UserFunctions::user();
             $classFunctions = ClassFunctions::user();
+            $groupFunctions = GroupFunctions::user();
           }
         }
       else
       {
         $userFunctions = UserFunctions::anon();
         $classFunctions = ClassFunctions::anon();
+        $groupFunctions = GroupFunctions::anon();
       }
       $loginStatus ='';
       if(isset($user))

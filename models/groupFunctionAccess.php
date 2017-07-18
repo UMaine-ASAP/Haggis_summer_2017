@@ -1,4 +1,12 @@
 <?php
+require_once('models/group/group.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
+// require_once('models/group/.php');
 // require_once('models/group/.php');
 
 
@@ -17,7 +25,11 @@ class GroupFunctions
 
   public static function admin()
   {
-    return  '<li><a href="?controller=group&action="></a></li>'.
+    return  '<ul>'.
+            '<li><a href="?controller=group&action=create">Create Group</a></li>'.
+            '<li><a href="?controller=group&action=index">All Groups</a></li>'.
+            '</ul>';
+  }
 
 }
 ?>
