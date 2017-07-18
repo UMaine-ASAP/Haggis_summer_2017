@@ -60,6 +60,33 @@ class ClassController
   public function listCourses()
   {
     $courses = PullCourse::all();
+    $courselist="";
+    foreach($courses as $course)
+    {
+      $classlist ="";
+      foreach($course->classes as $class)
+      {
+        $classlist = $classlist.$class->title."<br>";
+      }
+      $courselist = $courselist.
+                    "<tr>".
+                    "<td>".$course->id."</td>".
+                    "<td>".$course->title."</td>".
+                    "<td>".$course->code."</td>".
+                    "<td>".$course->description."</td>".
+                    "<td>".$classlist."</td>".
+                    "</tr>";
+    }
+    $courselist =  "<table>".
+          "<tr>".
+          "<th>ID</th>".
+          "<th>Title</th>".
+          "<th>Course Code</th>".
+          "<th>Description</th>".
+          "<th>Classes</th>".
+          "</tr>".
+          $courselist.
+          "</table>";
     require_once('views/class/listCourses.php');
 
   }
