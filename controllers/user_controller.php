@@ -55,9 +55,7 @@ class UserController
   function logout()
   {
     UserSession::logout();
-    $userFunctions = UserFunctions::anon();
-    $classFunctions = ClassFunctions::anon();
-    require_once('views/home/index.php');
+    header('Location: index.php');
   }
 
   function editUser()

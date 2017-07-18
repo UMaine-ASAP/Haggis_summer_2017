@@ -24,6 +24,19 @@
         $userFunctions = UserFunctions::anon();
         $classFunctions = ClassFunctions::anon();
       }
+      $loginStatus ='';
+      if(isset($user))
+      {
+        $loginStatus = "Logged in as ". $_SESSION['firstName'] ." ". $_SESSION['middleInitial'] ." ". $_SESSION['lastName'];
+        if($user)
+          $loginStatus = $loginStatus."<br>ADMIN USER";
+        else
+          $loginStatus = $loginStatus. "<br>NON ADMIN";
+        }
+      else
+      {
+        $loginStatus = "Not Logged in";
+      }
       require_once('views/home/index.php');
     }
 

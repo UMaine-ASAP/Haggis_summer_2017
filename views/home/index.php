@@ -13,25 +13,7 @@
       </div>
     </td>
     <td>
-      <?php
-
-        if(isset($user))
-        {
-          echo "Logged in as ". $_SESSION['firstName'] ." ". $_SESSION['middleInitial'] ." ". $_SESSION['lastName'];
-          if($user)
-            echo "<br>ADMIN USER";
-          else
-            echo "<br>NON ADMIN";
-        }
-
-        else
-        {
-          echo "Not Logged in";
-        }
-
-
-
-      ?>
+      <?php echo $loginStatus; ?>
     </td>
   </tr>
   <tr>
