@@ -17,6 +17,5 @@ class CheckAdmin
     }
     return $output;
   }
-
 }
 ?>
