@@ -21,7 +21,7 @@ class GroupController
         {
           $userIDs[] = $element;
         }
-        GroupInsert::group("0", $userIDs);
+        GroupInsert::group("1", $userIDs);
       }
     }
 
