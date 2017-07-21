@@ -40,13 +40,13 @@ function extractor(input, output)           //When executed this function goes t
   {
     data = groups[j].children;
     lable = "IDs"+j;
-    var part="<input name='labels[]' type='hidden' value='"+lable+"'>";
+    var chunk = "<input name='labels[]' type='hidden' value='"+lable+"'>";
 
     for(i=0; i<data.length;i++)
     {
-      part = part+"<input name = "+lable+"[]' type='hidden' value='"+data[i].id+"'>";
+      chunk = chunk+"<input name = '"+lable+"[]' type='hidden' value='"+data[i].id+"'>";
     }
-    value = part + "<div style='border:1px solid blue'>"+value+"</div>";
+    value = value+ chunk;
   }
-  document.getElementById(output).innerHTML = part;
+  document.getElementById(output).innerHTML = value;
 }
