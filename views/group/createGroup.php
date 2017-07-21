@@ -44,15 +44,9 @@
   </tr>
 </table>
 
-
-
-<?php if(isset($_POST['labels']))
-      {
-        foreach($_POST['labels'] as $lable)
-        {
-          echo "<br>";
-          foreach($_POST[$lable] as $element)
-          echo $element." ";
-        }
-      }
-      ?>
+<?php
+  if(isset($message))
+  {
+    echo $message;
+  }
+  ?>

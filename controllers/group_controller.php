@@ -10,7 +10,18 @@ class GroupController
 
   public function create()
   {
+    $message ="";
     $userList = UserPull::all();
+    if(isset($_POST['labels']))
+    {
+      foreach($_POST['labels'] as $lable)
+      {
+        $message.= "<br>";
+        foreach($_POST[$lable] as $element)
+        $message.= $element." ";
+      }
+    }
+
     require_once('views/group/createGroup.php');
   }
 
