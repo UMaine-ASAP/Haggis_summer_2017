@@ -5,7 +5,7 @@ class GroupInsert
   public static function group($projectID, $userIDs)
   {
     $db = Db::getInstance();
-    $sql = "INSERT INTO studentgroup (projectID) VALUES (?)";
+    $sql = "INSERT INTO studentGroup (projectID) VALUES (?)";
     $data = array($projectID);
 
     try
@@ -13,7 +13,7 @@ class GroupInsert
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $studentgroupID = $db->lastInsertId();
-      $sql = "INSERT INTO user_studentgroup (userID, studentGroupID) VALUES (?,?)";
+      $sql = "INSERT INTO user_studentGroup (userID, studentGroupID) VALUES (?,?)";
       $stmt = $db->prepare($sql);
 
       foreach($userIDs as $id)
