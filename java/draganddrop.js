@@ -5,6 +5,20 @@
 //Allows simple drag and drop of elements to a div space. Also gives functionality to
 //aquire elements from each div space and create hidden form fields for exportation
 //of arranged data.
+var batch = [];
+
+function addToBatch(ev)
+{
+  var current = ev.target.id;
+  if()
+  batch.push(current);
+  var stuff;
+  for(var i = 0; i < batch.length; i++)
+  {
+    stuff +=batch[i];
+  }
+  document.getElementById('debug').innerHTML = stuff;
+}
 
 function allowDrop(ev)        //tells the element that it should be allowed to recive items
 {
@@ -13,17 +27,29 @@ function allowDrop(ev)        //tells the element that it should be allowed to r
 
 function drag(ev)             //action to take place when user clicks and holds an element
 {
-  ev.dataTransfer.setData("text", ev.target.id);
+  if(batch.length<1)
+  {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
 }
 
 function drop(ev)             //action to take place when user releases mouse button
 {
   ev.preventDefault();
-  if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
-    return false;   //if not, then nothing happens. prevents dragged elements to be included in other dragged elements,
-                    // which causes issues should a user decide to move an element to another div space. Nesting occures.
-  var data = ev.dataTransfer.getData("text");
-  ev.target.append(document.getElementById(data));
+  if(batch.length > 0)
+  {
+
+  }
+  else
+  {
+    if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
+      return false;   //if not, then nothing happens. prevents dragged elements to be included in other dragged elements,
+                      // which causes issues should a user decide to move an element to another div space. Nesting occures.
+    var data = ev.dataTransfer.getData("text");
+    //document.getElementById('debug').innerHTML = data;
+    ev.target.append(document.getElementById(data));
+  }
 }
 
 function extractor(input, output)           //When executed this function goes through elements with a class

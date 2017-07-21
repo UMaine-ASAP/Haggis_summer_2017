@@ -16,8 +16,10 @@
         break;
       case 'class':
         $controller = new ClassController();
+        break;
       case 'group':
         $controller = new GroupController();
+        break;
     }
     $controller->{$action}();
   }

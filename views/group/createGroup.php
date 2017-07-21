@@ -2,7 +2,7 @@
 <script src="java/draganddrop.js"></script>
 <script src="java/formScaler.js"></script>
 <h2>Create A Group</h2>
-
+<div id='debug'></div>
 
 <table>
   <tr>
@@ -23,7 +23,7 @@
         $current = 0;
         foreach($userList as $user)
         {
-          echo "<button style='border:1px solid red' id = '".$user->id."' draggable='true' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
+          echo "<button style='border:1px solid red' id = '".$user->id."' draggable='true' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
           // $current++;
           // if($current>$maxPerColumn)
           // {
