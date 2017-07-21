@@ -1,7 +1,7 @@
 <?php
 require_once('models/group/group.php');
-// require_once('models/group/.php');
-// require_once('models/group/.php');
+require_once('models/group/groupPull.php');
+require_once('models/group/groupInsert.php');
 // require_once('models/group/.php');
 // require_once('models/group/.php');
 // require_once('models/group/.php');

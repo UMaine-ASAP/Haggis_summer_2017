@@ -16,9 +16,12 @@ class GroupController
     {
       foreach($_POST['labels'] as $lable)
       {
-        $message.= "<br>";
+        $userIDs = array();
         foreach($_POST[$lable] as $element)
-        $message.= $element." ";
+        {
+          $userIDs[] = $element;
+        }
+        GroupInsert::group("0", $userIDs);
       }
     }
 

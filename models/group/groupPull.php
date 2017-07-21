@@ -13,7 +13,7 @@ class GroupPull
       $stmt->execute();
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))		//goes through list
       {
-        groupList[] = new Group($result['studentGroupID'],$result['projectID'],GroupsPull::user($result['studentGroupID']) );
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],GroupPull::user($result['studentGroupID']) );
       }
       return $groupList;			//returns array of User Objects
     }
