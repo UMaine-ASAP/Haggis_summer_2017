@@ -26,7 +26,7 @@ class GroupPull
   public static function user($studentGroupID)
   {
     $db = Db::getInstance();
-    $sql = "SELECT * FROM user_studentgroup WHERE studentGroupID = ?";
+    $sql = "SELECT * FROM user_studentGroup WHERE studentGroupID = ?";
     $userlist =array();
     try
     {
