@@ -5,7 +5,7 @@ class GroupPull
 
   public static function all(){					//collects user ID's from Database
     $db = Db::getInstance();
-    $sql = "SELECT * FROM studentgroup";
+    $sql = "SELECT * FROM studentGroup";
     $groupList = array();								//used to store User objects
     try
     {
