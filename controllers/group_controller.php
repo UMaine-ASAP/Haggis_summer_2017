@@ -8,11 +8,11 @@ class GroupController
     $groupList = GroupPull::all();
     foreach($groupList as $group)
     {
-      echo "<br>Group Set ". $group->studentGroupID."<br>";
+      echo "<br><h3>Group Set ". $group->studentGroupID."</h3><br>";
       foreach($group->userIDs as $user)
       {
         $thisUser = UserPull::id($user);
-        echo $thisUser->firstName. " ". $thisUser->lastName;
+        echo $thisUser->firstName. " ". $thisUser->lastName."<br>";
       }
     }
     require_once('views/group/index.php');
