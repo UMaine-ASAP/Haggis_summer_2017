@@ -5,6 +5,13 @@ class GroupController
 {
   public function index()
   {
+    $groupList = GroupPull::all();
+    foreach($groupList as $group)
+    {
+      echo "<br>Group Set<br>";
+      foreach($group->userIDs as $user)
+      echo $user;
+    }
     require_once('views/group/index.php');
   }
 
