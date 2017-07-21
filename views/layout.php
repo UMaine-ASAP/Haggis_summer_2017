@@ -3,6 +3,7 @@
   <head>
     <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0' name = 'viewport'/>
     <meta name ="HandheldFriendly" content = "true" />
+    <link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
   </head>
   <body>
     <header>

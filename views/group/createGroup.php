@@ -1,66 +1,62 @@
-Create A Group
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="java/draganddrop2.js"></script> -->
+<script src="java/formScaler.js"></script>
 <script>
-
-function allowDrop(ev)
-{
-  ev.preventDefault();
-}
-
-function drag(ev)
-{
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev)
-{
-  ev.preventDefault();
-  if(!ev.target.getAttribute("ondrop"))
-    return false;
-  var data = ev.dataTransfer.getData("text");
-  ev.target.append(document.getElementById(data));
-}
-
-function extractor()
-{
-  var groups = document.getElementsByClassName("div");
-  var part ="";
-  var i;
-  var j;
-  for(j=0; j<groups.length;j++)
-  {
-    data = groups[j].children;
-    var value="";
-    for(i=0; i<data.length;i++)
-    {
-      value = value+"<input id = 'userID[]' type='text' value='"+data[i].id+"'><br>";
-    }
-    var part = part + "<div style='border:1px solid blue'>"+value+"</div>";
-  }
-  document.getElementById("test").innerHTML = part;
-}
+$(function() {
+  $(".draggable").draggable({ snap: ".groupbox"});
+});
 </script>
-<br>
-Group 1
-<div class = 'div' id = "group" ondrop="drop(event)" ondragover="allowDrop(event)" style="border:2px solid black">
 
+
+
+
+<h2>Create A Group</h2>
+<div>Number of groups: <input id="numOfGroups" type="number" value="2" min="2" name="numOfGroups">
+  <form action='?controller=group&action=create' method='post'>
+    <div  id="output"></div>
+    <input type='submit' onclick="extractor('groupbox','output')" value='Create Groups'>
+  </form>
 </div>
-<br>
-Group 2
-<div class ='div' id = "group" ondrop="drop(event)" ondragover="allowDrop(event)" style="border:2px solid black">
-
+<div>
+  <?php
+    $size = sizeof($userList);
+    $maxPerColumn = 4;
+    $current = 0;
+    foreach($userList as $user)
+    {
+      echo "<button class='draggable' draggable style='border:1px solid red' id = '".$user->id."'>".$user->firstName." ".$user->lastName."</button>";
+      // $current++;
+      // if($current>$maxPerColumn)
+      // {
+      //   echo "</td><td>";
+      //   $current=0;
+      // }
+    }
+  ?>
 </div>
 
-<?php
-  foreach($userList as $user)
-    echo "<p style='border:1px solid red' id = '".$user->id."' draggable='true' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</p>";
-?>
+<table>
+  <tr id="groupboxes">
+    <td class ='groupbox' id ="group" style="border:2px solid black">
+      Group 1
+    </td>
+    <td class ='groupbox' id ="group" style="border:2px solid black">
+      Group 2
+    </td>
+  </tr>
+</table>
 
-<div class='test1' id="test">
-  test
-</div>
 
-<input id = 'feild' type='text' value=''>
 
-<button type="button" onclick="extractor()">TEST CLICKER</button>
+<?php if(isset($_POST['labels']))
+      {
+        foreach($_POST['labels'] as $lable)
+        {
+          echo "<br>";
+          foreach($_POST[$lable] as $element)
+          echo $element." ";
+        }
+      }
+      ?>
