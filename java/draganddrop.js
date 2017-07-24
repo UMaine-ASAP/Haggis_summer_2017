@@ -21,12 +21,6 @@ function addToBatch(ev)
     batch.splice(index, 1);
     ev.target.style.border = "1px solid lightgrey";
   }
-  var stuff = "";
-  for(var i = 0; i < batch.length; i++)
-  {
-    stuff +=batch[i];
-  }
-  document.getElementById('debug').innerHTML = stuff;
 }
 
 
