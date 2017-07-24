@@ -10,15 +10,25 @@ var batch = [];
 function addToBatch(ev)
 {
   var current = ev.target.id;
-  if()
-  batch.push(current);
-  var stuff;
+  var index = batch.indexOf(current);
+  if(index == -1)
+  {
+    batch.push(current);
+    ev.target.style.border = "1px solid red";
+  }
+  else
+  {
+    batch.splice(index, 1);
+    ev.target.style.border = "1px solid lightgrey";
+  }
+  var stuff = "";
   for(var i = 0; i < batch.length; i++)
   {
     stuff +=batch[i];
   }
   document.getElementById('debug').innerHTML = stuff;
 }
+
 
 function allowDrop(ev)        //tells the element that it should be allowed to recive items
 {
@@ -27,29 +37,38 @@ function allowDrop(ev)        //tells the element that it should be allowed to r
 
 function drag(ev)             //action to take place when user clicks and holds an element
 {
-  if(batch.length<1)
+  if(batch.length > 0)
+  {
+    ev.dataTransfer.setData("text", batch);
+  }
+  else
   {
     ev.dataTransfer.setData("text", ev.target.id);
   }
-
 }
 
 function drop(ev)             //action to take place when user releases mouse button
 {
   ev.preventDefault();
-  if(batch.length > 0)
-  {
-
-  }
-  else
-  {
-    if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
-      return false;   //if not, then nothing happens. prevents dragged elements to be included in other dragged elements,
-                      // which causes issues should a user decide to move an element to another div space. Nesting occures.
-    var data = ev.dataTransfer.getData("text");
-    //document.getElementById('debug').innerHTML = data;
-    ev.target.append(document.getElementById(data));
-  }
+  if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
+    return false;   //if not, then nothing happens. prevents dragged elements to be included in other dragged elements,
+                    // which causes issues should a user decide to move an element to another div space. Nesting occures.
+    if(batch.length > 0)
+    {
+      for(var i = 0; i < batch.length; i++)
+      {
+        ev.target.append(document.getElementById(batch[i]));
+        document.getElementById(batch[i]).style.border="1px solid lightgrey";
+      }
+      batch = [];
+    }
+    else
+    {
+      var data = ev.dataTransfer.getData("text");
+      //document.getElementById('debug').innerHTML = data;
+      ev.target.append(document.getElementById(data));
+      document.getElementById(data).style.border="1px solid lightgrey";
+    }
 }
 
 function extractor(input, output)           //When executed this function goes through elements with a class

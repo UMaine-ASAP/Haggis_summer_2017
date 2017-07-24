@@ -23,13 +23,13 @@
         $current = 0;
         foreach($userList as $user)
         {
-          echo "<button style='border:1px solid red' id = '".$user->id."' draggable='true' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
-          // $current++;
-          // if($current>$maxPerColumn)
-          // {
-          //   echo "</td><td>";
-          //   $current=0;
-          // }
+          echo "<button style='border:1px solid lightgrey' id = '".$user->id."' draggable='true' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button><br>";
+          $current++;
+          if($current>$maxPerColumn)
+          {
+            echo "</td><td>";
+            $current=0;
+          }
         }
       ?>
     </td>

@@ -2,3 +2,9 @@ td
 {
   vertical-align:top;
 }
+
+button
+{
+  padding: 2px;
+  margin: 2px;
+}
