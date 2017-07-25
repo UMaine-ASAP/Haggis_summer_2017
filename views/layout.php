@@ -7,6 +7,15 @@
   </head>
   <body>
     <header>
+      <table>
+        <tr>
+          <td>
+            <h1>Haggis_2017</h1>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
     </header>
 
     <div class = "body">

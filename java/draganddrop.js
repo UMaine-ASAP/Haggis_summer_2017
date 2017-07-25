@@ -45,14 +45,17 @@ function drop(ev)             //action to take place when user releases mouse bu
 {
   ev.preventDefault();
   if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
-    return false;   //if not, then nothing happens. prevents dragged elements to be included in other dragged elements,
-                    // which causes issues should a user decide to move an element to another div space. Nesting occures.
+  {
+    return false;
+  }
+  else
+  {
     if(batch.length > 0)
     {
       for(var i = 0; i < batch.length; i++)
       {
         ev.target.append(document.getElementById(batch[i]));
-        document.getElementById(batch[i]).style.border="1px solid lightgrey";
+
       }
       batch = [];
     }
@@ -61,9 +64,19 @@ function drop(ev)             //action to take place when user releases mouse bu
       var data = ev.dataTransfer.getData("text");
       //document.getElementById('debug').innerHTML = data;
       ev.target.append(document.getElementById(data));
-      document.getElementById(data).style.border="1px solid lightgrey";
+
     }
+  }
+
 }
+
+function move(elementID, destination)
+{
+  var destinations = document.getElementsByClassName('groupbox');
+  destinations[destination].append(document.getElementById(elementID));
+}
+
+
 
 function extractor(input, output)           //When executed this function goes through elements with a class
                                             //  that matches the first argument, and processes through the children.
@@ -89,3 +102,16 @@ function extractor(input, output)           //When executed this function goes t
   }
   document.getElementById(output).innerHTML = value;
 }
+
+
+/*!
+ * jQuery UI Touch Punch 0.2.3
+ *
+ * Copyright 2011–2014, Dave Furfero
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Depends:
+ *  jquery.ui.widget.js
+ *  jquery.ui.mouse.js
+ */
+!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);

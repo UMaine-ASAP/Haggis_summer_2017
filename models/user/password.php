@@ -3,7 +3,7 @@ class UserPassword
 {
   public static function resetPassword($code, $password){
     $db = Db::getInstance();
-    $salted = password_hash($pw, PASSWORD_DEFAULT);
+    $salted = password_hash($password, PASSWORD_DEFAULT);
   $req = $db->prepare("UPDATE user SET password = ?, resetCode = '' WHERE resetCode = ?");
   $data = array($salted, $code);
   $req->execute($data);
@@ -27,10 +27,7 @@ class UserPassword
   "  If you didn't request a password reset ignore this email";
   $headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
   mail($to, $subject, $message, $headers);
-  $message = "Check your e-mail for a password reset link";
-
-  echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
-
+  return true;
   }
 
 

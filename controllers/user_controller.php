@@ -23,15 +23,15 @@ class UserController
         if($passwordsMatch)
         {
           $outcome = UserCreation::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
-          echo $outcome;
-          if($outcome == '1')
+          switch($outcome)
           {
-            $message = "Successfully registered ".$firstName." ".$lastName;
-            $firstName = $middleInitial = $lastName = $email = "";
-          }
-          if($outcome == '2')
-          {
-            $message = "The email '".$email."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+            case '1':
+              $message = "Successfully registered ".$firstName." ".$lastName;
+              $firstName = $middleInitial = $lastName = $email = "";
+              break;
+            case '2':
+              $message = "The email '".$email."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+              break;
           }
         }
         else
@@ -126,10 +126,26 @@ class UserController
 
   function passwordReset(){
     $code = $_GET['code'];
-    require_once('views/user/passwordReset.php');
-    if (isset($_POST['submit'])){
-      UserPassword::resetPassword($code, $_POST["password"]);
+    $message = "";
+
+    if (isset($_POST['passwordConfirm']))
+    {
+      if($_POST['password'] == $_POST['passwordConfirm'])
+      {
+        if(UserPassword::resetPassword($code, $_POST["password"]))
+        {
+          $message = "Your password has been reset. Login with your new credentials.";
+          echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
+
+        }
+      }
+      else
+      {
+        $message = "Your passwords do not match. Please try again.";
+      }
     }
+    require_once('views/user/passwordReset.php');
+
   }
 
   function passwordResetRequest(){

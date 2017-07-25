@@ -21,7 +21,6 @@ class UserCreation
         $data = array($fn, $ln, $mi, $em, $salted,"user");
         $stmt->execute($data);
         UserEmail::sendConfirmEmail($em);
-        return '1';
       }catch(PDOException $e) {
         return "Error: " . $e->getMessage();
       }

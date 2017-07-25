@@ -42,12 +42,12 @@ class UserSession
         }
         else
         {
-          return "Your password was incorrect";
+          return "Your email and/or password were incorrect. Please try again.";
         }
       }
       else
       {
-        return "The email address you provided do not match any on record";
+        return "Your email and/or password were incorrect. Please try again.";
       }
     }
     catch(PDOException $e)
