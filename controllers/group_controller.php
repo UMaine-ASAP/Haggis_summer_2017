@@ -5,13 +5,13 @@ class GroupController
 {
   public function index()
   {
-    $groupList = GroupPull::all();
+    $groupList = Group::all();
     foreach($groupList as $group)
     {
       echo "<br><h3>Group Set ". $group->studentGroupID."</h3><br>";
       foreach($group->userIDs as $user)
       {
-        $thisUser = UserPull::id($user);
+        $thisUser = User::id($user);
         echo $thisUser->firstName. " ". $thisUser->lastName."<br>";
       }
     }
@@ -22,7 +22,7 @@ class GroupController
   {
     $message ="";
     $NumofGroups = 2;
-    $userList = UserPull::all();
+    $userList = User::all();
     if(isset($_POST['labels']))
     {
       $NumofGroups = sizeof($_POST['labels']);
@@ -33,7 +33,7 @@ class GroupController
         {
           $userIDs[] = $element;
         }
-        GroupInsert::group("1", $userIDs);
+        Group::create("1", $userIDs);
       }
     }
 

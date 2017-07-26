@@ -9,7 +9,7 @@
       if(isset($_SESSION['token']))
       {
         $user = true;
-        if(CheckAdmin::check($_SESSION['token']))
+        if(User::checkAdmin($_SESSION['token']))
         {
           $userFunctions = UserFunctions::admin();
           $classFunctions = ClassFunctions::admin();

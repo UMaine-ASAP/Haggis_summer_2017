@@ -1,7 +1,9 @@
 <?php
-  require_once('models/userFunctionAccess.php');
-  require_once('models/classFunctionAccess.php');
-  require_once('models/groupFunctionAccess.php');
+  require_once('models/user.php');
+  require_once('models/klass.php');
+  require_once('models/group.php');
+  require_once('models/course.php');
+
   function call ($controller, $action)
   {
     require_once("controllers/".$controller."_controller.php");

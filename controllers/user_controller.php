@@ -22,7 +22,7 @@ class UserController
 
         if($passwordsMatch)
         {
-          $outcome = UserCreation::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
+          $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
           switch($outcome)
           {
             case '1':
@@ -47,14 +47,14 @@ class UserController
 
     if(isset($_POST['email']))
     {
-      $message = UserSession::login($_POST['email'], $_POST['password']);
+      $message = User::login($_POST['email'], $_POST['password']);
     }
     require_once('views/user/login.php');
   }
 
   function logout()
   {
-    UserSession::logout();
+    User::logout();
     header('Location: index.php');
   }
 
@@ -63,15 +63,15 @@ class UserController
     $userSelected = false;
     $userEdited = false;
     $selectedUser = "";
-    $userList = UserPull::all();
+    $userList = User::all();
     if(isset($_POST['user']))
     {
       $userSelected = true;
-      $selectedUser = UserPull::id($_POST['user']);
+      $selectedUser = User::id($_POST['user']);
     }
     else if(isset($_POST['firstname']))
     {
-      UserUpdate::update($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
+      User::update($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
       $userSelected = false;
       $userEdited = true;
     }
@@ -84,22 +84,22 @@ class UserController
     $userSelected = false;
     $userEdited = false;
     $selectedUser = "";
-    $userList = UserPull::all();
+    $userList = User::all();
     if(isset($_POST['user']))
     {
       $message = "Confirm deletion of user";
       $userSelected = true;
-      $selectedUser = UserPull::id($_POST['user']);
+      $selectedUser = User::id($_POST['user']);
     }
     else if(isset($_POST['confirm']))
     {
       if($_POST['confirm'] == "yes")
       {
         $message = "User has been deleted";
-        UserDelete::id($_POST['userid']);
+        User::delete($_POST['userid']);
         $userSelected = false;
         $userEdited = true;
-        $userList = UserPull::all();
+        $userList = User::all();
       }
       else
       {
@@ -113,7 +113,7 @@ class UserController
 
   function index()
   {
-    $results = UserPull::all();
+    $results = User::all();
     echo sizeof($results)." Users are registered.<br>";
     echo "<table>";
     echo "<tr><th>UserID</th><th>UserType</th><th>First Name</th><th>LastName</th>";
@@ -132,11 +132,10 @@ class UserController
     {
       if($_POST['password'] == $_POST['passwordConfirm'])
       {
-        if(UserPassword::resetPassword($code, $_POST["password"]))
+        if(User::resetPassword($code, $_POST["password"]))
         {
           $message = "Your password has been reset. Login with your new credentials.";
           echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
-
         }
       }
       else
@@ -151,13 +150,13 @@ class UserController
   function passwordResetRequest(){
     require_once('views/user/passwordResetRequest.php');
     if (isset($_POST['submit'])){
-      UserPassword::sendResetEmail($_POST['email']);
+      User::sendResetEmail($_POST['email']);
     }
   }
 
   function emailConfirmation(){
     $code = $_GET['code'];
-    UserEmail::confirmEmail($code);
+    User::confirmEmail($code);
     $message = "Email has been confirmed, you may now login";
     require_once('views/home/index.php');
   }
@@ -165,10 +164,9 @@ class UserController
   function sendEmailConfirmation()
   {
     $email = $_GET['email'];
-    UserEmail::sendConfirmEmail($email);
+    User::sendConfirmEmail($email);
     $message = "Confirmation email sent";
     require_once('views/user/login.php');
-
   }
 }
 

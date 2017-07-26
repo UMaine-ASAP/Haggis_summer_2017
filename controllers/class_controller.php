@@ -21,7 +21,7 @@ class ClassController
   {
     $message='';
     $courseID='';
-    $courselisting = PullCourse::all();
+    $courselisting = Course::all();
     if(isset($_POST['token']))
     {
       $courestitle ='';
@@ -32,17 +32,17 @@ class ClassController
         $coursetitle=$_POST['coursetitle'];
         $coursecode = $_POST['coursecode'];
         $coursedescription = $_POST['coursedescription'];
-        $courseID = AddCourse::insert($coursetitle,$coursecode,$coursedescription);
+        $courseID = Course::create($coursetitle,$coursecode,$coursedescription);
       }
       else
       {
-        $course = PullCourse::id($_POST['courselisting']);
+        $course = Course::id($_POST['courselisting']);
         $courseID = $_POST['courselisting'];
         $coursetitle=$course->title;
         $coursecode = $course->code;
         $coursedescription = $course->description;
       }
-      $message = AddClass::insert($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
+      $message = Klass::create($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
     }
     require_once('views/class/insertClass.php');
   }
@@ -59,7 +59,7 @@ class ClassController
 
   public function listCourses()
   {
-    $courses = PullCourse::all();
+    $courses = Course::all();
     $courselist="";
     foreach($courses as $course)
     {
