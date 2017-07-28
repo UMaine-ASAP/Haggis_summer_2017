@@ -158,7 +158,7 @@ class UserController
     $code = $_GET['code'];
     User::confirmEmail($code);
     $message = "Email has been confirmed, you may now login";
-    require_once('views/home/index.php');
+    require_once('views/pages/index.php');
   }
 
   function sendEmailConfirmation()
