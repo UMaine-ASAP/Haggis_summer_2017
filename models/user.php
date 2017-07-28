@@ -32,7 +32,7 @@ Class User {
     }
 //=================================================================================== CREATE
     public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
-      $currentUsers = UserPull::all();					//Get a list of users
+      $currentUsers = User::all();					//Get a list of users
       $conflict = false;										//becomes true if email and password already exist
       foreach($currentUsers as $user)				//goes through the user list and checks to see if email already exists
       {
@@ -50,7 +50,7 @@ Class User {
           $stmt = $db->prepare($sql);
           $data = array($fn, $ln, $mi, $em, $salted,"user");
           $stmt->execute($data);
-          UserEmail::sendConfirmEmail($em);
+          User::sendConfirmEmail($em);
         }catch(PDOException $e) {
           return "Error: " . $e->getMessage();
         }
