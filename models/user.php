@@ -255,35 +255,4 @@ Class User {
       }
     }
   }
-
-
-
-class UserFunctions
-{
-  public static function anon()
-  {
-    return  '<ul>'.
-            '<li><a href="?controller=user&action=login">Login</a></li>'.
-            '<li><a href="?controller=user&action=register">Register</a></li>'.
-            '<li><a href="?controller=user&action=passwordResetRequest">Forgot Password?</a></li>'.
-            '</ul>';
-  }
-
-  public static function user()
-  {
-    return  '<ul>'.
-            '<li><a href="?controller=user&action=logout">Logout</a></li>'.
-            '</ul>';
-  }
-
-  public static function admin()
-  {
-    return  '<ul>'.
-            '<li><a href="?controller=user&action=logout">Logout</a></li>'.
-            '<li><a href="?controller=user&action=editUser">Edit User</a></li>'.
-            '<li><a href="?controller=user&action=index">List Users</a></li>'.
-            '<li><a href="?controller=user&action=delete">Delete a User</a></li>'.
-            '</ul>';
-  }
-}
 ?>

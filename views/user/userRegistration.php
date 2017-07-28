@@ -1,3 +1,4 @@
+<h1>Registration</h1>
 <div><?php echo $message; ?></div>
 <div>
   <form action='?controller=user&action=register' method='post'>

@@ -1,0 +1,11 @@
+FYI.txt
+For Your Information
+
+This document should contain notes that will help to define and explain the reasons for specific implementations made during the
+development of this iteration.
+
+
+
+
+The term klass is used in place of class. This affects the model primarily. This fix addresses an issue of refering to a class within PHP
+programming language. Class is a reserved word for the language, and cannot be used outside of declaring a new class.

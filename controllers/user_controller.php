@@ -47,9 +47,9 @@ class UserController
 
     if(isset($_POST['email']))
     {
-      $message = User::login($_POST['email'], $_POST['password']);
+      $_SESSION['message'] = User::login($_POST['email'], $_POST['password']);
     }
-    require_once('views/user/login.php');
+    header('Location: index.php');
   }
 
   function logout()

@@ -1,5 +1,4 @@
 <?php
-  require_once('models/user.php');
   require_once('models/klass.php');
   require_once('models/group.php');
   require_once('models/course.php');
@@ -10,8 +9,8 @@
 
     switch ($controller)
     {
-      case 'home':
-        $controller = new HomeController();
+      case 'pages':
+        $controller = new PagesController();
         break;
       case 'user':
         $controller = new UserController();
@@ -27,7 +26,7 @@
   }
 
 
-  $controllers = array (  'home'      => ['index','error'],
+  $controllers = array (  'pages'      => ['index','classes','groups','assignments','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses'],
                           'group'     => ['index', 'create']);
@@ -36,8 +35,8 @@
     if(in_array($action, $controllers[$controller]))
       call($controller, $action);
     else
-      call('home', 'error');
+      call('pages', 'error');
   else
-    call('home', 'error');
+    call('pages', 'error');
 
 ?>

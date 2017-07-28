@@ -12,9 +12,15 @@
   }
   else
   {
-    $controller = 'home';
+    
+    $controller = 'pages';
     $action = 'index';
   }
+
+  require_once('models/user.php');
+  require_once('models/userFunctionAccess.php');
+  require_once('controllers/session_controller.php');
+  $sessionData = SessionController::menuBuilder();
 
   require_once('views/layout.php');
 ?>

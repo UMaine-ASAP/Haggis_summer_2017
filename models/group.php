@@ -74,27 +74,5 @@ Class Group {
       echo "Error: " . $e->getMessage();
     }
   }
-  }
-
-class GroupFunctions
-{
-  public static function anon()
-  {
-    return  '';
-  }
-
-  public static function user()
-  {
-    return  '';
-  }
-
-  public static function admin()
-  {
-    return  '<ul>'.
-            '<li><a href="?controller=group&action=create">Create Group</a></li>'.
-            '<li><a href="?controller=group&action=index">All Groups</a></li>'.
-            '</ul>';
-  }
-
 }
 ?>
