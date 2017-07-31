@@ -51,6 +51,7 @@ class UserController
       if($outcome[0] != 1)
       {
         $_SESSION['message'] = $outcome[1];
+        header('Location: index.php');
       }
       else
       {
