@@ -194,7 +194,7 @@ Class User {
         if($result)																									//if we have a result, we pull data out
         {
           $errorCode = 1;
-          $message =  new User($result['userID'], $result['firstName'],$result['middleInitial'], $result['lastName'], $result['email'], $result['userType']);	//and adds a user object with information aquired
+          $message =  new User($result['userID'], $result['firstName'],$result['middleInitial'], $result['lastName'], $result['email'], $result['userType'])[1];	//and adds a user object with information aquired
         }
         else
         {
