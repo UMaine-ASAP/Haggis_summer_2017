@@ -28,11 +28,13 @@ Class User {
       {
         $output = true;
       }
-      return $output;
+      return array(1, $output);
     }
 //=================================================================================== CREATE
     public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
-      $currentUsers = User::all();					//Get a list of users
+      $errorCode;
+      $message;
+      $currentUsers = User::all()[1];					//Get a list of users
       $conflict = false;										//becomes true if email and password already exist
       foreach($currentUsers as $user)				//goes through the user list and checks to see if email already exists
       {
@@ -40,25 +42,38 @@ Class User {
         $conflict = true;
       }
       if($conflict)													//if email already exists, tell the user.
-        return '2';
+      {
+        $errorCode = 2;
+        $message   = "Email address is already registered";
+      }
+
       else 																	//else, we insert our new user into the database
       {
         $salted = password_hash($pw, PASSWORD_DEFAULT);
         $db = Db::getInstance();
         $sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
-        try{
+        try
+        {
           $stmt = $db->prepare($sql);
           $data = array($fn, $ln, $mi, $em, $salted,"user");
           $stmt->execute($data);
           User::sendConfirmEmail($em);
-        }catch(PDOException $e) {
-          return "Error: " . $e->getMessage();
+          $errorCode = 1;
+          $message = "Account succussfully Created";
+        }
+        catch(PDOException $e)
+        {
+          $errorCode  = $e->getCode();
+          $message    = $e->getMessage();
         }
       }
+      return array($errorCode, $message);
     }
 //=================================================================================== DELETE
     public static function delete($id)
     {
+      $errorCode;
+      $message;
       $db = Db::getInstance();
       $sql = "DELETE FROM user WHERE userID = ?";
       $data = array($id);
@@ -66,18 +81,23 @@ Class User {
       {
         $stmt = $db->prepare($sql);
         $stmt->execute($data);
+        $errorCode = 1;
+        $message = "User Deleted";
       }
       catch(PDOException $e)
       {
-        echo "Error: ". $e->getMessage();
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
       }
+      return array($errorCode, $message);
     }
 //=================================================================================== CONFIRM EMAIL
     public static function confirmEmail($code)
     {
       $db = Db::getInstance();
-    $req = $db->prepare("UPDATE user SET emailConfirmed = '1', emailConfirmedCode ='' WHERE emailConfirmedCode = '$code'");
-    $req->execute();
+      $req = $db->prepare("UPDATE user SET emailConfirmed = '1', emailConfirmedCode ='' WHERE emailConfirmedCode = '$code'");
+      $req->execute();
+      return array(1, "Email Confirmed");
 
     }
 //=================================================================================== SEND CONFIRM EMAIL
@@ -100,15 +120,17 @@ Class User {
       "  If you didn't register for an account ignore this email";
       $headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
       mail($to, $subject, $message, $headers);
-      return true;
+      return array(1, "Email confirmation email sent");
     }
 //=================================================================================== RESET PASSWORD
-    public static function resetPassword($code, $password){
+    public static function resetPassword($code, $password)
+    {
       $db = Db::getInstance();
       $salted = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("UPDATE user SET password = ?, resetCode = '' WHERE resetCode = ?");
-    $data = array($salted, $code);
-    $req->execute($data);
+      $req = $db->prepare("UPDATE user SET password = ?, resetCode = '' WHERE resetCode = ?");
+      $data = array($salted, $code);
+      $req->execute($data);
+      return array(1, "Password has been reset");
     }
 //=================================================================================== SEND RESET PASSWORD EMAIL
     public static function sendResetEmail($email){
@@ -129,10 +151,12 @@ Class User {
     "  If you didn't request a password reset ignore this email";
     $headers = 'From: no-reply@haggis.com' . "\r\n" . 'Reply-To: no-reply@haggis.com';
     mail($to, $subject, $message, $headers);
-    return true;
+    return array(1, "Password Reset Email Sent");
     }
 //=================================================================================== ALL USERS
     public static function all(){					//collects user ID's from Database
+      $errorCode;
+      $message;
       $db = Db::getInstance();
       $sql = "SELECT * FROM user";
       $userList = array();								//used to store User objects
@@ -144,16 +168,21 @@ Class User {
         {
           $userList[] = new User($result['userID'], $result['firstName'], $result['middleInitial'], $result['lastName'], $result['email'], $result['userType']);	//and adds a user object with information aquired
         }
-        return $userList;			//returns array of User Objects
+        $errorCode = 1;
+        $message = $userList;			//returns array of User Objects
 
       }
       catch(PDOException $e)
       {
-        echo "Error: ". $e->getMessage();
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
       }
+      return array($errorCode, $message);
     }
 //=================================================================================== USERS BY ID
     public static function id($id){
+      $errorCode;
+      $message;
       $db= Db::getInstance();
       $sql = "SELECT * FROM user WHERE userID = ?";		//Pull from the database anything that matches both email and password
       $data = array($id);
@@ -164,17 +193,26 @@ Class User {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result)																									//if we have a result, we pull data out
         {
-          return new User($result['userID'], $result['firstName'],$result['middleInitial'], $result['lastName'], $result['email'], $result['userType']);	//and adds a user object with information aquired
+          $errorCode = 1;
+          $message =  new User($result['userID'], $result['firstName'],$result['middleInitial'], $result['lastName'], $result['email'], $result['userType']);	//and adds a user object with information aquired
+        }
+        else
+        {
+          $errorCode = 3;
+          $message = "User not found";
         }
       }
-        catch(PDOException $e)
-        {
-          echo "Error: ". $e->getMessage();
-        }
-
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
     }
 //=================================================================================== LOGIN
     public static function login($email, $password){
+      $errorCode;
+      $message;
       $userID ='';
       $db= Db::getInstance();
       $sql = "SELECT * FROM user WHERE email = ?";		//Pull from the database anything that matches both email and password
@@ -205,27 +243,33 @@ Class User {
               $data = array($result, $userID);
               $req->execute($data);
               $_SESSION['token'] = $result;
-              header('Location: index.php');													//load our page back to the index
+              $errorCode = 1;
+              $message = "Successful Login";
             }
             else
             {
-              return "Your email has not yet been confirmed. Please check your email for a confirmation link.<a href='?controller=user&action=sendEmailConfirmation&email=".$result['email']."'>Request a new link?</a>";
+              $errorCode = 4;
+              $message = "Your email has not yet been confirmed. Please check your email for a confirmation link.";
             }
           }
           else
           {
-            return "Your email and/or password were incorrect. Please try again.";
+            $errorCode = 5;
+            $message = "Your email and/or password were incorrect. Please try again.";
           }
         }
         else
         {
+          $errorCode = 5;
           return "Your email and/or password were incorrect. Please try again.";
         }
       }
       catch(PDOException $e)
       {
-        return "Error: ". $e->getMessage();
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
       }
+      return array($errorCode, $message);
     }
 //=================================================================================== LOGOUT
     public static function logout()
@@ -238,9 +282,12 @@ Class User {
         $req->execute($data);
       }
       session_unset();													//unsets all Session variables effecitvly logging the user out of current session
+      return array(1, "Successful Logoff");
     }
 //=================================================================================== UPDATE USER
     public static function update($fn, $ln, $mi, $em, $ut, $ui){
+      $errorCode;
+      $message;
       $db= Db::getInstance();
       $data = array($fn, $ln, $mi, $em, $ut, $ui);
       $sql = "UPDATE user SET firstName = ?, lastName = ?, middleInitial = ?, email = ?, userType = ? WHERE userID = ?";
@@ -248,11 +295,15 @@ Class User {
       {
         $stmt = $db->prepare($sql);
         $stmt->execute($data);
+        $errorCode = 1;
+        $message = "User succesfully updated";
       }
       catch(PDOException $e)
       {
-        echo "Error: ". $e->getMessage();
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
       }
+      return array($errorCode, $message);
     }
   }
 ?>

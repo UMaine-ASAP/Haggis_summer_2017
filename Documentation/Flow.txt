@@ -30,4 +30,5 @@ index.php
         views/user/passwordReset.php
         views/user/passwordResetRequest.php
         views/pages/index.php
-        views/user.login.php
+        views/user/login.php
+        views/user/viewUsers.php

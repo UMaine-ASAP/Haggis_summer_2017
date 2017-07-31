@@ -6,13 +6,13 @@ class GroupController
 //=================================================================================== INDEX
   public function index()
   {
-    $groupList = Group::all();
+    $groupList = Group::all()[1];
     foreach($groupList as $group)
     {
       echo "<br><h3>Group Set ". $group->studentGroupID."</h3><br>";
       foreach($group->userIDs as $user)
       {
-        $thisUser = User::id($user);
+        $thisUser = User::id($user)[1];
         echo $thisUser->firstName. " ". $thisUser->lastName."<br>";
       }
     }
@@ -23,7 +23,7 @@ class GroupController
   {
     $message ="";
     $NumofGroups = 2;
-    $userList = User::all();
+    $userList = User::all()[1];
     if(isset($_POST['labels']))
     {
       $NumofGroups = sizeof($_POST['labels']);

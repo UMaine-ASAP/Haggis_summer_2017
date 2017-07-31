@@ -10,7 +10,7 @@ class SessionController
     if(isset($_SESSION['token']))
     {
       $loginStatus = "Logged in as ". $_SESSION['firstName'] ." ". $_SESSION['middleInitial'] ." ". $_SESSION['lastName']."<br><a href='?controller=user&action=logout'>Logout</a>";
-      if(User::checkAdmin($_SESSION['token']))
+      if(User::checkAdmin($_SESSION['token'])[1])
       {
         $userFunctions = UserFunctionAccess::getFunctions("admin");
       }

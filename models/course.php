@@ -17,6 +17,8 @@ Class Course {
     public static function create($coursetitle, $coursecode, $coursedescription)
     {
       $courseIDfinal = '';
+      $errorCode;
+      $dataOut;
       $db = Db::getInstance();
       $sql = "INSERT INTO course (title, courseCode, description) VALUES (?,?,?)";
       try
@@ -26,12 +28,15 @@ Class Course {
           $stmt->execute($data);
           $courseIDfinal = $db->lastInsertId();
 
-        return $courseIDfinal;
+        $errorCode = 1;
+        $dataOut = $courseIDfinal;
       }
       catch(PDOException $e)
       {
-        return "Error: ". $e->getMessage();
+        $errorCode = $e->getCode();
+        $dataOut = "Error: ". $e->getMessage();
       }
+      return array($errorCode, $dataOut);
     }
 //=================================================================================== ALL
     public static function all()
@@ -44,10 +49,10 @@ Class Course {
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $classes = Klass::courseid($result['courseID']);
+        $classes = Klass::courseid($result['courseID'])[1];
         $courses[]= new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'], $classes );
       }
-      return $courses;
+      return array(1, $courses);
     }
 //=================================================================================== ID
     public static function id($id)
@@ -59,7 +64,7 @@ Class Course {
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       $classes = Klass::courseid($result['courseID']);
-      return new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'],$classes );
+      return array(1, new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'],$classes ));
     }
   }
   ?>

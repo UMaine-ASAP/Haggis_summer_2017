@@ -2,7 +2,7 @@
 
 class UserController
 {
-//=================================================================================== REGISTER  
+//=================================================================================== REGISTER
   function register()
   {
       $message = "";
@@ -24,14 +24,14 @@ class UserController
         if($passwordsMatch)
         {
           $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
-          switch($outcome)
+          switch($outcome[0])
           {
             case '1':
-              $message = "Successfully registered ".$firstName." ".$lastName;
+              $message = $outcome[1];
               $firstName = $middleInitial = $lastName = $email = "";
               break;
             case '2':
-              $message = "The email '".$email."' is already registered. <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+              $message = $outcome[1]." <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
               break;
           }
         }
@@ -48,7 +48,13 @@ class UserController
 
     if(isset($_POST['email']))
     {
-      $_SESSION['message'] = User::login($_POST['email'], $_POST['password']);
+      $outcome =  User::login($_POST['email'], $_POST['password']);
+      if($outcome[0] == 1)
+        header('Location: index.php');
+      else
+      {
+        $message = $outcome[1];
+      }
     }
     header('Location: index.php');
   }
@@ -64,17 +70,18 @@ class UserController
     $userSelected = false;
     $userEdited = false;
     $selectedUser = "";
-    $userList = User::all();
+    $userList = User::all()[1];
     if(isset($_POST['user']))
     {
       $userSelected = true;
-      $selectedUser = User::id($_POST['user']);
+      $selectedUser = User::id($_POST['user'])[1];
     }
     else if(isset($_POST['firstname']))
     {
       User::update($_POST['firstname'],$_POST['lastname'],$_POST['middleinitial'],$_POST['email'],$_POST['usertype'],$_POST['userid']);
       $userSelected = false;
       $userEdited = true;
+      $userList = User::all()[1];
     }
     require_once('views/user/editUser.php');
   }
@@ -85,12 +92,12 @@ class UserController
     $userSelected = false;
     $userEdited = false;
     $selectedUser = "";
-    $userList = User::all();
+    $userList = User::all()[1];
     if(isset($_POST['user']))
     {
       $message = "Confirm deletion of user";
       $userSelected = true;
-      $selectedUser = User::id($_POST['user']);
+      $selectedUser = User::id($_POST['user'])[1];
     }
     else if(isset($_POST['confirm']))
     {
@@ -100,7 +107,7 @@ class UserController
         User::delete($_POST['userid']);
         $userSelected = false;
         $userEdited = true;
-        $userList = User::all();
+        $userList = User::all()[1];
       }
       else
       {
@@ -114,15 +121,8 @@ class UserController
 //=================================================================================== INDEX
   function index()
   {
-    $results = User::all();
-    echo sizeof($results)." Users are registered.<br>";
-    echo "<table>";
-    echo "<tr><th>UserID</th><th>UserType</th><th>First Name</th><th>LastName</th>";
-    foreach($results as $result)
-    {
-      echo "<tr><td>".$result->id."</td><td>".$result->usertype ."</td><td>".$result->firstName."</td><td>".$result->lastName. "</td></tr>";
-    }
-    echo "</table>";
+    $results = User::all()[1];
+    require_once('views/user/viewUsers.php');
   }
 //=================================================================================== PASSWORD RESET
   function passwordReset(){
@@ -133,9 +133,10 @@ class UserController
     {
       if($_POST['password'] == $_POST['passwordConfirm'])
       {
-        if(User::resetPassword($code, $_POST["password"]))
+        $outcome = User::resetPassword($code, $_POST["password"]);
+        if($outcome[0] == 1)
         {
-          $message = "Your password has been reset. Login with your new credentials.";
+          $message = $outcome[1];
           echo "<script> if(confirm('".$message."')) document.location = 'index.php'</script>";
         }
       }
@@ -157,16 +158,16 @@ class UserController
 //=================================================================================== EMAIL CONFIRMATION
   function emailConfirmation(){
     $code = $_GET['code'];
-    User::confirmEmail($code);
-    $message = "Email has been confirmed, you may now login";
+    $outcome = User::confirmEmail($code);
+    $message = $outcome[1];
     require_once('views/pages/index.php');
   }
 //=================================================================================== SEND EMAIL CONFIRMATION
   function sendEmailConfirmation()
   {
     $email = $_GET['email'];
-    User::sendConfirmEmail($email);
-    $message = "Confirmation email sent";
+    $outcome = User::sendConfirmEmail($email);
+    $message = $outcome[1];
     require_once('views/user/login.php');
   }
 }

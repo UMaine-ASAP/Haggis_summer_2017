@@ -1,0 +1,9 @@
+This document is used to reference error codes that models will return
+
+
+
+
+1 : Successful Completion
+2 : Email Already Exists
+3 : User Not Found
+4 : Email Not yet confirmed

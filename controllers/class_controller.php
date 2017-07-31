@@ -22,7 +22,7 @@ class ClassController
   {
     $message='';
     $courseID='';
-    $courselisting = Course::all();
+    $courselisting = Course::all()[1];
     if(isset($_POST['token']))
     {
       $courestitle ='';
@@ -34,16 +34,24 @@ class ClassController
         $coursecode = $_POST['coursecode'];
         $coursedescription = $_POST['coursedescription'];
         $courseID = Course::create($coursetitle,$coursecode,$coursedescription);
+        if($courseID[0] != 1)
+        {
+          $message = "Error Code ".$courseID[0]." : " . $courseID[1];
+        }
       }
       else
       {
-        $course = Course::id($_POST['courselisting']);
+        $course = Course::id($_POST['courselisting'])[1];
         $courseID = $_POST['courselisting'];
-        $coursetitle=$course->title;
+        $coursetitle= $course->title;
         $coursecode = $course->code;
         $coursedescription = $course->description;
       }
-      $message = Klass::create($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
+      $outcome = Klass::create($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
+      if($outcome[0] != 1)
+        $message = "Error Code " .$outcome[0]." : ".$outcome[1];
+      else
+        $message = $outcome[1];
     }
     require_once('views/class/insertClass.php');
   }
@@ -60,34 +68,7 @@ class ClassController
 //=================================================================================== LIST COURSES
   public function listCourses()
   {
-    $courses = Course::all();
-    $courselist="";
-    foreach($courses as $course)
-    {
-      $classlist ="";
-      foreach($course->classes as $class)
-      {
-        $classlist = $classlist.$class->title."<br>";
-      }
-      $courselist = $courselist.
-                    "<tr>".
-                    "<td>".$course->id."</td>".
-                    "<td>".$course->title."</td>".
-                    "<td>".$course->code."</td>".
-                    "<td>".$course->description."</td>".
-                    "<td>".$classlist."</td>".
-                    "</tr>";
-    }
-    $courselist =  "<table>".
-          "<tr>".
-          "<th>ID</th>".
-          "<th>Title</th>".
-          "<th>Course Code</th>".
-          "<th>Description</th>".
-          "<th>Classes</th>".
-          "</tr>".
-          $courselist.
-          "</table>";
+    $courses = Course::all()[1];
     require_once('views/class/listCourses.php');
   }
 

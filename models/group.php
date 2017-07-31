@@ -4,38 +4,47 @@ Class Group {
   public $projectID;
   public $userIDs;
 //=================================================================================== STRUCT
-  public function __construct($studentGroupID, $projectID, $userIDs) {
-        $this->studentGroupID = $studentGroupID;
-        $this->projectID = $projectID;
-        $this->userIDs = $userIDs;
-    }
-
+  public function __construct($studentGroupID, $projectID, $userIDs)
+  {
+    $this->studentGroupID   = $studentGroupID;
+    $this->projectID        = $projectID;
+    $this->userIDs          = $userIDs;
+  }
 //=================================================================================== CREATE
-    public static function create($projectID, $userIDs)
- {
-   $db = Db::getInstance();
-   $sql = "INSERT INTO studentGroup (projectID) VALUES (?)";
-   $data = array($projectID);
-   try
-   {
-     $stmt = $db->prepare($sql);
-     $stmt->execute($data);
-     $studentgroupID = $db->lastInsertId();
-     $sql = "INSERT INTO user_studentGroup (userID, studentGroupID) VALUES (?,?)";
-     $stmt = $db->prepare($sql);
-     foreach($userIDs as $id)
-     {
-       $data = array($id, $studentgroupID);
-       $stmt->execute($data);
-     }
-   }
-   catch(PDOException $e)
-   {
-     echo "Error: " . $e->getMessage()."<br>";
-   }
+  public static function create($projectID, $userIDs)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "INSERT INTO studentGroup (projectID) VALUES (?)";
+    $data = array($projectID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $studentgroupID = $db->lastInsertId();
+      $sql = "INSERT INTO user_studentGroup (userID, studentGroupID) VALUES (?,?)";
+      $stmt = $db->prepare($sql);
+      foreach($userIDs as $id)
+      {
+        $data = array($id, $studentgroupID);
+        $stmt->execute($data);
+      }
+      $errorCode = 1;
+      $message = "Groups successfully Created";
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e-> getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
  }
  //=================================================================================== ALL
- public static function all(){					//collects user ID's from Database
+  public static function all()
+  {
+    $errorCode;
+    $message;
     $db = Db::getInstance();
     $sql = "SELECT * FROM studentGroup";
     $groupList = array();								//used to store User objects
@@ -47,16 +56,21 @@ Class Group {
       {
         $groupList[] = new Group($result['studentGroupID'],$result['projectID'],Group::user($result['studentGroupID']) );
       }
-      return $groupList;			//returns array of User Objects
+      $errorCode  = 1;
+      $message    = $groupList;
     }
     catch(PDOException $e)
     {
-      echo "Error: ". $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
     }
+    return array($errorCode, $message);
   }
 //=================================================================================== USER
   public static function user($studentGroupID)
   {
+    $errorCode;
+    $message;
     $db = Db::getInstance();
     $sql = "SELECT * FROM user_studentGroup WHERE studentGroupID = ?";
     $userlist =array();
@@ -66,15 +80,16 @@ Class Group {
       $data = array($studentGroupID);
       $stmt->execute($data);
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
-      {
         $userlist[] = $result['userID'];
-      }
-      return $userlist;
+      $errorCode  = 1;
+      $message    = $userlist;
     }
     catch(PDOException $e)
     {
-      echo "Error: " . $e->getMessage();
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
     }
+    return array($errorCode, $message);
   }
 }
 ?>

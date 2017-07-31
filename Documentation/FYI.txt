@@ -9,3 +9,9 @@ development of this iteration.
 
 The term klass is used in place of class. This affects the model primarily. This fix addresses an issue of refering to a class within PHP
 programming language. Class is a reserved word for the language, and cannot be used outside of declaring a new class.
+
+
+MODELS
+  When developing models, they must return all data in an array format
+
+    {RESULT CODE, DATA}
