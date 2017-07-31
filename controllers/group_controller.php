@@ -14,7 +14,7 @@ class GroupController
       {
         $thisUser = User::id($user);
         if($thisUser[0] == 1)
-        echo $thisUser[1]->firstName. " ". $thisUser[1]->lastName."<br>";
+        echo $thisUser[1]->firstName." ".$thisUser[1]->lastName."<br>";
         else
         echo $thisUser[0]. " " . $thisUser[1];
       }

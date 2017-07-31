@@ -54,7 +54,7 @@ Class Group {
       $stmt->execute();
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))		//goes through list
       {
-        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],Group::user($result['studentGroupID']) );
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],Group::user($result['studentGroupID'])[1] );
       }
       $errorCode  = 1;
       $message    = $groupList;
