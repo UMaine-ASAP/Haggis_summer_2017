@@ -2,6 +2,7 @@
 
 class UserController
 {
+//=================================================================================== REGISTER  
   function register()
   {
       $message = "";
@@ -41,7 +42,7 @@ class UserController
       }
       require_once('views/user/userRegistration.php');
   }
-
+//=================================================================================== LOGIN
   function login()
   {
 
@@ -51,13 +52,13 @@ class UserController
     }
     header('Location: index.php');
   }
-
+//=================================================================================== LOGOUT
   function logout()
   {
     User::logout();
     header('Location: index.php');
   }
-
+//=================================================================================== EDIT USER
   function editUser()
   {
     $userSelected = false;
@@ -77,7 +78,7 @@ class UserController
     }
     require_once('views/user/editUser.php');
   }
-
+//=================================================================================== DELETE
   function delete()
   {
     $message = "Select a User";
@@ -110,7 +111,7 @@ class UserController
     }
     require_once('views/user/userDelete.php');
   }
-
+//=================================================================================== INDEX
   function index()
   {
     $results = User::all();
@@ -123,7 +124,7 @@ class UserController
     }
     echo "</table>";
   }
-
+//=================================================================================== PASSWORD RESET
   function passwordReset(){
     $code = $_GET['code'];
     $message = "";
@@ -146,21 +147,21 @@ class UserController
     require_once('views/user/passwordReset.php');
 
   }
-
+//=================================================================================== PASSWORD RESET REQUEST
   function passwordResetRequest(){
     require_once('views/user/passwordResetRequest.php');
     if (isset($_POST['submit'])){
       User::sendResetEmail($_POST['email']);
     }
   }
-
+//=================================================================================== EMAIL CONFIRMATION
   function emailConfirmation(){
     $code = $_GET['code'];
     User::confirmEmail($code);
     $message = "Email has been confirmed, you may now login";
     require_once('views/pages/index.php');
   }
-
+//=================================================================================== SEND EMAIL CONFIRMATION
   function sendEmailConfirmation()
   {
     $email = $_GET['email'];

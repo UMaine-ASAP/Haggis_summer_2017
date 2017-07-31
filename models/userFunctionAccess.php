@@ -5,16 +5,16 @@ class UserFunctionAccess
   public $user = array();
   public $group = array();
   public $class = array();
-
+//=================================================================================== STRUCT
     public function __construct($userData, $groupData, $classData)
     {
       $this->user = $userData;
       $this->group = $groupData;
       $this->class = $classData;
     }
+//=================================================================================== GET FUNCTIONS
     public static function getFunctions($type)
     {
-
       $userd = array();
       $groupd = array();
       $classd = array();

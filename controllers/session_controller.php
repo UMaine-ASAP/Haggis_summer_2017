@@ -2,6 +2,7 @@
 
 class SessionController
 {
+//=================================================================================== MENU BUILDER
   public static function menuBuilder()
   {
     $loginStatus ="";

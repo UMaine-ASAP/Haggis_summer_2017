@@ -12,9 +12,8 @@ Class Course {
         $this->code = $code;
         $this->description = $description;
         $this->classes = $classes;
-
     }
-
+//=================================================================================== CREATE
     public static function create($coursetitle, $coursecode, $coursedescription)
     {
       $courseIDfinal = '';
@@ -34,6 +33,7 @@ Class Course {
         return "Error: ". $e->getMessage();
       }
     }
+//=================================================================================== ALL
     public static function all()
     {
       $courses = array();
@@ -49,7 +49,7 @@ Class Course {
       }
       return $courses;
     }
-
+//=================================================================================== ID
     public static function id($id)
     {
       $db = Db::getInstance();

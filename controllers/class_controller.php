@@ -2,21 +2,22 @@
 
 class ClassController
 {
+//=================================================================================== INDEX
   public function index()
   {
     echo "index";
   }
-
+//=================================================================================== ARCHIVE CLASS
   public function archiveClass()
   {
     echo "archiveClass";
   }
-
+//=================================================================================== GET USER BY CLASS
   public function getUserbyClass()
   {
     echo "GetUserByClass";
   }
-
+//=================================================================================== INSERT CLASS
   public function insertClass()
   {
     $message='';
@@ -46,17 +47,17 @@ class ClassController
     }
     require_once('views/class/insertClass.php');
   }
-
+//=================================================================================== JOIN CLASS
   public function joinClass()
   {
     require_once('views/class/joinClass.php');
   }
-
+//=================================================================================== UPDATE CLASS
   public function updateClass()
   {
     echo "updateClass";
   }
-
+//=================================================================================== LIST COURSES
   public function listCourses()
   {
     $courses = Course::all();
@@ -88,7 +89,6 @@ class ClassController
           $courselist.
           "</table>";
     require_once('views/class/listCourses.php');
-
   }
 
 

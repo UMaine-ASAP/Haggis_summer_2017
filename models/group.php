@@ -10,7 +10,7 @@ Class Group {
         $this->userIDs = $userIDs;
     }
 
-
+//=================================================================================== CREATE
     public static function create($projectID, $userIDs)
  {
    $db = Db::getInstance();
@@ -34,6 +34,7 @@ Class Group {
      echo "Error: " . $e->getMessage()."<br>";
    }
  }
+ //=================================================================================== ALL
  public static function all(){					//collects user ID's from Database
     $db = Db::getInstance();
     $sql = "SELECT * FROM studentGroup";
@@ -53,6 +54,7 @@ Class Group {
       echo "Error: ". $e->getMessage();
     }
   }
+//=================================================================================== USER
   public static function user($studentGroupID)
   {
     $db = Db::getInstance();

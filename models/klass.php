@@ -14,7 +14,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $this->sessionTime = $sessiontime;
         $this->description = $description;
         $this->location = $location;
-
+//=================================================================================== CREATE
     }public static function create($courseID, $sessionTime, $classtitle, $classdescription, $location)
     {
 
@@ -46,7 +46,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       }
       return $courses;
     }
-
+//=================================================================================== COURSE ID
     public static function courseid($id)
     {
       $classes = array();
@@ -62,7 +62,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       }
       return $classes;
     }
-
+//=================================================================================== CLASS ID
     public static function classid($id)
     {
       $classes = array();

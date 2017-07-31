@@ -12,7 +12,6 @@
   }
   else
   {
-    
     $controller = 'pages';
     $action = 'index';
   }

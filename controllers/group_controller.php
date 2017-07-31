@@ -3,6 +3,7 @@
 
 class GroupController
 {
+//=================================================================================== INDEX
   public function index()
   {
     $groupList = Group::all();
@@ -17,7 +18,7 @@ class GroupController
     }
     require_once('views/group/index.php');
   }
-
+//=================================================================================== CREATE
   public function create()
   {
     $message ="";
@@ -36,7 +37,6 @@ class GroupController
         Group::create("1", $userIDs);
       }
     }
-
     require_once('views/group/createGroup.php');
     if(isset($_POST['labels']))
     {
@@ -50,9 +50,8 @@ class GroupController
         $counter = $counter+1;
       }
     }
-
   }
-
+//=================================================================================== ERROR
   public function error()
   {
     require_once('views/home/error.php');
