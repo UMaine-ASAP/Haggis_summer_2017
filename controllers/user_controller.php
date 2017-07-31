@@ -45,18 +45,18 @@ class UserController
 //=================================================================================== LOGIN
   function login()
   {
-
     if(isset($_POST['email']))
     {
       $outcome =  User::login($_POST['email'], $_POST['password']);
-      if($outcome[0] == 1)
-        header('Location: index.php');
+      if($outcome[0] != 1)
+      {
+        $_SESSION['message'] = $outcome[1];
+      }
       else
       {
-        $message = $outcome[1];
+        header('Location: index.php');
       }
     }
-    header('Location: index.php');
   }
 //=================================================================================== LOGOUT
   function logout()

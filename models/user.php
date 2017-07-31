@@ -59,7 +59,7 @@ Class User {
           $stmt->execute($data);
           User::sendConfirmEmail($em);
           $errorCode = 1;
-          $message = "Account succussfully Created";
+          $message = "Account Created, Check your email for a confirmation link prior to logging in.";
         }
         catch(PDOException $e)
         {
@@ -261,7 +261,7 @@ Class User {
         else
         {
           $errorCode = 5;
-          return "Your email and/or password were incorrect. Please try again.";
+          $message =  "Your email and/or password were incorrect. Please try again.";
         }
       }
       catch(PDOException $e)
