@@ -1,9 +1,10 @@
 index.php
   connection.php
-  models/user.php
-  models/userFunctionAccess.php
-  controllers/session_controller.php
   views/layout.php
+    inserts/login.php
+      models/user.php
+      models/userFunctionAccess.php
+    inserts/menu.php
     routes.php
       models/klass.php
       models/group.php
@@ -22,7 +23,6 @@ index.php
         views/pages/assignments.php
         views/pages/groups.php
         views/pages/error.php
-      session_controller.php
       user_controller.php
         views/user/userRegistration.php
         views/user/editUser.php

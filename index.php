@@ -10,11 +10,6 @@
   }
 
   require_once('connection.php');
-  require_once('models/user.php');
-  require_once('models/userFunctionAccess.php');
-  require_once('controllers/session_controller.php');
-  $sessionData = SessionController::menuBuilder();
-
 
   if(isset($_GET['controller']) && isset($_GET['action']))
   {

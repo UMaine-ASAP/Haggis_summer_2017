@@ -1,47 +1,28 @@
 <DOCTYPE html>
   <html>
   <head>
-    <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0' name = 'viewport'/>
+    <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0, minimum-scale=0.2' name = 'viewport'/>
     <meta name ="HandheldFriendly" content = "true" />
     <link rel="stylesheet" type="text/css" href="css/defaultStyle.css">
 
   </head>
   <body>
-
-      <table>
-        <tr class = "header">
+    <header>
+      <table class="header">
+        <tr>
           <td>
             <h1><a class='title' href='index.php'>Haggis_2017</a></h1>
           </td>
           <td class='sessionStat'>
-            <?php
-              echo $sessionData[1][0];
-            ?>
+            <?php require_once('inserts/login.php');?>
           </td>
         </tr>
+      </table>
+    </header>
+      <table>
         <tr>
           <td class='menu'>
-
-            Navigation<br>
-            <ul>
-              <li><a href ="?controller=pages&action=classes">Your Classes</a></li>
-              <li><a href ="?controller=pages&action=assignments">Your Assigments</a></li>
-              <li><a href ="?controller=pages&action=groups">Your Groups </a></li>
-            </ul>
-
-            Administration<br>
-            <?php
-              echo "<ul>";
-              foreach($sessionData[1][1]->user as $option)
-                echo "<li>".$option."</li>";
-              echo "</ul><ul>";
-              foreach($sessionData[1][1]->group as $option)
-                echo "<li>".$option."</li>";
-              echo "</ul><ul>";
-              foreach($sessionData[1][1]->class as $option)
-                echo "<li>".$option."</li>";
-              echo "</ul>";
-            ?>
+            <?php require_once('inserts/menu.php');?>
           </td>
           <td>
             <?php require_once('routes.php'); ?>

@@ -2,12 +2,14 @@
 
 class UserFunctionAccess
 {
+  public $type;
   public $user = array();
   public $group = array();
   public $class = array();
 //=================================================================================== STRUCT
-    public function __construct($userData, $groupData, $classData)
+    public function __construct($typeData, $userData, $groupData, $classData)
     {
+      $this->type = $typeData;
       $this->user = $userData;
       $this->group = $groupData;
       $this->class = $classData;
@@ -18,29 +20,33 @@ class UserFunctionAccess
       $userd = array();
       $groupd = array();
       $classd = array();
+      $type;
       switch($type)
       {
         case "anon":
+          $type = 'anon';
           break;
         case "user":
+          $type = 'user';
           break;
         case "admin":
-          $userd[] = "<a href='?controller=user&action=editUser'>Edit User</a>";
-          $userd[] = "<a href='?controller=user&action=index'>List Users</a>";
-          $userd[] = "<a href='?controller=user&action=delete'>Delete a User</a>";
+          $type = 'admin';
+          $userd[] = array('controller' => 'user', 'action' => 'editUser',  'name' => 'Edit User');
+          $userd[] = array('controller' => 'user', 'action' => 'index',     'name' => 'List Users');
+          $userd[] = array('controller' => 'user', 'action' => 'delete',    'name' => 'Delete User');
 
-          $groupd[] = "<a href='?controller=group&action=create'>Create Group</a>";
-          $groupd[] = "<a href='?controller=group&action=index'>All Groups</a>";
+          $groupd[] = array('controller' => 'group', 'action' => 'create',  'name' => 'Create Group');
+          $groupd[] = array('controller' => 'group', 'action' => 'index',   'name' => 'List Groups');
 
-          $classd[] = "<a href='?controller=class&action=archiveClass'>ArchiveClass</a>";
-          $classd[] = "<a href='?controller=class&action=getUserbyClass'>Users by Class</a>";
-          $classd[] = "<a href='?controller=class&action=insertClass'>Add a Class</a>";
-          $classd[] = "<a href='?controller=class&action=updateClass'>Edit a Class</a>";
-          $classd[] = "<a href='?controller=class&action=listCourses'>Show all Courses</a>";
-          $classd[] = "<a href='?controller=class&action=joinClass'>Join a Class</a>";
+          $classd[] = array('controller' => 'class', 'action' => 'archiveClass',  'name' => 'Archive Class');
+          $classd[] = array('controller' => 'class', 'action' => 'getUserbyClass','name' => 'Get Users in Class');
+          $classd[] = array('controller' => 'class', 'action' => 'insertClass',   'name' => 'Create Class');
+          $classd[] = array('controller' => 'class', 'action' => 'updateClass',   'name' => 'Update Class');
+          $classd[] = array('controller' => 'class', 'action' => 'listCourses',   'name' => 'List Classes');
+          $classd[] = array('controller' => 'class', 'action' => 'joinClass',     'name' => 'Join Class');
           break;
       }
-      return new UserFunctionAccess($userd, $groupd, $classd);
+      return new UserFunctionAccess($type, $userd, $groupd, $classd);
     }
 }
 
