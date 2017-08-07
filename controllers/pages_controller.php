@@ -10,7 +10,7 @@ class PagesController
 //=================================================================================== CLASSES
     public function classes()
     {
-      $classes = Klass::userClasses($_SESSION['token']);
+      $classes = Klass::userClasses($_SESSION['token'])[1];
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS
