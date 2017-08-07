@@ -1,4 +1,4 @@
-<h1>Registration</h1>
+<h2>New User Registration</h2>
 <div><?php echo $message; ?></div>
 <div>
   <form action='?controller=user&action=register' method='post'>

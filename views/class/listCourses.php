@@ -1,3 +1,4 @@
+<h2>List all Courses</h2>
 <table>
   <tr>
     <th>ID          </th>

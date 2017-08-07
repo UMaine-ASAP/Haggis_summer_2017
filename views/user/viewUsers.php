@@ -1,4 +1,4 @@
-<h1>Registered Users</h1>
+<h2>Registered Users</h2>
 
 <div>
   <table>

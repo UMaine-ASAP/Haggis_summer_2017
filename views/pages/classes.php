@@ -1,4 +1,4 @@
-<h1>Classes</h1>
+<h2>Classes</h2>
 
 <?php
   foreach($classes as $class)

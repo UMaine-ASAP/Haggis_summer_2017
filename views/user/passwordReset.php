@@ -1,3 +1,4 @@
+<h2>Reset Password</h2>
 <?php
 	if($message != "")
 		echo $message."<br>";

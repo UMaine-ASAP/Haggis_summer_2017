@@ -1,1 +1,1 @@
-<h1>Groups</h1>
+<h2>Groups</h2>

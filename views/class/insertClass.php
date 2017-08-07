@@ -1,3 +1,4 @@
+<h2>Create a New Class</h2>
 <div><?php echo $message; ?></div>
 
 <div>
