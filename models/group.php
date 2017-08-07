@@ -80,7 +80,7 @@ Class Group {
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "SELECT DISTINCT projectID FROM studentgroup";
+    $sql = "SELECT DISTINCT projectID FROM studentGroup";
     try
     {
       $stmt = $db->prepare($sql);
@@ -88,6 +88,7 @@ Class Group {
       $result = $stmt->execute($data);
       $errorCode  = 1;
       $message    = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+      echo sizeof($message);
     }
     catch(PDOException $e)
     {
