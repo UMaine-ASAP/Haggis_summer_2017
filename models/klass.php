@@ -93,7 +93,6 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $stmt->execute($data);
         $message = $stmt->fetch(PDO::FETCH_COLUMN, 0);
         $errorCode = 1;
-        echo sizeof($message);
       }
       catch(PDOException $e)
       {
