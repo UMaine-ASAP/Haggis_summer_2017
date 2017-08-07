@@ -117,7 +117,7 @@ Class Group {
         {
           $users[] = User::id($uid)[1];
         }
-        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users )[1];
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
       }
       $errorCode  = 1;
       $message    = $groupList;
