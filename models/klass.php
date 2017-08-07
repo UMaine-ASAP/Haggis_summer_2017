@@ -107,7 +107,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "INSERT INTO classuser (classID, userID) VALUES (?,?)";
+      $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
       $data = array($classID, $userID);
       try
       {
