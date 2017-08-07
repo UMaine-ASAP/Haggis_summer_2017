@@ -12,7 +12,6 @@ class GroupController
       echo "<br><h3>Group Set ". $group->studentGroupID."</h3><br>";
       foreach($group->users as $user)
       {
-        echo $user;
         echo $user->firstName." ".$user->lastName."<br>";
       }
     }
