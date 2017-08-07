@@ -71,7 +71,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
     public static function classid($id)
     {
       $db = Db::getInstance();
-      $sql = "SELECT * FROM course WHERE classID = ?";
+      $sql = "SELECT * FROM class WHERE classID = ?";
       $data = array($id);
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
