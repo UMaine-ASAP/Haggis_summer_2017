@@ -66,5 +66,16 @@ Class Course {
       $classes = Klass::courseid($result['courseID']);
       return array(1, new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'],$classes ));
     }
+//=================================================================================== GET COURSE NAME
+    public static function getCourseName($id)
+    {
+      $db = Db::getInstance();
+      $sql = "SELECT title FROM course WHERE courseID = ?";
+      $data = array($id);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      return array(1, $result['title']));
+    }
   }
   ?>

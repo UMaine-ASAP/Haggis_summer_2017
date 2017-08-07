@@ -5,7 +5,7 @@
   {
     echo "<a href='#'>";
     echo "<div class='classes'>";
-    echo $class->title;
+    echo $class->coursename." ".$class->title."<br>";
     echo "</div></a>";
 
   }

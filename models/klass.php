@@ -3,14 +3,16 @@ class Klass {  //We use class with a k, using just class confuses PHP
   public $id;
   public $title;
   public $courseid;
+  public $coursename;
   public $sessionTime;
   public $description;
   public $location;
 //=================================================================================== STRUCT
-  public function __construct($id, $title,$courseid,$sessiontime,$description,$location) {
+  public function __construct($id, $title,$courseid, $coursename,$sessiontime,$description,$location) {
         $this->id = $id;
         $this->title = $title;
         $this->couresid = $courseid;
+        $this->coursename= $coursename;
         $this->sessionTime = $sessiontime;
         $this->description = $description;
         $this->location = $location;
@@ -47,7 +49,8 @@ class Klass {  //We use class with a k, using just class confuses PHP
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] );
+        $coursetitle = Course::getName($result['courseID'])[1];
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
       }
       return array(1, $classes);
     }
@@ -63,7 +66,8 @@ class Klass {  //We use class with a k, using just class confuses PHP
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] );
+        $coursetitle = Course::getName($result['courseID'])[1];
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
       }
       return array(1, $classes);
     }
@@ -76,7 +80,8 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] ));
+      $coursetitle = Course::getName($result['courseID'])[1];
+      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] ));
     }
 //=================================================================================== CLASSES FOR USER
     public static function userClasses($token)
