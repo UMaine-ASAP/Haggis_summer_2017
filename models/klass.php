@@ -76,7 +76,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new ClassObject($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] ));
+      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] ));
     }
 //=================================================================================== CLASSES FOR USER
     public static function userClasses($token)
@@ -94,8 +94,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $output = array();
         while($result = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          echo $result['classID'];
-          $output[] = $result['classID'];
+          $output[] = Klass::classid($result['classID']);
         }
         $message = $output;
         $errorCode = 1;
