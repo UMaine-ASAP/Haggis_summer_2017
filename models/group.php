@@ -152,6 +152,7 @@ Class Group {
       $errorCode  = $e->getCode();
       $message    = $e->getMessage();
     }
+    echo $message;
     return array($errorCode, $message);
   }
 }
