@@ -88,7 +88,6 @@ Class Group {
       $result = $stmt->execute($data);
       $errorCode  = 1;
       $message    = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-      echo sizeof($message);
     }
     catch(PDOException $e)
     {
