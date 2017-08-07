@@ -115,9 +115,9 @@ Class Group {
         $users = array();
         foreach($userIDs as $uid)
         {
-          $users[] = User::id($uid);
+          $users[] = User::id($uid)[1];
         }
-        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users )[1];
       }
       $errorCode  = 1;
       $message    = $groupList;
@@ -152,7 +152,6 @@ Class Group {
       $errorCode  = $e->getCode();
       $message    = $e->getMessage();
     }
-    echo $message->firstName;
     return array($errorCode, $message);
   }
 }
