@@ -12,7 +12,7 @@ class PagesController
     {
       $classes = Klass::userClasses($_SESSION['token'])[1];
       echo sizeof($classes);
-      echo $classes->title;
+      echo $classes;
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS
