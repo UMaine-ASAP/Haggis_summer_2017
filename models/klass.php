@@ -96,7 +96,6 @@ class Klass {  //We use class with a k, using just class confuses PHP
         {
           $output[] = Klass::classid($result['classID'])[1];
         }
-        echo sizeof($output);
         $message = $output;
         $errorCode = 1;
       }

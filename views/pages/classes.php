@@ -7,7 +7,6 @@
     echo $class->title;
     echo "</div>";
   }
-  $classes->title;
   ?>
 
 <a href='?controller=class&action=joinClass'>
