@@ -92,7 +92,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $stmt = $db->prepare($sql);
         $stmt->execute($data);
         $output = array();
-        while($result = $stmt->fetch(PDO::FETCH ASSOC))
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
         {
           echo $result['classID'];
           $output[] = $result['classID'];
