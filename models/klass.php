@@ -91,7 +91,10 @@ class Klass {  //We use class with a k, using just class confuses PHP
       {
         $stmt = $db->prepare($sql);
         $stmt->execute($data);
-        $message = $stmt->fetch(PDO::FETCH_COLUMN, 0);
+        $output = array();
+        while($result = $stmt->fetch(PDO::FETCH ASSOC))
+          $output[] = $result['classID'];
+        $message = $output;
         $errorCode = 1;
       }
       catch(PDOException $e)
