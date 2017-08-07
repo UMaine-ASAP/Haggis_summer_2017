@@ -3,9 +3,11 @@
 <?php
   foreach($classes as $class)
   {
+    echo "<a href='#'>";
     echo "<div class='classes'>";
     echo $class->title;
-    echo "</div>";
+    echo "</div></a>";
+
   }
   ?>
 
