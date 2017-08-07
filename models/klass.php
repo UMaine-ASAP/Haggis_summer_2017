@@ -84,8 +84,9 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "SELECT classuser.classID FROM classuser WHERE classuser.userID IN (SELECT user.userID FROM user WHERE user.token = ?)";
-      $data = array($token);
+      $userID = User::getID($token);
+      $sql = "SELECT classID FROM classuser WHERE userID = ?";
+      $data = array($userID);
       try
       {
         $stmt = $db->prepare($sql);
