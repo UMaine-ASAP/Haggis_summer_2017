@@ -2,13 +2,13 @@
 Class Group {
   public $studentGroupID;
   public $projectID;
-  public $userIDs;
+  public $users;
 //=================================================================================== STRUCT
-  public function __construct($studentGroupID, $projectID, $userIDs)
+  public function __construct($studentGroupID, $projectID, $users)
   {
     $this->studentGroupID   = $studentGroupID;
     $this->projectID        = $projectID;
-    $this->userIDs          = $userIDs;
+    $this->users          = $users;
   }
 //=================================================================================== CREATE
   public static function create($projectID, $userIDs)
@@ -40,7 +40,64 @@ Class Group {
     }
     return array($errorCode, $message);
  }
- //=================================================================================== ALL
+
+ //=================================================================================== GET BY PROJECT ID
+  public static function getByProjectID($projectID)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM studentGroup WHERE projectID = ?";
+    $data = array($projectID);
+    $groupList;								//used to store Group objects
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))		//goes through list
+      {
+        $userIDs = Group::user($result['studentGroupID'])[1];
+        $users = array();
+        foreach($userIDs as $uid)
+        {
+          $users[] = User::id($uid)[1];
+        }
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
+      }
+      $errorCode  = 1;
+      $message    = $groupList;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+ //=================================================================================== GET PROJECT IDs
+  public static function getProjectIDs()
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT DISTINCT projectID FROM studentgroup";
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $data = array();
+      $result = $stmt->execute($data);
+      $errorCode  = 1;
+      $message    = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+
+    return array($errorCode, $message);
+  }
+//=================================================================================== ALL
   public static function all()
   {
     $errorCode;
@@ -54,7 +111,13 @@ Class Group {
       $stmt->execute();
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))		//goes through list
       {
-        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],Group::user($result['studentGroupID'])[1] );
+        $userIDs = Group::user($result['studentGroupID'])[1];
+        $users = array();
+        foreach($userIDs as $uid)
+        {
+          $users[] = User::id($uid);
+        }
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
       }
       $errorCode  = 1;
       $message    = $groupList;
@@ -69,18 +132,18 @@ Class Group {
 //=================================================================================== USER
   public static function user($studentGroupID)
   {
+
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "SELECT * FROM user_studentGroup WHERE studentGroupID = ?";
+    $sql = "SELECT userID FROM user_studentGroup WHERE studentGroupID = ?";
     $userlist =array();
     try
     {
       $stmt = $db->prepare($sql);
       $data = array($studentGroupID);
       $stmt->execute($data);
-      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
-        $userlist[] = $result['userID'];
+      $userlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
       $errorCode  = 1;
       $message    = $userlist;
     }

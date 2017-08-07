@@ -29,7 +29,7 @@
   $controllers = array (  'pages'     => ['index','classes','groups','assignments','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses'],
-                          'group'     => ['index', 'create']);
+                          'group'     => ['index', 'create','edit']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

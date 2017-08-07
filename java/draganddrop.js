@@ -91,7 +91,7 @@ function extractor(input, output)           //When executed this function goes t
   for(j=0; j<groups.length;j++)
   {
     data = groups[j].children;
-    lable = "IDs"+j;
+    lable = groups[j].id;
     var chunk = "<input name='labels[]' type='hidden' value='"+lable+"'>";
 
     for(i=0; i<data.length;i++)

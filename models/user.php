@@ -184,7 +184,7 @@ Class User {
       $errorCode;
       $message;
       $db= Db::getInstance();
-      $sql = "SELECT * FROM user WHERE userID = ?";		//Pull from the database anything that matches both email and password
+      $sql = "SELECT * FROM user WHERE userID = ?";
       $data = array($id);
       try
       {
@@ -227,24 +227,15 @@ Class User {
           $hash = $result['password'];
           if(password_verify($password, $hash))
           {
-            $emailconfirmed = $result['emailConfirmed'];
-            if($emailconfirmed == '1')
+            if($result['emailConfirmed'] == '1')
             {
-              $_SESSION['firstName'] = $result['firstName'];					//first name of user
-              $_SESSION['lastName'] = $result['lastName'];						//last name of user
-              $_SESSION['middleInitial'] = $result['middleInitial'];	//middle initial of user
-              $userID = $result['userID'];									//token of user (currentl using userID)
               $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-                $result = '';
-                for ($i = 0; $i < 20; $i++){
-                    $result .= $characters[mt_rand(0, 61)];
-                }
-              $req = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
-              $data = array($result, $userID);
-              $req->execute($data);
-              $_SESSION['token'] = $result;
+              $token = '';
+              for ($i = 0; $i < 20; $i++)
+                $token .= $characters[mt_rand(0, 61)];
+              User::insertToken($result['userID'], $token);
               $errorCode = 1;
-              $message = "Successful Login";
+              $message = array($result['firstName'],$result['lastName'],$result['middleInitial'],$token, $result['userID']);
             }
             else
             {
@@ -271,17 +262,34 @@ Class User {
       }
       return array($errorCode, $message);
     }
+//=================================================================================== INSERT TOKEN
+  function insertToken($userID, $token)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    try
+    {
+      $stmt = $db->prepare("UPDATE user SET token = ? WHERE userID = ?");
+      $data = array($token, $userID);
+      $stmt->execute($data);
+      $errorCode = 1;
+      $message = "Token Update Successful";
+    }
+    catch(PDOException $e)
+    {
+      $errorCode =  $e->getCode();
+      $message =    $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
 //=================================================================================== LOGOUT
-    public static function logout()
+    public static function logout($token)
     {
       $db = Db::getInstance();
       $req = $db->prepare("UPDATE user SET token = '' WHERE token = ?");
-      if(isset($_SESSION['token']))
-      {
-        $data = array($_SESSION['token']);
-        $req->execute($data);
-      }
-      session_unset();													//unsets all Session variables effecitvly logging the user out of current session
+      $data = array($token);
+      $req->execute($data);
       return array(1, "Successful Logoff");
     }
 //=================================================================================== UPDATE USER
@@ -305,5 +313,27 @@ Class User {
       }
       return array($errorCode, $message);
     }
+//=================================================================================== GET USER ID
+  public static function getID($token)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $data= array($token);
+    $sql = "SELECT userID FROM user WHERE token = ?";
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $errorCode = 1;
+      $message = $stmt->fetch()['userID'];
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
   }
 ?>

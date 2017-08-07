@@ -55,6 +55,11 @@ class UserController
       }
       else
       {
+        $UserData = $outcome[1];
+        $_SESSION['firstName'] = $UserData[0];
+        $_SESSION['lastName'] = $UserData[1];
+        $_SESSION['middleInitial'] = $UserData[2];
+        $_SESSION['token'] = $UserData[3];
         header('Location: index.php');
       }
     }
@@ -62,7 +67,9 @@ class UserController
 //=================================================================================== LOGOUT
   function logout()
   {
-    User::logout();
+    if(isset($_SESSION['token']))
+      User::logout($_SESSION['token']);
+    session_unset();													//unsets all Session variables effecitvly logging the user out of current session
     header('Location: index.php');
   }
 //=================================================================================== EDIT USER

@@ -10,13 +10,9 @@ class GroupController
     foreach($groupList as $group)
     {
       echo "<br><h3>Group Set ". $group->studentGroupID."</h3><br>";
-      foreach($group->userIDs as $user)
+      foreach($group->users as $user)
       {
-        $thisUser = User::id($user);
-        if($thisUser[0] == 1)
-        echo $thisUser[1]->firstName." ".$thisUser[1]->lastName."<br>";
-        else
-        echo $thisUser[0]. " " . $thisUser[1];
+        echo $user->firstName." ".$user->lastName."<br>";
       }
     }
     require_once('views/group/index.php');
@@ -54,6 +50,22 @@ class GroupController
       }
     }
   }
+//=================================================================================== EDIT
+  public function edit()
+  {
+      $projectIDs;
+      $projectID;
+      if(isset($_POST['projectID']))
+      {
+        $groups = Group::getByProjectID($_POST['projectID'])[1];
+      }
+      else
+      {
+        $projectIDs = Group::getProjectIDs()[1];
+      }
+      require_once('views/group/editGroup.php');
+  }
+
 //=================================================================================== ERROR
   public function error()
   {

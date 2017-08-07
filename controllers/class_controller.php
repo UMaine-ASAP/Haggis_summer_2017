@@ -58,6 +58,13 @@ class ClassController
 //=================================================================================== JOIN CLASS
   public function joinClass()
   {
+    if(isset($_POST['class']))
+    {
+      $userID = User::getID($_SESSION['token'])[1];
+      $message = Klass::joinClass($userID, $_POST['class'])[1];
+    }
+    else
+      $courses = Course::all()[1];
     require_once('views/class/joinClass.php');
   }
 //=================================================================================== UPDATE CLASS
@@ -71,6 +78,7 @@ class ClassController
     $courses = Course::all()[1];
     require_once('views/class/listCourses.php');
   }
+//=================================================================================== LIST Classes for UserID
 
 
 }

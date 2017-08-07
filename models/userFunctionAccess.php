@@ -37,6 +37,7 @@ class UserFunctionAccess
 
           $groupd[] = array('controller' => 'group', 'action' => 'create',  'name' => 'Create Group');
           $groupd[] = array('controller' => 'group', 'action' => 'index',   'name' => 'List Groups');
+          $groupd[] = array('controller' => 'group', 'action' => 'edit',    'name' => 'Edit Groups');
 
           $classd[] = array('controller' => 'class', 'action' => 'archiveClass',  'name' => 'Archive Class');
           $classd[] = array('controller' => 'class', 'action' => 'getUserbyClass','name' => 'Get Users in Class');

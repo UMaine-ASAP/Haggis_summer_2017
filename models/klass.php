@@ -47,7 +47,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $classes[]= new ClassObject($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] );
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] );
       }
       return array(1, $classes);
     }
@@ -77,6 +77,51 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       return array(1, new ClassObject($result['classID'],$result['title'],$result['courseID'],$result['sessionTime'],$result['description'],$result['location'] ));
+    }
+//=================================================================================== CLASSES FOR USER
+    public static function userClasses($token)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT classuser.classID FROM classuser WHERE classuser.userID IN (SELECT user.userID FROM user WHERE user.token = ?)";
+      $data = array($token);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $message = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $errorCode = 1;
+        echo sizeof($message);
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e -> getMessage();
+      }
+      return array($errorCode, $message);
+    }
+//=================================================================================== JOIN CLASS
+    public static function joinClass($userID, $classID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "INSERT INTO classuser (classID, userID) VALUES (?,?)";
+      $data = array($classID, $userID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $message = "Successfully Joined Class";
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e -> getMessage();
+      }
+      return array($errorCode, $message);
     }
   }
   ?>
