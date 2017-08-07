@@ -104,6 +104,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
 //=================================================================================== JOIN CLASS
     public static function joinClass($userID, $classID)
     {
+      echo $userID." ".$classID;
       $errorCode;
       $message;
       $db = Db::getInstance();
