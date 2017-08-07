@@ -7,7 +7,7 @@
       foreach($courses as $course)
       {
         foreach($course->classes as $class)
-        echo "<option id='".$class->id."'>".$course->title." ".$class->title."</option>";
+        echo "<option value='".$class->id."'>".$course->title." ".$class->title."</option>";
       }
       ?>
     </select><br>
