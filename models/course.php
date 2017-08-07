@@ -75,7 +75,7 @@ Class Course {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, $result['title']));
+      return array(1, $result['title']);
     }
   }
   ?>
