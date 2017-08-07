@@ -49,7 +49,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $coursetitle = Course::getName($result['courseID'])[1];
+        $coursetitle = Course::getCourseName($result['courseID'])[1];
         $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
       }
       return array(1, $classes);
@@ -66,7 +66,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $coursetitle = Course::getName($result['courseID'])[1];
+        $coursetitle = Course::getCourseName($result['courseID'])[1];
         $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
       }
       return array(1, $classes);
@@ -80,7 +80,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      $coursetitle = Course::getName($result['courseID'])[1];
+      $coursetitle = Course::getCourseName($result['courseID'])[1];
       return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] ));
     }
 //=================================================================================== CLASSES FOR USER
