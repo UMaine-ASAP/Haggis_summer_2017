@@ -31,8 +31,8 @@ class ClassController
       if($_POST['newCourse'] == "yes")
       {
         $coursetitle=$_POST['coursetitle'];
-        $coursecode = $_POST['coursecode'];
         $coursedescription = $_POST['coursedescription'];
+        $courseCode = $_POST['coursecode'];
         $courseID = Course::create($coursetitle,$coursecode,$coursedescription);
         if($courseID[0] != 1)
         {
@@ -47,11 +47,13 @@ class ClassController
         $coursecode = $course->code;
         $coursedescription = $course->description;
       }
-      $outcome = Klass::create($courseID,$_POST['sessiontime'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location']);
+      $outcome = Klass::create($courseID,$_POST['starttime'],$_POST['endtime'],$_POST['startdate'],$_POST['enddate'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location'],$_POST['classcode']);
       if($outcome[0] != 1)
         $message = "Error Code " .$outcome[0]." : ".$outcome[1];
       else
-        $message = $outcome[1];
+      {
+        Klass::associateWithDay($outcome[1]);
+      }
     }
     require_once('views/class/insertClass.php');
   }

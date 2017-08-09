@@ -4,32 +4,41 @@ class Klass {  //We use class with a k, using just class confuses PHP
   public $title;
   public $courseid;
   public $coursename;
-  public $sessionTime;
+  public $startTime;
+  public $endTime;
+  public $startDate;
+  public $endDate;
   public $description;
   public $location;
+  public $joinCode;
 //=================================================================================== STRUCT
-  public function __construct($id, $title,$courseid, $coursename,$sessiontime,$description,$location) {
+  public function __construct($id, $title,$courseid, $coursename,$starttime, $endtime, $startdate, $enddate ,$description,$location,$joinCode) {
         $this->id = $id;
         $this->title = $title;
         $this->couresid = $courseid;
         $this->coursename= $coursename;
-        $this->sessionTime = $sessiontime;
+        $this->startTime = $starttime;
+        $this->endTime = $endtime;
+        $this->startDate = $startdate;
+        $this->endDate = $enddate;
         $this->description = $description;
         $this->location = $location;
+        $this->joinCode = $joinCode;
+      }
 //=================================================================================== CREATE
-    }public static function create($courseID, $sessionTime, $classtitle, $classdescription, $location)
+    public static function create($courseID, $startTime,$endTime, $startDate, $endDate, $classtitle, $classdescription, $location, $joinCode)
     {
       $message;
       $errorCode;
       $db = Db::getInstance();
-      $sql = "INSERT INTO class (title, courseID, sessionTime, description, location) VALUES (?,?,?,?,?)";
+      $sql = "INSERT INTO class (title, courseID, timeStart, timeEnd, dateStart, dateEnd, description, location, joinCode) VALUES (?,?,?,?,?,?,?,?,?)";
       try
       {
         $stmt = $db->prepare($sql);
-        $data = array($classtitle, $courseID, $sessionTime, $classdescription, $location);
+        $data = array($courseID, $startTime,$endTime, $startDate, $endDate, $classtitle, $classdescription, $location,$joinCode);
         $stmt->execute($data);
         $errorCode = 1;
-        $message =  "Class has been added";
+        $message =  $db->lastInsertId();
       }
       catch(PDOException $e)
       {
@@ -37,6 +46,55 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $message = $e->getMessage();
       }
       return array($errorCode, $message);
+    }
+//=================================================================================== ASSOCIATE CLASS WITH DAY
+    public static function associateWithDay($classID, $daysArray)
+    {
+        $message;
+        $errorCode;
+        $db = Db::getInstance();
+        $sql = "INSERT INTO class_dayofWeek (classID, dayofWeekID) VALUES(?,?)";
+
+        try
+        {
+          $stmt = $db->prepare($sql);
+          foreach($daysArray as $day)
+          {
+            switch($day)
+            {
+              case "sunday":
+                $data = array($classID, 1);
+                break;
+              case "monday":
+                $data = array($classID, 2);
+                break;
+              case "tuesday":
+                $data = array($classID, 3);
+                break;
+              case "wednesday":
+                $data = array($classID, 4);
+                break;
+              case "thursday":
+                $data = array($classID, 5);
+                break;
+              case "friday":
+                $data = array($classID, 6);
+                break;
+              case "saturda":
+                $data = array($classID, 7);
+                break;
+            }
+            $stmt->execute($data);
+          }
+          $message = "class associated with days";
+          $errorCode = 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e->getMessage();
+        }
+        return array($errorCode, $message);
     }
 //=================================================================================== ALL
     public static function all()
@@ -50,7 +108,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $coursetitle = Course::getCourseName($result['courseID'])[1];
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] );
       }
       return array(1, $classes);
     }
@@ -67,7 +125,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $coursetitle = Course::getCourseName($result['courseID'])[1];
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] );
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] );
       }
       return array(1, $classes);
     }
@@ -81,7 +139,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       $coursetitle = Course::getCourseName($result['courseID'])[1];
-      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['sessionTime'],$result['description'],$result['location'] ));
+      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle,$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] ));
     }
 //=================================================================================== CLASSES FOR USER
     public static function userClasses($token)

@@ -34,7 +34,10 @@ button
   width: 100%;
   height: 100%;
 }
-
+.dayofweek
+{
+  width:300px;
+}
 .coursename
 {
   height: 50%;
