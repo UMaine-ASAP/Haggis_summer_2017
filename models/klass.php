@@ -35,7 +35,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       try
       {
         $stmt = $db->prepare($sql);
-        $data = array($courseID, $startTime,$endTime, $startDate, $endDate, $classtitle, $classdescription, $location,$joinCode);
+        $data = array($classtitle, $courseID, $startTime,$endTime, $startDate, $endDate, $classdescription, $location,$joinCode);
         $stmt->execute($data);
         $errorCode = 1;
         $message =  $db->lastInsertId();
@@ -43,7 +43,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       catch(PDOException $e)
       {
         $errorCode = $e->getCode();
-        $message = $e->getMessage();
+        $message = "error in Class Creation" .$e->getMessage();
       }
       return array($errorCode, $message);
     }

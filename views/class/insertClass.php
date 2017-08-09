@@ -10,9 +10,9 @@
       <tr>
         <td style="width:100px">
           <input type="radio" name ="newCourse" value="yes" required>Create a new Course<br>
-          <input type='text'    name='coursetitle'        placeholder='Name of Course'    required>     <br>
-          <input type='text'    name='coursecode'         placeholder='Code for course'   required>    <br>
-          <input type='text'    name='coursedescription'  placeholder='Course Description' required>
+          <input type='text'    name='coursetitle'        placeholder='Name of Course'    >     <br>
+          <input type='text'    name='coursecode'         placeholder='Code for course'   >    <br>
+          <input type='text'    name='coursedescription'  placeholder='Course Description' >
         </td>
         <th style="width:10px">OR</th>
         <td>
