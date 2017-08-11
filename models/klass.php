@@ -106,7 +106,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
     {
       $message = [];
       $db = Db::getInstance();
-      $sql = "SELECT name FROM dayofWeek  WHERE weekNameID IN (SELECT dayofWeekID FROM class_dayofweek WHERE classID = ?)";
+      $sql = "SELECT name FROM dayofWeek  WHERE weekNameID IN (SELECT dayofWeekID FROM class_dayofWeek WHERE classID = ?)";
       $data = array($classID);
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
