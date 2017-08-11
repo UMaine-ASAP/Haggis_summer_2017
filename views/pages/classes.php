@@ -1,7 +1,7 @@
 <h2>Classes</h2>
 
 <?php
-if(isset($classes))
+if(isset($classes) && sizeof($classes) > 0)
 {
   foreach($classes as $class)
   {
