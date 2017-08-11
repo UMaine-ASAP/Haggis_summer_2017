@@ -70,12 +70,13 @@ Class Course {
     public static function getCourseName($id)
     {
       $db = Db::getInstance();
-      $sql = "SELECT title FROM course WHERE courseID = ?";
+      $sql = "SELECT title, courseCode FROM course WHERE courseID = ?";
       $data = array($id);
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, $result['title']);
+      return array(1, $result);
     }
+
   }
   ?>

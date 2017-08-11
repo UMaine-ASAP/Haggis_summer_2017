@@ -25,13 +25,30 @@ switch($_SESSION['userFunctions']->type)
       echo "<ul>";
       foreach($_SESSION['userFunctions']->user as $option)
         echo "<li><a href='?controller=".$option['controller']."&action=".$option['action']."'>".$option['name']."</a></li>";
-      echo "</ul><ul>";
-      foreach($_SESSION['userFunctions']->group as $option)
+        echo "</ul>";
+      if(isset($_GET['controller']))
+      if($_GET['controller'] == 'assignment')
+      {
+        echo "<ul>";
+        foreach($_SESSION['userFunctions']->group as $option)
         echo "<li><a href='?controller=".$option['controller']."&action=".$option['action']."'>".$option['name']."</a></li>";
-      echo "</ul><ul>";
+        echo "</ul>";
+      }
+      if((isset($_GET['controller']) && $_GET['controller'] == 'class') || !isset($_GET['controller']) )
+      {
+      echo "<ul>";
       foreach($_SESSION['userFunctions']->class as $option)
         echo "<li><a href='?controller=".$option['controller']."&action=".$option['action']."'>".$option['name']."</a></li>";
-      echo "</ul>";
+        echo "</ul>";
+      }
+      if(isset($_GET['controller']))
+      if($_GET['controller'] == 'assignment')
+      {
+        echo "<ul>";
+        foreach($_SESSION['userFunctions'] ->assignment as $option)
+        echo "<li><a href='?controller=".$option['controller']."&action=".$option['action']."'>".$option['name']."</a></li>";
+        echo "</ul>";
+      }
     ?>
     <?php break;
 }

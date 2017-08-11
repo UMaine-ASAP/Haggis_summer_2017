@@ -13,6 +13,11 @@
     <td> <?php echo $course->title; ?></td>
     <td> <?php echo $course->code; ?></td>
     <td> <?php echo $course->description; ?></td>
-    <td> <?php foreach($course->classes as $klass) echo $klass->title."<br>";  }?></td>
+    <td> <?php foreach($course->classes as $klass)
+                echo $klass->title."<br>";
+                if(sizeof($klass->days) >0)
+                foreach($klass->days as $day)
+
+                echo $day."-<br>";}?></td>
   </tr>
 </table>

@@ -6,13 +6,15 @@ class UserFunctionAccess
   public $user = array();
   public $group = array();
   public $class = array();
+  public $assignment = array();
 //=================================================================================== STRUCT
-    public function __construct($typeData, $userData, $groupData, $classData)
+    public function __construct($typeData, $userData, $groupData, $classData, $assignmentData)
     {
       $this->type = $typeData;
       $this->user = $userData;
       $this->group = $groupData;
       $this->class = $classData;
+      $this->assignment = $assignmentData;
     }
 //=================================================================================== GET FUNCTIONS
     public static function getFunctions($type)
@@ -20,6 +22,7 @@ class UserFunctionAccess
       $userd = array();
       $groupd = array();
       $classd = array();
+      $assignmentd = array();
       $type;
       switch($type)
       {
@@ -45,9 +48,12 @@ class UserFunctionAccess
           $classd[] = array('controller' => 'class', 'action' => 'updateClass',   'name' => 'Update Class');
           $classd[] = array('controller' => 'class', 'action' => 'listCourses',   'name' => 'List Classes');
           $classd[] = array('controller' => 'class', 'action' => 'joinClass',     'name' => 'Join Class');
+
+          $assignmentd[] = array('controller'  => 'assignment', 'action' => 'listAssignments', 'name' => 'All Assignments');
+          $assignmentd[] = array('controller'  => 'assignment', 'action' => 'createAssignment', 'name' => 'Create Assignment');
           break;
       }
-      return new UserFunctionAccess($type, $userd, $groupd, $classd);
+      return new UserFunctionAccess($type, $userd, $groupd, $classd, $assignmentd);
     }
 }
 

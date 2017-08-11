@@ -33,7 +33,7 @@ class ClassController
         $coursetitle=$_POST['coursetitle'];
         $coursedescription = $_POST['coursedescription'];
         $courseCode = $_POST['coursecode'];
-        $courseID = Course::create($coursetitle,$courseCode,$coursedescription);
+        $courseID = Course::create($coursetitle,$courseCode,$coursedescription)[1];
         if($courseID[0] != 1)
         {
           $message = "Error Code ".$courseID[0]." : " . $courseID[1];
@@ -80,7 +80,12 @@ class ClassController
     $courses = Course::all()[1];
     require_once('views/class/listCourses.php');
   }
-//=================================================================================== LIST Classes for UserID
+//=================================================================================== VIEW CLASS
+  public function viewClass()
+  {
+    $class = Klass::classid($_GET['classID'])[1];
+    require_once('views/class/viewClass.php');
+  }
 
 
 }
