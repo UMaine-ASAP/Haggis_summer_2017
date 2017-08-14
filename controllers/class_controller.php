@@ -83,6 +83,7 @@ class ClassController
 //=================================================================================== VIEW CLASS
   public function viewClass()
   {
+
     $class = Klass::classid($_GET['classID'])[1];
     require_once('views/class/viewClass.php');
   }

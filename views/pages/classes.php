@@ -5,8 +5,8 @@ if(isset($classes) && sizeof($classes) > 0)
 {
   foreach($classes as $class)
   {
-    echo "<a href='?controller=class&action=viewClass&classID=".$class->id."'><div class='classes'>";
-    echo "<table class='listing'>";
+    echo "<a href='?controller=class&action=viewClass&classID=".$class->id."'><div class='classCard'>";
+    echo "<table class='cardContents'>";
     echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
     echo "<tr><td>".$class->title."<br></td></tr>";
     echo "<tr><td>Location: ".$class->location."</td></tr>";
@@ -17,10 +17,10 @@ if(isset($classes) && sizeof($classes) > 0)
     {
       for($i = 0; $i<$daySize; $i++)
       {
-        echo $class->days[$i];
+        echo substr($class->days[$i],0,2);
         if($i == $daySize-2)
         {
-          echo " and ".$class->days[$i+1];
+          echo ", and ".substr($class->days[$i+1],0,2);
           $i = $daySize;
         }
         else
@@ -31,15 +31,16 @@ if(isset($classes) && sizeof($classes) > 0)
   }
   ?>
 
-<a href='?controller=class&action=joinClass'><div class ='classes'>
-  <table class='listing'>
+<a href='?controller=class&action=joinClass'><div class ='classCard'>
+  <table>
     <tr>
-      <td>
+      <td class='cardContents'>
         Join a Class
       </td>
     </tr>
     <tr>
-      <td>
+      <td class='cardContents'>
+        <i class="glyphicon glyphicon-plus"></i>
       </td>
     </tr>
   </table>

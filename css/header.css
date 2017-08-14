@@ -1,0 +1,63 @@
+header
+{
+  background-color:#7a93bc;
+  height:100px;
+  width:100%;
+}
+.header
+{
+  align:center;
+  text-align:center;
+
+  color:white;
+  border-bottom: 2px solid black;
+  margin: 0px;
+  padding: 0px;
+
+}
+.title
+{
+  padding:none;
+  margin:none;
+  color:white;
+  font-style:bold;
+  text-decoration: none;
+  transition: color 1s ease-in-out;
+}
+
+.title:hover
+{
+  color:lightgrey;
+  text-decoration:none;
+
+}
+.headerTitle
+{
+  float:left;
+  margin:none;
+  padding:none;
+  height: 100%;
+  text-decoration:none;
+}
+
+.headerCenter
+{
+  position:absolute;
+  bottom:0px;
+  left:50%;
+  float:center;
+  color:black;
+  text-align:center;
+  vertical-align:bottom;
+  height: 100%;
+  margin:none;
+  padding:none;
+}
+
+.headerLogin
+{
+  float: right;
+    height: 100%;
+  margin:none;
+  padding:none;
+}

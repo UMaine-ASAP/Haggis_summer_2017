@@ -1,0 +1,21 @@
+.namebutton
+{
+  border:1px solid lightgrey;
+}
+
+.groupbox
+{
+  padding: 10px;
+  margin: 5px;
+  background-color: lightgrey;
+}
+
+.groupbox:hover
+{
+  background-color:white;
+}
+
+[ondrop]
+{
+  border:2px solid red;
+}

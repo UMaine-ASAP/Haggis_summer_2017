@@ -3,8 +3,7 @@
   require_once('models/userFunctionAccess.php');
   if(isset($_SESSION['token']))
   {
-    echo  "Logged in as ".  $_SESSION['firstName'] ." ".$_SESSION['middleInitial'] ." ". $_SESSION['lastName'].
-          "<br><a href='?controller=user&action=logout'>Logout</a>";
+    echo  "<a href='?controller=user&action=logout'>Logout</a>";
 
   }
   else
