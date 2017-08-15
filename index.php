@@ -19,7 +19,7 @@
   else
   {
     $controller = 'pages';
-    $action = 'classes'; //Redirect this back to index.php at root when event functionality is added.
+    $action = 'index'; //Redirect this back to index.php at root when event functionality is added.
   }
   require_once('views/layout.php');
 ?>

@@ -5,6 +5,8 @@ class PagesController
 //=================================================================================== INDEX
     public function index()
     {
+      if(isset($_SESSION['token']))
+      $classes = Klass::userClasses($_SESSION['token'])[1];
       require_once('views/pages/index.php');
     }
 //=================================================================================== CLASSES

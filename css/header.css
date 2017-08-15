@@ -1,7 +1,7 @@
 header
 {
   background-color:#7a93bc;
-  height:100px;
+  height:50px;
   width:100%;
 }
 .header
@@ -60,4 +60,12 @@ header
     height: 100%;
   margin:none;
   padding:none;
+}
+
+.currentAction
+{
+  height: 50px;
+  text-align: center;
+  background-color:#7a93bc;
+  border-bottom: 2px solid black;
 }

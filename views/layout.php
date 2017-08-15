@@ -22,6 +22,9 @@
       case 'assignments':
         $_SESSION['current'] = "Assignments";
         break;
+      default:
+        $_SESSION['current'] = "Home";
+        break;
     }
     ?>
 
@@ -32,9 +35,11 @@
   <body>
     <table>
       <tr>
-        <td class='menu'>
-          <?php require_once('inserts/menu.php');?>
+        <td class='currentAction'>
+          <?php require_once('inserts/currentAction.php');?>
         </td>
+      </tr>
+      <tr>
         <td>
           <?php require_once('routes.php'); ?>
         </td>

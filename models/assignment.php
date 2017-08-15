@@ -88,4 +88,30 @@ class Assignment
       }
       return array($errorCode, $message);
     }
+  //=================================================================================== byClass
+    public static function classid($classid)
+    {
+      // public static function id($id)
+      // {
+      //   $errorCode;
+      //   $message;
+      //   $db = Db::getInstance();
+      //   $sql = "SELECT * FROM assignment WHERE assignmentID = ?";
+      //   $data = array($id);
+      //   try
+      //   {
+      //     $stmt = $db->prepare($sql);
+      //     $stmt->execute($data);
+      //     $r = $stmt->fetch(PDO::FETCH_ASSOC);
+      //     $errorCode = 1;
+      //     $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
+      //   }
+      //   catch(PDOException $e)
+      //   {
+      //     $errorCode = $e->getCode();
+      //     $message = $e->getMessage();
+      //   }
+      //   return array($errorCode, $message);
+      // }
+    }
 }
