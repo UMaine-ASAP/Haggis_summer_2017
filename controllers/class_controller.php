@@ -23,6 +23,7 @@ class ClassController
     $message='';
     $courseID='';
     $courselisting = Course::all()[1];
+    $classID;
     if(isset($_POST['token']))
     {
       $courestitle ='';
@@ -49,13 +50,16 @@ class ClassController
       }
       $outcome = Klass::create($courseID,$_POST['starttime'],$_POST['endtime'],$_POST['startdate'],$_POST['enddate'],$_POST['classtitle'],$_POST['classdescription'],$_POST['location'],$_POST['classcode']);
       if($outcome[0] != 1)
-        $message = "Error Code " .$outcome[0]." : ".$outcome[1];
+        $_SESSION['message'] = "Error Code " .$outcome[0]." : ".$outcome[1];
       else
       {
         Klass::associateWithDay($outcome[1], $_POST['sessiondays']);
+        $userID = User::getID($_SESSION['token'])[1];
+        $message = Klass::joinClass($userID, $outcome[1]);
       }
     }
-    require_once('views/class/insertClass.php');
+    //$_SESSION['message'] = "Class Successfully Added";
+    header('Location: index.php');
   }
 //=================================================================================== JOIN CLASS
   public function joinClass()

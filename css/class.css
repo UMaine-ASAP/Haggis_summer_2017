@@ -40,9 +40,16 @@
   box-shadow: 18px 18px 13px #000000;
 }
 
-.cardContents
+.cardTitle
 {
+  width:100%;
   text-align:center;
   vertical-align:center;
+  font-size:15px;
+}
+
+.cardContents
+{
+  vertical-align:bottom;
   font-size:15px;
 }

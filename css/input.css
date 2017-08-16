@@ -3,12 +3,18 @@
   width:300px;
 }
 
-hr
+input.standard
 {
+  border: 1px solid black;
+  border-radius:10px 10px 10px 10px;
+  background-color: white;
   color:black;
+  padding:5px;
+  margin : 5px;
 }
 
-input.standard
+
+button.standard
 {
   border: 1px solid black;
   border-radius:10px 10px 10px 10px;
@@ -30,19 +36,26 @@ select.standard
 
 input.joinedInput
 {
+  text-indent: 10px;
   vertical-align:top;
-    height: 50px;
-    width: 400px;
-    border-radius: 10px 0px 0px 10px;
-    border:1px solid black;
-    border-right: none;
-    padding:none;
-    margin:none;
+  height: 50px;
+  width: 400px;
+  border-radius: 10px 0px 0px 10px;
+  border:1px solid black;
+  border-right: none;
+  padding:none;
+  margin:none;
 }
 
 input[type='submit']
 {
   width: 100px;
+}
+
+input[type='checkbox']
+{
+  width:20px;
+  height:20px;
 }
 
 button.joinedButton
@@ -55,19 +68,20 @@ button.joinedButton
   border-left:none;
   padding:none;
   margin:none;
-
 }
+
 
 input.joinedInputSmaller
 {
   vertical-align:top;
-    height: 20px;
-    width: 200px;
-    border-radius: 10px 0px 0px 10px;
-    border:1px solid black;
-    border-right: none;
-    padding:none;
-    margin:none;
+  text-indent: 10px;
+  height: 20px;
+  width: 200px;
+  border-radius: 10px 0px 0px 10px;
+  border:1px solid black;
+  border-right: none;
+  padding:none;
+  margin:none;
 }
 
 button.joinedButtonSmaller

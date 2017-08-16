@@ -1,7 +1,7 @@
 <div class='container'>
 
-  <h1>Live Events</h2>
+  <h2>Live Events</h2>
   <hr>
-  <input class='joinedInput' type='text' name='searchString' placeholder='search'><button class='joinedButton' type='submit'><i class="glyphicon glyphicon-search"></i></button>
+  <input class='joinedInputSmaller' type='text' name='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i class="glyphicon glyphicon-search" size='smaller'></i></button>
   <p>No Active Events</p>
 </div>

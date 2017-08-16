@@ -1,8 +1,34 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="java/popup.js"></script>
+
 <div class='container'>
 
-  <h1>Your Classes</h2>
+  <h2>Your Classes</h2>
   <hr>
-
+  <?php if(isset($_SESSION['token']) && User::checkAdmin($_SESSION['token']))
+  {
+  ?>
+    <div class ='classCard'>
+    <table class='createClass' puW='300' puH='600' topoffset='-500'>
+      <tr>
+        <td class='cardtitle'>
+            <i class="glyphicon glyphicon-plus"></i>
+        </td>
+      </tr>
+      <tr>
+        <td class='cardContents'>
+        new class
+        </td>
+      </tr>
+    </table>
+    </div>
+    <?php
+  }
+  else
+  {
+    require_once('views/class/joinClass.php');
+  }
+  ?>
 <?php
 foreach($classes as $class)
 {
@@ -34,21 +60,8 @@ foreach($classes as $class)
 
 ?>
 
-<a href='?controller=class&action=joinClass'><div class ='classCard'>
-<table>
-  <tr>
-    <td class='cardContents'>
-      Join a Class
-    </td>
-  </tr>
-  <tr>
-    <td class='cardContents'>
-      <i class="glyphicon glyphicon-plus"></i>
-    </td>
-  </tr>
-</table>
+
+
 </div>
-</a>
-<?php
-?>
-</div>
+<div id='joinclass' class='popup'><?php require_once('views/class/joinClass.php');?></div>
+<div id='createclass' class='popup'><?php require_once('views/class/insertClass.php');?></div>

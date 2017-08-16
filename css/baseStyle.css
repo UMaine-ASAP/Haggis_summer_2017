@@ -2,7 +2,21 @@ body
 {
   background-color: lightgrey;
   color:black;
+  height: 100%;
 
+}
+
+hr
+{
+  height:2px;
+  color:black;
+  background:black;
+}
+hr.minor
+{
+  height:2px;
+  width:20%;
+  border: 1px solid black;
 }
 
 a
@@ -42,12 +56,12 @@ table
 
 .error
 {
-  color:yellow;
+  color:red;
 }
 
 .glyphicon-plus
 {
-  font-size:40px;
+  font-size:60px;
 }
 .glyphicon-search
 {
@@ -58,6 +72,12 @@ table
 {
   font-size:10px;
 }
+
+.glyphicon-plus[size='smaller']
+{
+  font-size:10px;
+}
+
 
 .initialSquare
 {
@@ -93,4 +113,61 @@ table
 .menutitle
 {
   text-align:center;
+}
+
+.overlay
+{
+  position:absolute;
+  display:none;
+  background-color: rgba(0,0,0,0.7);
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  width:100%;
+  height:100%;
+}
+
+.popup
+{
+  position:absolute;
+  width: 600px;
+  height:500px;
+  display:none;
+  background-color:white;
+  text-align:center;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -250px;
+  color:black;
+  padding:20px;
+}
+/*#createclass
+{
+  position:absolute;
+  width: 800px;
+  height:600px;
+  display:none;
+  background-color:white;
+  text-align:center;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -300px;
+  color:black;
+}*/
+
+.exit
+{
+  float:right;
+  font-style:bold;
+  font-size:20px;
+}
+
+.message
+{
+  height:50px;
+  text-align:center;
+  color:darkblue;
 }

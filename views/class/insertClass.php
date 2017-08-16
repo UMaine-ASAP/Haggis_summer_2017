@@ -1,67 +1,71 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="java/randomCode.js"></script>
-<h2>Create a New Class</h2>
-<div><?php echo $message; ?></div>
-
-<div>
-  <form action='?controller=class&action=insertClass' method='post'>
+<script src="java/classCreation.js"></script>
+<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+<h2>New Class</h2><hr>
+  <form name='createaclass' action='?controller=class&action=insertClass' method='post'>
     <input type='hidden'  name='token'        value = '<?php echo $_SESSION['token'];?>'>
-    <table>
-      <tr>
-        <td style="width:100px">
-          <input type="radio" name ="newCourse" value="yes" required>Create a new Course<br>
-          <input type='text'    name='coursetitle'        placeholder='Name of Course'    >     <br>
-          <input type='text'    name='coursecode'         placeholder='Course Code (ex: NMD100)'   >    <br>
-          <input type='text'    name='coursedescription'  placeholder='Course Description' >
-        </td>
-        <th style="width:10px">OR</th>
-        <td>
-          <input type="radio" name="newCourse" value ='no' required>Add to a pre-existing course<br>
-          <select name='courselisting'>
-            <?php
-            foreach($courselisting as $course)
-            {
-              echo "<option value='".$course->id."'>".$course->title."</option>";
-            }
-            ?>
-          </select>
-        </td>
-      </tr>
-    </table>
 
+    <div id='part1'>
+      <input class='standard'  type="radio" name ="newCourse" value='yes'>Create a new Course<br>
+      <input class='standard'  type="radio" name="newCourse" value ='no'>Add to a pre-existing course<br>
+      <div id='part1-1'>
+
+        <input class='standard' type='text'    name='coursetitle'        placeholder='Name of Course'    >     <br>
+        <input class='standard' type='text'    name='coursecode'         placeholder='Course Code (ex: NMD100)' pattern="[A-Za-z]{3}[0-9]{3}" title="Three letter and three number course code"  >    <br>
+        <input class='standard' type='text'    name='coursedescription'  placeholder='Course Description' >
+        <br><button class='standard' type='button' value='1-1' id='part1end'>Continue</button>
+
+      </div>
+      <div id='part1-2'>
+        <select class='standard' name='courselisting'>
+        <?php
+        foreach($courselisting as $course)
+        {
+          echo "<option value='".$course->id."'>".$course->code." ".$course->title."</option>";
+        }
+        ?>
+        </select>
+        <br><button class='standard' type='button' value='1-2' id='part1end'>Continue</button>
+      </div>
     </div>
-    <hr>
-    <div>
-      <input type='text'    name='classtitle'        placeholder='Name of Class' required>    <br>
-      Start Time<input type='time'    name='starttime'  placeholder='Start Time' required><br>
-      End Time:<input type='time'    name='endtime'    placeholder='End Time' required><br>
-      Start Date<input type='date'    name='startdate'  placeholder='Start Date' required><br>
-      End Date:<input type='date'    name='enddate'    placeholder='End Date' required><br>
-      <table class='dayofweek'>
-        <tr>
-          <td>Sunday</td>
-          <td>Monday</td>
-          <td>Tuesday</td>
-          <td>Wednesday</td>
-          <td>Thursday</td>
-          <td>Friday</td>
-          <td>Sunday</td>
-        </tr>
-        <tr>
-          <td><input type='checkbox' name='sessiondays[]' value='sunday'</td>
-          <td><input type='checkbox' name='sessiondays[]' value='monday'></td>
-          <td><input type='checkbox' name='sessiondays[]' value='tuesday'></td>
-          <td><input type='checkbox' name='sessiondays[]' value='wednesday'></td>
-          <td><input type='checkbox' name='sessiondays[]' value='thursday'></td>
-          <td><input type='checkbox' name='sessiondays[]' value='friday'></td>
-          <td><input type='checkbox' name='sessiondays[]' value='saturday'></td>
-        </tr>
-      </table>
-      <input type='text'    name='classdescription'  placeholder='Class Description' required><br>
-      <input type='text'    name='location'     placeholder='Class Location' required>   <br>
-      <input type='text'    name='classcode'    placeholder='Join Code' id='codebox' required>
-      <input type='button'  id='makerandom' value="Generate Random">
-  </div>
-    <input type='submit' value='Add Class'>
+
+      <div id='part2'>
+        <input class='standard' type='text'    name='classtitle'        placeholder='Name of Class'><br>
+        <input class='standard' type='text'    name='classdescription'  placeholder='Class Description'><br>
+        <input class='standard' type='text'    name='location'     placeholder='Class Location'>
+        <hr class='minor'>
+        Join Code:<br>
+        <input class='standard' type='text'    name='classcode'    placeholder='Join Code' id='codebox'>
+        <input class='standard' type='button'  id='makerandom' value="Generate Random"><br>
+        <button class='standard' type='button' value='backto1' id='1'>Back</button>
+        <button class='standard' type='button' value='2' id='2'>Continue</button>
+      </div>
+
+      <div id='part3'>
+        Start/End times:<br>
+        <input class='standard' type='time'    name='starttime'  placeholder='Start Time' required> -
+        <input class='standard' type='time'    name='endtime'    placeholder='End Time' required>
+        <hr class='minor'>
+        Start/End dates:<br>
+        <input class='standard' type='date'    name='startdate'  placeholder='Start Date' required> -
+        <input  class='standard' type='date'    name='enddate'    placeholder='End Date' required>
+        <hr class='minor'>
+        Days:<br>
+        Su<input class='standard' type='checkbox' name='sessiondays[]' value='sunday'>
+        Mo<input class='standard' type='checkbox' name='sessiondays[]' value='monday'>
+        Tu<input class='standard' type='checkbox' name='sessiondays[]' value='tuesday'>
+        We<input class='standard' type='checkbox' name='sessiondays[]' value='wednesday'>
+        Th<input class='standard' type='checkbox' name='sessiondays[]' value='thursday'>
+        Fr<input class='standard' type='checkbox' name='sessiondays[]' value='friday'>
+        Sa<input class='standard' type='checkbox' name='sessiondays[]' value='saturday'><br>
+        <button class='standard' type='button' value='backto2' id='2'>Back</button>
+        <button class='standard' value ='review' type='button'>Review</button>
+      </div>
+      <div id='review'>
+        <div id='status'></div>
+        <button class='standard' type='button' value='backto3' id='2'>Back</button>
+       <input class='standard' type='submit' value='Create Class'>
+      </div>
+  <div class='error' id='courseError'></div>
   </form>
-</div>
