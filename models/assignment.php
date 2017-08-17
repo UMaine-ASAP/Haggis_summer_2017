@@ -17,7 +17,7 @@ class Assignment
   }
 
 //=================================================================================== INSERT ASSIGNMENT
-  public static function create($title, $description, $duetime, $duedate)
+  public static function create($title, $description, $duetime, $duedate, $classid)
   {
     $errorCode;
     $message;
@@ -28,7 +28,9 @@ class Assignment
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $message = $db->lastInsertId();
+      $assignmentid = $db->lastInsertId();
+      $outcome = Assignment::linkToClass($classid, $assignmentid);
+      $message = $outcome[1];
       $errorCode = 1;
 
     }
@@ -40,6 +42,28 @@ class Assignment
     return array($errorCode, $message);
 
   }
+//=================================================================================== ASSOCIATE WITH CLASS
+public static function linkToClass($classID, $assignmentID)
+{
+  $errorCode;
+  $message;
+  $db = Db::getInstance();
+  $sql ="INSERT INTO assignment_class(classID, assignmentID) VALUES(?,?)";
+  $data = array($classID, $assignmentID);
+  try
+  {
+    $stmt = $db->prepare($sql);
+    $stmt->execute($data);
+    $message = "succsses";
+    $errorCode = 1;
+  }
+  catch(PDOException $e)
+  {
+    $errorCode = $e->getCode();
+    $message = $e->getMessage();
+  }
+  return array($errorCode, $message);
+}
 //=================================================================================== GET ASSIGNMENT by ID
   public static function id($id)
   {
@@ -91,27 +115,26 @@ class Assignment
   //=================================================================================== byClass
     public static function classid($classid)
     {
-      // public static function id($id)
-      // {
-      //   $errorCode;
-      //   $message;
-      //   $db = Db::getInstance();
-      //   $sql = "SELECT * FROM assignment WHERE assignmentID = ?";
-      //   $data = array($id);
-      //   try
-      //   {
-      //     $stmt = $db->prepare($sql);
-      //     $stmt->execute($data);
-      //     $r = $stmt->fetch(PDO::FETCH_ASSOC);
-      //     $errorCode = 1;
-      //     $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
-      //   }
-      //   catch(PDOException $e)
-      //   {
-      //     $errorCode = $e->getCode();
-      //     $message = $e->getMessage();
-      //   }
-      //   return array($errorCode, $message);
-      // }
+        $errorCode;
+        $message;
+        $db = Db::getInstance();
+        $sql = "SELECT * FROM assignment WHERE assignment.assignmentID IN (SELECT assignment_class.assignmentID FROM assignment_class WHERE assignment_class.assignmentID = ?)";
+        $data = array($classid);
+        try
+        {
+          $stmt = $db->prepare($sql);
+          $stmt->execute($data);
+          $assignmentarray = array();
+          while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
+          $message = $assignmentarray;
+          $errorCode = 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e->getMessage();
+        }
+        return array($errorCode, $message);
     }
 }

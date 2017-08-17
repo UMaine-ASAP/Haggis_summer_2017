@@ -1,9 +1,9 @@
 <div class='menutitle'>
-Assignments(<?php echo sizeof($assignment);?>)
+Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
 <div>
-  New Assignment +
+  <a class ='newAssignment' href='#'>New Assignment +</a>
 </div>
 <br>
 <div>
@@ -11,8 +11,9 @@ Assignments(<?php echo sizeof($assignment);?>)
 </div>
 <br>
 <?php
-foreach($assignment as $a)
+foreach($assignments as $a)
 {
   echo $a->title."<br>";
 }
 ?>
+<div id='createassignment' class='popup'><?php require_once('views/assignment/createAssignment.php');?></div>

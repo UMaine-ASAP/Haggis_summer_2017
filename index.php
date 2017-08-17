@@ -11,7 +11,14 @@
 
   require_once('connection.php');
 
-  if(isset($_GET['controller']) && isset($_GET['action']))
+
+  if(isset($_SESSION['controller']) && isset($_SESSION['action']))
+  {
+    $controller = $_SESSION['controller'];
+    $action = $_SESSION['action'];
+    $returnto = $_SESSION['returnto'];
+  }
+  else if(isset($_GET['controller']) && isset($_GET['action']))
   {
     $controller = $_GET['controller'];
     $action = $_GET['action'];

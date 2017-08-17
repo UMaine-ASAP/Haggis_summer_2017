@@ -1,3 +1,4 @@
+
 <?php
   require_once('models/user.php');
   require_once('models/userFunctionAccess.php');
@@ -13,13 +14,11 @@
                   "<input class='standard' type='email' name='email' placeholder='Email Address'>".
                   "<input class='standard' type='password' name='password' placeholder='Password'>".
                   "<input class='standard' type='submit' value='Login'><br>";
-    if(isset($_SESSION['message']))
-    {
-      $loginForm .= "<div class='error'>".$_SESSION['message']."</div>";
-    }
-    $loginForm .= "<a href='?controller=user&action=register'>Register</a>".
-                    "<a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a>".
+    $loginForm .= "<a class='registerUser' href='#'>Register</a>".
+                    "<a class ='resetPassword' href='#'>Forgot Password?</a>".
                     "</form>";
     echo $loginForm;
   }
 ?>
+  <div id='register' class='popup'><?php require_once('views/user/userRegistration.php');?></div>
+  <div id='passwordreset' class='popup'><?php require_once('views/user/passwordResetRequest.php');?></div>

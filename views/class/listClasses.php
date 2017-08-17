@@ -1,5 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="java/popup.js"></script>
+
 
 <div class='container'>
 
@@ -33,7 +32,7 @@
 foreach($classes as $class)
 {
 
-  echo "<a href='?controller=class&action=viewClass&classID=".$class->id."'><div class='classCard'>";
+  echo "<a href='?controller=pages&action=class&classID=".$class->id."'><div class='classCard'>";
   echo "<table class='cardContents'>";
   echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
   echo "<tr><td>".$class->title."<br></td></tr>";

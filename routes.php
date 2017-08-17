@@ -4,8 +4,12 @@
   require_once('models/course.php');
   require_once('models/assignment.php');
 
+
+
+
   function call ($controller, $action)
   {
+
     require_once("controllers/".$controller."_controller.php");
 
     switch ($controller)
@@ -30,7 +34,7 @@
   }
 
 
-  $controllers = array (  'pages'     => ['index','classes','groups','assignments','error'],
+  $controllers = array (  'pages'     => ['index','class','groups','assignments','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],

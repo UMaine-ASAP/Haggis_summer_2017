@@ -1,3 +1,15 @@
+@keyframes attentionGetter
+{
+  from
+  {
+    color:yellow;
+  }
+  to
+  {
+    color:red;
+  }
+}
+
 body
 {
   background-color: lightgrey;
@@ -56,7 +68,11 @@ table
 
 .error
 {
+  height:50px;
+  text-align:center;
   color:red;
+  animation-name:attentionGetter;
+  animation-duration: 2s;
 }
 
 .glyphicon-plus
@@ -142,6 +158,7 @@ table
   margin-top: -250px;
   color:black;
   padding:20px;
+  z-index:3;
 }
 /*#createclass
 {
@@ -165,9 +182,11 @@ table
   font-size:20px;
 }
 
-.message
+
+.stepcounter
 {
-  height:50px;
-  text-align:center;
-  color:darkblue;
+  width:100;
+  position:absolute;
+  float:center;
+  bottom:10;
 }

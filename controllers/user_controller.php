@@ -5,42 +5,27 @@ class UserController
 //=================================================================================== REGISTER
   function register()
   {
-      $message = "";
-      $firstName = "";
-      $middleInitial = "";
-      $lastName = "";
-      $email = "";
-
-      $passwordsMatch = false;
       if(isset($_POST['firstname']))
       {
+        $out='';
         $firstName = $_POST['firstname'];
         $middleInitial = $_POST['middleinitial'];
         $lastName = $_POST['lastname'];
         $email = $_POST['email'];
-        if($_POST['password'] == $_POST['passwordconfirm'])
-          $passwordsMatch = true;
 
-        if($passwordsMatch)
-        {
-          $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
+        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
           switch($outcome[0])
           {
             case '1':
-              $message = $outcome[1];
-              $firstName = $middleInitial = $lastName = $email = "";
+              $out = $outcome[1];
               break;
             case '2':
-              $message = $outcome[1]." <a href='?controller=user&action=passwordResetRequest'>Forgot Password?</a> or <a href='?controller=user&action=passwordResetRequest'>Sign-in</a>";
+              $out = $outcome[1]." <a class ='resetPassword' href='#'>Forgot Password?</a>";
               break;
           }
-        }
-        else
-        {
-          $message = "Passwords do not match";
-        }
+          $_SESSION['message'] = $out;
       }
-      require_once('views/user/userRegistration.php');
+      header('Location: index.php');
   }
 //=================================================================================== LOGIN
   function login()
@@ -158,9 +143,12 @@ class UserController
   }
 //=================================================================================== PASSWORD RESET REQUEST
   function passwordResetRequest(){
-    require_once('views/user/passwordResetRequest.php');
-    if (isset($_POST['submit'])){
-      User::sendResetEmail($_POST['email']);
+
+    if (isset($_POST['email']))
+    {
+      $outcome = User::sendResetEmail($_POST['email']);
+      $_SESSION['message'] = $outcome[1];
+      header('Location: index.php');
     }
   }
 //=================================================================================== EMAIL CONFIRMATION

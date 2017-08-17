@@ -28,6 +28,7 @@
         </select>
         <br><button class='standard' type='button' value='1-2' id='part1end'>Continue</button>
       </div>
+      <div class='stepcounter'>Step 1 of 4</div>
     </div>
 
       <div id='part2'>
@@ -40,6 +41,7 @@
         <input class='standard' type='button'  id='makerandom' value="Generate Random"><br>
         <button class='standard' type='button' value='backto1' id='1'>Back</button>
         <button class='standard' type='button' value='2' id='2'>Continue</button>
+        <div class='stepcounter'>Step 2 of 4</div>
       </div>
 
       <div id='part3'>
@@ -61,11 +63,13 @@
         Sa<input class='standard' type='checkbox' name='sessiondays[]' value='saturday'><br>
         <button class='standard' type='button' value='backto2' id='2'>Back</button>
         <button class='standard' value ='review' type='button'>Review</button>
+        <div class='stepcounter'>Step 3 of 4</div>
       </div>
       <div id='review'>
         <div id='status'></div>
         <button class='standard' type='button' value='backto3' id='2'>Back</button>
        <input class='standard' type='submit' value='Create Class'>
+       <div class='stepcounter'>Step 4 of 4</div>
       </div>
   <div class='error' id='courseError'></div>
   </form>

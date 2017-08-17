@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
 
+
     <?php
     switch($action)
     {
@@ -29,10 +30,14 @@
     ?>
 
   </head>
+  <div class="overlay"></div>
   <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="java/popup.js"></script>
     <?php require_once('inserts/header.php');?>
   </header>
   <body>
+    
     <table>
       <tr>
         <td class='currentAction'>

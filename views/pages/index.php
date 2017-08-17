@@ -1,7 +1,4 @@
-<div class="overlay"></div>
-<div>
-  <?php if(isset($message)) echo $message; ?>
-</div>
+
 <table>
   <tr>
     <td class='catchPhrase' colspan='2'>
@@ -9,8 +6,8 @@
     </td>
   </tr>
   <tr>
-    <td class ='message' colspan='2'>
-      <?php if(isset($_SESSION['message'])) echo $_SESSION['message']; ?>
+    <td class ='error' colspan='2'>
+      <?php echo $message; ?>
     </td>
   </tr>
   <tr>

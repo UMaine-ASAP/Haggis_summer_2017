@@ -5,17 +5,40 @@ class PagesController
 //=================================================================================== INDEX
     public function index()
     {
+      $message = "";
+      if(isset($_SESSION['message']))
+      {
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
+      }
       if(isset($_SESSION['token']))
       $classes = Klass::userClasses($_SESSION['token'])[1];
       $courselisting = Course::all()[1];
       require_once('views/pages/index.php');
     }
 //=================================================================================== CLASSES
-    public function classes()
+    public function class()
     {
-      $_SESSION['current'] = "Classes";
+      $message = "";
+      if(isset($_SESSION['message']))
+      {
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
+      }
       if(isset($_SESSION['token']))
-      $classes = Klass::userClasses($_SESSION['token'])[1];
+      $classes;
+      $assignments;
+      if(isset($returnto))
+      {
+        $assignments = Assignment::classID($_SESSION['returnto'])[1];
+        $class = Klass::classid($_SESSION['returnto'])[1];
+      }
+      else
+      {
+        $assignments = Assignment::classID($_GET['classID'])[1];
+        $class = Klass::classid($_GET['classID'])[1];
+      }
+
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS

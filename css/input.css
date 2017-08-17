@@ -71,6 +71,34 @@ button.joinedButton
 }
 
 
+input.joinedInputMedium
+{
+  vertical-align:top;
+  text-indent: 10px;
+  height: 30px;
+  width: 300px;
+  border-radius: 10px 0px 0px 10px;
+  border:1px solid black;
+  border-right: none;
+  padding:none;
+  margin:none;
+}
+
+button.joinedButtonMedium
+{
+  font-size:15px;
+  background: white;
+  vertical-align:top;
+  height: 30px;
+  border-radius: 0px 10px 10px 0px;
+  border:1px solid black;
+  border-left:none;
+  padding:none;
+  margin:none;
+}
+
+
+
 input.joinedInputSmaller
 {
   vertical-align:top;
@@ -95,5 +123,4 @@ button.joinedButtonSmaller
   border-left:none;
   padding:none;
   margin:none;
-
 }
