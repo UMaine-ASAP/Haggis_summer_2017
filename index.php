@@ -16,22 +16,22 @@
   {
     $source = 2;
   }
-  if(isset($_SESSION['controller']) && isset($_SESSION['action']))
+  if(isset($_SESSION['returnto']))
   {
     $source = 1;
   }
-
+  $controller;
+  $action;
+  $returnto;
   switch($source)
   {
     case 1:
     {
       $controller = $_SESSION['controller'];
       $action = $_SESSION['action'];
-      $returnto = $_SESSION['returnto'];
       break;
       unset($_SESSION['controller']);
       unset($_SESSION['action']);
-      unset($_SESSION['returnto']);
 
     }
     case 2:

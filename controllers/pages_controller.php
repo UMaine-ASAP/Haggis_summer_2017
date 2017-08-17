@@ -25,19 +25,20 @@ class PagesController
         $message = $_SESSION['message'];
         $_SESSION['message'] = "";
       }
-      $classes;
+      $class;
       $assignments;
       if(isset($_SESSION['token']))
-      if(isset($returnto))
-      {
-        $assignments = Assignment::classID($returnto)[1];
-        $class = Klass::classid($returnto)[1];
-      }
-      else
-      {
-        $assignments = Assignment::classID($_GET['classID'])[1];
-        $class = Klass::classid($_GET['classID'])[1];
-      }
+        if(isset($_SESSION['returnto']))
+        {
+          $assignments = Assignment::classID($_SESSION['returnto'])[1];
+          $class = Klass::classid($_SESSION['returnto'])[1];
+          unset($_SESSION['returnto']);
+        }
+        else
+        {
+          $assignments = Assignment::classID($_GET['classID'])[1];
+          $class = Klass::classid($_GET['classID'])[1];
+        }
 
       require_once('views/pages/classes.php');
     }

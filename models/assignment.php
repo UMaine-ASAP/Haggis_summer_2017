@@ -118,7 +118,7 @@ public static function linkToClass($classID, $assignmentID)
         $errorCode;
         $message;
         $db = Db::getInstance();
-        $sql = "SELECT * FROM assignment WHERE assignment.assignmentID IN (SELECT assignment_class.assignmentID FROM assignment_class WHERE assignment_class.assignmentID = ?)";
+        $sql = "SELECT * FROM assignment WHERE assignmentID IN (SELECT assignmentID FROM assignment_class WHERE assignment_class.classID = ?)";
         $data = array($classid);
         try
         {
