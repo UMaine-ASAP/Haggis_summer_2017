@@ -32,7 +32,7 @@
 foreach($classes as $class)
 {
 
-  echo "<a href='?controller=pages&action=class&classID=".$class->id."'><div class='classCard'>";
+  echo "<a href='?controller=pages&action=classes&classID=".$class->id."'><div class='classCard'>";
   echo "<table class='cardContents'>";
   echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
   echo "<tr><td>".$class->title."<br></td></tr>";
