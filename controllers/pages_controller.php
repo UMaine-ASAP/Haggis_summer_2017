@@ -25,13 +25,13 @@ class PagesController
         $message = $_SESSION['message'];
         $_SESSION['message'] = "";
       }
-      if(isset($_SESSION['token']))
       $classes;
       $assignments;
+      if(isset($_SESSION['token']))
       if(isset($returnto))
       {
-        $assignments = Assignment::classID($_SESSION['returnto'])[1];
-        $class = Klass::classid($_SESSION['returnto'])[1];
+        $assignments = Assignment::classID($returnto)[1];
+        $class = Klass::classid($returnto)[1];
       }
       else
       {

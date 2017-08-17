@@ -1,3 +1,4 @@
+<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
 <h2>Create an Assignment</h2><hr>
 
 <form action='?controller=assignment&action=createAssignment' method='post'>

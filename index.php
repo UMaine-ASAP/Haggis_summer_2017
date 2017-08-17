@@ -11,22 +11,41 @@
 
   require_once('connection.php');
 
-
+  $source = 0;
+  if(isset($_GET['controller']) && isset($_GET['action']))
+  {
+    $source = 2;
+  }
   if(isset($_SESSION['controller']) && isset($_SESSION['action']))
   {
-    $controller = $_SESSION['controller'];
-    $action = $_SESSION['action'];
-    $returnto = $_SESSION['returnto'];
+    $source = 1;
   }
-  else if(isset($_GET['controller']) && isset($_GET['action']))
+
+  switch($source)
   {
-    $controller = $_GET['controller'];
-    $action = $_GET['action'];
-  }
-  else
-  {
-    $controller = 'pages';
-    $action = 'index'; //Redirect this back to index.php at root when event functionality is added.
+    case 1:
+    {
+      $controller = $_SESSION['controller'];
+      $action = $_SESSION['action'];
+      $returnto = $_SESSION['returnto'];
+      break;
+      unset($_SESSION['controller']);
+      unset($_SESSION['action']);
+      unset($_SESSION['returnto']);
+
+    }
+    case 2:
+    {
+      $controller = $_GET['controller'];
+      $action = $_GET['action'];
+      break;
+    }
+    default:
+    {
+      $controller = 'pages';
+      $action = 'index';
+      break;
+    }
   }
   require_once('views/layout.php');
 ?>
