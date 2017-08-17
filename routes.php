@@ -34,7 +34,7 @@
   }
 
 
-  $controllers = array (  'pages'     => ['index','class','groups','assignments','error'],
+  $controllers = array (  'pages'     => ['index','classes','groups','assignments','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
