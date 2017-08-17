@@ -17,7 +17,7 @@ class PagesController
       require_once('views/pages/index.php');
     }
 //=================================================================================== CLASSES
-    public function class()
+    public function classes()
     {
       $message = "";
       if(isset($_SESSION['message']))
