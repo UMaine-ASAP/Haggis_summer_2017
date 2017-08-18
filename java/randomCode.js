@@ -1,9 +1,6 @@
 $(document).ready(function()
 {
   makeCode(5, "#codebox");
-  
-  $('#makerandom').click(function(){
-    makeCode(5, "#codebox");
   });
 });
 

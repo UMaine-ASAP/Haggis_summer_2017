@@ -16,6 +16,8 @@
     {
       case 'classes':
         $_SESSION['current'] = "Classes";
+        if(isset($_GET['classID']))
+        
         break;
       case 'groups':
         $_SESSION['current'] = "Groups";
@@ -37,7 +39,7 @@
     <?php require_once('inserts/header.php');?>
   </header>
   <body>
-    
+
     <table>
       <tr>
         <td class='currentAction'>

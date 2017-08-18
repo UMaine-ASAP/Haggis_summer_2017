@@ -1,3 +1,17 @@
+@keyframes rise
+{
+  from
+  {
+    top:0;
+    left:0;
+  }
+  to
+  {
+    top:-8;
+    left:-8;
+  }
+}
+
 .coursename
 {
   height: 50%;
@@ -11,6 +25,7 @@
 .classCard
 {
   border-radius: 5px 5px 5px 5px;
+  position:relative;
   decoration:none;
   display: inline-block;
   background:lightgrey;
@@ -23,13 +38,15 @@
   box-shadow: 10px 10px 5px #000000;
   transition: box-shadow 1s ease-in-out,
               background 1s ease-in-out,
-              border     1s ease-in-out;
+              border     1s ease-in-out,
+              transform  1s ease-in-out;
 }
 .classCard:hover
 {
  background-color: white;
  border: 1px solid lightgrey;
  box-shadow: 18px 18px 13px #000000;
+ transform: translate(-8px, -8px);
 }
 
 

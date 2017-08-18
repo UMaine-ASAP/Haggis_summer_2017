@@ -43,8 +43,9 @@ class PagesController
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS
-    public function assignments()
+    public function assignmentCreation()
     {
+      
       require_once('views/pages/assignments.php');
     }
 //=================================================================================== GROUPS

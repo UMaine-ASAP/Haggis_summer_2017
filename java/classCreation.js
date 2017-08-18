@@ -13,14 +13,14 @@ $(document).ready(function()
       var check = $(this).val();
       if(check =='yes')
       {
-        $("#part1-1").show();
-        $("#part1-2").hide();
+        $("#part1-1").slideDown();
+        $("#part1-2").slideUp();
         $("#courseError").html(" ");
       }
       else
       {
-        $("#part1-2").show();
-        $("#part1-1").hide();
+        $("#part1-2").slideDown();
+        $("#part1-1").slideUp();
         $("#courseError").html(" ");
       }
   });
@@ -29,20 +29,20 @@ $(document).ready(function()
     var check = $(this).val();
     if(check =='backto1')
     {
-      $("#part2").hide();
-      $("#part1").show();
+      $("#part2").slideUp();
+      $("#part1").slideDown();
       $("#courseError").html(" ");
     }
     if(check =='backto2')
     {
-      $("#part3").hide();
-      $("#part2").show();
+      $("#part3").slideUp();
+      $("#part2").slideDown();
       $("#courseError").html(" ");
     }
     if(check == 'backto3')
     {
-      $("#review").hide();
-      $("#part3").show();
+      $("#review").slideUp();
+      $("#part3").slideDown();
       $("#courseError").html(" ");
     }
     if(check == '1-1')
@@ -64,14 +64,14 @@ $(document).ready(function()
       else
       {
         $("#courseError").html(" ");
-        $("#part1").hide();
-        $("#part2").show();
+        $("#part1").slideUp();
+        $("#part2").slideDown();
       }
     }
     else if(check == '1-2')
     {
-        $("#part1").hide();
-        $("#part2").show();
+        $("#part1").slideUp();
+        $("#part2").slideDown();
         $("#courseError").html(" ");
     }
 
@@ -96,8 +96,8 @@ $(document).ready(function()
       }
       else
       {
-        $("#part2").hide();
-        $("#part3").show();
+        $("#part2").slideUp();
+        $("#part3").slideDown();
         $("#courseError").html(" ");
       }
     }
@@ -129,7 +129,6 @@ $(document).ready(function()
         var reviewout = "Name: " + e +"<br>";
         reviewout += "Description: " + f +"<br>";
         reviewout += "Location: " + g +"<br>";
-        reviewout += "Join Code: " + h +"<br>";
         reviewout += "Time: " + i +" - " + j + "<br>";
         reviewout += "Date: " + k +" - " + k + "<br>";
         reviewout += "Days: ";
@@ -139,10 +138,11 @@ $(document).ready(function()
           if(i < m.length-1)
           reviewout +=", ";
         }
-        reviewout +="<br>";
+        reviewout +="<br><br><hr class='minor'> Give this code to your students They will enter it while joining the class: <br><br>";
+        reviewout +="Join Code: " + h +"<br><br> (you can access this code later from the class page) ";
 
-        $("#part3").hide();
-        $("#review").show();
+        $("#part3").slideUp();
+        $("#review").slideDown();
         $("#status").html(reviewout);
         $("#courseError").html(" ");
       }

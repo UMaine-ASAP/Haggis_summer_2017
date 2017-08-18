@@ -12,7 +12,7 @@ class AssignmentController
     $message;
     if(isset($_POST['title']))
     {
-      $_SESSION['message'] = Assignment::create($_POST['title'],$_POST['description'],$_POST['duetime'],$_POST['duedate'],$_POST['classid'])[1];
+      Assignment::create($_POST['title'],$_POST['description'],$_POST['duetime'],$_POST['duedate'],$_POST['classid'])[1];
       $_SESSION['controller'] = 'pages';
       $_SESSION['action'] = 'classes';
       $_SESSION['returnto'] = $_POST['classid'];

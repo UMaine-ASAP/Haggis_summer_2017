@@ -32,11 +32,6 @@ $(document).ready(function()
       $(".overlay, #passwordreset").fadeToggle();
   })
 
-  $(".newAssignment").click(function(){
-    current = '#createassignment';
-    $(".overlay, #createassignment").fadeToggle();
-
-  })
 
 
 });

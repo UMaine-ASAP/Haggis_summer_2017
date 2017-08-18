@@ -13,8 +13,9 @@ class Klass {  //We use class with a k, using just class confuses PHP
   public $location;
   public $joinCode;
   public $days;
+  public $active;
 //=================================================================================== STRUCT
-  public function __construct($id, $title,$courseid, $coursename,$coursecode,$starttime, $endtime, $startdate, $enddate ,$description,$location,$joinCode) {
+  public function __construct($id, $title,$courseid, $coursename,$coursecode,$starttime, $endtime, $startdate, $enddate ,$description,$location,$joinCode,$active) {
         $this->id = $id;
         $this->title = $title;
         $this->couresid = $courseid;
@@ -29,6 +30,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         $this->joinCode = $joinCode;
         $days = Klass::getDays($id);
         $this->days = $days;
+        $this->active=$active;
       }
 //=================================================================================== CREATE
     public static function create($courseID, $startTime,$endTime, $startDate, $endDate, $classtitle, $classdescription, $location, $joinCode)
@@ -36,11 +38,11 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $message;
       $errorCode;
       $db = Db::getInstance();
-      $sql = "INSERT INTO class (title, courseID, timeStart, timeEnd, dateStart, dateEnd, description, location, joinCode) VALUES (?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO class (title, courseID, timeStart, timeEnd, dateStart, dateEnd, description, location, joinCode, active) VALUES (?,?,?,?,?,?,?,?,?)";
       try
       {
         $stmt = $db->prepare($sql);
-        $data = array($classtitle, $courseID, $startTime,$endTime, $startDate, $endDate, $classdescription, $location,$joinCode);
+        $data = array($classtitle, $courseID, $startTime,$endTime, $startDate, $endDate, $classdescription, $location,$joinCode,1);
         $stmt->execute($data);
         $errorCode = 1;
         $message =  $db->lastInsertId();
@@ -128,7 +130,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $coursetitle = Course::getCourseName($result['courseID'])[1];
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['corseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] );
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['corseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'],$result['active'] );
       }
       return array(1, $classes);
     }
@@ -145,7 +147,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
         $coursetitle = Course::getCourseName($result['courseID'])[1];
-        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['courseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] );
+        $classes[]= new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['courseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'],$result['active'] );
       }
       return array(1, $classes);
     }
@@ -159,7 +161,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       $coursetitle = Course::getCourseName($result['courseID'])[1];
-      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['courseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'] ));
+      return array(1, new Klass($result['classID'],$result['title'],$result['courseID'],$coursetitle['title'], $coursetitle['courseCode'],$result['timeStart'],$result['timeEnd'],$result['dateStart'], $result['dateEnd'],$result['description'],$result['location'],$result['joinCode'],$result['active'] ));
     }
 //=================================================================================== CLASSES FOR USER
     public static function userClasses($token)

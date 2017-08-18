@@ -34,11 +34,8 @@
       <div id='part2'>
         <input class='standard' type='text'    name='classtitle'        placeholder='Name of Class'><br>
         <input class='standard' type='text'    name='classdescription'  placeholder='Class Description'><br>
-        <input class='standard' type='text'    name='location'     placeholder='Class Location'>
-        <hr class='minor'>
-        Join Code:<br>
-        <input class='standard' type='text'    name='classcode'    placeholder='Join Code' id='codebox'>
-        <input class='standard' type='button'  id='makerandom' value="Generate Random"><br>
+        <input class='standard' type='text'    name='location'     placeholder='Class Location'><br>
+        <input class='standard' type='hidden'    name='classcode'    placeholder='Join Code' id='codebox'>
         <button class='standard' type='button' value='backto1' id='1'>Back</button>
         <button class='standard' type='button' value='2' id='2'>Continue</button>
         <div class='stepcounter'>Step 2 of 4</div>
