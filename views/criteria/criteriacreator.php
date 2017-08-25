@@ -3,6 +3,8 @@ Criteria
 <button id='savesetbut' class='standard' type='button'>save this criteria set</button>
 <button class='loadSet standard' type='button'>load saved set</button><div id='setSaver'></div>
 <div id='criteriacardcontainer'>
+
+
   <div class='criteriaCard' id='0'>
     <input class='standard' type='text' name='criteriaName[]' placeholder='name of criteria' list='criterias' required>
     <div  class='removeCriteria'><i class='glyphicon glyphicon-remove'></i></div>
@@ -19,6 +21,9 @@ Criteria
     <input class='standard' type='radio' name='textresponse[]' value='no'>no
   </div>
 </div>
+
+
+
 <button type='button' class='standard' id='addCriteria'>add another criteria &emsp; &emsp; +</button>
 
 
