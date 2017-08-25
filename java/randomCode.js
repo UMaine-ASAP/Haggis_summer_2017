@@ -1,7 +1,6 @@
 $(document).ready(function()
 {
   makeCode(5, "#codebox");
-  });
 });
 
 

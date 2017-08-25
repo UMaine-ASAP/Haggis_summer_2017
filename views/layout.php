@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
+    
 
 
     <?php
@@ -17,7 +18,7 @@
       case 'classes':
         $_SESSION['current'] = "Classes";
         if(isset($_GET['classID']))
-        
+
         break;
       case 'groups':
         $_SESSION['current'] = "Groups";

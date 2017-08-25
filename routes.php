@@ -3,6 +3,7 @@
   require_once('models/group.php');
   require_once('models/course.php');
   require_once('models/assignment.php');
+  require_once('models/criteria.php');
 
 
 

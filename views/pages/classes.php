@@ -5,6 +5,7 @@
 echo "<table><tr><td class='menuContainer'>";
 ?>
 <div class='menutitle'>
+  <?php foreach($_SESSION['message'] as $m) echo $m; ?>
 Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>

@@ -6,6 +6,7 @@ $(document).ready(function()
   $('#createClass').hide();
   $('#register').hide();
   $('#passwordreset').hide();
+  $('#saveSetDiv').hide();
 
   $(".exit").click(function(){
       $(".overlay,"+current).fadeToggle();
@@ -30,6 +31,12 @@ $(document).ready(function()
 
     current = "#passwordreset";
       $(".overlay, #passwordreset").fadeToggle();
+  })
+
+  $("#savesetbut").click(function(){
+
+    current = "#saveSetDiv";
+    $(".overlay, #saveSetDiv").fadeToggle();
   })
 
 

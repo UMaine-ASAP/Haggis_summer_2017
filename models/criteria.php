@@ -1,0 +1,166 @@
+<?php
+class Criteria
+{
+  public $id;
+  public $title;
+  public $description;
+  public $minRange;
+  public $maxRange;
+  public $allowTextResponse;
+//=================================================================================== STRUCT
+  public function __construct($id, $title, $description, $minRange, $maxRange, $allowTextResponse)
+  {
+    $this->id = $id;
+    $this->title = $title;
+    $this->description=$description;
+    $this->minRange = $minRange;
+    $this->maxRange = $maxRange;
+    $this->allowTextResponse = $allowTextResponse;
+  }
+//=================================================================================== INSERT
+  public static function  insert($title, $description, $minRange, $maxRange, $allowTextResponse)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "INSERT INTO criteria (title, description, rateRangeMin, rateRangeMax, allowTextResponse) VALUES (?,?,?,?,?)";
+    $stmt = $db->prepare($sql);
+    $data = array($title, $description, $minRange, $maxRange, $allowTextResponse);
+    try
+    {
+        $stmt->execute($data);
+        $message = $db->lastInsertId();
+        $errorCode= 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+//=================================================================================== ALL
+  public static function all()
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM criteria GROUP BY title";
+    $stmt = $db->prepare($sql);
+    try
+    {
+        $stmt->execute();
+        $criteriaArray = array();
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $criteriaArray[] = new Criteria($r['criteriaID'], $r['title'], $r['description'], $r['rateRangeMin'], $r['rateRangeMax'], $r['allowTextResponse']);
+        }
+        $message = $criteriaArray;
+        $errorCode= 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+//=================================================================================== CREATE CRITERIA SET
+  public static function createSet($setName, $setDescription)
+  {
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "INSERT INTO criteriaset (title, description) VALUES (?,?)";
+      $stmt = $db->prepare($sql);
+      $data = array($setName, $setDescription);
+      try
+      {
+          $stmt->execute($data);
+          $message = $db->lastInsertId();
+          $errorCode= 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+  }
+//=================================================================================== ADD CRITERIA TO A SET
+  public static function addToSet($setID, $criteriaID)
+  {
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "INSERT INTO criteriaset (criteriaID, criteriaSetID) VALUES (?,?)";
+      $stmt = $db->prepare($sql);
+      $data = array($setID, $criteriaID);
+      try
+      {
+          $stmt->execute($data);
+          $message = "CriteriaAddedToSet";
+          $errorCode= 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+  }
+  //=================================================================================== Linke Criteria to Assignment
+    public static function associateWithAssignment($assignmentID, $criteriaID)
+    {
+      {
+        $errorCode;
+        $message;
+        $db = Db::getInstance();
+        $sql = "INSERT INTO assignment_criteria (assignmentID, criteriaID) VALUES (?,?)";
+        $stmt = $db->prepare($sql);
+        $data = array($assignmentID, $criteriaID);
+        try
+        {
+            $stmt->execute($data);
+            $message = "CriteriaAddedToAssignment";
+            $errorCode= 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e->getMessage();
+        }
+        return array($errorCode, $message);
+      }
+    }
+  //=================================================================================== Link Set to User
+
+    public static function associateWithUser($userID, $setID)
+    {
+      {
+        $errorCode;
+        $message;
+        $db = Db::getInstance();
+        $sql = "INSERT INTO user_criteriaset (userID, criteriaSetID) VALUES (?,?)";
+        $stmt = $db->prepare($sql);
+        $data = array($userID, $setID);
+        try
+        {
+            $stmt->execute($data);
+            $message = "CriteriaSetAssociatedWithUser";
+            $errorCode= 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e->getMessage();
+        }
+        return array($errorCode, $message);
+      }
+    }
+
+}

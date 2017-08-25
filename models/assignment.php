@@ -29,8 +29,8 @@ class Assignment
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $assignmentid = $db->lastInsertId();
-      $outcome = Assignment::linkToClass($classid, $assignmentid);
-      $message = $outcome[1];
+      Assignment::linkToClass($classid, $assignmentid);
+      $message = $assignmentid;
       $errorCode = 1;
 
     }

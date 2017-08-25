@@ -24,6 +24,16 @@ button.standard
   margin : 5px;
 }
 
+textarea.standard
+{
+  border: 1px solid black;
+  border-radius:10px 10px 10px 10px;
+  background-color: white;
+  color:black;
+  padding:5px;
+  margin : 5px;
+}
+
 select.standard
 {
   border: 2px solid black;

@@ -1,0 +1,33 @@
+.assignmentCreationHead
+{
+ text-align:center;
+ vertical-align:bottom;
+}
+
+
+input[name=title]
+{
+  font-size:20px;
+  float:center;
+}
+
+input[name=createnew]
+{
+  width: 200px;
+  font-size:40px;
+  float: right;
+}
+.assignmentCreationGroup
+{
+  vertical-align:top;
+}
+
+.assignmentCreation
+{
+
+}
+
+.assignmentCreationCriteria
+{
+
+}

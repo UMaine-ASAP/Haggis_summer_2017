@@ -20,6 +20,19 @@ class PagesController
     public function classes()
     {
       $message = "";
+      $criterias = Criteria::all()[1];
+
+      $criteriaList = "<datalist id='criterias'>";
+      $criteriaStorage="";
+      foreach($criterias as $c)
+      {
+        $criteriaList .= "<option value='".$c->title."'>";
+        $criteriaStorage .= "<input type='hidden' id='".$c->title."' value='".$c->description."'>";
+      }
+      $criteriaList .="</datalist>";
+
+
+
       if(isset($_SESSION['message']))
       {
         $message = $_SESSION['message'];
@@ -45,7 +58,7 @@ class PagesController
 //=================================================================================== ASSIGNMENTS
     public function assignmentCreation()
     {
-      
+
       require_once('views/pages/assignments.php');
     }
 //=================================================================================== GROUPS
