@@ -3,6 +3,7 @@ $(document).ready(function()
   $(".assignment").hide();
   $(".assignmentcreator").hide();
 
+
   $("li").click(function(e)
   {
     var inid = $(this).attr('id');
@@ -15,4 +16,6 @@ $(document).ready(function()
     $(".assignment").slideUp();
     $(".assignmentcreator").slideDown();
   })
+
+
 });

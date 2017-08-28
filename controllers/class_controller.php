@@ -7,11 +7,6 @@ class ClassController
   {
     echo "index";
   }
-//=================================================================================== ARCHIVE CLASS
-  public function archiveClass()
-  {
-    echo "archiveClass";
-  }
 //=================================================================================== GET USER BY CLASS
   public function getUserbyClass()
   {
@@ -64,14 +59,14 @@ class ClassController
 //=================================================================================== JOIN CLASS
   public function joinClass()
   {
-    if(isset($_POST['class']))
+    if(isset($_POST['joinCode']))
     {
       $userID = User::getID($_SESSION['token'])[1];
-      $message = Klass::joinClass($userID, $_POST['class'])[1];
+      $_SESSION['message'] = Klass::joinClass($userID, $_POST['joinCode'])[1];
     }
     else
       $courses = Course::all()[1];
-    require_once('views/class/joinClass.php');
+    header('Location: index.php');
   }
 //=================================================================================== UPDATE CLASS
   public function updateClass()
@@ -87,8 +82,25 @@ class ClassController
 //=================================================================================== VIEW CLASS
   public function viewClass()
   {
-    
-  }
 
+  }
+  //=================================================================================== ARCHIVE CLASS
+    public function archiveClass()
+    {
+      $message = "";
+      if(isset($_POST['classID']))
+      {
+        echo Klass::archive($_POST['classID'])[1];
+      }
+      if(isset($_SESSION['message']))
+      {
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
+      }
+      if(isset($_SESSION['token']))
+      $classes = Klass::userClasses($_SESSION['token'])[1];
+      $courselisting = Course::all()[1];
+      require_once('views/pages/index.php');
+    }
 
 }

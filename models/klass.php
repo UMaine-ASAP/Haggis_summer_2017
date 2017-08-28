@@ -151,6 +151,17 @@ class Klass {  //We use class with a k, using just class confuses PHP
       }
       return array(1, $classes);
     }
+//=================================================================================== getClassID with JoinCode
+        public static function joinCode($joinCode)
+        {
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM class WHERE joinCode = ?";
+          $data = array($joinCode);
+          $stmt = $db->prepare($sql);
+          $stmt->execute($data);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          return $result['classID'];
+        }
 //=================================================================================== CLASS ID
     public static function classid($id)
     {
@@ -191,19 +202,22 @@ class Klass {  //We use class with a k, using just class confuses PHP
       }
       return array($errorCode, $message);
     }
-//=================================================================================== JOIN CLASS
-    public static function joinClass($userID, $classID)
+//=================================================================================== CLASSES FOR USER
+    public static function checkIfInClass($userID,$classID)
     {
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
-      $data = array($classID, $userID);
+      $sql = "SELECT classUserID FROM classUser WHERE userID = ? AND classID = ?";
+      $data = array($userID, $classID);
       try
       {
         $stmt = $db->prepare($sql);
         $stmt->execute($data);
-        $message = "Successfully Joined Class";
+        if($stmt->rowCount() > 0)
+          $message = true;
+        else
+          $message = false;
         $errorCode = 1;
       }
       catch(PDOException $e)
@@ -213,5 +227,86 @@ class Klass {  //We use class with a k, using just class confuses PHP
       }
       return array($errorCode, $message);
     }
+//=================================================================================== JOIN CLASS
+    public static function joinClass($userID, $joinCode)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $classID = Klass::joinCode($joinCode)[1];
+      if(!Klass::checkIfInClass($userID, $classID)[1])
+      {
+        $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
+        $data = array($classID, $userID);
+        try
+        {
+          $stmt = $db->prepare($sql);
+          $stmt->execute($data);
+          $message = "Successfully Joined Class";
+          $errorCode = 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e -> getMessage();
+        }
+      }
+      else
+      {
+        $message = "You are already a member of this class";
+        $errorCode = 2;
+      }
+      return array($errorCode, $message);
+    }
+
+
+//=================================================================================== DELETE CLASS
+    public static function delete($classID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "DELETE FROM class WHERE classID = ?";
+      $data = array($classID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $assignmentarray = array();
+
+        $message = "class deleted";
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //=================================================================================== ARCHIVE CLASS
+        public static function archive($classID)
+        {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "UPDATE class SET active = 0 WHERE classID = ?";
+          $data = array($classID);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $assignmentarray = array();
+
+            $message = "class archived";
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+        }
   }
   ?>

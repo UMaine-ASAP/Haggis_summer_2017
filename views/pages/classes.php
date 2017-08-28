@@ -5,6 +5,7 @@
 echo "<table><tr><td class='menuContainer'>";
 ?>
 <div class='menutitle'>
+  <form method='post' action='?controller=class&action=archiveClass'><input type='hidden' name='classID' value='<?php echo $class->id; ?>'<input type='submit' value='Archive Class'></form>
 Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
@@ -31,18 +32,7 @@ echo "</ul>";
 echo "</td><td class='contentContainer'>";
 echo "<div id='viewer'>";
 
-foreach($assignments as $a)
-{
-  echo "<div class='assignment' id='id".$a->id."'>";
-  echo "<h2>".$a->title."</h2><hr>";
-  echo "Prompt: ".$a->description."<hr>";
-  echo "This assignment will be graded on the following criteria:<br>";
-  foreach($a->criterias as $c)
-  {
-    echo $c->title.": ".$c->description."<br>";
-  }
-  echo "</div>";
-}
+require_once('views/class/viewClasses.php');
 
 echo "<div class='assignmentcreator'>";
  require_once('views/assignment/createAssignment.php');

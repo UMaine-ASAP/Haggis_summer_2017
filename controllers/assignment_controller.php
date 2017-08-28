@@ -56,7 +56,7 @@ class AssignmentController
       $_SESSION['returnto'] = $_POST['classid'];
 
 
-      //header('Location: index.php');
+      header('Location: index.php');
     }
 
 

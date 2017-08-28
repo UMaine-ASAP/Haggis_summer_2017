@@ -146,4 +146,28 @@ public static function linkToClass($classID, $assignmentID)
         }
         return array($errorCode, $message);
     }
+  //=================================================================================== DELETE CLASS
+  public static function delete($assignmentID)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "DELETE FROM assignment WHERE assignmentID = ?";
+    $data = array($assignmentID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $assignmentarray = array();
+
+      $message = "assignment deleted";
+      $errorCode = 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
 }

@@ -4,7 +4,7 @@
 
   <h2>Your Classes</h2>
   <hr>
-  <?php if(isset($_SESSION['token']) && User::checkAdmin($_SESSION['token']))
+  <?php if($status==='admin')
   {
   ?>
     <div class ='classCard'>
@@ -25,7 +25,15 @@
   }
   else
   {
-    require_once('views/class/joinClass.php');
+    ?>
+    To add classes, enter your class code below
+    <div> <?php if(isset($message)) echo $message; ?></div><br>
+    <div>
+      <form method='post' action='?controller=class&action=joinClass'>
+        <input class='joinedInputSmaller' type='text' name='joinCode' placeholder='Enter Class Code'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button>
+      </form>
+    </div>
+    <?php
   }
   ?>
 <?php
