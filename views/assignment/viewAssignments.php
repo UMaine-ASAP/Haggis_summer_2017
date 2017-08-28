@@ -3,6 +3,7 @@ Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
 <div>
+  <?php if($status === 'admin') ?>
   <a class ='newAssignment' href='?controller=assignment'>New Assignment +</a>
 </div>
 <br>

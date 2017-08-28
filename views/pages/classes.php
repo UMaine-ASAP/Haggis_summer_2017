@@ -1,6 +1,6 @@
 <script src="java/currentActionfixer.js"></script>
 <script src="java/assignmentViewer.js"></script>
-<script>fixer("#currentAction",  "<?php echo $class->coursecode; ?>","<?php echo "Join Code: <div class='joincode'>".$class->joinCode."</div>"; ?>");</script>
+<script>fixer("#currentAction",  "<?php echo $class->coursecode; ?>","<?php if($status ==='admin')echo "Join Code: <div class='joincode'>".$class->joinCode."</div>"; ?>");</script>
 <?php
 echo "<table><tr><td class='menuContainer'>";
 ?>
@@ -9,9 +9,14 @@ echo "<table><tr><td class='menuContainer'>";
 Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
+  <?php if($status === 'admin'){
+     ?>
 <div>
   <a class ='newAssignment' href='#'>New Assignment +</a>
 </div>
+<?php
+}
+?>
 <br>
 <div>
   <input class='joinedInputSmaller' type='text' name='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-search"></i></button>

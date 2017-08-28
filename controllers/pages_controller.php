@@ -6,12 +6,13 @@ class PagesController
     public function index()
     {
       $message = "";
-      $status = 'none';
+
       if(isset($_SESSION['message']))
       {
         $message = $_SESSION['message'];
         $_SESSION['message'] = "";
       }
+      $status = 'none';
       if(isset($_SESSION['token']))
       {
         $classes = Klass::userClasses($_SESSION['token'])[1];
@@ -43,8 +44,6 @@ class PagesController
       }
       $criteriaList .="</datalist>";
 
-
-
       if(isset($_SESSION['message']))
       {
         $message = $_SESSION['message'];
@@ -53,6 +52,7 @@ class PagesController
       $class;
       $assignments;
       if(isset($_SESSION['token']))
+      {
         if(isset($_SESSION['returnto']))
         {
           $assignments = Assignment::classID($_SESSION['returnto'])[1];
@@ -64,7 +64,16 @@ class PagesController
           $assignments = Assignment::classID($_GET['classID'])[1];
           $class = Klass::classid($_GET['classID'])[1];
         }
-
+      }
+      $status = 'none';
+      if(User::checkAdmin($_SESSION['token'])[1])
+      {
+          $status = 'admin';
+      }
+      else
+      {
+        $status='user';
+      }
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS

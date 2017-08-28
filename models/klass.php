@@ -160,7 +160,6 @@ class Klass {  //We use class with a k, using just class confuses PHP
           $stmt = $db->prepare($sql);
           $stmt->execute($data);
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
-          echo $result['classID'];
           return $result['classID'];
         }
 //=================================================================================== CLASS ID
@@ -235,27 +234,35 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $message;
       $db = Db::getInstance();
       $classID = Klass::joinCode($joinCode);
-      if(!Klass::checkIfInClass($userID, $classID)[1])
+      if($classID === null)
       {
-        $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
-        $data = array($classID, $userID);
-        try
-        {
-          $stmt = $db->prepare($sql);
-          $stmt->execute($data);
-          $message = "Successfully Joined Class";
-          $errorCode = 1;
-        }
-        catch(PDOException $e)
-        {
-          $errorCode = $e->getCode();
-          $message = $e -> getMessage();
-        }
+        $message = "Class does not exist. Please Try again";
+        $errorCode = -1;
       }
       else
       {
-        $message = "You are already a member of this class";
-        $errorCode = 2;
+        if(!Klass::checkIfInClass($userID, $classID)[1])
+        {
+          $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
+          $data = array($classID, $userID);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $message = "Successfully Joined Class";
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e -> getMessage();
+          }
+        }
+        else
+        {
+          $message = "You are already a member of this class";
+          $errorCode = 2;
+        }
       }
       return array($errorCode, $message);
     }

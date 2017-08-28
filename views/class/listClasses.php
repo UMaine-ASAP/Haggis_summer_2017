@@ -70,5 +70,4 @@ foreach($classes as $class)
 
 
 </div>
-<div id='joinclass' class='popup'><?php require_once('views/class/joinClass.php');?></div>
-<div id='createclass' class='popup'><?php require_once('views/class/insertClass.php');?></div>
+<div id='createClass' class='popup'><?php require_once('views/class/insertClass.php');?></div>

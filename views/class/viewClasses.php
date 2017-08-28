@@ -2,7 +2,6 @@
 foreach($assignments as $a)
 {
   echo "<div class='assignment' id='id".$a->id."'>";
-  echo "<button type='button'>Edit Class</button>";
   echo "<h2>".$a->title."</h2><hr>";
   echo "Prompt: ".$a->description."<hr>";
   echo "This assignment will be graded on the following criteria:<br><br>";
