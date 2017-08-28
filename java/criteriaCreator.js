@@ -8,10 +8,9 @@ function addACritiera(counter)
   <div  class='removeCriteria'><i class='glyphicon glyphicon-remove'></i></div>\
   graded on a scale from <input type='number' class='standard' name='from' placeholder='#' min='0' max='1000'> to\
   <input class='standard' type='number' name='to' placeholder='#'min='0' max='1000'>\
-  <div>\
-    <input class='standard' type='checkbox' id='noGrade'>n/a\
-    <div><input type='hidden' name='graded[]' value='yes'></div>\
-  </div><br>\
+  <input class='standard' type='checkbox' id='noGrade'>n/a\
+    <input type='hidden' name='graded[]' value='yes'>\
+  <br>\
   <textarea class='standard' id='text"+counter+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>\
   allow additional text response\
   <input class='standard' type='radio' name='textresponse[]' value='yes'>yes\
@@ -54,22 +53,24 @@ $(document).ready(function()
     $(".overlay, #saveSetDiv").fadeToggle();
   })
 
-  $("#noGrade").on("change", function(event){
+  $(document).on("change", "#noGrade", function(event){
     var output;
-    var father = $(this).parent();
-    var grandfather = father.parent();
-    var greatgrandfather = grandfather.parent();
+    var trigger = $(this);
     if(event.target.checked)
     {
       output = "<input type='hidden' name='graded' value='no'>";
-      greatgrandfather.find('input[type="number"]').prop('disabled', true);
+      trigger.prev().prop('disabled', true);
+      trigger.prev().prev().prop('disabled', true);
+      trigger.next().val("no");
     }
     else
     {
       output = "<input type='hidden' name='graded' value='yes'>";
-      greatgrandfather.find('input[type="number"]').prop('disabled', false);
+      trigger.prev().prop('disabled', false);
+      trigger.prev().prev().prop('disabled', false);
+      trigger.next().val("yes");
     }
-    event.target.nextSibling.nextSibling.innerHTML = output;
+    //trigger.next().innerHTML= output;
   })
 
   $(document).on("input","input[name='criteriaName[]']", function(event){
@@ -81,6 +82,4 @@ $(document).ready(function()
       description = "";
     document.getElementById('text'+id).value = description;
   })
-
-
 });

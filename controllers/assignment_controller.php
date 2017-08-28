@@ -10,6 +10,7 @@ class AssignmentController
   public function createAssignment()
   {
     $message;
+    $idList = array();
     if(isset($_POST['title']))
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$_POST['classid'])[1];
@@ -17,15 +18,15 @@ class AssignmentController
       if(isset($_POST['savedSetName']))
       {
         $criteriaSetID = Criteria::createSet($_POST['savedSetName'], $_POST['savedSetDescription'])[1];
-        $userID = User::getID($_SESSION['token']);
+        $userID = User::getID($_SESSION['token'])[1];
         Criteria::associateWithUser($userID, $criteriaSetID);
       }
 
-      $idList = array();
+
       for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
       {
         $allowTextResponse = 1;
-        if($_POST['textresponse'][$i] == 'no')
+        if($_POST['textresponse'][$i] === 'no')
           $allowTextResponse = 0;
         $currentID;
         if($_POST['graded'][$i] == 'yes')

@@ -1,3 +1,5 @@
+
+
 <?php
 foreach($assignments as $a)
 {
@@ -7,8 +9,9 @@ foreach($assignments as $a)
   echo "This assignment will be graded on the following criteria:<br><br>";
   foreach($a->criterias as $c)
   {
-    echo $c->title.": ".$c->description."<br>";
-    echo "Scale: ".$c->minRange." to ".$c->maxRange."<br><br>";
+    echo "<strong>".$c->title."</strong> on scale of ".$c->minRange." to ".$c->maxRange."<br>"; 
+    echo $c->description."<br>";
+
   }
   echo "</div>";
 }

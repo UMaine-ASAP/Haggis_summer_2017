@@ -10,10 +10,9 @@ Criteria
     <div  class='removeCriteria'><i class='glyphicon glyphicon-remove'></i></div>
     graded on a scale from <input type='number' class='standard' name='from' placeholder='#' min='0' max='1000'> to
     <input class='standard' type='number' name='to' placeholder='#'min='0' max='1000'>
-    <div>
-      <input class='standard' type='checkbox' id='noGrade'>n/a
-      <div><input type='hidden' name='graded[]' value='yes'></div>
-    </div><br>
+    <input class='standard' type='checkbox' id='noGrade'>n/a
+    <input type='hidden' name='graded[]' value='yes'>
+    <br>
 
     <textarea class='standard' id='text0' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>
     allow additional text response

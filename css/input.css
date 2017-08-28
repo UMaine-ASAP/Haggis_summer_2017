@@ -13,6 +13,11 @@ input.standard
   margin : 5px;
 }
 
+input.standard:disabled
+{
+  background-color:grey;
+}
+
 
 button.standard
 {

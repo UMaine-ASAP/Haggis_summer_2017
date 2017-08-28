@@ -203,3 +203,8 @@ table
   padding:5px;
   margin : 5px;
 }
+
+.keepinline
+{
+  display:inline-block;
+}
