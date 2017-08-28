@@ -160,6 +160,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
           $stmt = $db->prepare($sql);
           $stmt->execute($data);
           $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          echo $result['classID'];
           return $result['classID'];
         }
 //=================================================================================== CLASS ID
@@ -233,7 +234,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $classID = Klass::joinCode($joinCode)[1];
+      $classID = Klass::joinCode($joinCode);
       if(!Klass::checkIfInClass($userID, $classID)[1])
       {
         $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
