@@ -7,6 +7,17 @@ class AssignmentController
     require_once('views/assignment/viewAssignments.php');
   }
 
+  public function delete()
+  {
+    $message;
+    $assignmentID = $_POST['assignmentID'];
+    Assignment::delete($assignmentID);
+    $_SESSION['controller'] = 'pages';
+    $_SESSION['action'] = 'classes';
+    $_SESSION['returnto'] = $_POST['classID'];
+    header('Location: index.php');
+  }
+
   public function createAssignment()
   {
     $message;

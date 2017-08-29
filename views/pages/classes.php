@@ -36,7 +36,7 @@ echo "</ul>";
 <?php
 echo "</td><td class='contentContainer'>";
 echo "<div id='viewer'>";
-
+echo $message;
 require_once('views/class/viewClasses.php');
 
 echo "<div class='assignmentcreator'>";

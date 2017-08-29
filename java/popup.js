@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
   var current;
+  var counter = 0;
 
   $('#joinclass').hide();
   $('#createClass').hide();
@@ -37,6 +38,13 @@ $(document).ready(function()
 
     current = "#saveSetDiv";
     $(".overlay, #saveSetDiv").fadeToggle();
+  })
+
+  $(document).on("click", "#delete", function(){
+    current = "#confirmDelete";
+    var assignmentID = $(this).attr('name');
+    $("[name='assignmentID']").val(assignmentID);
+    $(".overlay, #confirmDelete").fadeToggle();
   })
 
 

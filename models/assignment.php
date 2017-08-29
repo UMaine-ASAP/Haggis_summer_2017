@@ -158,15 +158,15 @@ public static function linkToClass($classID, $assignmentID)
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $assignmentarray = array();
-
-      $message = "assignment deleted";
+      $message = $assignmentarray = array();
+      Criteria::deleteAssociation($assignmentID);
+      $message .= " | assignment deleted";
       $errorCode = 1;
     }
     catch(PDOException $e)
     {
       $errorCode = $e->getCode();
-      $message = $e->getMessage();
+      $message = "ASSIGNMENT DELETION ".$e->getMessage();
     }
     return array($errorCode, $message);
   }

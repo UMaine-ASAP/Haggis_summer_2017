@@ -51,19 +51,20 @@ class PagesController
       }
       $class;
       $assignments;
+      $classID;
       if(isset($_SESSION['token']))
       {
         if(isset($_SESSION['returnto']))
         {
-          $assignments = Assignment::classID($_SESSION['returnto'])[1];
-          $class = Klass::classid($_SESSION['returnto'])[1];
+          $classID = $_SESSION['returnto'];
           unset($_SESSION['returnto']);
         }
         else
         {
-          $assignments = Assignment::classID($_GET['classID'])[1];
-          $class = Klass::classid($_GET['classID'])[1];
+          $classID = $_GET['classID'];
         }
+        $assignments = Assignment::classID($classID)[1];
+        $class = Klass::classid($classID)[1];
       }
       $status = 'none';
       if(User::checkAdmin($_SESSION['token'])[1])

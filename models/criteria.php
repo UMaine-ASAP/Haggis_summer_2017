@@ -189,5 +189,26 @@ class Criteria
         }
         return array($errorCode, $message);
     }
-
+    //=================================================================================== DELETE CRITERIA ASSIGNMENT
+      public static function deleteAssociation($assignmentID)
+      {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "DELETE FROM assignment_criteria WHERE assignmentID = ?";
+          $data = array($assignmentID);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $message = "criteria associations have beend deleted.";
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = "CRITERIA DISASSOCIATION ".$e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
 }
