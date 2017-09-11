@@ -14,12 +14,6 @@ echo "</td><td class='contentContainer'>";
 echo "<div id='viewer'>";
 echo $message;
 require_once('views/class/viewClasses.php');
-
-echo "<div class='assignmentcreator'>";
- require_once('views/assignment/createAssignment.php');
- echo "</div>";
-
-echo "</div>";
-echo "</td></tr></table>";
+echo "</td></tr></table>"
 
 ?>

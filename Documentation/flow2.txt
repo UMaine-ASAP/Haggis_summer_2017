@@ -1,0 +1,49 @@
+index.php
+  connection.php
+  views/layout.php
+    css/baseStyle.css   //CSS Scripts
+    css/header.css
+    css/input.css
+    css/class.css
+    css/group.css
+    java/popup.js       //Popup Java
+    inserts/header.php
+      inserts/login.php
+    inserts/currentAction.php
+    routes.php
+      models/klass.php
+      models/group.php
+      models/assignment.php
+      models/criteria.php
+      controller/pages_controller.php
+        views/pages/index.php
+          views/event/listActiveEvents.php
+          views/class/listClasses.php
+            views/class/insertClass.php
+        views/pages/classes.php
+          java/currentActionfixer.js        //current action fixer java
+          java/assignmentViewer.js          //Assignment Viewer java
+          views/assignment/viewAssignments.php
+          views/class/viewClasses.php
+            views/assignment/createAssignment.php
+              views/criteria/criteriacreator.php
+        views/pages/assignments.php
+        views/pages/groups.php
+        views/pages/error.php
+      controller/user_controller.php
+        views/user/editUser.php
+        views/user/userDelete.php
+        views/user/viewUsers.php
+        views/user/passwordReset.php
+        views/pages/index.php
+        views/users/login.php
+      controller/class_controller.php
+        views/class/listCourses.php
+        views/pages/index.php
+      controller/group_controller.php
+        views/group/index.php
+        views/group/createGroup.php
+        views/group/editGroup.php
+        views/home/error.php
+      controller/assignment_controller.php
+        views/asignment/viewAssignments.php

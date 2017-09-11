@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
   $(".assignment").hide();
-  $(".assignmentcreator").hide();
+  $("#assignmentcreator").hide();
 
 
   $("li").click(function(e)
@@ -9,7 +9,7 @@ $(document).ready(function()
     var inid = $(this).attr('id');
     $(".assignment").slideUp();
     $("#id"+inid).slideDown();
-    $(".assignmentcreator").slideUp();
+    $("#assignmentcreator").slideUp();
   });
 
   $(".newAssignment").click(function(){

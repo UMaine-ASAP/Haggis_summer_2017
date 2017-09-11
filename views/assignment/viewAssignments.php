@@ -21,5 +21,3 @@ foreach($assignments as $a)
 echo "</ul>";
 if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
 ?>
-
-<div id='assignmentcreator' class='popup'><?php require_once('views/assignment/createAssignment.php');?></div>

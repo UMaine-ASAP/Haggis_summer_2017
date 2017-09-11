@@ -16,8 +16,10 @@ foreach($assignments as $a)
     echo "<strong>".$c->title."</strong> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
 
   }
-  echo "
-  </div></div>";
+  echo "</div></div>";
+  echo "<div id='assignmentcreator'>";
+  require_once('views/assignment/createAssignment.php');
+  echo "</div>";
 }
 ?>
 
