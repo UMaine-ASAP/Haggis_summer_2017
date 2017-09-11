@@ -8,7 +8,7 @@
   {
   ?>
     <div class ='classCard'>
-    <table class='createClass' puW='300' puH='600' topoffset='-500'>
+    <table class='popupmaker' id='createClass' puW='300' puH='600' topoffset='-500'>
       <tr>
         <td class='cardtitle'>
             <i class="glyphicon glyphicon-plus"></i>

@@ -30,6 +30,6 @@ foreach($assignments as $a)
     <input type='hidden' name='classID' value='<?php echo $classID; ?>'>
     <input type='hidden' name='assignmentID' value='0'>
     <input class='standard' type ='submit' value='Delete'>
-    <button class='standard' type='button' class='exit'>Cancel</button>
+    <button class='exit standard' type='button'>Cancel</button>
   </form>
 </div>

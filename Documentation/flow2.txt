@@ -27,6 +27,7 @@ index.php
           views/class/viewClasses.php
             views/assignment/createAssignment.php
               views/criteria/criteriacreator.php
+                java/criteriaCreator.js
         views/pages/assignments.php
         views/pages/groups.php
         views/pages/error.php

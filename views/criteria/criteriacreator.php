@@ -1,6 +1,6 @@
 <script src="java/criteriaCreator.js"></script>
 Criteria
-<button id='savesetbut' class='standard' type='button'>save this criteria set</button>
+<button id='savesetbut' class='popupmaker standard' type='button'>save this criteria set</button>
 <button class='loadSet standard' type='button'>load saved set</button><div id='setSaver'></div>
 <div id='criteriacardcontainer'>
 
@@ -26,7 +26,7 @@ Criteria
 <button type='button' class='standard' id='addCriteria'>add another criteria &emsp; &emsp; +</button>
 
 
-<div id='saveSetDiv' class='popup'>
+<div id='savesetbut' class='popup'>
   <div  class='exit'><i class='glyphicon glyphicon-remove'></i></div>
   <h3>Save Set</h3><hr>
    <input type='text' placeholder='Name of Set' id='setName'><br>
