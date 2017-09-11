@@ -8,13 +8,14 @@ class Assignment
   public $duedate;
   public $criterias;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description, $duetime, $duedate,$criterias)
+  public function __construct($id, $title, $description, $duetime, $duedate)
   {
     $this->id = $id;
     $this->title = $title;
     $this->description=$description;
     $this->duetime = $duetime;
     $this->duedate = $duedate;
+    $criterias = Criteria::assignmentID($id)[1];
     $this->criterias = $criterias;
   }
 
@@ -80,8 +81,7 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $errorCode = 1;
-      $criterias = Criteria::assignmentID($id)[1];
-      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], $criterias);
+      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
     }
     catch(PDOException $e)
     {
@@ -105,8 +105,7 @@ public static function linkToClass($classID, $assignmentID)
         $assignmentarray = array();
         while($r = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $criterias = Criteria::assignmentID($r['assignmentID'])[1];
-          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], $criterias);
+          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
         }
         $message = $assignmentarray;
         $errorCode = 1;
@@ -133,8 +132,8 @@ public static function linkToClass($classID, $assignmentID)
           $assignmentarray = array();
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
-            $criterias = Criteria::assignmentID($r['assignmentID'])[1];
-            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], $criterias);
+
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
           }
           $message = $assignmentarray;
           $errorCode = 1;

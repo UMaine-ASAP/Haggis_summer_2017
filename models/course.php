@@ -6,12 +6,14 @@ Class Course {
   public $description;
   public $classes;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $code, $description, $classes) {
+  public function __construct($id, $title, $code, $description) {
         $this->id = $id;
         $this->title = $title;
         $this->code = $code;
         $this->description = $description;
+        $classes = Klass::courseid($id)[1];
         $this->classes = $classes;
+
     }
 //=================================================================================== CREATE
     public static function create($coursetitle, $coursecode, $coursedescription)
@@ -49,8 +51,7 @@ Class Course {
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $classes = Klass::courseid($result['courseID'])[1];
-        $courses[]= new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'], $classes );
+        $courses[]= new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description']);
       }
       return array(1, $courses);
     }
@@ -63,8 +64,7 @@ Class Course {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      $classes = Klass::courseid($result['courseID']);
-      return array(1, new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description'],$classes ));
+      return array(1, new Course($result['courseID'],$result['title'],$result['courseCode'],$result['description']));
     }
 //=================================================================================== GET COURSE NAME
     public static function getCourseName($id)

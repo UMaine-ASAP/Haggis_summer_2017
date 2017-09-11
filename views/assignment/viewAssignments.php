@@ -2,9 +2,10 @@
 Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
+<div id='OUTPUT'>testblock</div>
 <div>
   <?php if($status === 'admin') ?>
-  <a class ='newAssignment' href='?controller=assignment'>New Assignment +</a>
+  <a class ='newAssignment' href='#'>New Assignment +</a>
 </div>
 <br>
 <div>
@@ -15,11 +16,10 @@ Assignments(<?php echo sizeof($assignments);?>)
 <?php
 foreach($assignments as $a)
 {
-  echo "<li id='".$a->id."'>".$a->title."</li>";
+  echo "<li class='assignments' id='".$a->id."'>".$a->title."</li>";
 }
 echo "</ul>";
 if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
 ?>
-<p id='newAssignment'>New Assignment</p>
 
-<div id='createassignment' class='popup'><?php require_once('views/assignment/createAssignment.php');?></div>
+<div id='assignmentcreator' class='popup'><?php require_once('views/assignment/createAssignment.php');?></div>
