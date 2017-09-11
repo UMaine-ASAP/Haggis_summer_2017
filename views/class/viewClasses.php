@@ -4,10 +4,14 @@
 foreach($assignments as $a)
 {
   echo "
-  <div class='assignment' id='id".$a->id."'>
-  <button id='edit ".$a->id."' type='button'>Edit Assignment</button>
-  <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>
-  <h2>".$a->title."</h2><hr>
+  <div class='assignment' id='id".$a->id."'>";
+  if($status === 'admin')
+  {
+    echo "<button class = 'standard' id='edit ".$a->id."' type='button'>Edit Assignment</button>
+          <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
+  }
+
+  echo "<h2>".$a->title."</h2><hr>
   <div>Due Date:".$a->duedate."
   Prompt: ".$a->description."<hr>
   This assignment will be graded on the following criteria:<br><br>";

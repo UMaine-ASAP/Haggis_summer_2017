@@ -75,6 +75,7 @@ table
   animation-duration: 2s;
 }
 
+
 .glyphicon-plus
 {
   font-size:60px;
@@ -175,7 +176,7 @@ table
   color:black;
 }*/
 
-.exit
+.glyphicon-remove
 {
   float:right;
   font-style:bold;

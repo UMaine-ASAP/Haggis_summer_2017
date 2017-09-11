@@ -4,8 +4,9 @@ Assignments(<?php echo sizeof($assignments);?>)
 </div>
 <br>
 <div>
-  <?php if($status === 'admin') ?>
-  <a class ='newAssignment' href='#'>New Assignment +</a>
+  <?php if($status === 'admin')
+  echo "<a class ='newAssignment' href='#'>New Assignment +</a>";
+   ?>
 </div>
 <br>
 <div>
