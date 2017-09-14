@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
-    
+
 
 
     <?php
@@ -37,14 +37,14 @@
   <header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="java/popup.js"></script>
-    <?php require_once('inserts/header.php');?>
+    <?php require_once('views/modules/header.php');?>
   </header>
   <body>
 
     <table>
       <tr>
         <td class='currentAction'>
-          <?php require_once('inserts/currentAction.php');?>
+          <?php require_once('views/modules/currentAction.php');?>
         </td>
       </tr>
       <tr>

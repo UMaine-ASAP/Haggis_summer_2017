@@ -126,6 +126,11 @@ table
 {
     vertical-align:top;
 }
+.studentContainer
+{
+  width:300px;
+  vertical-align:top;
+}
 
 .menutitle
 {
@@ -192,17 +197,17 @@ table
   bottom:10;
 }
 
-.joincode
+joincode
 {
-  width: 300px;
-  height: 10px;
+  /*width: 300px;
+  height: 10px;*/
   display: inline;
   border: 1px solid black;
   border-radius:10px 10px 10px 10px;
   background-color: white;
   color:black;
   padding:5px;
-  margin : 5px;
+  margin : 10px;
 }
 
 .keepinline

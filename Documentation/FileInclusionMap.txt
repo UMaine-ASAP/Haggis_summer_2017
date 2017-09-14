@@ -1,3 +1,7 @@
+The following shows how the files are associated with each other.
+This should be used as a map to help developers identify how errors may propagate
+through the system or how variables are inherited. 
+
 index.php
   connection.php
   views/layout.php

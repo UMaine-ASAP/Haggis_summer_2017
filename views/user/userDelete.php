@@ -11,7 +11,6 @@ if(!$userSelected)
   }
   echo "</select>";
   echo "<input type='submit' value='Submit'></form></div>";
-
 }
 
 else
@@ -25,7 +24,6 @@ else
   echo "</select>";
   echo "<input type='submit' value='Confirm'>";
   echo "</form>";
-
 }
 
 

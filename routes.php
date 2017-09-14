@@ -1,12 +1,9 @@
 <?php
-  require_once('models/klass.php');
+  require_once('models/klass.php');         //we pull our models in and get them ready to be used by the controllers
   require_once('models/group.php');
   require_once('models/course.php');
   require_once('models/assignment.php');
   require_once('models/criteria.php');
-
-
-
 
   function call ($controller, $action)
   {

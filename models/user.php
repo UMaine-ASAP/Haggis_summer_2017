@@ -209,6 +209,33 @@ Class User {
       }
       return array($errorCode, $message);
     }
+//=================================================================================== USERS BY classID
+    public static function class($classID)
+    {
+      $errorCode;
+      $message;
+      $db= Db::getInstance();
+      $sql = "SELECT * FROM user WHERE userID IN (SELECT userID FROM classUser WHERE classID = ?)";
+      $data = array($classID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $userList = array();
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $userList[]  =  new User($result['userID'], $result['firstName'],$result['middleInitial'],$result['lastName'], $result['email'], $result['userType']);	//and adds a user object with information aquired
+        }
+        $errorCode = 1;
+        $message = $userList;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
 //=================================================================================== LOGIN
     public static function login($email, $password){
       $errorCode;
@@ -314,26 +341,26 @@ Class User {
       return array($errorCode, $message);
     }
 //=================================================================================== GET USER ID
-  public static function getID($token)
-  {
-    $errorCode;
-    $message;
-    $db = Db::getInstance();
-    $data= array($token);
-    $sql = "SELECT userID FROM user WHERE token = ?";
-    try
+    public static function getID($token)
     {
-      $stmt = $db->prepare($sql);
-      $stmt->execute($data);
-      $errorCode = 1;
-      $message = $stmt->fetch()['userID'];
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $data= array($token);
+      $sql = "SELECT userID FROM user WHERE token = ?";
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $errorCode = 1;
+        $message = $stmt->fetch()['userID'];
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
     }
-    catch(PDOException $e)
-    {
-      $errorCode  = $e->getCode();
-      $message    = $e->getMessage();
-    }
-    return array($errorCode, $message);
-  }
   }
 ?>

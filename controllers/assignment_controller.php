@@ -1,6 +1,8 @@
 <?php
 class AssignmentController
 {
+  //========================================================================== LIST ASSIGNMENTS
+  //pulls all the assignments out of the database
   public function listAssignments()
   {
     $assignment = Assignment::all()[1];
@@ -17,7 +19,9 @@ class AssignmentController
     $_SESSION['returnto'] = $_POST['classID'];
     header('Location: index.php');
   }
-
+  //========================================================================== CREATE ASSIGNMENT
+  // inserts assignments, criteria, and criteria sets in to the database. Additionally associates created
+  //  criteria set to the user, and criteria with assignments
   public function createAssignment()
   {
     $message;
@@ -59,18 +63,12 @@ class AssignmentController
       foreach($idList as $id)
       Criteria::addToSet($criteriaSetID, $id);
     }
-
-
-
-
-      $_SESSION['controller'] = 'pages';
-      $_SESSION['action'] = 'classes';
-      $_SESSION['returnto'] = $_POST['classid'];
-
-
-      header('Location: index.php');
-    }
-
-
+    //Setup a redicrection back to the class page we were working in
+    $_SESSION['controller'] = 'pages';
+    $_SESSION['action'] = 'classes';
+    $_SESSION['returnto'] = $_POST['classid'];
+    //Load index page
+    header('Location: index.php');
+  }
 }
 ?>
