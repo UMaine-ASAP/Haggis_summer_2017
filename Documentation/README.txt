@@ -1,8 +1,9 @@
-FYI.txt
-For Your Information
+PROJECT HAGGIS
+Authors:  Jason Dignan,
+          Jacob Hall
+June, 2017 - Present
+Github page: https://github.com/UMaine-ASAP/Haggis_summer_2017/
 
-This document should contain notes that will help to define and explain the reasons for specific
-implementations made during the development of this iteration of haggis.
 
 ================================================================================================= MODEL-VIEW-CONTROLLER
 This project uses the model view controller method of organizing and implementing code.
@@ -15,6 +16,7 @@ the language, and cannot be used outside of declaring a new class.
 
 ================================================================================================= MODEL STRUCTURE
   When developing models, they must return all data in an array format.
+  This will allow easier implementation with a Mobile API.
     example:
     {resultCode, DATA}
 

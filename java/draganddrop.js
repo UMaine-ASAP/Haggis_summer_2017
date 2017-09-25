@@ -15,11 +15,13 @@ function addToBatch(ev)
   {
     batch.push(current);
     ev.target.style.border = "1px solid red";
+    ev.target.style.background = "yellow";//css("background","blue");
   }
   else
   {
     batch.splice(index, 1);
-    ev.target.style.border = "1px solid lightgrey";
+    ev.target.style.border = "1px solid black"
+    ev.target.css("background","white");
   }
 }
 
@@ -40,6 +42,22 @@ function drag(ev)             //action to take place when user clicks and holds 
     ev.dataTransfer.setData("text", ev.target.id);
   }
 }
+function cleanUp()
+{
+  var groupBoxes = document.getElementsByClassName('group');
+  if(groupBoxes.length > 0)
+  var counter = 0;
+  for(var i = 0; i < groupBoxes.length; i++)
+  {
+    if(groupBoxes[i].innerHTML == '')
+      groupBoxes[i].remove();
+    else
+    {
+      groupBoxes[i].id = counter;
+      counter++;
+    }
+  }
+}
 
 function drop(ev)             //action to take place when user releases mouse button
 {
@@ -50,24 +68,61 @@ function drop(ev)             //action to take place when user releases mouse bu
   }
   else
   {
-    if(batch.length > 0)
+    var name = ev.target.id;
+    if(name == 'groupMaker')
     {
-      for(var i = 0; i < batch.length; i++)
+      var newGroup = $(document.createElement('div'))
+      newGroup.addClass('group');
+      newGroup.attr('id', '0');
+      newGroup.attr('ondrop', 'drop(event)');
+      newGroup.attr('ondragover', 'allowDrop(event)');
+      if(batch.length > 0)
       {
-        ev.target.append(document.getElementById(batch[i]));
+        for(var i = 0; i < batch.length; i++)
+        {
+          if(document.getElementById(batch[i]) !==null)
+          var current = document.getElementById(batch[i]);
+          current.style.border = "1px solid black";
+          current.style.background = "white";
+          newGroup.append(current);
 
+        }
+        batch = [];
       }
-      batch = [];
+      else
+      {
+        var data = ev.dataTransfer.getData("text");
+        if(document.getElementById(data) !==null)
+        {
+          newGroup.append(document.getElementById(data));
+        }
+      }
+      $('#groupmakercontainer').prepend(newGroup);
     }
     else
     {
-      var data = ev.dataTransfer.getData("text");
-      //document.getElementById('debug').innerHTML = data;
-      ev.target.append(document.getElementById(data));
+      if(batch.length > 0)
+      {
+        for(var i = 0; i < batch.length; i++)
+        {
+          if(document.getElementById(batch[i]) !==null)
+          var current = document.getElementById(batch[i]);
+          current.style.border = "1px solid black";
+          current.style.background = "white";
+          ev.target.append(current);
 
+        }
+        batch = [];
+      }
+      else
+      {
+        var data = ev.dataTransfer.getData("text");
+        if(document.getElementById(data) !==null)
+          ev.target.append(document.getElementById(data));
+      }
     }
   }
-
+  cleanUp();
 }
 
 function move(elementID, destination)
@@ -76,7 +131,59 @@ function move(elementID, destination)
   destinations[destination].append(document.getElementById(elementID));
 }
 
+Number.prototype.map = function(in_min, in_max, out_min, out_max)
+{
+  return (this -in_min)*(out_max - out_min) / (in_max-in_min) + out_min;
+}
 
+function getRandomInt(min, max) {
+    return Math.round(Math.random().map(0,1,min,max));
+}
+
+function groupFormer()
+{
+  var numberofgroups = document.getElementsByName('numofGroups')[0].value;  //Get the number of groups
+  var studentListraw = document.getElementsByClassName('namebutton');       //Get the elements that are students
+  var studentList = [];                               //convert DOM node object to an array for manipulation
+  for(var i = 0; i < studentListraw.length; i++)
+  {
+    studentList.push(studentListraw[i]);
+  }
+
+  var groupsize = Math.ceil(studentList.length/numberofgroups);
+  var groups = [];
+  for(var i = 0; i<numberofgroups; i++)
+  {
+    var newGroup = $(document.createElement('div'))
+    newGroup.addClass('group');
+    newGroup.attr('id', i);
+    newGroup.attr('ondrop', 'drop(event)');
+    newGroup.attr('ondragover', 'allowDrop(event)');
+    if(studentList.length <= groupsize)
+    {
+      document.getElementById('output').append("FINISHING");
+      for(var j = 0; j <= studentList.length; j++)
+      {
+        document.getElementById('output').append(j);
+        newGroup.append(studentList[j]);
+      }
+    }
+    else
+    {
+      var chooser;
+        for(var j = 0; j < groupsize; j++)
+        {
+            chooser = getRandomInt(0, studentList.length);
+            newGroup.append(studentList[chooser]);
+            studentList.splice(chooser,1);
+            document.getElementById('output').append(chooser+"|("+studentList.length+")|||");
+        }
+      document.getElementById('output').append("BREAK("+studentList.length+")");
+    }
+    $('#groupmakercontainer').prepend(newGroup);
+  }
+  cleanUp();
+}
 
 function extractor(input, output)           //When executed this function goes through elements with a class
                                             //  that matches the first argument, and processes through the children.

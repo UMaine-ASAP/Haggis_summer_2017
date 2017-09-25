@@ -5,7 +5,6 @@ ROOT DIRECTORY
   controllers       //Controllers to take output from models and manipulate for views
   css               //External CSS files are stored here
   Documentation     //Documentation for the system itself.
-  inserts           //Modular code snippets
   java              //External Java functions for live site functionality
   models            //Models to communicate with database and supply data to controllers
   views             //Views to display data supplied by models and manipulated by controllers
@@ -14,5 +13,6 @@ ROOT DIRECTORY
     criteria
     event
     group
+    modules
     pages
     user

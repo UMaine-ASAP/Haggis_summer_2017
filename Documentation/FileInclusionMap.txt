@@ -1,6 +1,6 @@
 The following shows how the files are associated with each other.
 This should be used as a map to help developers identify how errors may propagate
-through the system or how variables are inherited. 
+through the system or how variables are inherited.
 
 index.php
   connection.php
@@ -11,9 +11,9 @@ index.php
     css/class.css
     css/group.css
     java/popup.js       //Popup Java
-    inserts/header.php
-      inserts/login.php
-    inserts/currentAction.php
+    views/modules/header.php
+      views/modules/login.php
+    views/modules/currentAction.php
     routes.php
       models/klass.php
       models/group.php

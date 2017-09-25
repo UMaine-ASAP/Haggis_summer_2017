@@ -1,21 +1,75 @@
 .namebutton
 {
+  display:list-item;
   border:1px solid lightgrey;
 }
 
-.groupbox
+#groupmakercontainer
 {
-  padding: 10px;
-  margin: 5px;
-  background-color: lightgrey;
+  border: 1px solid black;
+  text-align:left;
+  vertical-align:top;
 }
 
-.groupbox:hover
+.grouping
+{
+  vertical-align:top;
+}
+
+.studentList
+{
+  border: 1px solid black;
+  vertical-align:top;
+  width:200px;
+}
+.creationForm
+{
+  height: 5px;
+}
+
+/*///////////////////Group Box////////////////////*/
+.group
+{
+  float:left;
+  display:inline;
+  width: 200px;
+  height:300px;
+  padding: 10px;
+  margin:10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align:center;
+  transition: all 1s ease-in-out;
+}
+
+.group:hover
 {
   background-color:white;
 }
 
-[ondrop]
+/*///////////////////New Group Box////////////////////*/
+.groupMaker
 {
-  border:2px solid red;
+  float:left;
+  display:inline;
+  width: 200px;
+  height:300px;
+  padding: 10px;
+  margin:10px;
+  border: 2px dashed black;
+  border-radius: 10px;
+  text-align:center;
+  transition: all 1s ease-in-out;
+}
+
+.groupMaker:hover
+{
+  background-color:white;
+}
+
+span
+{
+  position:relative;
+  top: 40%;
+  transform:translateY(-50%);
 }
