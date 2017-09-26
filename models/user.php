@@ -210,7 +210,7 @@ Class User {
       return array($errorCode, $message);
     }
 //=================================================================================== USERS BY classID
-    public static function class($classID)
+    public static function klass($classID)
     {
       $errorCode;
       $message;
