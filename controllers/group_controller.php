@@ -21,7 +21,7 @@ class GroupController
   public function create()
   {
     $message ="";
-    $NumofGroups = 2;
+    $NumofGroups = 3;
     $userList = User::all()[1];
     if(isset($_POST['labels']))
     {
@@ -33,7 +33,7 @@ class GroupController
         {
           $userIDs[] = $element;
         }
-        Group::create("1", $userIDs);
+         $message = Group::create("1", $userIDs);
       }
     }
     require_once('views/group/createGroup.php');

@@ -42,18 +42,24 @@ function drag(ev)             //action to take place when user clicks and holds 
     ev.dataTransfer.setData("text", ev.target.id);
   }
 }
+
+
 function cleanUp()
 {
   var groupBoxes = document.getElementsByClassName('group');
-  if(groupBoxes.length > 0)
+  var array = [];
   var counter = 0;
-  for(var i = 0; i < groupBoxes.length; i++)
+  for(var i= 0; i<groupBoxes.length;i++)
   {
-    if(groupBoxes[i].innerHTML == '')
-      groupBoxes[i].remove();
+    array.push(groupBoxes[i]);
+  }
+  for(var i = 0; i < array.length; i++)
+  {
+    if(array[i].innerHTML == '')
+      array[i].remove();
     else
     {
-      groupBoxes[i].id = counter;
+      array[i].id = counter;
       counter++;
     }
   }
@@ -150,7 +156,8 @@ function groupFormer()
     studentList.push(studentListraw[i]);
   }
 
-  var groupsize = Math.ceil(studentList.length/numberofgroups);
+  var groupsize = Math.floor(studentList.length/numberofgroups);
+  var leftovers = studentList.length%numberofgroups;
   var groups = [];
   for(var i = 0; i<numberofgroups; i++)
   {
@@ -159,26 +166,18 @@ function groupFormer()
     newGroup.attr('id', i);
     newGroup.attr('ondrop', 'drop(event)');
     newGroup.attr('ondragover', 'allowDrop(event)');
-    if(studentList.length <= groupsize)
+    for(var j = 0; j < groupsize; j++)
     {
-      document.getElementById('output').append("FINISHING");
-      for(var j = 0; j <= studentList.length; j++)
-      {
-        document.getElementById('output').append(j);
-        newGroup.append(studentList[j]);
-      }
+        var chooser = getRandomInt(0,studentList.length-1);
+        newGroup.append(studentList[chooser]);
+        studentList.splice(chooser,1);
+
     }
-    else
+    if(numberofgroups-i <= leftovers)
     {
-      var chooser;
-        for(var j = 0; j < groupsize; j++)
-        {
-            chooser = getRandomInt(0, studentList.length);
-            newGroup.append(studentList[chooser]);
-            studentList.splice(chooser,1);
-            document.getElementById('output').append(chooser+"|("+studentList.length+")|||");
-        }
-      document.getElementById('output').append("BREAK("+studentList.length+")");
+      var chooser2 = getRandomInt(0,studentList.length-1);
+      newGroup.append(studentList[chooser2]);
+      studentList.splice(chooser2,1);
     }
     $('#groupmakercontainer').prepend(newGroup);
   }
@@ -209,7 +208,14 @@ function extractor(input, output)           //When executed this function goes t
   }
   document.getElementById(output).innerHTML = value;
 }
+$(document).ready(function()
+{
+  var studentlistsize = document.getElementsByClassName('namebutton').length;
+  var curr = $('input[type="number"]');
+  curr.attr('max',studentlistsize/2);
+  curr.attr('min', 2);
 
+});
 
 /*!
  * jQuery UI Touch Punch 0.2.3
