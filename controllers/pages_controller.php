@@ -67,7 +67,7 @@ class PagesController
         }
         $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
         $class = Klass::classid($classID)[1];             //pulls class data
-        $students = User::class($classID)[1];           //pulls data for students in class
+        $students = User::klass($classID)[1];           //pulls data for students in class
       }
       $status = 'user';                                   //checks for admin or user status
 
