@@ -4,6 +4,8 @@
   require_once('models/course.php');
   require_once('models/assignment.php');
   require_once('models/criteria.php');
+  require_once('models/projectUser.php');
+  requrie_once('models/project.php');
 
   function call ($controller, $action)
   {
