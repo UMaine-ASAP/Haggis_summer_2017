@@ -74,6 +74,7 @@ class AssignmentController
         $projectID = Project::create($_POST['title'], $_POST['assignmentdescription'], "1", $assignmentID)[1];
         $userIDs = array();
         $counter = 0;
+        echo $label;
         foreach($_POST($label) as $element)
         {
           $userIDs[] = $element;
