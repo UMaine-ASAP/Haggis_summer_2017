@@ -19,6 +19,8 @@ index.php
       models/group.php
       models/assignment.php
       models/criteria.php
+      models/project.php
+      models/projectUser.php
       controller/pages_controller.php
         views/pages/index.php
           views/event/listActiveEvents.php
@@ -30,6 +32,10 @@ index.php
           views/assignment/viewAssignments.php
           views/class/viewClasses.php
             views/assignment/createAssignment.php
+              java/viewSwitch.js
+              views/group/createGroup.php
+                java/draganddrop.js
+              views/user/classUser.php
               views/criteria/criteriacreator.php
                 java/criteriaCreator.js
         views/pages/assignments.php
