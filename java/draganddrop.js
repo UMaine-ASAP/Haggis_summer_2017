@@ -212,8 +212,11 @@ $(document).ready(function()
 {
   var studentlistsize = document.getElementsByClassName('namebutton').length;
   var curr = $('input[type="number"]');
-  curr.attr('max',studentlistsize/2);
-  curr.attr('min', 2);
+  if(studentlistsize > 4)
+  {
+    curr.attr('max',studentlistsize/2);
+    curr.attr('min', 2);
+  }
 
 });
 

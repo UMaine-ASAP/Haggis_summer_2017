@@ -35,6 +35,9 @@ class PagesController
       $class;
       $assignments;
       $classID;
+      $idList = array();
+      $NumofGroups = 3;
+      $userList;
 
       //fetch criterias to be used in assignment creation
       $criterias = Criteria::all()[1];
@@ -68,6 +71,7 @@ class PagesController
         $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
         $class = Klass::classid($classID)[1];             //pulls class data
         $students = User::klass($classID)[1];           //pulls data for students in class
+        $userList = User::klass($classID)[1];
       }
       $status = 'user';                                   //checks for admin or user status
 

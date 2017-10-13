@@ -33,7 +33,7 @@ class GroupController
         {
           $userIDs[] = $element;
         }
-         $message = Group::create("1", $userIDs);
+         $message = Group::create("1", $userIDs)[1];
       }
     }
     require_once('views/group/createGroup.php');

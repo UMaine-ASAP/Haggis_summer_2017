@@ -25,7 +25,8 @@ class AssignmentController
   public function createAssignment()
   {
     $message;
-    $idList = array();
+    $assignmentID;
+
     if(isset($_POST['title']))
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$_POST['classid'])[1];
@@ -62,6 +63,32 @@ class AssignmentController
     {
       foreach($idList as $id)
       Criteria::addToSet($criteriaSetID, $id);
+    }
+
+    //GROUP/PROJECT CREATION
+    if($_POST['makegroup'] == 'true')
+    {
+      $numofGroups = sizeof($_POST['labels']);
+      foreach($_POST['labels'] as $label)
+      {
+        $projectID = Project::create($_POST['title'], $_POST['assignmentdescription'], "1", $assignmentID)[1];
+        $userIDs = array();
+        foreach($_POST[$lable] as $element)
+        {
+          $userIDs[] = $element;
+        }
+        $message = Group::create($projectID, $userIDs)[1];
+      }
+    }
+    else
+    {
+      $userList = User::klass($_POST['classid'])[1];
+      foreach($userList as $user)
+      {
+        $projectID = Project::create($_POST['title'], $_POST['assignmentdescription'], "0", $assignmentID)[1];
+        $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
+      }
+
     }
     //Setup a redicrection back to the class page we were working in
     $_SESSION['controller'] = 'pages';

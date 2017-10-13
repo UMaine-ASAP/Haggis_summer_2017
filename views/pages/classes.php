@@ -11,9 +11,9 @@ echo "<table><tr><td class='menuContainer'>";
 require_once('views/assignment/viewAssignments.php');
 echo "</td>";
 
-echo "<td class='studentContainer'><div id='studentviewer'>";
-require_once('views/user/classUser.php');
-echo "</div></td>";
+// echo "<td class='studentContainer'><div id='studentviewer'>";
+// require_once('views/user/classUser.php');
+// echo "</div></td>";
 
 echo "<td class='contentContainer'><div id='viewer'>";
 echo $message;

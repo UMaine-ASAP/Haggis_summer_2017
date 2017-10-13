@@ -8,11 +8,6 @@ class UserController
       if(isset($_POST['firstname']))
       {
         $out='';
-        $firstName = $_POST['firstname'];
-        $middleInitial = $_POST['middleinitial'];
-        $lastName = $_POST['lastname'];
-        $email = $_POST['email'];
-
         $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
           switch($outcome[0])
           {

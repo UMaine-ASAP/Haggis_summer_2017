@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/criteria.css">
 <link rel="stylesheet" type="text/css" href="css/assignment.css">
+<script src="java/viewSwitch.js"></script>
 
 
 <h2>Create an Assignment</h2><hr>
@@ -8,16 +9,20 @@
 
 <table>
   <tr>
-    <td class='assignmentCreationHead' colspan='2'>
+    <td class='assignmentCreationGroup' rowspan="3" width=20% style="border-right: 1px solid black">
+      <input class='standard' type='radio' name='makegroup' value='false' checked>Single
+      <input class='standard' type='radio' name='makegroup' value='true'>Group
+      <div id='groupcreator'><?php require_once('views/group/createGroup.php');?></div>
+      <div id ='singleassignment'><?php require_once('views/user/classUser.php');?></div>
+    </td>
+    <td class='assignmentCreationHead'>
       <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
       <input class='standard' type='text' name='title' placeholder='New Assignment' required>
       <input class='standard' name='createnew' type='submit' value='Publish'>
     </td>
+
   </tr>
   <tr>
-    <td class='assignmentCreationGroup' rowspan='2'>
-      groups
-    </td>
     <td class='assignmentCreation'>
       critiques given between peers on this assignment should be:<br>
       <input type='radio' name='accountability' value='private'>anonymous
