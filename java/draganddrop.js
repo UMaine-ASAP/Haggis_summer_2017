@@ -208,17 +208,20 @@ function extractor(input, output)           //When executed this function goes t
   }
   document.getElementById(output).innerHTML = value;
 }
-$(document).ready(function()
-{
-  var studentlistsize = document.getElementsByClassName('namebutton').length;
-  var curr = $('input[type="number"]');
-  if(studentlistsize > 4)
-  {
-    curr.attr('max',studentlistsize/2);
-    curr.attr('min', 2);
-  }
-
-});
+// $(document).ready(function()
+// {
+//   var studentlistsize = document.getElementsByClassName('namebutton').length;
+//   var curr = $('input[name="numofGroups"]');
+//   foreach(curr as c)
+//   {
+//     if(studentlistsize > 4)
+//     {
+//       c.attr('max',studentlistsize/2);
+//       c.attr('min', 2);
+//     }
+//   }
+//
+// });
 
 /*!
  * jQuery UI Touch Punch 0.2.3
