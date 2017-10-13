@@ -64,7 +64,7 @@ Class Project {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new Project($result['projectID'],$result['title'],$result['description'],$result['isgroup'],$result['assignmentID']);
+      return array(1, new Project($result['projectID'],$result['title'],$result['description'],$result['isgroup'],$result['assignmentID']));
     }
 
 
