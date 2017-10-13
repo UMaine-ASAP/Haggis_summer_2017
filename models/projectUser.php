@@ -21,7 +21,7 @@ Class ProjectUser {
       $errorCode;
       $dataOut;
       $db = Db::getInstance();
-      $sql = "INSERT INTO project (projectID, userID, role, description) VALUES (?,?,?,?)";
+      $sql = "INSERT INTO projectUser (projectID, userID, role, description) VALUES (?,?,?,?)";
       try
       {
           $stmt = $db->prepare($sql);
