@@ -63,7 +63,7 @@ Class ProjectUser {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']);
+      return array(1, new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']));
     }
 
 
