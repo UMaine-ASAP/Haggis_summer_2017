@@ -26,7 +26,7 @@
     <td class='assignmentCreation'>
       critiques given between peers on this assignment should be:<br>
       <input type='radio' name='accountability' value='private'>anonymous
-      <input type='radio' name='accountability' value='public'>public<br>
+      <input type='radio' name='accountability' value='public' checked>public<br>
       Prompt:<br>
       <textarea class='standard' name='assignmentdescription' cols='100' rows='10' placeholder="Assignment's Description" required></textarea><br>
       Due Date:<input class='standard' type='date' name='duedate' required><br>

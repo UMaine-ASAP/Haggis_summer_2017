@@ -16,7 +16,7 @@ Criteria
 
     <textarea class='standard' id='text0' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>
     allow additional text response
-    <input class='standard' type='radio' name='textresponse[]' value='yes'>yes
+    <input class='standard' type='radio' name='textresponse[]' value='yes' checked>yes
     <input class='standard' type='radio' name='textresponse[]' value='no'>no
   </div>
 </div>
