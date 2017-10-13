@@ -1,6 +1,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="java/draganddrop.js"></script>
-<script src="java/groupCreator.js"></script>
 <p>Group Managment</p>
 <div><?php if(isset($message)) echo $message; ?></div>
 <table class='grouping'>
