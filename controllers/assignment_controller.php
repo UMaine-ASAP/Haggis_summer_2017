@@ -75,7 +75,7 @@ class AssignmentController
         $userIDs = array();
         $counter = 0;
         echo $label;
-        foreach($_POST($label) as $element)
+        foreach($_POST[$label] as $element)
         {
           $userIDs[] = $element;
         }
