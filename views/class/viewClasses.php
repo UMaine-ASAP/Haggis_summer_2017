@@ -24,10 +24,10 @@ foreach($assignments as $a)
 
   }
   echo "</div></div>";
-  echo "<div id='assignmentcreator'>";
-  require_once('views/assignment/createAssignment.php');
-  echo "</div>";
 }
+echo "<div id='assignmentcreator'>";
+require_once('views/assignment/createAssignment.php');
+echo "</div>";
 ?>
 
 <div id='confirmDelete' class='popup'>
