@@ -7,8 +7,11 @@ foreach($assignments as $a)
   <div class='assignment' id='id".$a->id."'>";
   if($status === 'admin')
   {
-    echo "<button class = 'standard' id='edit ".$a->id."' type='button'>Edit Assignment</button>
-          <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
+    echo "
+    <form action ='?controller=assignment&action=editAssignment' method ='post'>
+    <button class='standard' value= '".$a->id."' name='assignmentid' type='submit'>Edit Assignment</button>
+    </form>
+    <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
   }
 
   echo "<h2>".$a->title."</h2><hr>
@@ -36,4 +39,9 @@ foreach($assignments as $a)
     <input class='standard' type ='submit' value='Delete'>
     <button class='exit standard' type='button'>Cancel</button>
   </form>
+</div>
+
+<div id='editClass' class ='popup'>
+  <h2>TEST</h2>
+  <button class='exit standard' type='button'>Cancel</button>
 </div>

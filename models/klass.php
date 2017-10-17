@@ -38,7 +38,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $message;
       $errorCode;
       $db = Db::getInstance();
-      $sql = "INSERT INTO class (title, courseID, timeStart, timeEnd, dateStart, dateEnd, description, location, joinCode, active) VALUES (?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO class (title, courseID, timeStart, timeEnd, dateStart, dateEnd, description, location, joinCode, active) VALUES (?,?,?,?,?,?,?,?,?,?)";
       try
       {
         $stmt = $db->prepare($sql);

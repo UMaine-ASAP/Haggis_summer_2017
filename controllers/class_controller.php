@@ -48,12 +48,13 @@ class ClassController
         $_SESSION['message'] = "Error Code " .$outcome[0]." : ".$outcome[1];
       else
       {
+
         Klass::associateWithDay($outcome[1], $_POST['sessiondays']);
         $userID = User::getID($_SESSION['token'])[1];
-        $message = Klass::joinClass($userID, $outcome[1]);
+        Klass::joinClass($userID, $_POST['classcode'])[1];
       }
     }
-    //$_SESSION['message'] = "Class Successfully Added";
+    $_SESSION['message'] = "Class Successfully Created";
     header('Location: index.php');
   }
 //=================================================================================== JOIN CLASS

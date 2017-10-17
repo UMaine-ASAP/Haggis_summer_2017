@@ -19,6 +19,17 @@ class AssignmentController
     $_SESSION['returnto'] = $_POST['classID'];
     header('Location: index.php');
   }
+
+  //========================================================================== EDIT ASSIGNMENT
+  //Allows for the ability to edit an assignment
+  public function editAssignment()
+  {
+    $assignmentid = $_POST['assignmentid'];
+    $assignment = Assignment::id($assignmentid)[1];
+    require_once('views/assignment/editAssignment.php');
+  }
+
+
   //========================================================================== CREATE ASSIGNMENT
   // inserts assignments, criteria, and criteria sets in to the database. Additionally associates created
   //  criteria set to the user, and criteria with assignments

@@ -37,7 +37,7 @@
     <td class='assignmentCreationCriteria'>
       <br><br>
       <?php echo $criteriaList; ?>
-      <?php require_once('views/criteria/criteriacreator.php'); ?>
+      <?php require_once('views/criteria/createCriteria.php'); ?>
     </td>
 </table>
 </form>

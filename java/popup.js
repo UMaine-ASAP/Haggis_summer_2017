@@ -24,12 +24,23 @@ $(document).ready(function()
   // })
 
 
-  $(document).on("click", "#delete", function(event){
+  $(document).on("click", "#delete", function(event)
+  {
     current = "confirmDelete";
     var assignmentID = $(this).attr('name');
     $("[name='assignmentID']").val(assignmentID);
     var assignmentName = $(this).next('h2').text();
     $("#confirmmessage").text("Are you sure you wish to delete '" + assignmentName+"'");
     $(".overlay, #confirmDelete").fadeToggle();
-  })
+  });
+
+  // $(document).on("click", "#edit", function(event)
+  // {
+  //   current = "editClass";
+  //   $(".overlay, #editClass").fadeToggle();
+  //
+  //
+  // });
+
+
 });
