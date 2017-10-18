@@ -4,6 +4,9 @@ Authors:  Jason Dignan,
 June, 2017 - Present
 Github page: https://github.com/UMaine-ASAP/Haggis_summer_2017/
 
+================================================================================================= MOBILE DETECTION
+This site uses Mobile-Detect-2.8.26 for mobile browser redirection
+The code can be found here: http://mobiledetect.net/
 
 ================================================================================================= MODEL-VIEW-CONTROLLER
 This project uses the model view controller method of organizing and implementing code.

@@ -7,6 +7,7 @@ ROOT DIRECTORY
   Documentation     //Documentation for the system itself.
   java              //External Java functions for live site functionality
   models            //Models to communicate with database and supply data to controllers
+  vendor            //3rd party scripts
   views             //Views to display data supplied by models and manipulated by controllers
     assignment
     class
