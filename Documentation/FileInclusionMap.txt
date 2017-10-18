@@ -4,6 +4,9 @@ through the system or how variables are inherited.
 
 index.php
   connection.php
+  vendor/mobiledetect/Mobile_Detect.php
+  views/mobilelayout.php
+    routes.php
   views/layout.php
     css/baseStyle.css   //CSS Scripts
     css/header.css

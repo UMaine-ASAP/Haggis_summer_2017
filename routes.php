@@ -29,6 +29,9 @@
       case 'assignment':
         $controller = new AssignmentController();
         break;
+      case 'mobile':
+        $controller = new MobileController();
+        break;
     }
     $controller->{$action}();
   }
@@ -38,7 +41,8 @@
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
-                          'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment']);
+                          'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
+                          'mobile'    => ['index']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

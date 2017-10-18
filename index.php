@@ -1,31 +1,27 @@
 <?php
 
   session_start();                          //starts a local session
-  require_once('connection.php');          // pulls in our database connection methods
-  //-------------------------------------------------------> Error Reporting
+
   if(true)                                  //For debugging only
   {                                         //    Set false to remove all error
     ini_set('display_errors', 1);           //    reporting.
     ini_set('display_startup_errors',1);
     error_reporting(E_ALL);
   }
-
+  //-------------------------------------------------------> Time to get busy
+  require_once('connection.php');          // pulls in our database connection methods
+  require_once('vendor/mobiledetect/Mobile_Detect.php');
+  $detect = new Mobile_Detect;
 
   //-------------------------------------------------------> Pre-Routing
   // This system is used to redirect the browser to the context
   //    the user was last in. example: user creates a class, user should be
   //    returned to the class they were in when completing the creation action
-  $redirect = false;  //tells if we are going to redirect or usual routing
   $controller;        //used to store the controller defenition
   $action;            //used to store the action defenition
-  $returnto;          //used later to redirect to appropriate context
-
-  if(isset($_SESSION['returnto']))
-  {
-    $redirect = true;
-  }
+  $mobile = $detect->isMobile();
   //pulls session redirect information then clears them
-  if($redirect)
+  if(isset($_SESSION['returnto']))
   {
     $controller = $_SESSION['controller'];
     $action = $_SESSION['action'];
@@ -38,6 +34,11 @@
     $controller = $_GET['controller'];
     $action = $_GET['action'];
   }
+  else if($mobile)
+  {
+    $controller = 'mobile';
+    $action = 'index';
+  }
   //or just go straight to the initial page
   else
   {
@@ -45,5 +46,8 @@
     $action = 'index';
   }
 
-  require_once('views/layout.php'); //pulls in our layout file
+  if($mobile)
+    require_once('views/mobilelayout.php');
+  else
+    require_once('views/layout.php'); //pulls in our layout file
 ?>
