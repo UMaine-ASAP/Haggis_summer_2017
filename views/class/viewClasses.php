@@ -14,19 +14,11 @@ foreach($assignments as $a)
     $list = $p->list;
     if($p->isgroup === '0')
     {
-
-      foreach($list as $u)
-      {
-        $user = $u->userID;
-        echo "<li><a href='#'>".$user->firstName." ".$user->lastName."</a></li>";
-      }
+        echo "<li><a href='#'>".$p->title."</a></li>";
     }
     else
     {
-      foreach($list as $g)
-      {
-        echo "<li><a href='#'>".$g->studentGroupID."</a></li>";
-      }
+        echo "<li><a href='#'>".$p->title."</a></li>";
     }
     echo "</ul>";
   }

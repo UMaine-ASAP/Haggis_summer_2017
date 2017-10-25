@@ -83,9 +83,10 @@ class AssignmentController
       $groupcounter = 1;
       foreach($_POST['labels'] as $label)
       {
-        $projectID = Project::create($_POST['title']."- Group ".$groupcounter , $_POST['assignmentdescription'], "1", $assignmentID)[1];
+        $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
         $userIDs = array();
         $counter = 0;
+        $groupcounter++;
         echo $label;
         foreach($_POST[$label] as $element)
         {
@@ -99,7 +100,7 @@ class AssignmentController
       $userList = User::klass($_POST['classid'])[1];
       foreach($userList as $user)
       {
-        $projectID = Project::create($_POST['title']."-".$user->firstName." ".$user->lastName, $_POST['assignmentdescription'], "0", $assignmentID)[1];
+        $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
       }
 
