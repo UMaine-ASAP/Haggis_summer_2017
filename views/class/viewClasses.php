@@ -18,7 +18,7 @@ foreach($assignments as $a)
       foreach($list as $u)
       {
         $user = $u->userID;
-        echo "<li><a href='#'>".$user->firstName."</a></li>";
+        echo "<li><a href='#'>".$user->firstName." ".$user->lastName."</a></li>";
       }
     }
     else
