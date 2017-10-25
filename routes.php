@@ -42,7 +42,7 @@
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
-                          'mobile'    => ['index']);
+                          'mobile'    => ['index', 'login']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

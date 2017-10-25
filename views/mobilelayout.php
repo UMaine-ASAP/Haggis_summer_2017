@@ -1,7 +1,7 @@
 <DOCTYPE html>
   <html>
     <head>
-      <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0, minimum-scale=0.2' name = 'viewport'/>
+      <meta content='width=device-width, initial-scale=1.0' name = 'viewport'/>
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
@@ -9,7 +9,7 @@
     <header>
       <div class='header'>
         <div class='headerTitle'>
-          <h1><a class='pageTitle' href=''>Haggis</a></h1>
+          <h1><a class='pageTitle' href='index.php'>Haggis</a></h1>
         </div>
 
 
@@ -18,7 +18,7 @@
           if (isset($_SESSION['token'])) {
             echo  "<a href='?controller=user&action=logout'>log out</a>";
           } else {
-            echo  "<a href='?controller=user&action=logout'>Login/Sign Up</a>";
+            echo  "<a href='?controller=mobile&action=login'>Login/Sign Up</a>";
           }
           ?>
         </div>
