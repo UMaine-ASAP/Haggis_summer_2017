@@ -7,8 +7,33 @@ echo "</div>";
 
 foreach($assignments as $a)
 {
+  echo "<div class='assignment' id='id".$a->id."'><table><tr><td>";
+  foreach($a->projects as $p)
+  {
+    echo "<ul>";
+    $list = $p->list;
+    if($p->isgroup === '0')
+    {
+
+      foreach($list as $u)
+      {
+        $user = $u->userID;
+        echo "<li><a href='#'>".$user->firstName."</a></li>";
+      }
+    }
+    else
+    {
+      foreach($list as $g)
+      {
+        echo "<li><a href='#'>".$g->studentGroupID."</a></li>";
+      }
+    }
+    echo "</ul>";
+  }
+  echo "</td><td>";
+
   echo "
-  <div class='assignment' id='id".$a->id."'>";
+  <div >";
   if($status === 'admin')
   {
     echo "
@@ -27,7 +52,9 @@ foreach($assignments as $a)
     echo "<strong>".$c->title."</strong> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
 
   }
+
   echo "</div></div>";
+  echo "</td></tr></table></div>";
 }
 ?>
 

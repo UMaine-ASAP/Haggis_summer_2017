@@ -7,16 +7,17 @@ class Assignment
   public $duetime;
   public $duedate;
   public $criterias;
+  public $projects;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description, $duetime, $duedate)
+  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin)
   {
     $this->id = $id;
     $this->title = $title;
     $this->description=$description;
     $this->duetime = $duetime;
     $this->duedate = $duedate;
-    $criterias = Criteria::assignmentID($id)[1];
-    $this->criterias = $criterias;
+    $this->criterias = Criteria::assignmentID($id)[1];
+    $this->projects = $projectsin;
   }
 
 //=================================================================================== INSERT ASSIGNMENT
@@ -81,7 +82,7 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $errorCode = 1;
-      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
+      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1]);
     }
     catch(PDOException $e)
     {
@@ -105,7 +106,7 @@ public static function linkToClass($classID, $assignmentID)
         $assignmentarray = array();
         while($r = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
+          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1]);
         }
         $message = $assignmentarray;
         $errorCode = 1;
@@ -133,7 +134,7 @@ public static function linkToClass($classID, $assignmentID)
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
 
-            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate']);
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1]);
           }
           $message = $assignmentarray;
           $errorCode = 1;
@@ -168,5 +169,10 @@ public static function linkToClass($classID, $assignmentID)
       $message = "ASSIGNMENT DELETION ".$e->getMessage();
     }
     return array($errorCode, $message);
+  }
+  //=================================================================================== DELETE CLASS
+  public static function getAssigned($assignmentID)
+  {
+
   }
 }

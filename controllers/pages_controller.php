@@ -56,6 +56,7 @@ class PagesController
         $message = $_SESSION['message'];
         $_SESSION['message'] = "";
       }
+
       //Post routing - checks to see if user is logged in, and directs user back to the class they were in previously
       if(isset($_SESSION['token']))
       {
@@ -72,6 +73,7 @@ class PagesController
         $class = Klass::classid($classID)[1];             //pulls class data
         $students = User::klass($classID)[1];           //pulls data for students in class
         $userList = User::klass($classID)[1];
+
       }
       $status = 'user';                                   //checks for admin or user status
 

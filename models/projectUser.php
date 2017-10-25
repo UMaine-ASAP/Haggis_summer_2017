@@ -65,6 +65,33 @@ Class ProjectUser {
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       return array(1, new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']));
     }
+//=================================================================================== ID
+    public static function assignment($id)
+    {
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM projectUser WHERE projectUserID = ?";
+      $data = array($id);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      return array(1, new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']));
+    }
+//=================================================================================== ID
+    public static function project($id)
+    {
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM projectUser WHERE projectID = ?";
+      $data = array($id);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $userlist = array();
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],User::id($result['userID'])[1],$result['role'],$result['description']);
+      }
+      return array(1, $userlist);
+    }
 
 
   }
