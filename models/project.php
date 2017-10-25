@@ -18,7 +18,7 @@ Class Project {
 
 
 //=================================================================================== CREATE
-    public static function create($title, $isgroup, $description, $assignmentID)
+    public static function create($title, $description, $isgroup, $assignmentID)
     {
       $courseIDfinal = '';
       $errorCode;
