@@ -21,8 +21,7 @@ table{
 .pagetitle{
   font-size: 48px;
   color: white;
-  /*padding-left: 2%;
-  padding-top: 1.5%;*/
+  padding-top: 1.5%;
 }
 
 div.headerTitle{
@@ -41,7 +40,7 @@ div.headerLogin{
   display: inline-block;
   width: 30%;
   float: right;
-  background-color: red;
+  /*background-color: red;*/
   text-align: right;
   padding-right: 2%;
   position: relative;

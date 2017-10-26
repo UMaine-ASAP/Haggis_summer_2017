@@ -1,17 +1,21 @@
 <table>
   <tr>
-    <td>
-      Give a critique with Haggis.
+    <td id="catchPhrase">
+      Give critique with Haggis.
     </td>
   </tr>
   <tr>
-    <td>
-      My Classes
+    <td class='bigButton'>
+      <button class='bigButton'>
+        My Classes
+      </button>
     </td>
   </tr>
   <tr>
-    <td>
-      Live Events
+    <td class='bigButton'>
+      <button class='bigButton'>
+        Live Events
+      </button>
     </td>
   </tr>
 </table>

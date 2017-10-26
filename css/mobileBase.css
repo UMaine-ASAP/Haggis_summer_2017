@@ -6,11 +6,14 @@
 
 #catchphrase{
   text-align: center;
+  padding-top: 25%;
+  padding-bottom: 25%;
 }
 
 .bigButton{
-  width: 35%;
+  width: 75%;
   text-align: center;
   padding: 10%;
   margin: auto;
+  background-color: blue;
 }
