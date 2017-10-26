@@ -18,9 +18,9 @@
         <div class='headerLogin'>
           <?php
           if (isset($_SESSION['token'])) {
-            echo  "<button class='login' href='?controller=user&action=logout'>log out</button>";
+            echo  "<a href='?controller=user&action=logout'>log out</a>";
           } else {
-            echo  "<button class='login' href='?controller=mobile&action=login'>Login/Sign Up</button>";
+            echo  "<a href='?controller=mobile&action=login'>Login/Sign Up</a>";
           }
           ?>
         </div>
