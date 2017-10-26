@@ -1,0 +1,16 @@
+*{
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+#catchphrase{
+  text-align: center;
+}
+
+.bigButton{
+  width: 35%;
+  text-align: center;
+  padding: 10%;
+  margin: auto;
+}
