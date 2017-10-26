@@ -6,6 +6,7 @@
   require_once('models/criteria.php');
   require_once('models/projectUser.php');
   require_once('models/project.php');
+  require_once('models/user.php');
 
   function call ($controller, $action)
   {
