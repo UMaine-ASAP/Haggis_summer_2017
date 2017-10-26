@@ -8,7 +8,7 @@
 <?php
 
 echo "<table><tr><td class='menuContainer'>";
-require_once('views/assignment/viewAssignments.php');
+require_once('views/assignment/viewAssignmentList.php');
 echo "</td>";
 
 // echo "<td class='studentContainer'><div id='studentviewer'>";

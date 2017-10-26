@@ -7,45 +7,60 @@ echo "</div>";
 
 foreach($assignments as $a)
 {
-  echo "<div class='assignment' id='id".$a->id."'><table><tr><td>";
-  foreach($a->projects as $p)
+  echo "<div class='assignment' id='id".$a->id."'>
+  <table>
+    <tr>
+      <td colspan='2'>
+      <h2>".$a->title."</h2>
+      <a class = 'prompt' id='".$a->id."'>Prompt</a> <a class='givecritique' id='".$a->id."'>Give Critique</a>";
+      // if($status === 'admin')
+      // {
+      //   echo "
+      //   <form action ='?controller=assignment&action=editAssignment' method ='post'>
+      //   <button class='standard' value= '".$a->id."' name='assignmentid' type='submit'>Edit Assignment</button>
+      //   </form>
+      //   <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
+      // }
+  echo "</td></tr><tr><td>";
+
+  $projects = $a->projects;
+  $ps = sizeof($projects);
+  if($projects != null && $ps > 0)
   {
-    echo "<ul>";
-    $list = $p->list;
-    if($p->isgroup === '0')
+    $test = $projects[0];
+    if($test->isgroup === '0')
     {
-        echo "<li><a href='#'>".$p->title."</a></li>";
+      echo "students (".$ps.")<hr><ul>";
     }
     else
     {
-        echo "<li><a href='#'>".$p->title."</a></li>";
+      echo "groups (".$ps.")<hr><ul>";
+    }
+    foreach($projects as $p)
+    {
+      echo "<li><a href='#'>".$p->title."</a></li>";
     }
     echo "</ul>";
-  }
-  echo "</td><td>";
-
-  echo "
-  <div >";
-  if($status === 'admin')
-  {
-    echo "
-    <form action ='?controller=assignment&action=editAssignment' method ='post'>
-    <button class='standard' value= '".$a->id."' name='assignmentid' type='submit'>Edit Assignment</button>
-    </form>
-    <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
-  }
-
-  echo "<h2>".$a->title."</h2><hr>
-  <div>Due Date:".$a->duedate."
-  Prompt: ".$a->description."<hr>
-  This assignment will be graded on the following criteria:<br><br>";
-  foreach($a->criterias as $c)
-  {
-    echo "<strong>".$c->title."</strong> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
 
   }
+    echo "</td><td>
+    <div class='details' id='".$a->id."'>
+    Due Date:".$a->duedate."<br>
+    <h3>Prompt</h3>
+    ".$a->description."<br>";
 
-  echo "</div></div>";
+    foreach($a->criterias as $c)
+    {
+
+      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
+    }
+    echo "</div>
+          <div class='evaluate' id='".$a->id."'>";
+    foreach($a->criterias as $c)
+    {
+      echo "<input type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
+      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
+    }
   echo "</td></tr></table></div>";
 }
 ?>
