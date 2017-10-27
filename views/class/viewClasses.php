@@ -61,12 +61,13 @@ foreach($assignments as $a)
     ////////////////////////////////////////////////////// EVALUATE
     foreach($a->criterias as $c)
     {
+      echo "<form oninput='x.value=criteriaRating[].value'>";
       echo "<input name='criteriaID[]' type='hidden' value='".$c->id."'>";
-      echo "<output for='criteriaRating[]'>";
-      echo "<input name='criteriaRateing[]' type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
+      echo "<output name ='x' for='criteriaRating'><br>";
+      echo "<input name='criteriaRateing[]' id='criteriaRating' type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
       echo "<input name='criteriaComment[]' type='text' placeholder='Comment:'>";
 
-      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description;
+      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</form>";
     }
   echo "</form></div></td></tr></table></div>";
 }

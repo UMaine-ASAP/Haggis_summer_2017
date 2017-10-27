@@ -58,7 +58,6 @@ class AssignmentController
         $currentID;
         if($_POST['graded'][$i] === 'yes')
         {
-
           $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
         }
         else
