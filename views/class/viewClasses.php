@@ -22,7 +22,7 @@ foreach($assignments as $a)
       //   <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
       // }
   echo "</td></tr><tr><td>";
-
+  ////////////////////////////////////////////////////// PROJECT LISTING
   $projects = $a->projects;
   $ps = sizeof($projects);
   if($projects != null && $ps > 0)
@@ -43,6 +43,7 @@ foreach($assignments as $a)
     echo "</ul>";
 
   }
+    ////////////////////////////////////////////////////// CLASS DETAILS
     echo "</td><td>
     <div class='details' id='".$a->id."'>
     Due Date:".$a->duedate."<br>
@@ -55,16 +56,23 @@ foreach($assignments as $a)
       echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
     }
     echo "</div>
-          <div class='evaluate' id='".$a->id."'>";
+          <div class='evaluate' id='".$a->id."'>
+          <form method='post' action=''>";
+    ////////////////////////////////////////////////////// EVALUATE
     foreach($a->criterias as $c)
     {
-      echo "<input type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
-      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
+      echo "<input name='criteriaID[]' type='hidden' value='".$c->id."'>";
+      echo "<output for='criteriaRating[]'>";
+      echo "<input name='criteriaRateing[]' type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
+      echo "<input name='criteriaComment[]' type='text' placeholder='Comment:'>";
+
+      echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description;
     }
-  echo "</td></tr></table></div>";
+  echo "</form></div></td></tr></table></div>";
 }
 ?>
 
+    <!-- ////////////////////////////////////////////////////// CONFIRM DELETE -->
 <div id='confirmDelete' class='popup'>
   <h2>Confirm Deletion of Assignment</h2><hr>
   <div id='confirmmessage'></div>

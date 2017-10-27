@@ -56,8 +56,9 @@ class AssignmentController
         if($_POST['textresponse'][$i] === 'no')
           $allowTextResponse = 0;
         $currentID;
-        if($_POST['graded'][$i] == 'yes')
+        if($_POST['graded'][$i] === 'yes')
         {
+
           $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
         }
         else

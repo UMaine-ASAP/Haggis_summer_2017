@@ -15,17 +15,16 @@ $(document).ready(function()
 
   $(".givecritique").click(function(e)
   {
-    var in = e.target.id;
-    document.getElementByID('#'.in.'.details').hide();
-    document.getElementByID('#'.in.'.evaluate').show();
+    var thing = e.target.id;
+    $('#'+thing+'.details').hide();
+    $('#'+thing+'.evaluate').show();
   });
 
   $(".prompt").click(function(e)
   {
-    var id = e.target.id;
-    var splitstring = id.split('-');
-    document.getElementByID('.details-'.splitstring[1]).show();
-    document.getElementByID('.evaluate-'.splitstring[1]).hide();
+    var thing = e.target.id;
+    $('#'+thing+'.details').show();
+    $('#'+thing+'.evaluate').hide();
   });
 
   $(".newAssignment").click(function(){
