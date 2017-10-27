@@ -61,7 +61,7 @@ foreach($assignments as $a)
     ////////////////////////////////////////////////////// EVALUATE
     foreach($a->criterias as $c)
     {
-      echo "<form oninput='x.value=criteriaRating[].value'>";
+      echo "<form oninput='x.value=criteriaRating.value'>";
       echo "<input name='criteriaID[]' type='hidden' value='".$c->id."'>";
       echo "<output name ='x' for='criteriaRating'><br>";
       echo "<input name='criteriaRateing[]' id='criteriaRating' type='range' max='".$c->maxRange."' min='".$c->minRange."'>";
