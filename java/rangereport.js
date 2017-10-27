@@ -4,7 +4,6 @@ $(document).ready(function()
   {
     var curr = e.target.id;
     var currval = $(this).val();
-    console.log(curr);
     $('#'+curr+".criteriaRatingout").attr('value', currval);
   });
 });
