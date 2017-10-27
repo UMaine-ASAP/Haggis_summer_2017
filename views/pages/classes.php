@@ -1,5 +1,6 @@
 <script src="java/currentActionfixer.js"></script>
 <script src="java/assignmentViewer.js"></script>
+<script src="java/rangereport.js"></script>
 <script>fixer("#currentAction",
         "<?php echo $class->coursecode; ?>",
         "<?php if($status ==='admin')
