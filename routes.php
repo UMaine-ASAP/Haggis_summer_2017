@@ -6,6 +6,7 @@
   require_once('models/criteria.php');
   require_once('models/projectUser.php');
   require_once('models/project.php');
+  require_once('models/evaluate.php');
 
   function call ($controller, $action)
   {
@@ -32,6 +33,9 @@
       case 'mobile':
         $controller = new MobileController();
         break;
+      case 'evaluate':
+        $controller = new EvaluateController();
+        break;
     }
     $controller->{$action}();
   }
@@ -42,7 +46,8 @@
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
-                          'mobile'    => ['index']);
+                          'mobile'    => ['index'],
+                          'evaluate'  => ['insert']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

@@ -38,7 +38,7 @@ foreach($assignments as $a)
     }
     foreach($projects as $p)
     {
-      echo "<li><a href='#'>".$p->title."</a></li>";
+      echo "<li><a targetname='".$p->title."'class='projectitem' id='".$p->id."'href='#'>".$p->title."</a></li>";
     }
     echo "</ul>";
 
@@ -57,7 +57,9 @@ foreach($assignments as $a)
     }
     echo "</div>
           <div class='evaluate' id='".$a->id."'>
-          <form method='post' action=''>";
+          <form method='post' action='?controller=evaluate&action=submit'>
+          <input type='hidden' name = 'evalfor' class='evalfor' id='".$a->id."' value='0'>
+          <h2 class='targetproject' id='".$a->id."'>Choose a project to evaluate</h2>";
     ////////////////////////////////////////////////////// EVALUATE
     foreach($a->criterias as $c)
     {
@@ -68,7 +70,8 @@ foreach($assignments as $a)
       echo "<input class='standard'name='criteriaComment[]' type='text' placeholder='Comment:'>";
       echo "</form><hr>";
     }
-  echo "</form></div></td></tr></table></div>";
+  echo "<input class='standard' type=submit value='Submit Evaluation'>
+      </form></div></td></tr></table></div>";
 }
 ?>
 

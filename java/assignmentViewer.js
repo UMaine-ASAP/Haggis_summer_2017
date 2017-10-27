@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+  var currAssignment;
   $(".assignment").hide();
   $("#assignmentcreator").hide();
   $('.evaluate').hide();
@@ -8,6 +9,7 @@ $(document).ready(function()
   $(".assignments").click(function(e)
   {
     var inid = $(this).attr('id');
+    currAssignment = inid;
     $(".assignment").slideUp();
     $("#id"+inid).slideDown();
     $("#assignmentcreator").slideUp();
@@ -30,6 +32,13 @@ $(document).ready(function()
   $(".newAssignment").click(function(){
     $(".assignment").slideUp();
     $("#assignmentcreator").slideDown();
+  })
+  $(".projectitem").click(function(e){
+    var curr = e.target.id;
+    var currname= $(this).attr('targetname');
+
+    $('#'+currAssignment+'.evalfor').attr("value", curr);
+    $('#'+currAssignment+'.targetproject').html("Now Evaluating "+currname);
   })
 
 
