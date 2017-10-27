@@ -3,3 +3,4 @@
   <input type='password' name='password' placeholder='Password'>
   <input class='standard' type='submit' value='Login'>
 </form>
+<span>Don't have an account? <a href="?controller=mobile&action=register">register!</a></span>

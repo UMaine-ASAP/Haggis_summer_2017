@@ -6,16 +6,16 @@
   </tr>
   <tr>
     <td class='bigButton'>
-      <button class='bigButton'>
+      <a class='bigButton'>
         My Classes
-      </button>
+      </a>
     </td>
   </tr>
   <tr>
     <td class='bigButton'>
-      <button class='bigButton'>
+      <a class='bigButton'>
         Live Events
-      </button>
+      </a>
     </td>
   </tr>
 </table>
