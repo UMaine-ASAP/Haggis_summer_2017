@@ -17,7 +17,7 @@ class Evaluate
     $this->projectID = $projectID;
   }
 //=================================================================================== INSERT
-  public static function  insert($criteriaID, $rating, $comment, $projectID)
+  public static function  submit($criteriaID, $rating, $comment, $projectID)
   {
     $errorCode;
     $message;
@@ -38,6 +38,7 @@ class Evaluate
     }
     return array($errorCode, $message);
   }
+}
 // //=================================================================================== ALL
 //   public static function all()
 //   {

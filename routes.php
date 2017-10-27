@@ -47,7 +47,7 @@
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
                           'mobile'    => ['index'],
-                          'evaluate'  => ['insert']);
+                          'evaluate'  => ['submit']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
