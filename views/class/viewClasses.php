@@ -68,7 +68,7 @@ foreach($assignments as $a)
       echo "<input class='standard'name ='x' id='crout'></output><br>";
       echo "<input class='standard'name='criteriaRateing[]' id='criteriaRating' type='range' max='".$c->maxRange."' min='".$c->minRange."' oninput='crout.value = criteriaRating.value'>";
       echo "<input class='standard'name='criteriaComment[]' type='text' placeholder='Comment:'>";
-      echo "</form><hr>";
+      echo "</form></div><hr>";
     }
   echo "<input class='standard' type=submit value='Submit Evaluation'>
       </form></div></td></tr></table></div>";
