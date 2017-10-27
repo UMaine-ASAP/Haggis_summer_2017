@@ -63,7 +63,7 @@ foreach($assignments as $a)
     {
       echo "<form>";
       echo "<input name='criteriaID[]' type='hidden' value='".$c->id."'>";
-      echo "<output name ='x' id='crout'></output><br>";
+      echo "<input name ='x' id='crout'></output><br>";
       echo "<input name='criteriaRateing[]' id='criteriaRating' type='range' max='".$c->maxRange."' min='".$c->minRange."' oninput='crout.value = criteriaRating.value'>";
       echo "<input name='criteriaComment[]' type='text' placeholder='Comment:'>";
 
