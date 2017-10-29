@@ -12,10 +12,15 @@ class MobileController
     {
       require_once('views/mobile/login.php');
     }
-//=================================================================================== LOGIN PAGE
+//=================================================================================== REGISTRATION PAGE
     public function register()
     {
       require_once('views/mobile/register.php');
+    }
+//=================================================================================== CLASSES PAGE
+    public function classes()
+    {
+      require_once('views/mobile/classes.php');
     }
 }
 
