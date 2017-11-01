@@ -1,19 +1,12 @@
 $(document).ready(function()
 {
   var currAssignment;
-  $(".assignment").hide();
-  $("#assignmentcreator").hide();
+  //$(".assignment").hide();
+  //$("#assignmentcreator").hide();
   $('.evaluate').hide();
 
 
-  $(".assignments").click(function(e)
-  {
-    var inid = $(this).attr('id');
-    currAssignment = inid;
-    $(".assignment").slideUp();
-    $("#id"+inid).slideDown();
-    $("#assignmentcreator").slideUp();
-  });
+
 
   $(".givecritique").click(function(e)
   {
@@ -29,10 +22,7 @@ $(document).ready(function()
     $('#'+thing+'.evaluate').hide();
   });
 
-  $(".newAssignment").click(function(){
-    $(".assignment").slideUp();
-    $("#assignmentcreator").slideDown();
-  })
+
   $(".projectitem").click(function(e){
     var curr = e.target.id;
     var currname= $(this).attr('targetname');

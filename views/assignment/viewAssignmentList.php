@@ -1,12 +1,7 @@
+
 <script src="java/livesearch.js"></script>
 <div class='menutitle'>
 Assignments(<?php echo sizeof($assignments);?>)
-</div>
-<br>
-<div>
-  <?php if($status === 'admin')
-  echo "<a class ='newAssignment' href='#'>New Assignment +</a>";
-   ?>
 </div>
 <br>
 <div>
@@ -17,7 +12,7 @@ Assignments(<?php echo sizeof($assignments);?>)
 <?php
 foreach($assignments as $a)
 {
-  echo "<li class='assignments' id='".$a->id."'>".$a->title."</li>";
+  echo "<li class='assignments' onclick='ViewAssignment(".$a->id.")' id=''>".$a->title."</li>";
 }
 echo "</ul>";
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
