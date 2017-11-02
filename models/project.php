@@ -66,7 +66,16 @@ Class Project {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new Project($result['projectID'],$result['title'],$result['description'],$result['isgroup'],$result['assignmentID']));
+      $project;
+      if($result['isGroup'] === '0')
+      {
+          $project =new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+      }
+      else
+      {
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], Group::getByProjectID($result['projectID'])[1]);
+      }
+      return array(1, $project);
     }
     //=================================================================================== assignmentID
     public static function assignment($assignmentid)

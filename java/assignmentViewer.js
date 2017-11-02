@@ -23,13 +23,4 @@ $(document).ready(function()
   });
 
 
-  $(".projectitem").click(function(e){
-    var curr = e.target.id;
-    var currname= $(this).attr('targetname');
-
-    $('#'+currAssignment+'.evalfor').attr("value", curr);
-    $('#'+currAssignment+'.targetproject').html("Now Evaluating "+currname);
-  })
-
-
 });

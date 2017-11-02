@@ -1,10 +1,5 @@
 <?php
-if(true)                                  //For debugging only
-{                                         //    Set false to remove all error
-  ini_set('display_errors', 1);           //    reporting.
-  ini_set('display_startup_errors',1);
-  error_reporting(E_ALL);
-}
+
 require_once('../models/assignment.php');
 require_once('../connection.php');
 require_once('../models/project.php');

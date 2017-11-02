@@ -8,15 +8,15 @@ function ViewAssignment(idin)
 }
 function GetProject(idin)
 {
-  $('#ProjectView').load("/Haggis_summer_2017/views/project/viewProject.php?projectID="+idin);
+  $('#ProjectView').load("/Haggis_summer_2017/controllers/viewProjectController.php?projectID="+idin);
 }
 function GetProjectResponses(idin)
 {
-  $('#FinalView').load("/Haggis_summer_2017/views/project/responsesProject.php?id="+idin);
+  $('#FinalView').load("/Haggis_summer_2017/controllers/responsesProjectController.php?id="+idin);
 }
 function EvaluateProject(idin)
 {
-  $('#FinalView').load("/Haggis_summer_2017/views/project/evaluateProject.php?id="+idin);
+  $('#FinalView').load("/Haggis_summer_2017/controllers/evaluateProjectController.php?id="+idin);
 }
 function GetPrompt(idin)
 {

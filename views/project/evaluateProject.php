@@ -4,8 +4,7 @@
 echo "</div>
       <div class='evaluate' id='".$a->id."'>
         <form method='post' action='?controller=evaluate&action=submit'>
-        <input type='hidden' name = 'evalfor' class='evalfor' id='".$a->id."' value='0'>
-        <h2 class='targetproject' id='".$a->id."'>Choose a project to evaluate</h2>";
+        <input type='hidden' name = 'evalfor' class='evalfor' id='".$a->id."' value='".$projectid."'>";
         foreach($a->criterias as $c)
         {
           echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
