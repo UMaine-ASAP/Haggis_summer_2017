@@ -1,11 +1,11 @@
 <?php
 
-if(true)                                  //For debugging only
-{                                         //    Set false to remove all error
-  ini_set('display_errors', 1);           //    reporting.
-  ini_set('display_startup_errors',1);
-  error_reporting(E_ALL);
-}
+// if(true)                                  //For debugging only
+// {                                         //    Set false to remove all error
+//   ini_set('display_errors', 1);           //    reporting.
+//   ini_set('display_startup_errors',1);
+//   error_reporting(E_ALL);
+// }
  require_once('../models/klass.php');         //we pull our models in and get them ready to be used by the controllers
  require_once('../models/assignment.php');
  require_once('../models/course.php');
