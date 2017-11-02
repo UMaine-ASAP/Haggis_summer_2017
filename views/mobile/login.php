@@ -1,6 +1,6 @@
 <form action="?controller=user&action=login" method="post">
   <input type='email' name='email' placeholder='Email Address'>
   <input type='password' name='password' placeholder='Password'>
-  <input class='standard' type='submit' value='Login'>
+  <input class='bigButton' type='submit' value='Login'>
 </form>
-<span>Don't have an account? <a href="?controller=mobile&action=register">register!</a></span>
+<p><span>Don't have an account? <a class="smallButton" href="?controller=mobile&action=register">Sign Up</a></span></p> <!--Added this p tag so I could rearrange things. If it breaks things remove it. -->

@@ -20,9 +20,9 @@
         <div class='headerLogin'>
           <?php
           if (isset($_SESSION['token'])) {
-            echo  "<a href='?controller=user&action=logout'>log out</a>";
+            echo  "<a class='login' href='?controller=user&action=logout'>log out</a>";
           } else {
-            echo  "<a href='?controller=mobile&action=login'>Login/Sign Up</a>";
+            echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
           }
           ?>
         </div>

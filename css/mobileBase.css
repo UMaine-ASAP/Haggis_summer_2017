@@ -1,19 +1,42 @@
 *{
   font-family: Arial, sans-serif;
+  font-size: 14px;
   text-decoration: none;
   color: black;
 }
 
 #catchphrase{
   text-align: center;
-  padding-top: 25%;
-  padding-bottom: 25%;
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
 
 .bigButton{
-  width: 75%;
+  position: relative;
+  border: none;
+  padding: 8% 35% 8% 35%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 30px;
+  font-size: 18px;
+  float: center;
+}
+
+table{
+  margin-top: 20%;
+}
+
+td.buttonHolder{
+  padding: 17%;
+}
+
+a.smallButton{
+  padding: 3%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 20px;
+}
+
+p{
   text-align: center;
-  padding: 10%;
-  margin: auto;
-  background-color: blue;
 }
