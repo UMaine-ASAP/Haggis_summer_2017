@@ -7,7 +7,7 @@ $(document).ready(function()
     $('#'+curr+".criteriaRatingout").attr('value', currval);
   });
 
-  $('#evalform').submit(function(e))
+  $('#evalsubmit').submit(function(e))
   {
     e.preventDefault();
     var completed = false;
