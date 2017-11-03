@@ -16,7 +16,7 @@ echo "</div>
           echo "<textarea rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:'></textarea>";
           echo "</div><hr class='minor'>";
         }
-        echo "<input class='standard' id='evalsubmit' type='submit' value='Submit Evaluation'>
+        echo "<input class='standard' id='evalsubmit' type='button' value='Submit Evaluation'>
   </form></div></td></tr></table></div>";
 ?>
 
