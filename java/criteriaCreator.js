@@ -5,13 +5,13 @@ function addACritiera(counter)
   div.className='criteriaCard';
   div.id = counter;
   div.innerHTML = "<input class='standard' name='criteriaName[]' placeholder='name of criteria' list='criterias' required>\
-  <div  class='removeCriteria'><i class='glyphicon glyphicon-remove'></i></div>\
-  graded on a scale from <input type='number' class='standard' name='from' placeholder='#' min='0' max='1000'> to\
-  <input class='standard' type='number' name='to' placeholder='#'min='0' max='1000'>\
+  <div  class='removeCriteria' id='"+counter+"'><i class='glyphicon glyphicon-remove'></i></div>\
+  graded on a scale from <input type='number' class='standard' name='from[]' placeholder='#' min='0' max='1000'> to\
+  <input class='standard' type='number' name='to[]' placeholder='#'min='0' max='1000'>\
   <input class='standard' type='checkbox' id='noGrade'>n/a\
     <input type='hidden' name='graded[]' value='yes'>\
   <br>\
-  <textarea class='standard' id='text"+counter+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>\
+  <textarea class='standard criteriadescription' id='criteriadescription"+counter+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>\
   allow additional text response\
   <input class='standard' type='radio' name='textresponse[]' value='yes' checked>yes\
   <input class='standard' type='radio' name='textresponse[]' value='no'>no";
@@ -19,29 +19,25 @@ function addACritiera(counter)
   document.getElementById('criteriacardcontainer').appendChild(div);
 }
 
-
-function removeACriteria(event)
-{
-  var card = document.getElementById(event.target.parentNode.parentNode.id);
-  card.parentNode.removeChild(card);
-  var cards = document.getElementsByClassName('criteriaCard');
-  for(var i = 0; i<cards.length;i++)
-  {
-    cards[i].id= i;
-    cards[i].getElementsByTagName('textarea').id = "text"+i;
-  }
-}
-
-
-
-
-
 $(document).ready(function()
 {
   var counter = 0;
-  $(document).on("click",".removeCriteria", function(event){
-    counter--;
-    removeACriteria(event);
+  $(document).on("click",".removeCriteria", function(e)
+  {
+    if(counter > 0);
+      counter--;
+    var curr = $(this).attr('id');
+    $('#'+curr+'.criteriaCard').remove();
+
+    var cards = document.getElementsByClassName('criteriaCard');
+    var textareas = document.getElementsByClassName('criteriadescription');
+    var exitbox = document.getElementsByClassName('removeCriteria');
+    for(var i = 0; i<cards.length;i++)
+    {
+      cards[i].id= i;
+      cards[i].getElementsByClassName('criteriadescription')[0].id = 'criteriadescription'+i;
+      cards[i].getElementsByClassName('removeCriteria')[0].id= i;
+    }
   })
   $('#addCriteria').click(function(){
     counter++;
@@ -80,6 +76,6 @@ $(document).ready(function()
       var description = $("#"+searchfor).attr('value');
     if(description == null)
       description = "";
-    document.getElementById('text'+id).value = description;
+    document.getElementById('criteriadescription'+id).value = description;
   })
 });

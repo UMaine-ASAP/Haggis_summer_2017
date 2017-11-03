@@ -1,21 +1,26 @@
 $(document).ready(function()
 {
-  $(".assignment").hide();
-  $("#assignmentcreator").hide();
+  var currAssignment;
+  //$(".assignment").hide();
+  //$("#assignmentcreator").hide();
+  $('.evaluate').hide();
 
 
-  $("li").click(function(e)
+
+
+  $(".givecritique").click(function(e)
   {
-    var inid = $(this).attr('id');
-    $(".assignment").slideUp();
-    $("#id"+inid).slideDown();
-    $("#assignmentcreator").slideUp();
+    var thing = e.target.id;
+    $('#'+thing+'.details').hide();
+    $('#'+thing+'.evaluate').show();
   });
 
-  $(".newAssignment").click(function(){
-    $(".assignment").slideUp();
-    $("#assignmentcreator").slideDown();
-  })
+  $(".prompt").click(function(e)
+  {
+    var thing = e.target.id;
+    $('#'+thing+'.details').show();
+    $('#'+thing+'.evaluate').hide();
+  });
 
 
 });

@@ -5,18 +5,20 @@ Class Project {
   public $isgroup;
   public $description;
   public $assignmentID;
+  public $list;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description,$isgroupin, $assignmentIDin) {
+  public function __construct($id, $title, $description,$isgroupin, $assignmentIDin, $listin) {
         $this->id = $id;
         $this->title = $title;
         $this->isgroup = $isgroupin;
         $this->description = $description;
         $this->assignmentID = $assignmentIDin;
+        $this->list = $listin;
     }
 
 
 //=================================================================================== CREATE
-    public static function create($title, $isgroup, $description, $assignmentID)
+    public static function create($title, $description, $isgroup, $assignmentID)
     {
       $courseIDfinal = '';
       $errorCode;
@@ -64,9 +66,38 @@ Class Project {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      return array(1, new Project($result['projectID'],$result['title'],$result['description'],$result['isgroup'],$result['assignmentID']));
+      $project;
+      if($result['isGroup'] === '0')
+      {
+          $project =new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+      }
+      else
+      {
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], Group::getByProjectID($result['projectID'])[1]);
+      }
+      return array(1, $project);
     }
-
-
+    //=================================================================================== assignmentID
+    public static function assignment($assignmentid)
+    {
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM project WHERE assignmentID = ?";
+      $data = array($assignmentid);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $projectlists = array();
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        if($result['isGroup'] === '0')
+        {
+            $projectlists[] =new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+        }
+        else
+        {
+            $projectlists[] = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], Group::getByProjectID($result['projectID'])[1]);
+        }
+      }
+      return array(1, $projectlists);
+    }
   }
-  ?>
+?>

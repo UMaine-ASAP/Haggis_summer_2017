@@ -1,24 +1,18 @@
-<script src="java/livesearch.js"></script>
-<div class='menutitle'>
-Assignments(<?php echo sizeof($assignments);?>)
+    <!-- ////////////////////////////////////////////////////// CONFIRM DELETE -->
+<!-- <div id='confirmDelete' class='popup'>
+  <h2>Confirm Deletion of Assignment</h2><hr>
+  <div id='confirmmessage'></div>
+  <form action='?controller=assignment&action=delete' method ='post'>
+    <input type='hidden' name='classID' value='<?php //echo $classID; ?>'>
+    <input type='hidden' name='assignmentID' value='0'>
+    <input class='standard' type ='submit' value='Delete'>
+    <button class='exit standard' type='button'>Cancel</button>
+  </form>
 </div>
-<br>
-<div>
-  <?php if($status === 'admin')
-  echo "<a class ='newAssignment' href='#'>New Assignment +</a>";
-   ?>
-</div>
-<br>
-<div>
-  <input class='joinedInputSmaller' onkeyup='searchNhighlight(document.getElementById("searchString").value, "assignments", "orange")' type='text' id='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-search"></i></button>
-</div>
-<br>
-<ul id="assignmentList">
-<?php
-foreach($assignments as $a)
-{
-  echo "<li class='assignments' id='".$a->id."'>".$a->title."</li>";
-}
-echo "</ul>";
-//if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
-?>
+
+<div id='editClass' class ='popup'>
+  <h2>TEST</h2>
+  <button class='exit standard' type='button'>Cancel</button>
+</div> -->
+
+<h3>Choose an Assignment</h3>

@@ -162,14 +162,68 @@ class Criteria
         return array($errorCode, $message);
       }
     }
+    //=================================================================================== GET CRITERIA BY title
+      public static function title($title)
+      {
+          $errorCode;
+          $message;
+          $criteria;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM criteria WHERE title = ?";
+          $data = array($id);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $r = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $criteria = new Criteria($r['criteriaID'], $r['title'], $r['description'], $r['rateRangeMin'], $r['rateRangeMax'], $r['allowTextResponse']);
+
+            $message = $criteria;
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
+    //=================================================================================== GET CRITERIA BY id
+      public static function id($id)
+      {
+          $errorCode;
+          $message;
+          $criteria;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM criteria WHERE criteriaID = ?";
+          $data = array($id);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $r = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $criteria = new Criteria($r['criteriaID'], $r['title'], $r['description'], $r['rateRangeMin'], $r['rateRangeMax'], $r['allowTextResponse']);
+
+            $message = $criteria;
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
   //=================================================================================== GET CRITERIA BY ASSIGNMENT
-    public static function assignmentID($assignmentID)
+    public static function assignmentID($assignmentid)
     {
         $errorCode;
         $message;
         $db = Db::getInstance();
         $sql = "SELECT * FROM criteria WHERE criteriaID IN (SELECT criteriaID FROM assignment_criteria WHERE assignment_criteria.assignmentID = ?)";
-        $data = array($assignmentID);
+        $data = array($assignmentid);
         try
         {
           $stmt = $db->prepare($sql);

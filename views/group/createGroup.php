@@ -7,9 +7,9 @@
     <td colspan='2' class='creationForm'>
 
         <div  id="output"></div>
-        <input class='standard' type='button' onclick="extractor('group','output')"  value='Create Groups'>
+        <!-- <input class='standard' type='button' onclick="extractor('group','output')"  value='Create Groups'> -->
       </form>
-      <button type='button' class='standard' onclick='groupFormer()'>Make groups</button>
+      <button type='button' class='standard' onclick='groupFormer("group","output")'>Make groups</button>
       <input type='number' class='standard' value =<?php echo $NumofGroups;?> name='numofGroups'>
     </td>
   </tr>
