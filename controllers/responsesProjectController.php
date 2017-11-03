@@ -11,7 +11,7 @@ require_once('../models/evaluate.php');
 $projectid = $_GET['id'];
 $project = Project::id($projectid)[1];
 $projectresponses = Evaluate::projectID($projectid)[1];
-// $criteria = Criteria::all()[1];
+$cID = array();
 $cNames = array();
 $cAvg = array();
 $cComments = array();
@@ -19,14 +19,16 @@ $cComments = array();
 foreach($projectresponses as $r)
 {
   $temp = Criteria::id($r->criteriaID)[1];
-  $index = array_search($temp->title, $cNames);
-    if( $index != false)
+  $check = in_array($temp->id, $cID);
+    if( $check != false)
     {
+      $index = array_search($temp->id, $cID);
       $cAvg[$index] = ($cAvg[$index] + $r->rating)/2;
       $cComments[$index][] = $r->comment;
     }
     else
     {
+      $cID[] = $temp->id;
       $cNames[] = $temp->title;
       $cAvg[] = $r->rating;
       $cComments[] = array($r->comment);

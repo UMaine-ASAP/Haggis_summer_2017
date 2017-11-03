@@ -10,6 +10,7 @@ $(document).ready(function()
 
 function SubmitEvaluation()
 {
+  var completed = false;
   var formsr = $('#evalform').serialize();
   var criteriaIDs= document.getElementsByClassName('criteriaID');
   criteriaIDs = jQuery.makeArray(criteriaIDs);
@@ -33,11 +34,20 @@ function SubmitEvaluation()
       url:  '/Haggis_summer_2017/controllers/evaluateSlinger.php',
       data: dataString,
       success: function(){
-        $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');
-        $('#evalform').hide();
+        completed = true;
       }
     });
   }
+
+  if(completed)
+  {
+    $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');
+    $('#evalform').hide();
+  }
+  else
+    $('#evalout').append('<h3>Submission did not complete successfully<h3>');
+
+}
 
 
 
