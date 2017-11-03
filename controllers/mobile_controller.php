@@ -20,6 +20,12 @@ class MobileController
 //=================================================================================== CLASSES PAGE
     public function classes()
     {
+      if(isset($_SESSION['token']))
+      {
+        $classes = Klass::userClasses($_SESSION['token'])[1];
+        $courselisting = Course::all()[1];
+      }
+
       $message = "";
       $class;
       $assignments;
@@ -53,17 +59,21 @@ class MobileController
           $classID = $_SESSION['returnto'];
           unset($_SESSION['returnto']);
         }
-        else
-        {
-          $classID = $_GET['classID'];
-        }
-        $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
-        $class = Klass::classid($classID)[1];             //pulls class data
-        $students = User::klass($classID)[1];           //pulls data for students in class
-        $userList = User::klass($classID)[1];
       }
       $status = 'user';                                   //checks for admin or user status
       require_once('views/mobile/classes.php');
+    }
+//=================================================================================== JOIN CLASS FUNCTION
+    public function joinClass()
+    {
+      if(isset($_POST['joinCode']))
+      {
+        $userID = User::getID($_SESSION['token'])[1];
+        $_SESSION['message'] = Klass::joinClass($userID, $_POST['joinCode'])[1];
+      }
+      else
+        $courses = Course::all()[1];
+      header('Location: classes.php');
     }
 }
 
