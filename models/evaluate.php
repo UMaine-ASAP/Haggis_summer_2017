@@ -24,6 +24,7 @@ class Evaluate
     $errorCode;
     $message;
     $data;
+    $sql;
     $db = Db::getInstance();
     $check = Evaluate::check($authorID, $projectID, $criteriaID);
     if($check === false)
