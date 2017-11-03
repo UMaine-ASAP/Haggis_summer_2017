@@ -23,10 +23,21 @@ class Evaluate
   {
     $errorCode;
     $message;
+    $data;
     $db = Db::getInstance();
-    $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
+    $check = Evaluate::check($authorID, $projectID, $criteriaID)
+    if($check === false)
+    {
+      $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
+      $data = array($criteriaID, $rating, $comment, $projectID, $authorID);
+    }
+    else
+    {
+      $sql = "UPDATE evaluation SET criteriaID = ?, rating = ?, comment = ?, projectID = ?,author = ? WHERE evaluationID = ?";
+      $data = array($criteriaID, $rating, $comment, $projectID, $authorID,$check);
+    }
     $stmt = $db->prepare($sql);
-    $data = array($criteriaID, $rating, $comment, $projectID, $authorID);
+
     try
     {
         $stmt->execute($data);
@@ -68,4 +79,32 @@ class Evaluate
         }
         return array($errorCode, $message);
     }
+    //=================================================================================== Check if already submitted
+     public static function check($authorid, $projectid, $criteriaid)
+     {
+         $errorCode;
+         $message;
+         $db = Db::getInstance();
+         $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
+         $data = array($authorid, $projectid, $criteriaid);
+         try
+         {
+           $stmt = $db->prepare($sql);
+           $stmt->execute($data);
+           $evaluations = array();
+           $message = false;
+           if($r = $stmt->fetch(PDO::FETCH_ASSOC))
+           {
+             $message = $r['evaluationID'];
+           }
+           //$message = $evaluations;
+           $errorCode = 1;
+         }
+         catch(PDOException $e)
+         {
+           $errorCode = $e->getCode();
+           $message = $e->getMessage();
+         }
+         return array($errorCode, $message);
+     }
 }
