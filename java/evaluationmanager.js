@@ -28,23 +28,8 @@ $(document).ready(function()
       xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.send(dataString);
-      // $.ajax({
-      //   type: 'POST',
-      //   url:  '/Haggis_summer_2017/controllers/evaluateSlinger.php',
-      //   data: dataString,
-      //   success: function()
-      //   {
-      //     completed = true;
-      //   }
-      // });
-    }
-
-    if(completed)
-    {
       $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');
       $('#evalform').hide();
     }
-    else
-      $('#evalout').append('<h3>Submission did not complete successfully<h3>');
   });
 });
