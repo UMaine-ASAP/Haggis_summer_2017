@@ -2,10 +2,11 @@
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
+  <tr><td></td><td></td></tr>
     <tr>
       <td colspan='2'>
       <h2>".$a->title."</h2>
-      <a onclick='GetPrompt(".$a->id.")'>Prompt</a>";
+      <a class='promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</a>";
       // if($status === 'admin')
       // {
       //   echo "
@@ -23,11 +24,11 @@
     $test = $projects[0];
     if($test->isgroup === '0')
     {
-      echo "students (".$ps.")<hr><ul>";
+      echo "students (".$ps.")<hr class='minor'><ul>";
     }
     else
     {
-      echo "groups (".$ps.")<hr><ul>";
+      echo "groups (".$ps.")<hr class='minor'><ul>";
     }
     foreach($projects as $p)
     {

@@ -43,7 +43,8 @@ class PagesController
         $classID = $_GET['classID'];
       $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
       $status = 'user';                                   //checks for admin or user status
-
+      $class = Klass::classid($classID)[1];
+      $students = User::klass($classID)[1];
       if(User::checkAdmin($_SESSION['token'])[1])
           $status = 'admin';
       require_once('views/pages/classes.php');

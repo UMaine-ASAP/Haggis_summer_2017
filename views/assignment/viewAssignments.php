@@ -15,4 +15,4 @@
   <button class='exit standard' type='button'>Cancel</button>
 </div> -->
 
-<h2>Choose an Assignment</h2>
+<h3>Choose an Assignment</h3>

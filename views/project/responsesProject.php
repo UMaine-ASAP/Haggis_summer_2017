@@ -1,8 +1,21 @@
-<h2>Project Responses</h2>
+<h3>Project Responses</h3>
 
 <?php
-foreach($projectresponses as $r)
+$i=0;
+if(sizeof($cNames)<1)
+  echo "No Evaluations yet, Be the first!";
+else
 {
-  echo $r->id."<br>".$r->comment."<br><br>";
+  foreach($cNames as $n)
+  {
+    echo "<h3>".$n."</h3>";
+    echo "Average Rating: ".$cAvg[$i]."<br>";
+    foreach($cComments[$i] as $c)
+    {
+      echo $c."<br>";
+    }
+    echo "<br>";
+    $i++;
+  }
 }
 ?>
