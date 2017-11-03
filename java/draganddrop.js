@@ -146,7 +146,7 @@ function getRandomInt(min, max) {
     return Math.round(Math.random().map(0,1,min,max));
 }
 
-function groupFormer()
+function groupFormer(input, output)
 {
   var numberofgroups = document.getElementsByName('numofGroups')[0].value;  //Get the number of groups
   var studentListraw = document.getElementsByClassName('namebutton');       //Get the elements that are students
@@ -182,6 +182,7 @@ function groupFormer()
     $('#groupmakercontainer').prepend(newGroup);
   }
   cleanUp();
+  extractor(input, output);
 }
 
 function extractor(input, output)           //When executed this function goes through elements with a class

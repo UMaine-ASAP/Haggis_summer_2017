@@ -56,7 +56,7 @@ class AssignmentController
         if($_POST['textresponse'][$i] === 'no')
           $allowTextResponse = 0;
         $currentID;
-        if($_POST['graded'][$i] == 'yes')
+        if($_POST['graded'][$i] === 'yes')
         {
           $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
         }
@@ -80,11 +80,13 @@ class AssignmentController
     if($_POST['makegroup'] == 'true')
     {
       $numofGroups = sizeof($_POST['labels']);
+      $groupcounter = 1;
       foreach($_POST['labels'] as $label)
       {
-        $projectID = Project::create($_POST['title'], $_POST['assignmentdescription'], "1", $assignmentID)[1];
+        $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
         $userIDs = array();
         $counter = 0;
+        $groupcounter++;
         echo $label;
         foreach($_POST[$label] as $element)
         {
@@ -98,7 +100,7 @@ class AssignmentController
       $userList = User::klass($_POST['classid'])[1];
       foreach($userList as $user)
       {
-        $projectID = Project::create($_POST['title'], $_POST['assignmentdescription'], "0", $assignmentID)[1];
+        $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
       }
 
