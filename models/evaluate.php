@@ -27,15 +27,15 @@ class Evaluate
     $sql;
     $db = Db::getInstance();
     $check = Evaluate::check($authorID, $projectID, $criteriaID);
-    if($check === false)
+    if($check != false)
     {
       $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
       $data = array($criteriaID, $rating, $comment, $projectID, $authorID);
     }
     else
     {
-      $sql = "UPDATE evaluation SET criteriaID = ?, rating = ?, comment = ?, projectID = ?,author = ? WHERE evaluationID = ?";
-      $data = array($criteriaID, $rating, $comment, $projectID, $authorID,$check);
+      $sql = "UPDATE evaluation SET  rating = ?, comment = ? WHERE evaluationID = ?";
+      $data = array($rating, $comment,$check);
     }
     $stmt = $db->prepare($sql);
 
