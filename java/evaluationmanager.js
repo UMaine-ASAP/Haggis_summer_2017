@@ -28,8 +28,9 @@ $(document).ready(function()
       xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.send(dataString);
-      $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');
-      $('#evalform').hide();
+
     }
+    $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');
+    $('#evalform').hide();
   });
 });
