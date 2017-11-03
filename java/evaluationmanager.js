@@ -20,7 +20,6 @@ $(document).ready(function()
     criteriaComment = jQuery.makeArray(criteriaComment);
     var projectID = $('input[name="evalfor"]').val();
     var xmlhttp = new XMLHttpRequest();
-    //alert( + " " + criteriaRatings[0].value + " " + criteriaComment[0].value + " " + projectID);
     for(var i=0; i < criteriaIDs.length;i++)
     {
       var dataString = 'criteriaID='+criteriaIDs[i].value+'&criteriaRating='+criteriaRatings[i].value+'&criteriaComment='+criteriaComment[i].value+'&projectID='+projectID;
