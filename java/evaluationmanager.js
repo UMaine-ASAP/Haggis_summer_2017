@@ -46,5 +46,5 @@ $(document).ready(function()
     }
     else
       $('#evalout').append('<h3>Submission did not complete successfully<h3>');
-  }
+  });
 });
