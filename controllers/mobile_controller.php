@@ -73,7 +73,7 @@ class MobileController
       }
       else
         $courses = Course::all()[1];
-      header('Location: classes.php');
+      MobileController::classes();
     }
 }
 
