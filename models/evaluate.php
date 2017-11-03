@@ -19,11 +19,10 @@ class Evaluate
     $this->authorID=$authorID;
   }
 //=================================================================================== INSERT
-  public static function  submit($criteriaID, $rating, $comment, $projectID, $token)
+  public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)
   {
     $errorCode;
     $message;
-    $authorID = User::getID($token);
     $db = Db::getInstance();
     $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
     $stmt = $db->prepare($sql);

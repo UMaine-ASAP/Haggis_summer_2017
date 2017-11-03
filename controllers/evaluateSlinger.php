@@ -9,7 +9,12 @@ session_start();
 require_once('../models/evaluate.php');
 require_once('../connection.php');
 require_once('../models/user.php');
+$i = 0;
+$userid = User::getID($token);
 
-Evaluate::submit($_POST['criteriaID'], $_POST['criteriaRating'], $_POST['criteriaComment'], $_POST['projectID'], $_SESSION['token'] )[1];
-
+foreach($_POST['criteriaID'])
+{
+  Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $_POST['projectID'], $userid )[1];
+  $i++;
+}
 ?>
