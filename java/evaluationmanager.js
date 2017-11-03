@@ -23,7 +23,6 @@ function SubmitEvaluation()
   //alert( + " " + criteriaRatings[0].value + " " + criteriaComment[0].value + " " + projectID);
   for(var i=0; i < criteriaIDs.length;i++)
   {
-
     var dataString = 'criteriaID='+criteriaIDs[i].value+'&criteriaRating='+criteriaRatings[i].value+'&criteriaComment='+criteriaComment[i].value+'&projectID='+projectID;
     //alert(dataString);
     xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
@@ -33,7 +32,8 @@ function SubmitEvaluation()
       type: 'POST',
       url:  '/Haggis_summer_2017/controllers/evaluateSlinger.php',
       data: dataString,
-      success: function(){
+      success: function()
+      {
         completed = true;
       }
     });
@@ -46,10 +46,5 @@ function SubmitEvaluation()
   }
   else
     $('#evalout').append('<h3>Submission did not complete successfully<h3>');
-
-}
-
-
-
 
 }
