@@ -19,23 +19,24 @@ $(document).ready(function()
     var criteriaComment= document.getElementsByClassName('criteriaComment');
     criteriaComment = jQuery.makeArray(criteriaComment);
     var projectID = $('input[name="evalfor"]').val();
-    //var xmlhttp = new XMLHttpRequest();
+    var xmlhttp = new XMLHttpRequest();
+    //alert( + " " + criteriaRatings[0].value + " " + criteriaComment[0].value + " " + projectID);
     for(var i=0; i < criteriaIDs.length;i++)
     {
-      //var dataString = 'criteriaID='+criteriaIDs[i].value+'&criteriaRating='+criteriaRatings[i].value+'&criteriaComment='+criteriaComment[i].value+'&projectID='+projectID;
+      var dataString = 'criteriaID='+criteriaIDs[i].value+'&criteriaRating='+criteriaRatings[i].value+'&criteriaComment='+criteriaComment[i].value+'&projectID='+projectID;
       //alert(dataString);
-      //xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
-      //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      //xmlhttp.send(dataString);
-      $.ajax({
-        type: 'POST',
-        url:  '/Haggis_summer_2017/controllers/evaluateSlinger.php',
-        data: formsr,
-        success: function()
-        {
-          completed = true;
-        }
-      });
+      xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(dataString);
+      // $.ajax({
+      //   type: 'POST',
+      //   url:  '/Haggis_summer_2017/controllers/evaluateSlinger.php',
+      //   data: dataString,
+      //   success: function()
+      //   {
+      //     completed = true;
+      //   }
+      // });
     }
 
     if(completed)
