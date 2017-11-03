@@ -26,7 +26,7 @@ class Evaluate
     $data;
     $sql;
     $db = Db::getInstance();
-    $check = Evaluate::check($authorID, $projectID, $criteriaID);
+    $check = Evaluate::check($authorID, $projectID, $criteriaID)[1];
     if($check != false)
     {
       $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
