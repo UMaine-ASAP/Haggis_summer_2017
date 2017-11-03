@@ -18,7 +18,7 @@ class Evaluate
     $this->projectID = $projectID;
     $this->authorID=$authorID;
   }
-//=================================================================================== INSERT
+//=================================================================================== INSERT/UPDATE
   public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)
   {
     $errorCode;

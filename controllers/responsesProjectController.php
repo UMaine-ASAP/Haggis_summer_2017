@@ -23,7 +23,7 @@ foreach($projectresponses as $r)
     if( $check != false)
     {
       $index = array_search($temp->id, $cID);
-      $cAvg[$index] = ($cAvg[$index] + $r->rating)/2;
+      $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
       $cComments[$index][] = $r->comment;
     }
     else
