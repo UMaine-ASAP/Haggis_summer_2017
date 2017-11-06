@@ -13,6 +13,6 @@ $userid = User::getID($_SESSION['token'])[1];
 $i = 0;
 for($i  = 0; $i < sizeof($_POST['criteriaID']); $i++)
 {
-  Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $_POST['projectID'], $userid )[1];
+  Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $_POST['evalfor'], $userid )[1];
 }
 ?>

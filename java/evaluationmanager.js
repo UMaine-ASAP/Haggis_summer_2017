@@ -11,6 +11,7 @@ $(document).ready(function()
   {
     e.preventDefault();
     var formsr = $('#evalform').serialize();
+    console.log(formsr);
     var projectID = $('input[name="evalfor"]').val();
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
