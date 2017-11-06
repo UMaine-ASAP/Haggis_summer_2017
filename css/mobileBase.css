@@ -8,35 +8,30 @@
 #catchphrase{
   text-align: center;
   padding-top: 20%;
-  padding-bottom: 20%;
-}
-
-.bigButton{
-  position: relative;
-  border: none;
-  padding: 8% 35% 8% 35%;
-  color: white;
-  background-color: #1195c6;
-  border-radius: 30px;
-  font-size: 18px;
-  float: center;
+  padding-bottom: 30%;
+  font-size: 15px;
 }
 
 table{
   margin-top: 20%;
-}
-
-td.buttonHolder{
-  padding: 17%;
-}
-
-a.smallButton{
-  padding: 3%;
-  color: white;
-  background-color: #1195c6;
-  border-radius: 20px;
+  width: 100%;
 }
 
 p{
   text-align: center;
 }
+
+.currentPage{
+  margin-left: 8%;
+  color: black;
+  font-size: 35px;
+  padding-bottom: 8%;
+}
+
+
+
+
+
+
+
+.

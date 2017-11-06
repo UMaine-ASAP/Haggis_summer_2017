@@ -1,0 +1,70 @@
+div.inputLogin{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20%;
+  padding-top: 3%;
+  margin: auto;
+}
+
+div.inputRegister{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 15%;
+  margin: auto;
+}
+
+input.bigButton{
+  text-align: center;
+  border: none;
+  padding: 4% 31% 4% 31%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 50px;
+  font-size: 18px;
+  width: 75%;
+}
+
+.adjustTop{
+  padding-top: 20%;
+}
+
+.adjustBottom{
+  padding-bottom: 20%;
+}
+
+.typeBox{
+  width: 75%;
+  border-radius: 20px;
+  border-color: black;
+  border-width: 1.5px;
+  padding-left: 10px;
+}
+
+.names{
+  display:inline;
+}
+
+.firstLast{
+  width: 32.5%;
+}
+
+.MI{
+  padding-left: 5px;
+  width: 8%;
+}
+
+#first{
+  padding-left: 12.5%;
+}
+
+#email{
+  padding-top: 15%;
+}
+
+
+
+
+
+
+
+.

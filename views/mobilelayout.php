@@ -5,6 +5,8 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="css/mobileBase.css">
       <link rel="stylesheet" type="text/css" href="css/mobileTopBar.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileButton.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileInput.css">
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
