@@ -5,15 +5,14 @@ if(true)                                  //For debugging only
   ini_set('display_startup_errors',1);
   error_reporting(E_ALL);
 }
-session_start();
+//session_start();
 require_once('../models/evaluate.php');
 require_once('../connection.php');
 require_once('../models/user.php');
 $userid = User::getID($token)[1];
 $i = 0;
-foreach($_POST['criteriaID'])
+for($i  = 0; $i < sizeof($_POST['criteriaID']); $i++)
 {
   Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $_POST['projectID'], $userid )[1];
-  $i++;
 }
 ?>
