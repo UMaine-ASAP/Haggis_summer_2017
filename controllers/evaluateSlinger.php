@@ -9,7 +9,7 @@ session_start();
 require_once('../models/evaluate.php');
 require_once('../connection.php');
 require_once('../models/user.php');
-$userid = User::getID($token);
+$userid = User::getID($token)[1];
 $i = 0;
 foreach($_POST['criteriaID'])
 {
