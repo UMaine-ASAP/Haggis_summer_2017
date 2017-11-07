@@ -96,6 +96,16 @@ class MobileController
           $status = 'admin';
       require_once('views/mobile/assignments.php');
     }
+//=================================================================================== DISPLAY PROJECTS
+    public function projects()
+    {
+      require_once('views/mobile/projects.php');
+    }
+//=================================================================================== EVALUATE PROJECT
+    public function evaluate()
+    {
+      require_once('views/mobile/evaluation.php');
+    }
 }
 
 ?>
