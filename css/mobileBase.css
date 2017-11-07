@@ -28,6 +28,19 @@ p{
   padding-bottom: 8%;
 }
 
+.adjustTop{
+  padding-top: 12%;
+}
+
+.adjustBottom{
+  padding-bottom: 20%;
+}
+
+.push{
+  padding-left: 12.5%;
+}
+
+
 
 
 
