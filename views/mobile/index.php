@@ -5,17 +5,21 @@
     </td>
   </tr>
   <tr>
-    <td class='bigButton'>
-      <a class='bigButton' href="?controller=mobile&action=classes">
-        My Classes
-      </a>
+    <td class='buttonHolder'>
+      <div class="bigButton">
+        <a class='bigButton' href="?controller=mobile&action=classes">
+          My Classes
+        </a>
+      </div>
     </td>
   </tr>
   <tr>
-    <td class='bigButton'>
-      <a class='bigButton'>
-        Live Events
-      </a>
+    <td class='buttonHolder'>
+      <div class="bigButton">
+        <a class='bigButton'>
+          Live Events
+        </a>
+      </div>
     </td>
   </tr>
 </table>

@@ -1,0 +1,26 @@
+a.bigButton{
+  text-align: center;
+  border: none;
+  padding: 5% 25% 5% 25%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 50px;
+  font-size: 18px;
+}
+
+div.bigButton{
+  width: 100%;
+  text-align: center;
+}
+
+td.buttonHolder{
+  padding-top: 17%;
+  padding-bottom: 17%;
+}
+
+a.smallButton{
+  padding: 3%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 20px;
+}
