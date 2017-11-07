@@ -1,4 +1,8 @@
 <h3>Project Responses</h3>
+<script type ="text/javascript" src="../../vendor/Chart.bundle.min.js"></script>
+<script type ="text/javascript" src="../../vendor/jquery.min.js"></script>
+<script type ="text/javascript" src="../../java/bargraph.js"></script>
+
 
 <?php
 $i=0;

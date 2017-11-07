@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td id='FinalView'>
-      <?php echo $project->id;?>
+      <?php require_once('contentProject.php');?>
     </td>
   </tr>
 </table>

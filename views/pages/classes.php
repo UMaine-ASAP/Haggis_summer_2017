@@ -5,7 +5,7 @@
 <script>fixer("#currentAction",
         "<?php echo $class->coursecode; ?>",
         "<?php if($status ==='admin')
-          echo "<div>(".sizeof($students)." students)</div>";
+          echo "<div><a href='#' id='studentlist' class='popupmaker'>(".sizeof($students)." students)</a></div>";
           echo "<p>Join Code: <joincode>".$class->joinCode."</joincode></p>"; ?>");</script>
 <?php
 
@@ -25,3 +25,9 @@ require_once('views/assignment/viewAssignments.php');
 echo "</td></tr></table>"
 
 ?>
+
+<div class ='popup' id='studentlist'>
+  <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+  <h2>Class Roster</h2><hr>
+<?php foreach($students as $s){echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";}?>
+</div>

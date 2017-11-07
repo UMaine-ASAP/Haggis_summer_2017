@@ -2,6 +2,7 @@
 Class User {
   public $id;
   public $firstName;
+  public $middleInitial;
   public $lastName;
   public $email;
 //=================================================================================== STRUCT
