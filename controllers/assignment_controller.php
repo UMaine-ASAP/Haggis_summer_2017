@@ -97,9 +97,10 @@ class AssignmentController
     }
     else
     {
-      $userList = User::klass($_POST['classid'])[1];
-      foreach($userList as $user)
+      $ids = $_POST['person'];
+      foreach($ids as $id)
       {
+        $user = User::id($id)[1];
         $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
       }
