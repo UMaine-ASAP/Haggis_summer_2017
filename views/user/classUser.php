@@ -15,7 +15,7 @@
 <?php
 foreach($students as $s)
 {
-  echo "<input type='checkbox' class='person standard' name='person[]' class='students' value='".$s->id."'>".$s->firstName." ".$s->lastName."<br>";
+  echo "<input type='checkbox' class='person standard' name='person[]' value='".$s->id."'><span class='students'>".$s->firstName." ".$s->lastName."</span><br>";
 }
 
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
