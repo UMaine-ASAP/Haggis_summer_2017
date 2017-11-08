@@ -106,6 +106,11 @@ class MobileController
     {
       require_once('views/mobile/evaluation.php');
     }
+//=================================================================================== RESPONSES PROJECT
+    public function responses()
+    {
+      require_once('views/mobile/responses.php');
+    }
 }
 
 ?>

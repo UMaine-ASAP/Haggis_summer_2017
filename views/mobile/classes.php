@@ -11,8 +11,9 @@
 foreach($classes as $class)
 {
 
-  echo "<a href='?controller=pages&action=classes&classID=".$class->id."'><div class='classCard'>";
+  echo "<a href='?controller=mobile&action=assignments&classID=".$class->id."'><div class='classCard'>";
   echo "<table class='cardContents'>";
+<<<<<<< HEAD
   echo "<tr><td class='courseName'>".$class->coursecode."</td></tr>";
   echo "<tr><td class='cardContents'>".$class->title."<br></td></tr>";
   echo "<tr><td class='cardContents'>Location: ".$class->location."</td></tr>";
@@ -33,6 +34,10 @@ foreach($classes as $class)
         echo ", ";
     }
   }
+=======
+  echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
+  echo "<tr><td>".$class->title."<br></td></tr>";
+>>>>>>> db6deefc7a5a33412288e202dcbe12397d7770fc
   echo "</table></div></a>";
 }
 
