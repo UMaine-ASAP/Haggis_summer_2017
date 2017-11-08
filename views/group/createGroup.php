@@ -20,7 +20,7 @@
       $current = 0;
       foreach($userList as $user)
       {
-        echo "<button type='button' class='standard namebutton' id = '".$user->id."' draggable='true' onmouseup='extractor(\'group\',\'output\')' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
+        echo "<button type='button' class='standard namebutton' id = '".$user->id."' draggable='true'  onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
         $current++;
         if($current>$maxPerRow)
         {
@@ -29,6 +29,6 @@
       }
 
     ?></td>
-    <td id='groupmakercontainer'><div id='groupMaker' class='groupMaker' ondrop='drop(event)' ondragover='allowDrop(event)'><span>drag names here to make a group</span></div></td>
+    <td id='groupmakercontainer'><div id='groupMaker' class='groupMaker' ondrop='drop(event,"group","output")' ondragover='allowDrop(event)'><span>drag names here to make a group</span></div></td>
   </tr>
 </table>

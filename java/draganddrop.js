@@ -65,7 +65,7 @@ function cleanUp()
   }
 }
 
-function drop(ev)             //action to take place when user releases mouse button
+function drop(ev, input, output)             //action to take place when user releases mouse button
 {
   ev.preventDefault();
   if(!ev.target.getAttribute("ondrop")) //checks to see if element has an 'ondrop' attribute set
@@ -80,7 +80,7 @@ function drop(ev)             //action to take place when user releases mouse bu
       var newGroup = $(document.createElement('div'))
       newGroup.addClass('group');
       newGroup.attr('id', '0');
-      newGroup.attr('ondrop', 'drop(event)');
+      newGroup.attr('ondrop', 'drop(event,"group","output")');
       newGroup.attr('ondragover', 'allowDrop(event)');
       if(batch.length > 0)
       {
@@ -129,6 +129,7 @@ function drop(ev)             //action to take place when user releases mouse bu
     }
   }
   cleanUp();
+  extractor(input, output);
 }
 
 function move(elementID, destination)
@@ -164,7 +165,7 @@ function groupFormer(input, output)
     var newGroup = $(document.createElement('div'))
     newGroup.addClass('group');
     newGroup.attr('id', i);
-    newGroup.attr('ondrop', 'drop(event)');
+    newGroup.attr('ondrop', 'drop(event,"group","output")');
     newGroup.attr('ondragover', 'allowDrop(event)');
     for(var j = 0; j < groupsize; j++)
     {
@@ -234,4 +235,4 @@ function extractor(input, output)           //When executed this function goes t
  *  jquery.ui.widget.js
  *  jquery.ui.mouse.js
  */
-!function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
+// !function(a){function f(a,b){if(!(a.originalEvent.touches.length>1)){a.preventDefault();var c=a.originalEvent.changedTouches[0],d=document.createEvent("MouseEvents");d.initMouseEvent(b,!0,!0,window,1,c.screenX,c.screenY,c.clientX,c.clientY,!1,!1,!1,!1,0,null),a.target.dispatchEvent(d)}}if(a.support.touch="ontouchend"in document,a.support.touch){var e,b=a.ui.mouse.prototype,c=b._mouseInit,d=b._mouseDestroy;b._touchStart=function(a){var b=this;!e&&b._mouseCapture(a.originalEvent.changedTouches[0])&&(e=!0,b._touchMoved=!1,f(a,"mouseover"),f(a,"mousemove"),f(a,"mousedown"))},b._touchMove=function(a){e&&(this._touchMoved=!0,f(a,"mousemove"))},b._touchEnd=function(a){e&&(f(a,"mouseup"),f(a,"mouseout"),this._touchMoved||f(a,"click"),e=!1)},b._mouseInit=function(){var b=this;b.element.bind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),c.call(b)},b._mouseDestroy=function(){var b=this;b.element.unbind({touchstart:a.proxy(b,"_touchStart"),touchmove:a.proxy(b,"_touchMove"),touchend:a.proxy(b,"_touchEnd")}),d.call(b)}}}(jQuery);
