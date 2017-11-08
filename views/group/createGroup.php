@@ -20,7 +20,7 @@
       $current = 0;
       foreach($userList as $user)
       {
-        echo "<button class='standard namebutton' id = '".$user->id."' draggable='true' onmouseup='extractor('group','output')' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
+        echo "<button type='button' class='standard namebutton' id = '".$user->id."' draggable='true' onmouseup='extractor('group','output')' onclick ='addToBatch(event)' ondragstart='drag(event)'>".$user->firstName." ".$user->lastName."</button>";
         $current++;
         if($current>$maxPerRow)
         {
