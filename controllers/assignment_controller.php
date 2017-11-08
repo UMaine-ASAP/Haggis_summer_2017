@@ -108,7 +108,7 @@ class AssignmentController
                                     "New Assignment: '".$_POST['title']."'",
                                     "Dear ".$user->firstName." ".$user->lastName.",
                                     Please check for new assignments in course ".$klass->coursename.".
-                                    The assignment is due ".$_POST['duedate'].", at".$_POST['duetime']".
+                                    The assignment is due ".$_POST['duedate'].", at".$_POST['duetime'].".
 
 
                                     Do not reply to this email, the inbox is not monitoried.";
