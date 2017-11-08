@@ -37,10 +37,11 @@ class AssignmentController
   {
     $message;
     $assignmentID;
+    $klass = Klass::classid($_POST['classid'])[];
 
     if(isset($_POST['title']))
     {
-      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$_POST['classid'])[1];
+      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
       $criteriaSetID;
       if(isset($_POST['savedSetName']))
       {
@@ -75,7 +76,7 @@ class AssignmentController
       foreach($idList as $id)
       Criteria::addToSet($criteriaSetID, $id);
     }
-
+    require_once('models/emailnotification.php');
     //GROUP/PROJECT CREATION
     if($_POST['makegroup'] == 'true')
     {
@@ -103,6 +104,15 @@ class AssignmentController
         $user = User::id($ids[$i])[1];
         $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
+        EmailNotification::sendEmail($user,
+                                    "New Assignment: '".$_POST['title']."'",
+                                    "Dear ".$user->firstName." ".$user->lastName.",
+                                    Please check for new assignments in course ".$klass->coursename.".
+                                    The assignment is due ".$_POST['duedate'].", at".$_POST['duetime']".
+
+
+                                    Do not reply to this email, the inbox is not monitoried.";
+                                  );
       }
 
     }
