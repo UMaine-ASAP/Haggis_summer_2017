@@ -105,7 +105,7 @@ class AssignmentController
         $user = User::id($ids[$i])[1];
         $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
-        EmailNotification::sendEmail($user,
+        EmailNotification::sendEmail($user->email,
                                     "New Assignment: '".$_POST['title']."'",
                                     "Dear ".$user->firstName." ".$user->lastName.",
                                     Please check for new assignments in course ".$klass->coursename.".
