@@ -6,8 +6,11 @@ Assignments(<?php echo sizeof($assignments);?>)
 <?php
 foreach($assignments as $a)
 {
-  // Needs URL, controller function,and page to view people's projects
-  echo "<a class='assignments' href='?controller=mobile&action=projects&assignmentID=".$a->id."'>".$a->title."</a><br>";
+  echo "<div>".$a->title."<br>";
+  // Each "<a>" tag is a button, Evaluate is working, responses will soon
+  echo "<a href=''>See Responses</a>&nbsp;";
+  echo "<a href='?controller=mobile&action=projects&assignmentID=".$a->id."'>Evaluate</a><br>";
+  echo "</div>";
 }
 echo "</ul>";
 ?>

@@ -1,5 +1,5 @@
 <div class='container'>
-  To add classes, enter your class code below
+  To add classes, enter your class code below<br>
   <div> <?php if(isset($message)) echo $message; ?></div><br>
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
