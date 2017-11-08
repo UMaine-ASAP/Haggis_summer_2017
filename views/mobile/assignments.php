@@ -1,16 +1,14 @@
-<div class='menutitle'>
-Assignments(<?php echo sizeof($assignments);?>)
-</div>
+<h3>
+Assignments (<?php echo sizeof($assignments);?>)
+</h3>
 <br>
-<ul id="assignmentList">
+<table>
 <?php
 foreach($assignments as $a)
 {
-  echo "<div>".$a->title."<br>";
-  // Each "<a>" tag is a button, Evaluate is working, responses will soon
-  //echo "<a href=''>See Responses</a>&nbsp;";
-  echo "<a href='?controller=mobile&action=projects&assignmentID=".$a->id."'>Projects</a><br>";
-  echo "</div>";
+  echo "<tr><th>".$a->title."</th></tr>";
+  echo "<tr><td><a href='?controller=mobile&action=projects&assignmentID=".$a->id."'>Projects</a></td></tr>";
 }
 echo "</ul>";
 ?>
+</table>

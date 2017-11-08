@@ -23,11 +23,7 @@
         <div class='headerLogin'>
           <?php
           if (isset($_SESSION['token'])) {
-<<<<<<< HEAD
             echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
-=======
-            echo  "<a class='login' href='?controller=user&action=logout'>Logout</a>";
->>>>>>> db6deefc7a5a33412288e202dcbe12397d7770fc
           } else {
             echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
           }

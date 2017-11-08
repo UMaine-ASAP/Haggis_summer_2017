@@ -13,31 +13,8 @@ foreach($classes as $class)
 
   echo "<a href='?controller=mobile&action=assignments&classID=".$class->id."'><div class='classCard'>";
   echo "<table class='cardContents'>";
-<<<<<<< HEAD
-  echo "<tr><td class='courseName'>".$class->coursecode."</td></tr>";
-  echo "<tr><td class='cardContents'>".$class->title."<br></td></tr>";
-  echo "<tr><td class='cardContents'>Location: ".$class->location."</td></tr>";
-  echo "<tr><td class='cardContents'>Meets at: ".$class->timeStart." to ".$class->timeEnd."</td></tr>";
-  echo "<tr><td class='cardContents'>On: ";
-  $daySize = sizeof($class->days);
-  if($daySize > 0 )
-  {
-    for($i = 0; $i<$daySize; $i++)
-    {
-      echo substr($class->days[$i],0,2);
-      if($i == $daySize-2)
-      {
-        echo ", and ".substr($class->days[$i+1],0,2);
-        $i = $daySize;
-      }
-      else
-        echo ", ";
-    }
-  }
-=======
   echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
   echo "<tr><td>".$class->title."<br></td></tr>";
->>>>>>> db6deefc7a5a33412288e202dcbe12397d7770fc
   echo "</table></div></a>";
 }
 
