@@ -75,6 +75,37 @@ class MobileController
         $courses = Course::all()[1];
       MobileController::classes();
     }
+//=================================================================================== DISPLAY ASSIGNMENTS
+    public function assignments()
+    {
+      $message = "";
+      $assignments;
+      $classID;
+      if(isset($_SESSION['returnto']))
+      {
+        $classID = $_SESSION['returnto'];
+        unset($_SESSION['returnto']);
+      }
+      else
+        $classID = $_GET['classID'];
+      $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
+      $status = 'user';                                   //checks for admin or user status
+      $class = Klass::classid($classID)[1];
+      $students = User::klass($classID)[1];
+      if(User::checkAdmin($_SESSION['token'])[1])
+          $status = 'admin';
+      require_once('views/mobile/assignments.php');
+    }
+//=================================================================================== DISPLAY PROJECTS
+    public function projects()
+    {
+      require_once('views/mobile/projects.php');
+    }
+//=================================================================================== EVALUATE PROJECT
+    public function evaluate()
+    {
+      require_once('views/mobile/evaluation.php');
+    }
 }
 
 ?>
