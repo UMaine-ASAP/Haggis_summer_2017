@@ -4,7 +4,7 @@
   <div> <?php if(isset($message)) echo $message; ?></div><br>-->
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
-      <div class="inputClasses"><input class='typeBox' type='text' name='joinCode' placeholder='Class Code'></div><button type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button>
+      <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class="smallButton" type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button></div>
     </form>
   </div>
 <?php
@@ -13,11 +13,11 @@ foreach($classes as $class)
 
   echo "<a href='?controller=pages&action=classes&classID=".$class->id."'><div class='classCard'>";
   echo "<table class='cardContents'>";
-  echo "<tr><td class='coursename'>".$class->coursecode."</td></tr>";
-  echo "<tr><td>".$class->title."<br></td></tr>";
-  echo "<tr><td>Location: ".$class->location."</td></tr>";
-  echo "<tr><td>Meets at: ".$class->timeStart." to ".$class->timeEnd."</td></tr>";
-  echo "<tr><td>On: ";
+  echo "<tr><td class='courseName'>".$class->coursecode."</td></tr>";
+  echo "<tr><td class='cardContents'>".$class->title."<br></td></tr>";
+  echo "<tr><td class='cardContents'>Location: ".$class->location."</td></tr>";
+  echo "<tr><td class='cardContents'>Meets at: ".$class->timeStart." to ".$class->timeEnd."</td></tr>";
+  echo "<tr><td class='cardContents'>On: ";
   $daySize = sizeof($class->days);
   if($daySize > 0 )
   {

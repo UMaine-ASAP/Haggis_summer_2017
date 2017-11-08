@@ -1,0 +1,34 @@
+i{
+  color: white;
+}
+
+td.cardContents{
+  text-indent: 10px;
+  text-align: left;
+}
+
+.courseName{
+  height: 30%;
+  font-size: 22px;
+  color: white;
+  background-color: #1195c6;
+  text-align: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+div.classCard{
+  margin: auto;
+  margin-top: 15%;
+  width: 60%;
+  height: 20%;
+  border-width: 1.5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 20px;
+  background-color: white;
+}
+
+table.cardContents{
+  margin: 0;
+  height: 100%;
+}

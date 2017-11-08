@@ -7,6 +7,7 @@
       <link rel="stylesheet" type="text/css" href="css/mobileTopBar.css">
       <link rel="stylesheet" type="text/css" href="css/mobileButton.css">
       <link rel="stylesheet" type="text/css" href="css/mobileInput.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileClasses.css">
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
@@ -22,7 +23,7 @@
         <div class='headerLogin'>
           <?php
           if (isset($_SESSION['token'])) {
-            echo  "<a class='login' href='?controller=user&action=logout'>log out</a>";
+            echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
           } else {
             echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
           }

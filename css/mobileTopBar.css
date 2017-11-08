@@ -39,6 +39,13 @@ a.login{
   border-radius: 30px;
 }
 
+a.logout{
+  color: #1195c6;
+  padding: 10% 30% 10% 30%;
+  background-color: white;
+  border-radius: 30px;
+}
+
 div.headerLogin{
   margin-top: 8%;
   margin-right: 5%;
