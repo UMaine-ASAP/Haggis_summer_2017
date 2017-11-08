@@ -107,8 +107,12 @@ class AssignmentController
         $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
         EmailNotification::sendEmail($user,
                                     "New Assignment: '".$_POST['title']."'",
-                                    "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.";
-                                  );
+                                    "Dear ".$user->firstName." ".$user->lastName.",
+                                    Please check for new assignments in course ".$klass->coursename.".
+                                    The assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".
+
+
+                                    Do not reply to this email, the inbox is not monitoried.");
       }
 
     }
