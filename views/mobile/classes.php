@@ -1,7 +1,7 @@
-<h2 class="currentPage">Add Classes</h2>
-<!--<div class='container'>
+<h2 class="currentPage">Classes</h2>
+<div class='container'>
   To add classes, enter your class code below
-  <div> <?php if(isset($message)) echo $message; ?></div><br>-->
+  <div> <?php if(isset($message)) echo $message; ?></div><br>
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
       <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class="smallButton" type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button></div>

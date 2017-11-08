@@ -8,6 +8,8 @@
       <link rel="stylesheet" type="text/css" href="css/mobileButton.css">
       <link rel="stylesheet" type="text/css" href="css/mobileInput.css">
       <link rel="stylesheet" type="text/css" href="css/mobileClasses.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileAssignments.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileProjects.css">
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
