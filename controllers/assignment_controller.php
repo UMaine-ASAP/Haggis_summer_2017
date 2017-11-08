@@ -94,9 +94,9 @@ class AssignmentController
           $userIDs[] = $element;
         }
         $message = Group::create($projectID, $userIDs)[1];
-        foreach($userIDs as $id)
+        for($i=0; $i < sizeof($userIDs); $i++)
         {
-          $user = User::id($id)[1];
+          $user = User::id($userIDs[$i])[1];
           EmailNotification::sendEmail($user->email,
                                       "New Assignment: '".$_POST['title']."'",
                                       "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
