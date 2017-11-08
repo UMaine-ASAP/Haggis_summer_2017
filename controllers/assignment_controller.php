@@ -77,7 +77,7 @@ class AssignmentController
       foreach($idList as $id)
       Criteria::addToSet($criteriaSetID, $id);
     }
-    require_once('models/emailnotification.php');
+    
     //GROUP/PROJECT CREATION
     if($_POST['makegroup'] == 'true')
     {

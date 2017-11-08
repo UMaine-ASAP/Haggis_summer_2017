@@ -7,6 +7,7 @@
   require_once('models/projectUser.php');
   require_once('models/project.php');
   require_once('models/evaluate.php');
+  require_once('models/emailnotification.php');
 
   function call ($controller, $action)
   {
