@@ -97,10 +97,10 @@ class AssignmentController
         for($i=0; $i < sizeof($userIDs); $i++)
         {
           $user = User::id($userIDs[$i])[1];
-          echo "<script> alert(".$user->email.");</script>";
-          EmailNotification::sendEmail($user->email,
-                                      "New Assignment: '".$_POST['title']."'",
-                                      "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
+          //echo "<script> alert(".$user->email.");</script>";
+          //EmailNotification::sendEmail($user->email,
+            //                          "New Assignment: '".$_POST['title']."'",
+              //                        "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
         }
       }
     }
