@@ -37,7 +37,7 @@ class AssignmentController
   {
     $message;
     $assignmentID;
-    $klass = Klass::classid($_POST['classid'])[];
+    $klass = Klass::classid($_POST['classid'])[1];
 
     if(isset($_POST['title']))
     {
