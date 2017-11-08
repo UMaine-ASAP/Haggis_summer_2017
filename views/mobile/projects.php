@@ -1,4 +1,6 @@
-Projects:
+<h3 class="currentPage">
+Projects
+</h3>
 <table>
 <?php
   $projects = Project::assignment($_GET['assignmentID'])[1];

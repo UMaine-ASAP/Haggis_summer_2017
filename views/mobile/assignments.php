@@ -1,4 +1,4 @@
-<h3>
+<h3 class="currentPage">
 Assignments (<?php echo sizeof($assignments);?>)
 </h3>
 <br>
@@ -6,8 +6,8 @@ Assignments (<?php echo sizeof($assignments);?>)
 <?php
 foreach($assignments as $a)
 {
-  echo "<tr><th>".$a->title."</th></tr>";
-  echo "<tr><td><a href='?controller=mobile&action=projects&assignmentID=".$a->id."'>Projects</a></td></tr>";
+  echo "<tr><td class='assignmentTitle push'>".$a->title."</td></tr>";
+  echo "<tr><td class='projectsButton'><a class='projectsButton' href='?controller=mobile&action=projects&assignmentID=".$a->id."'>Projects</a></td></tr>";
 }
 echo "</ul>";
 ?>

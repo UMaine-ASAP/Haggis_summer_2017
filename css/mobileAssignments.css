@@ -1,0 +1,18 @@
+.assignmentTitle{
+  font-size: 22px;
+  font-style: normal;
+}
+
+td.projectsButton{
+  padding: 10%;
+  text-align: center;
+}
+
+a.projectsButton{
+  text-align: center;
+  color: white;
+  padding: 5% 25% 5% 25%;
+  background-color: #1195c6;
+  border-radius: 30px;
+  margin: auto;
+}

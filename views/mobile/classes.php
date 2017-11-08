@@ -1,6 +1,6 @@
 <h2 class="currentPage">Add Classes</h2>
 <div class='container'>
-  To add classes, enter your class code below
+  <p class="reg">To add classes, enter your class code below</p>
   <div> <?php if(isset($message)) echo $message; ?></div><br>
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
