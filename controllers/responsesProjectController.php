@@ -20,18 +20,20 @@ foreach($projectresponses as $r)
 {
   $temp = Criteria::id($r->criteriaID)[1];
   $check = in_array($temp->id, $cID);
+  $user = $r->author;
     if( $check != false)
     {
+
       $index = array_search($temp->id, $cID);
       $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
-      $cComments[$index][] = $r->comment;
+      $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
     }
     else
     {
       $cID[] = $temp->id;
       $cNames[] = $temp->title;
       $cAvg[] = $r->rating;
-      $cComments[] = array($r->comment);
+      $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
     }
 }
 

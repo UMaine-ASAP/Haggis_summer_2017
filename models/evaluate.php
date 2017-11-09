@@ -6,7 +6,7 @@ class Evaluate
   public $rating;
   public $comment;
   public $projectID;
-  public $authorID;
+  public $author;
 
 //=================================================================================== STRUCT
   public function __construct($id, $criteriaID, $rating, $comment, $projectID, $authorID)
@@ -16,7 +16,7 @@ class Evaluate
     $this->rating=$rating;
     $this->comment = $comment;
     $this->projectID = $projectID;
-    $this->authorID=$authorID;
+    $this->authorID=$author;
   }
 //=================================================================================== INSERT/UPDATE
   public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)
@@ -68,7 +68,8 @@ class Evaluate
           $evaluations = array();
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
-            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['author']);
+            $author = User::id($r['author'])[1];
+            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $author);
           }
           $message = $evaluations;
           $errorCode = 1;
