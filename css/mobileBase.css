@@ -2,6 +2,7 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
   text-decoration: none;
+  -webkit-appearance: none;
   color: black;
 }
 
@@ -13,6 +14,7 @@
 }
 
 table{
+  margin: 0;
   margin-top: 20%;
   width: 100%;
 }
@@ -31,6 +33,7 @@ p.reg{
   color: black;
   font-size: 35px;
   padding-bottom: 8%;
+  margin-bottom: 0;
 }
 
 .adjustTop{
@@ -45,14 +48,26 @@ p.reg{
   padding-left: 12.5%;
 }
 
+table.marginTable{
+  margin: 0;
+}
 
+.center{
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  margin: auto;
+}
 
-
-
-
-
-
-
+.courseName{
+  height: 30%;
+  font-size: 22px;
+  color: white;
+  background-color: #1195c6;
+  text-align: center;
+  border-radius: 20px 20px 0px 0px;
+}
 
 
 
