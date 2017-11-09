@@ -268,14 +268,13 @@ class Klass {  //We use class with a k, using just class confuses PHP
     }
 
     //=================================================================================== Add To CLASS
-        public static function addToClass($classID,$userID)
+        public static function addToClass($userID,$classID)
         {
           $errorCode;
           $message;
           $db = Db::getInstance();
           $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
           $data = array($classID, $userID);
-          echo "<script>console.log(".$userID.");</script>";
           try
           {
             $stmt = $db->prepare($sql);
