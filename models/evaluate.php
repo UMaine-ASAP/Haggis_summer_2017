@@ -16,7 +16,7 @@ class Evaluate
     $this->rating=$rating;
     $this->comment = $comment;
     $this->projectID = $projectID;
-    $this->authorID=$author;
+    $this->author=$authorID;
   }
 //=================================================================================== INSERT/UPDATE
   public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)
