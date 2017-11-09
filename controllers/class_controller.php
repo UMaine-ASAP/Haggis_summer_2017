@@ -76,7 +76,7 @@ class ClassController
       $id = $_POST['student'];
 
       $classID = $_POST['classid'];
-      $_SESSION['message'] = $id;///Klass::addToClass($id, $classID)[1];
+      $_SESSION['message'] = $id." ".$classID;///Klass::addToClass($id, $classID)[1];
       //$_SESSION['controller'] = 'pages';
       //$_SESSION['action'] = 'classes';
       //$_SESSION['returnto'] = $classID;
