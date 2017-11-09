@@ -21,6 +21,7 @@ foreach($projectresponses as $r)
   $temp = Criteria::id($r->criteriaID)[1];
   $check = in_array($temp->id, $cID);
   $user = $r->author;
+  echo $user;
     if( $check != false)
     {
 
