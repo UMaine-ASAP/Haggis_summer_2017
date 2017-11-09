@@ -69,6 +69,18 @@ class ClassController
       $courses = Course::all()[1];
     header('Location: index.php');
   }
+
+  //=================================================================================== ADD TO CLASS
+    public function addToClass($id, $classID)
+    {
+      $id = $_POST['student'];
+      $classID = $_POST['classid'];
+      $_SESSION['message'] = Klass::addToClass($id, $classID)[1];
+      $_SESSION['controller'] = 'pages';
+      $_SESSION['action'] = 'classes';
+      $_SESSION['returnto'] = $classID;
+      header('Location: index.php');
+    }
 //=================================================================================== UPDATE CLASS
   public function updateClass()
   {

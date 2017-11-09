@@ -34,6 +34,7 @@ class PagesController
       $message = "";
       $assignments;
       $classID;
+      $allusers = User::all()[1];
       if(isset($_SESSION['returnto']))
       {
         $classID = $_SESSION['returnto'];

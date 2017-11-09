@@ -267,6 +267,29 @@ class Klass {  //We use class with a k, using just class confuses PHP
       return array($errorCode, $message);
     }
 
+    //=================================================================================== Add To CLASS
+        public static function addToClass($classID,$userID)
+        {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
+          $data = array($classID, $userID);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $message = "Successfully added to Class";
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e -> getMessage();
+          }
+          return array($errorCode, $message);
+        }
+
 
 //=================================================================================== DELETE CLASS
     public static function delete($classID)
