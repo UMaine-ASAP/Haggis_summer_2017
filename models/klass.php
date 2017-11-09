@@ -275,6 +275,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
           $db = Db::getInstance();
           $sql = "INSERT INTO classUser (classID, userID) VALUES (?,?)";
           $data = array($classID, $userID);
+          echo "<script>console.log(".$userID.");</script>";
           try
           {
             $stmt = $db->prepare($sql);
