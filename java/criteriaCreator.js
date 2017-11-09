@@ -13,8 +13,8 @@ function addACritiera(counter)
   <br>\
   <textarea class='standard criteriadescription' id='criteriadescription"+counter+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>\
   allow additional text response\
-  <input class='standard' type='radio' name='textresponse[]' value='yes' checked>yes\
-  <input class='standard' type='radio' name='textresponse[]' value='no'>no";
+  <input class='standard' type='radio' name='textresponse"+counter+"' value='yes' checked>yes\
+  <input class='standard' type='radio' name='textresponse"+counter+"' value='no'>no";
 
   document.getElementById('criteriacardcontainer').appendChild(div);
 }
@@ -37,12 +37,17 @@ $(document).ready(function()
       cards[i].id= i;
       cards[i].getElementsByClassName('criteriadescription')[0].id = 'criteriadescription'+i;
       cards[i].getElementsByClassName('removeCriteria')[0].id= i;
+      cards[i].$('input:radio').attr('name', 'textresponse'+i);
     }
-  })
+  });
+
+
   $('#addCriteria').click(function(){
     counter++;
     addACritiera(counter);
-  })
+  });
+
+
   $('#save').click(function(){
     var setName = document.getElementById('setName').value;
     document.getElementById('setSaver').innerHTML="<input type='hidden' name='savedSetName' value='"+setName+"'> Set will be saved as: "+ setName;

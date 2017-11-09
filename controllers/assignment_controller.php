@@ -55,7 +55,7 @@ class AssignmentController
       for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
       {
         $allowTextResponse = 1;
-        if($_POST['textresponse'][$i] === 'no')
+        if($_POST['textresponse'.$i] === 'no')
           $allowTextResponse = 0;
         $currentID;
         if($_POST['graded'][$i] === 'yes')
