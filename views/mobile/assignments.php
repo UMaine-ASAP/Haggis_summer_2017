@@ -2,7 +2,7 @@
 Assignments (<?php echo sizeof($assignments);?>)
 </h3>
 <br>
-<table>
+<table class="marginTable">
 <?php
 foreach($assignments as $a)
 {
