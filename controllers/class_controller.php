@@ -71,7 +71,7 @@ class ClassController
   }
 
   //=================================================================================== ADD TO CLASS
-    public function addToClass($id, $classID)
+    public function addToClass()
     {
       $id = $_POST['student'];
       $classID = $_POST['classid'];
