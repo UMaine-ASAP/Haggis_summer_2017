@@ -19,10 +19,12 @@
   ////////////////////////////////////////////////////// PROJECT LISTING
   $projects = $a->projects;
   $ps = sizeof($projects);
+  $groups;
   if($projects != null && $ps > 0)
   {
-    $test = $projects[0];
-    if($test->isgroup === '0')
+    $sample = $projects[0];
+    $test = $sample->isgroup;
+    if($test === '0')
     {
       echo "students (".$ps.")<hr class='minor'><ul>";
     }
@@ -33,6 +35,16 @@
     foreach($projects as $p)
     {
       echo "<li><a onclick='GetProject(".$p->id.")' class='projectitem' id='".$p->id."'>".$p->title."</a></li>";
+      if($p->isgroup ==='1')
+      {
+        echo "<ul>";
+        $listing = $p->list;
+        foreach($listing as $u)
+        {
+          echo "<li>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
+        }
+        echo "</ul></li>";
+      }
     }
     echo "</ul>";
   }
