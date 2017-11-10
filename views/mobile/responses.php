@@ -28,6 +28,6 @@ foreach($projectresponses as $r)
 }
 // The HTML is at this location  |
 //                              \/
-require_once("/views/project/responsesProject.php");
+require_once("views/project/responsesProject.php");
 
 ?>
