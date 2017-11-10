@@ -1,0 +1,52 @@
+input.submitButton{
+  text-align: center;
+  color: white;
+  padding: 5% 25% 5% 25%;
+  background-color: #1195c6;
+  border-radius: 30px;
+  margin: auto;
+  border: none;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 12px;
+    border-radius: 10px;
+    background: #bee8f7;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background: white;
+    border: solid #1195c6 3px;
+}
+
+#sliderWidth{
+  width: 75%;
+  margin: auto;
+  margin-bottom: 1%;
+}
+
+.commentBox{
+  width: 75%;
+  padding-bottom: 35px;
+  border-color: black;
+  border-radius: 5px;
+}
+
+.criteriaRatingout{
+  border: none;
+  font-size: 22px;
+}
+
+
+
+
+
+
+
+.

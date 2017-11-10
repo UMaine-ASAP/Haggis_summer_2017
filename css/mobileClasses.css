@@ -1,0 +1,25 @@
+i{
+  color: white;
+}
+
+td.cardContents{
+  text-indent: 10px;
+  text-align: left;
+}
+
+div.classCard{
+  margin: auto;
+  margin-top: 15%;
+  width: 60%;
+  height: 20%;
+  border-width: 1.5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 20px;
+  background-color: white;
+}
+
+table.cardContents{
+  margin: 0;
+  height: 100%;
+}

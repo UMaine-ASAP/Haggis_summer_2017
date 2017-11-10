@@ -1,0 +1,76 @@
+div.inputLogin{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20%;
+  padding-top: 3%;
+  margin: auto;
+}
+
+div.inputRegister{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 15%;
+  margin: auto;
+}
+
+div.inputClasses{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 15%;
+  margin: auto;
+}
+
+input.bigButton{
+  text-align: center;
+  border: none;
+  padding: 4% 20% 4% 20%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 50px;
+  font-size: 18px;
+  width: 75%;
+}
+
+.typeBox{
+  height: 3.5%;
+  width: 75%;
+  border-radius: 20px;
+  border-color: black;
+  border-width: 1px;
+  padding-left: 10px;
+}
+
+.typeBoxSmall{
+  height: 3.5%;
+  width: 65%;
+  border-radius: 20px;
+  border-color: black;
+  border-width: 1px;
+  padding-left: 10px;
+}
+
+.inline{
+  display:inline;
+  margin: 0;
+}
+
+.firstLast{
+  width: 32.5%;
+}
+
+.MI{
+  padding-left: 5px;
+  width: 8%;
+}
+
+#email{
+  padding-top: 15%;
+}
+
+
+
+
+
+
+
+.

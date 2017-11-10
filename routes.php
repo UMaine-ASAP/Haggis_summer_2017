@@ -6,6 +6,8 @@
   require_once('models/criteria.php');
   require_once('models/projectUser.php');
   require_once('models/project.php');
+
+  require_once('models/user.php');
   require_once('models/evaluate.php');
   require_once('models/emailnotification.php');
 
@@ -47,7 +49,7 @@
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass','addToClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
-                          'mobile'    => ['index'],
+                          'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses'],
                           'evaluate'  => ['submit']);
 
   if(array_key_exists($controller, $controllers))
