@@ -21,6 +21,7 @@
         to be given profressor level editing abilities, please enter the code given to you by an administrator.<br>
         code<input class='standard' type='text' name='profcode'>
       </div>
+    </div>
     <input class='standard' id='submission' type='submit' value='register account'>
     <p id='note'>Passwords must match</p>
   </form>
