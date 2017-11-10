@@ -1,6 +1,19 @@
 $(document).ready(function()
 {
   $("#submission").hide();
+  $('#addprofnote').hide();
+
+  $('input[name="occupation"]').change(function()
+  {
+    var currentvalue = $(this).val();
+    if(currentvalue === 'professor')
+    {
+      $('#addprofnote').show();
+    }
+    else
+      $('#addprofnote').hide();
+
+  });
 
   $("#confirmation").keyup(function()
   {

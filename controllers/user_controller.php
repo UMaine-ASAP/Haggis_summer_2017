@@ -8,7 +8,7 @@ class UserController
       if(isset($_POST['firstname']))
       {
         $out='';
-        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password']);
+        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password'],$_POST['profcode']);
           switch($outcome[0])
           {
             case '1':

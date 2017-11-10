@@ -32,22 +32,16 @@ Class User {
       return array(1, $output);
     }
 //=================================================================================== CREATE
-    public static function create($fn, $ln, $mi, $em, $pw){		//inserts user information into database
+    public static function create($fn, $ln, $mi, $em, $pw, $pc){		//inserts user information into database
       $errorCode;
       $message;
-      $currentUsers = User::all()[1];					//Get a list of users
-      $conflict = false;										//becomes true if email and password already exist
-      foreach($currentUsers as $user)				//goes through the user list and checks to see if email already exists
-      {
-        if($user->email == $em)
-        $conflict = true;
-      }
-      if($conflict)													//if email already exists, tell the user.
+      $check = User::getEmail($em)[1];					//check if the email already exists in the database
+
+      if($check > 0)
       {
         $errorCode = 2;
         $message   = "Email address is already registered";
       }
-
       else 																	//else, we insert our new user into the database
       {
         $salted = password_hash($pw, PASSWORD_DEFAULT);
@@ -55,8 +49,11 @@ Class User {
         $sql = "INSERT INTO user (firstName,lastName,middleInitial,email,password,userType) VALUES (?,?,?,?,?,?)";
         try
         {
+          $stat = 'user';
+          if($pc === 'rAk6')
+            $stat = 'admin';
           $stmt = $db->prepare($sql);
-          $data = array($fn, $ln, $mi, $em, $salted,"user");
+          $data = array($fn, $ln, $mi, $em, $salted,$stat);
           $stmt->execute($data);
           User::sendConfirmEmail($em);
           $errorCode = 1;
@@ -363,5 +360,27 @@ Class User {
       }
       return array($errorCode, $message);
     }
+//=================================================================================== GET BY EMAIL
+  public static function getEmail($em)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $data= array($em);
+    $sql = "SELECT userID FROM user WHERE email = ?";
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $errorCode = 1;
+      $message = $stmt->rowCount();
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
   }
+}
 ?>

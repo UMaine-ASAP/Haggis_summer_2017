@@ -10,7 +10,18 @@
     <input class='standard' type='email' name='email'  placeholder='E-Mail' required><br>
     <input class='standard' id='password' type='password' name='password'  placeholder='Password' required><br>
     <input class='standard' id='confirmation' type='password' name='passwordconfirm' placeholder='Confirm Password' required><br>
-    <input class='standard' id='submission' type='submit' value='Add User'>
+
+
+    <div class='addprofbox'>
+      <p class='lable'>occupation</p>
+      student<input type='radio' name='occupation' value='student' checked>
+      &nbsp;&nbsp;&nbsp;
+      professor<input type='radio' name ='occupation' value='professor'>
+      <br><div id='addprofnote'>
+        to be given profressor level editing abilities, please enter the code given to you by an administrator.<br>
+        code<input class='standard' type='text' name='profcode'>
+      </div>
+    <input class='standard' id='submission' type='submit' value='register account'>
     <p id='note'>Passwords must match</p>
   </form>
 </div>
