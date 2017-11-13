@@ -3,7 +3,6 @@ Projects
 </h3>
 <table  class="marginTable">
 <?php
-  $projects = Project::assignment($_GET['assignmentID'])[1];
   foreach($projects as $a)
   {
     echo "<tr><td class='assignmentTitle push'>".$a->title."</td></tr>";
