@@ -15,7 +15,7 @@ class UserController
               $out = $outcome[1];
               break;
             case '2':
-              $out = $outcome[1]." <a class ='resetPassword' href='#'>Forgot Password?</a>";
+              $out = $outcome[1]." <a id='resetPassword' class='popupmaker' href='#'>Forgot Password?</a>";
               break;
           }
           $_SESSION['message'] = $out;

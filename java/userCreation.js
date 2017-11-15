@@ -24,5 +24,26 @@ $(document).ready(function()
       $("#submission").show();
       $('#note').hide();
     }
+    else
+    {
+      $("#submission").hide();
+      $('#note').show();
+    }
+  });
+
+  $("#password").keyup(function()
+  {
+    var currentvalue = $(this).val();
+    var matchtovalue = $('#confirmation').val();
+    if(currentvalue == matchtovalue)
+    {
+      $("#submission").show();
+      $('#note').hide();
+    }
+    else
+    {
+      $("#submission").hide();
+      $('#note').show();
+    }
   })
 });
