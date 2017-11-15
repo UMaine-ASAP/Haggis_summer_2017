@@ -10,6 +10,13 @@ class MobileController
 //=================================================================================== LOGIN PAGE
     public function login()
     {
+      $message = "";
+
+      if(isset($_SESSION['message']))
+      {
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
+      }
       require_once('views/mobile/login.php');
     }
 //=================================================================================== REGISTRATION PAGE
@@ -105,6 +112,7 @@ class MobileController
 //=================================================================================== EVALUATE PROJECT
     public function evaluate()
     {
+      $projectid = $_GET['projectID'];
       $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
       require_once('views/mobile/evaluation.php');
     }
@@ -118,7 +126,7 @@ class MobileController
       $cNames = array();
       $cAvg = array();
       $cComments = array();
-      
+
       foreach($projectresponses as $r)
       {
         $temp = Criteria::id($r->criteriaID)[1];

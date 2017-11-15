@@ -1,5 +1,5 @@
 <h1 class="currentPage">Login</h1>
-<div> <?php if(isset($message)) echo $message; ?></div><br>
+<div> <?php echo $message; ?></div><br>
 <form action="?controller=user&action=login" method="post">
   <div class="inputLogin"><input class="typeBox standard" type='email' name='email' placeholder='Email Address'></div>
   <div class="inputLogin"><input class="typeBox standard" type='password' name='password' placeholder='Password'></div>
