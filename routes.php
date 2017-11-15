@@ -48,7 +48,7 @@
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
-                          'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses'],
+                          'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword'],
                           'evaluate'  => ['submit']);
 
   if(array_key_exists($controller, $controllers))

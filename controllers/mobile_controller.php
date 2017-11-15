@@ -24,6 +24,11 @@ class MobileController
     {
       require_once('views/mobile/register.php');
     }
+//=================================================================================== FORGOT PASSWORD PAGE
+    public function forgotPassword()
+    {
+      require_once('views/mobile/forgotPassword.php');
+    }
 //=================================================================================== CLASSES PAGE
     public function classes()
     {
