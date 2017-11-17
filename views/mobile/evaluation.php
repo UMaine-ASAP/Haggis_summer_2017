@@ -7,8 +7,6 @@
 
 <?php
 
-  $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
-
   foreach($criteria as $a)
   {
     // Needs URL, controller function,and page to view people's projects
