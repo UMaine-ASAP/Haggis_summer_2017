@@ -1,8 +1,9 @@
-
+<script src="java/popup.js"></script>
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
-  <tr><td></td><td></td></tr>
+  <tr><td></td><td>
+  <button class='standard popupmaker' id ='eventMode'>Event mode</button></td></tr>
     <tr>
       <td colspan='2'>
       <h2>".$a->title."</h2>
@@ -53,3 +54,5 @@
   require_once("../controllers/detailsAssignmentController.php");//?id=".$a->id);
   echo "</td></tr></table>";
 ?>
+
+<div class="popup" id="eventMode"><?php require_once('../views/event/createEvent.php');?></div>
