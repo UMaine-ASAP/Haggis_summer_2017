@@ -1,33 +1,25 @@
+<h3>Project Responses</h3>
+<script type ="text/javascript" src="vendor/Chart.bundle.min.js"></script>
+<script type ="text/javascript" src="vendor/jquery.min.js"></script>
+<script type ="text/javascript" src="java/bargraph.js"></script>
+
+
 <?php
-
-$projectid = $_GET['id'];
-$project = Project::id($projectid)[1];
-$projectresponses = Evaluate::projectID($projectid)[1];
-$cID = array();
-$cNames = array();
-$cAvg = array();
-$cComments = array();
-
-foreach($projectresponses as $r)
+$i=0;
+if(sizeof($cNames)<1)
+  echo "No Evaluations yet, Be the first!";
+else
 {
-  $temp = Criteria::id($r->criteriaID)[1];
-  $check = in_array($temp->id, $cID);
-    if( $check != false)
+  foreach($cNames as $n)
+  {
+    echo "<h3>".$n."</h3>";
+    echo "Average Rating: ".$cAvg[$i]."<br>";
+    foreach($cComments[$i] as $c)
     {
-      $index = array_search($temp->id, $cID);
-      $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
-      $cComments[$index][] = $r->comment;
+      echo $c."<br>";
     }
-    else
-    {
-      $cID[] = $temp->id;
-      $cNames[] = $temp->title;
-      $cAvg[] = $r->rating;
-      $cComments[] = array($r->comment);
-    }
+    echo "<br>";
+    $i++;
+  }
 }
-// The HTML is at this location  |
-//                              \/
-require_once("views/project/responsesProject.php");
-
 ?>
