@@ -2,11 +2,10 @@
 
 <h3 class="currentPage">Critique</h3>
 <table  class="marginTable">
-<form id='evalform' mathod='POST' action>
-<input type="hidden" name="evalfor" class="evalfor" id="34" value="55">
+<form id='evalform' method='post' action=''>
+<input type="hidden" name="evalfor" class="evalfor" id=<?php "".$_GET['assignmentID'] ?> value=<?php "".$projectid ?>>
 
 <?php
-
   foreach($criteria as $a)
   {
     // Needs URL, controller function,and page to view people's projects
@@ -21,10 +20,9 @@
     }
     echo "</div>";
   }
-
 ?>
 
 
-<tr><td class="projectsButton"><br><input class="submitButton" type='submit' value='Submit'></tr></td>
+<tr><td class="projectsButton"><br><input class="submitButton" type='button' id='evalsubmit' value='Submit'></tr></td>
 </form>
 <div id="evalout"></div>
