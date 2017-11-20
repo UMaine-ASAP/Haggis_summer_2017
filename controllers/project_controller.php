@@ -18,8 +18,9 @@ class ProjectController
       $projectID = Project::create($title, $desc,'2', $assignmentID)[1];
       for($i = 0; $i < sizeof($fn); $i++)
       {
-        echo EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
+        EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
       }
+      echo "<h2>Project Successfully Submitted</h2>";
     }
     else
     {
