@@ -41,7 +41,7 @@ class PagesController
         unset($_SESSION['returnto']);
       }
       else
-        $classID = $_GET['classID'];
+        $classID = Klass::joinCode($_GET['classcode']);
       $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
       $status = 'user';                                   //checks for admin or user status
       $class = Klass::classid($classID)[1];

@@ -39,6 +39,9 @@
       case 'evaluate':
         $controller = new EvaluateController();
         break;
+      case 'project':
+        $controller = new ProjectController();
+        break;
     }
     $controller->{$action}();
   }
@@ -50,7 +53,8 @@
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword'],
-                          'evaluate'  => ['submit']);
+                          'evaluate'  => ['submit'],
+                          'project'   => ['register','edit']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
