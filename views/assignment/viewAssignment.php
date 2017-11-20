@@ -1,4 +1,4 @@
-<script src="java/popup.js"></script>
+
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
@@ -51,8 +51,8 @@
   }
   echo "</td><td id=ProjectView>";
   $_SESSION['targetid'] = $a->id;
-  require_once("../controllers/detailsAssignmentController.php");//?id=".$a->id);
+  require_once("views/assignment/detailsAssignment.php");//?id=".$a->id);
   echo "</td></tr></table>";
 ?>
 
-<div class="popup" id="eventMode"><?php require_once('../views/event/createEvent.php');?></div>
+<div class="popup" id="eventMode"><?php require_once('views/event/createEvent.php');?></div>

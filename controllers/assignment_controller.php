@@ -125,8 +125,61 @@ class AssignmentController
     //Load index page
     header('Location: index.php');
   }
-  //========================================================================== 
-
   //==========================================================================
+  public function createAssignmentQuick()
+  {
+    $class;
+    $assignments;
+    $classID;
+    $idList = array();
+    $NumofGroups = 3;
+    $userList;
+
+    //fetch criterias to be used in assignment creation
+    $criterias = Criteria::all()[1];
+    $criteriaList = "<datalist id='criterias'>";
+    $criteriaStorage="";
+    foreach($criterias as $c)
+    {
+      $criteriaList .= "<option value='".$c->title."'>";
+      $criteriaStorage .= "<input type='hidden' id='".$c->title."' value='".$c->description."'>";
+    }
+    $criteriaList .="</datalist>";
+
+
+    //Post routing - checks to see if user is logged in, and directs user back to the class they were in previously
+    if(isset($_SESSION['token']))
+    {
+      $classID = $_GET['classID'];
+      $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
+      $class = Klass::classid($classID)[1];             //pulls class data
+      $students = User::klass($classID)[1];           //pulls data for students in class
+      $userList = User::klass($classID)[1];
+    }
+    $status = 'user';                                   //checks for admin or user status
+
+    if(User::checkAdmin($_SESSION['token'])[1])
+        $status = 'admin';
+    require_once('views/assignment/createAssignment.php');
+
+  }
+  //==========================================================================
+  public function viewAssignment()
+  {
+    $assignmentID = $_GET['assignmentID'];
+    $a = Assignment::id($assignmentID)[1];
+    require_once("views/assignment/viewAssignment.php");
+  }
+  //==========================================================================
+  public function details()
+  {
+    $t;
+    if(isset($_GET['id']))
+      $t = $_GET['id'];
+    else
+      $t = $_SESSION['targetid'];
+    $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
+    require_once('views/assignment/detailsAssignment.php');
+  }
 }
 ?>
