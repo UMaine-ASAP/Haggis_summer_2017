@@ -126,8 +126,8 @@ class MobileController
         {
           Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid )[1];
         }
-        $direction = 'Location: index.php?controller=mobile&action=responses&id='.$projectID;
-        header($direction);
+        $direction =
+        header("Location: index.php?controller=mobile&action=responses&id=$projectID");
       }
       else
       {
