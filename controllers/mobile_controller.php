@@ -117,9 +117,21 @@ class MobileController
 //=================================================================================== EVALUATE PROJECT
     public function evaluate()
     {
-      $projectid = $_GET['projectID'];
-      $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
-      require_once('views/mobile/evaluation.php');
+      if(isset($_POST['evalfor']))
+      {
+        $userid = User::getID($_SESSION['token'])[1];
+        $projectID = $_POST['evalfor'];
+        for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
+        {
+          echo Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid )[1];
+        }
+      }
+      else
+      {
+        $projectid = $_GET['projectID'];
+        $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
+        require_once('views/mobile/evaluation.php');
+      }
     }
 //=================================================================================== RESPONSES PROJECT
     public function responses()

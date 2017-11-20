@@ -2,7 +2,7 @@
 
 <h3 class="currentPage">Critique</h3>
 <table  class="marginTable">
-<form id='evalform' method='post' action=''>
+<form id='evalform' method='post' action='?controller=mobile&action=evaluate'>
 <input type="hidden" name="evalfor" class="evalfor" id=<?php "".$_GET['assignmentID'] ?> value=<?php "".$projectid ?>>
 
 <?php
@@ -23,6 +23,6 @@
 ?>
 
 
-<tr><td class="projectsButton"><br><input class="submitButton" type='button' id='evalsubmit' value='Submit'></tr></td>
+<tr><td class="projectsButton"><br><input class="submitButton" type='Submit' value='Submit'></tr></td>
 </form>
 <div id="evalout"></div>
