@@ -10,7 +10,7 @@ Please submit your registration for <?php echo $assignment->title;?>
   <textarea class='standard' cols='75' rows='5' name='projectdesc' placeholder='Short Description'></textarea><br>
   <!-- <textarea class='standard' cols='75' rows='5' name='abst' placeholder='Abstract'></textarea><br> -->
   <!-- <input class='standard' type="text" name='principleInvestigator' placeholder='Principle Investigator'><br> -->
-  <input class='standard' type='number' min='1' id='numOfMembers' name ='numOfMembers' value ='1'><br>
+  <!-- <input class='standard' type='number' min='1' id='numOfMembers' name ='numOfMembers' value ='1'><br> -->
   <div id='membercount'>
     <input class='standard' type ='text' name=firstName[] placeholder='FirstName'><input class='standard' type='text' name='middleInitial[]' max='1' placeholder='M'><input class='standard' type='text' name='lastname[]' placeholder='Last Name'><input class='standard' type='email' name='email[]' placeholder='Email Address'>
   </div>
