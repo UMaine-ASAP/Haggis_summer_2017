@@ -27,7 +27,7 @@ class EventUser
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "INSERT INTO eventuser (firstName, middleInitial, lastName, email,eventID) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO eventUser (firstName, middleInitial, lastName, email,eventID) VALUES (?,?,?,?,?)";
     $stmt = $db->prepare($sql);
     $data = array($fn, $mi, $ln, $em,$eid);
 
@@ -52,7 +52,7 @@ class EventUser
     $message;
     $db = Db::getInstance();
     $data= array($em);
-    $sql = "SELECT ID FROM eventuser WHERE email = ?";
+    $sql = "SELECT ID FROM eventUser WHERE email = ?";
     try
     {
       $stmt = $db->prepare($sql);
@@ -71,7 +71,7 @@ class EventUser
   public static function eventID($id)
   {
     $db = Db::getInstance();
-    $sql = "SELECT * FROM eventuser WHERE eventID = ?";
+    $sql = "SELECT * FROM eventUser WHERE eventID = ?";
     $data = array($id);
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
