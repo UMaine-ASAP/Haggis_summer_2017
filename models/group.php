@@ -46,6 +46,7 @@ Class Group {
   {
     $errorCode;
     $message;
+    $users = array();
     $db = Db::getInstance();
     $sql = "SELECT * FROM studentGroup WHERE projectID = ?";
     $data = array($projectID);
@@ -57,7 +58,7 @@ Class Group {
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))		//goes through list
       {
         $userIDs = Group::user($result['studentGroupID'])[1];
-        $users = array();
+
         foreach($userIDs as $uid)
         {
           $users[] = User::id($uid)[1];

@@ -36,7 +36,7 @@
     foreach($projects as $p)
     {
       echo "<li><a onclick='GetProject(".$p->id.")' class='projectitem' id='".$p->id."'>".$p->title."</a></li>";
-      if($p->isgroup ==='1')
+      if($p->isgroup ==='1' || $p->isgroup ==='2')
       {
         echo "<ul>";
         $listing = $p->list;

@@ -1,18 +1,40 @@
 <?php
 class ProjectController
 {
+  //===================================================================================
   public function register()
   {
-    $assignment = Assignment::id($_GET['target'])[1];
-    require_once('views/project/registerProject.php');
+    if(isset($_POST['targetid']))
+    {
+      $assignmentID = $_POST['targetid'];
+      $title = $_POST['projectname'];
+      $desc = $_POST['projectdesc'];
+      $abst = $_POST['abst'];
+      $PI = $_POST['principleInvestigator'];
+      $fn = $_POST['firstName'];
+      $mi = $_POST['middleInitial'];
+      $ln = $_POST['lastname'];
+      $em = $_POST['email'];
+      $projectID = Project::create($title, $desc,'2', $assignmentID)[1];
+      for($i = 0; $i < sizeof($fn); $i++)
+      {
+        echo EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
+      }
+    }
+    else
+    {
+      $assignment = Assignment::id($_GET['target'])[1];
+      require_once('views/project/registerProject.php');
+    }
 
   }
 
+  //===================================================================================
   public function edit()
   {
 
   }
-
+  //===================================================================================
   public function evaluate()
   {
     $projectid = $_GET['id'];
@@ -22,7 +44,7 @@ class ProjectController
 
     require_once("views/project/evaluateProject.php");
   }
-
+  //===================================================================================
   public function viewResponses()
   {
     $projectid = $_GET['id'];
@@ -55,7 +77,7 @@ class ProjectController
 
     require_once("views/project/responsesProject.php");
   }
-
+  //===================================================================================
   public function viewProject()
   {
     $projectid = $_GET['projectID'];
