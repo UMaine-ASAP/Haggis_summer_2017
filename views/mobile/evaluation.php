@@ -3,7 +3,7 @@
 <h3 class="currentPage">Critique</h3>
 <table  class="marginTable">
 <form id='evalform' method='post' action='?controller=mobile&action=evaluate'>
-<input type='hidden' name = 'evalfor' class='evalfor' id='".<?php echo $a->id?>."' value='".<?php echo $projectid; ?>."'>";
+<input type='hidden' name = 'evalfor' class='evalfor' id="<?php echo $a->id; ?>" value="<?php echo $projectid; ?>">;
 
 <?php
   foreach($criteria as $a)
