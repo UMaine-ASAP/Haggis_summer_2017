@@ -9,8 +9,8 @@ class ProjectController
       $assignmentID = $_POST['targetid'];
       $title = $_POST['projectname'];
       $desc = $_POST['projectdesc'];
-      $abst = $_POST['abst'];
-      $PI = $_POST['principleInvestigator'];
+      //$abst = $_POST['abst'];
+      //$PI = $_POST['principleInvestigator'];
       $fn = $_POST['firstName'];
       $mi = $_POST['middleInitial'];
       $ln = $_POST['lastname'];
