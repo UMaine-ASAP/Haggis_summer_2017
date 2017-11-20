@@ -1,4 +1,4 @@
-<script src="java/popup.js"></script>
+
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
@@ -36,7 +36,7 @@
     foreach($projects as $p)
     {
       echo "<li><a onclick='GetProject(".$p->id.")' class='projectitem' id='".$p->id."'>".$p->title."</a></li>";
-      if($p->isgroup ==='1')
+      if($p->isgroup ==='1' || $p->isgroup ==='2')
       {
         echo "<ul>";
         $listing = $p->list;
@@ -51,8 +51,8 @@
   }
   echo "</td><td id=ProjectView>";
   $_SESSION['targetid'] = $a->id;
-  require_once("../controllers/detailsAssignmentController.php");//?id=".$a->id);
+  require_once("views/assignment/detailsAssignment.php");//?id=".$a->id);
   echo "</td></tr></table>";
 ?>
 
-<div class="popup" id="eventMode"><?php require_once('../views/event/createEvent.php');?></div>
+<div class="popup" id="eventMode"><?php require_once('views/event/createEvent.php');?></div>

@@ -6,6 +6,7 @@
   require_once('models/criteria.php');
   require_once('models/projectUser.php');
   require_once('models/project.php');
+  require_once('models/eventUser.php');
 
   require_once('models/user.php');
   require_once('models/evaluate.php');
@@ -39,6 +40,9 @@
       case 'evaluate':
         $controller = new EvaluateController();
         break;
+      case 'project':
+        $controller = new ProjectController();
+        break;
     }
     $controller->{$action}();
   }
@@ -48,9 +52,10 @@
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass','addToClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
-                          'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
+                          'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword'],
-                          'evaluate'  => ['submit']);
+                          'evaluate'  => ['submit'],
+                          'project'   => ['register','edit','evaluate','viewResponses','viewProject']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

@@ -12,8 +12,8 @@
     <td class='assignmentCreationGroup' rowspan="3" width=20% style="border-right: 1px solid black">
       <input class='standard' type='radio' name='makegroup' value='false' checked>Single
       <input class='standard' type='radio' name='makegroup' value='true'>Group
-      <div id='groupcreator'><?php require_once('../views/group/createGroup.php');?></div>
-      <div id ='singleassignment'><?php require_once('../views/user/classUser.php');?></div>
+      <div id='groupcreator'><?php require_once('views/group/createGroup.php');?></div>
+      <div id ='singleassignment'><?php require_once('views/user/classUser.php');?></div>
     </td>
     <td class='assignmentCreationHead'>
       <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
@@ -37,7 +37,7 @@
     <td class='assignmentCreationCriteria'>
       <br><br>
       <?php echo $criteriaList; ?>
-      <?php require_once('../views/criteria/createCriteria.php'); ?>
+      <?php require_once('views/criteria/createCriteria.php'); ?>
     </td>
 </table>
 </form>

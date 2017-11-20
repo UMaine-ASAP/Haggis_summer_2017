@@ -14,7 +14,14 @@ $(document).ready(function()
     console.log(formsr);
     var projectID = $('input[name="evalfor"]').val();
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "controllers/evaluateSlinger.php", true);
+    // xmlhttp.onreadystatechange = function()
+    // {
+    //   if(this.readyState==4 && this.status==200)
+    //   {
+    //     document.getElementById("evalout").append(this.responseText)
+    //   }
+    // };
+    xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(formsr);
     $('#evalout').append('<h3>Thank you, your feedback has been submitted<h3>');

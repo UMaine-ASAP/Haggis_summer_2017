@@ -33,6 +33,14 @@
     ?>
 
   </head>
+  <?php
+    if(isset($_GET['quick']))
+    {
+      require_once('routes.php');
+    }
+    else
+    {
+      ?>
   <div class="overlay"></div>
   <header>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -58,4 +66,7 @@
     <div class = "content">
     </div>
   </footer>
+  <?php
+    }
+   ?>
   </html>

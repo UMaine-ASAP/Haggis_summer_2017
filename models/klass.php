@@ -103,7 +103,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         }
         return array($errorCode, $message);
     }
-//===================================================================================
+//=================================================================================== GET DAYS OF WEEK
     public static function getDays($classID)
     {
       $message = [];
