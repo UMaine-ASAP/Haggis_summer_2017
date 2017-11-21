@@ -3,7 +3,6 @@
 
 Please submit your registration for <?php echo $assignment->title;?>
 
-<script src='java/formScaler.js'></script>
 <form action='?controller=project&action=register' method='post' id='projreg'>
   <input class='standard' type='hidden' name='targetid' value='<?php echo $assignment->id;?>'>
   <input class='standard' type="text" name="projectname" placeholder="Project Name"><br>
