@@ -111,7 +111,8 @@ class MobileController
 //=================================================================================== DISPLAY PROJECTS
     public function projects()
     {
-      $projects = Project::assignment($_GET['assignmentID'])[1];
+      $assignmentID = $_GET['assignmentID'];
+      $projects = Project::assignment($assignmentID)[1];
       require_once('views/mobile/projects.php');
     }
 //=================================================================================== EVALUATE PROJECT
@@ -132,6 +133,7 @@ class MobileController
       else
       {
         $projectid = $_GET['projectID'];
+        $assignmentID = $_GET['assignmentID'];
         $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
         require_once('views/mobile/evaluation.php');
       }
@@ -140,6 +142,7 @@ class MobileController
     public function responses()
     {
       $projectid = $_GET['id'];
+      $assignmentID = $_GET['assignmentID'];
       $project = Project::id($projectid)[1];
       $projectresponses = Evaluate::projectID($projectid)[1];
       $cID = array();
