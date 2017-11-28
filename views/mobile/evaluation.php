@@ -1,6 +1,9 @@
 <script src='java/evaluationmanager.js'></script>
 
-<h3 class="currentPage"><a href=<?php echo "index.php?controller=mobile&action=projects&assignmentID=".$assignmentID; ?>>&lt;- Back</a> Critique</h3>
+<h3 class="currentPage">
+  <a href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
+  Critique
+</h3>
 <table  class="marginTable">
 <form id='evalform' method='post' action='?controller=mobile&action=evaluate'>
 <input type='hidden' name = 'evalfor' class='evalfor' value="<?php echo $projectid; ?>">

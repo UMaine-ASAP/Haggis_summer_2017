@@ -112,12 +112,14 @@ class MobileController
     public function projects()
     {
       $assignmentID = $_GET['assignmentID'];
+      $classID = $_GET['classID'];
       $projects = Project::assignment($assignmentID)[1];
       require_once('views/mobile/projects.php');
     }
 //=================================================================================== EVALUATE PROJECT
     public function evaluate()
     {
+      $classID = $_GET['classID'];
       $projectID;
       if(isset($_POST['evalfor']))
       {
@@ -141,6 +143,7 @@ class MobileController
 //=================================================================================== RESPONSES PROJECT
     public function responses()
     {
+      $classID = $_GET['classID'];
       $projectid = $_GET['id'];
       $assignmentID = $_GET['assignmentID'];
       $project = Project::id($projectid)[1];
