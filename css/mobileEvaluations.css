@@ -8,8 +8,14 @@ input.submitButton{
   border: none;
 }
 
+.submitButton{
+  text-align: center;
+  padding-bottom: 6%;
+}
+
 .slider {
     -webkit-appearance: none;
+    width: 100%;
     height: 12px;
     border-radius: 10px;
     background: #bee8f7;
