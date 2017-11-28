@@ -120,6 +120,7 @@ class MobileController
     public function evaluate()
     {
       $classID = $_GET['classID'];
+      $assignmentID = $_GET['assignmentID'];
       $projectID;
       if(isset($_POST['evalfor']))
       {
@@ -129,14 +130,12 @@ class MobileController
         {
           Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid )[1];
         }
-        $direction =
-        header("Location: index.php?controller=mobile&action=responses&id=$projectID");
+        $direction = header("Location: index.php?controller=mobile&action=responses&classID=$classID&assignmentID=$assignmentID&id=$projectID");
       }
       else
       {
         $projectid = $_GET['projectID'];
-        $assignmentID = $_GET['assignmentID'];
-        $criteria = Criteria::assignmentID($_GET['assignmentID'])[1];
+        $criteria = Criteria::assignmentID($assignmentID)[1];
         require_once('views/mobile/evaluation.php');
       }
     }

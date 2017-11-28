@@ -5,7 +5,7 @@
   Critique
 </h3>
 <table  class="marginTable">
-<form id='evalform' method='post' action='?controller=mobile&action=evaluate'>
+<form id='evalform' method='post' action=<?php echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectid; ?>>
 <input type='hidden' name = 'evalfor' class='evalfor' value="<?php echo $projectid; ?>">
 
 <?php
