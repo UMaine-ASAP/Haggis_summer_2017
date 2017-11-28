@@ -39,18 +39,19 @@ input.submitButton{
 
 .commentBox{
   width: 75%;
-  padding-bottom: 35px;
+  padding-bottom: 35psx;
   border-color: black;
   border-radius: 5px;
+}
+
+.commentBot{
+  padding-bottom: 15%;
 }
 
 .criteriaRatingout{
   border: none;
   font-size: 22px;
 }
-
-
-
 
 
 
