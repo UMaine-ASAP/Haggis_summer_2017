@@ -4,7 +4,7 @@
   <div> <?php if(isset($message)) echo $message; ?></div><br>
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
-      <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class="smallButton" type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button></div>
+      <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class="smallButton" type='submit'>+</button></div>
     </form>
   </div>
 <?php

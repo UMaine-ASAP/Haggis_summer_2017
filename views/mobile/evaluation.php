@@ -26,6 +26,6 @@
 ?>
 
 
-<tr><td class="projectsButton"><br><input class="submitButton" type='Submit' value='Submit'></tr></td>
+<div class="submitButton"><tr><td class="submitButton"><br><input class="submitButton" type='Submit' value='Submit'></tr></td></div>
 </form>
 <div id="evalout"></div>
