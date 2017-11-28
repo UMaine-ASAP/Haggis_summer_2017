@@ -26,6 +26,13 @@ a.smallButton{
   border-radius: 20px;
 }
 
+a.backButton{
+  padding: 3%;
+  color: white;
+  background-color: #1195c6;
+  border-radius: 20px;
+}
+
 button.smallButton{
   border: none;
   padding: 3%;
