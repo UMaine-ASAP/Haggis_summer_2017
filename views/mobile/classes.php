@@ -1,4 +1,7 @@
-<h2 class="currentPage">Add Classes</h2>
+<h2 class="currentPage">
+  <a href="index.php">&lt;- Back</a>
+  Classes
+</h2>
 <div class='container'>
   <p class="reg">To add classes, enter your class code below</p>
   <div> <?php if(isset($message)) echo $message; ?></div><br>
