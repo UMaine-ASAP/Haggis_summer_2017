@@ -1,5 +1,5 @@
 <h3 class="currentPage">
-  <a href="index.php?controller=mobile&action=classes">&lt;- Back</a>
+  <a href="index.php?controller=mobile&action=classes" class="backButton">&lt;- Back</a>
   Assignments (<?php echo sizeof($assignments);?>)
 </h3>
 <br>

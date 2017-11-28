@@ -1,5 +1,5 @@
 <h3 class="currentPage">
-  <a href=<?php echo "index.php?controller=mobile&action=assignments&classID=".$classID ?>>&lt;- Back</a>
+  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=assignments&classID=".$classID ?>>&lt;- Back</a>
   Projects
 </h3>
 <table  class="marginTable">

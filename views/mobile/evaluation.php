@@ -1,7 +1,7 @@
 <script src='java/evaluationmanager.js'></script>
 
 <h3 class="currentPage">
-  <a href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
+  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
   Critique
 </h3>
 <table  class="marginTable">
@@ -12,7 +12,7 @@
   foreach($criteria as $a)
   {
     // Needs URL, controller function,and page to view people's projects
-    echo "<div><tr><td class='assignmentTitle push'>".$a->title."</tr></td>";
+    echo "<div><tr><td class='criteriaTitle push'>".$a->title."</tr></td>";
     echo "<tr><td class='push'><span>On a scale of ".$a->minRange." to ".$a->maxRange."</span><br></tr></td>";
     echo "<tr><td class='push'><span>".$a->description."</span><br></tr></td>";
     echo "<tr><td><input class='criteriaID' name='criteriaID[]' type='hidden' value='".$a->id."'></tr></td>";

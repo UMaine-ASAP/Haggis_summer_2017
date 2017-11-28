@@ -1,5 +1,5 @@
 <h1 class="currentPage">
-  <a href="index.php">&lt;- Back</a>
+  <a href="index.php" class="backButton">&lt;- Back</a>
   Login
 </h1>
 <div> <?php echo $message; ?></div><br>
