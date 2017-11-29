@@ -1,4 +1,7 @@
-<h3><a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a> Project Responses</h3>
+<h3 class="currentPage">
+  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
+  Project Responses
+</h3>
 <script type ="text/javascript" src="vendor/Chart.bundle.min.js"></script>
 <script type ="text/javascript" src="vendor/jquery.min.js"></script>
 <script type ="text/javascript" src="java/bargraph.js"></script>
