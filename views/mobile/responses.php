@@ -15,7 +15,8 @@ else
 {
   foreach($cNames as $n)
   {
-    echo "<h3>".$n."</h3>";
+    // echo "<div  class='push'>"
+    echo "<h3 class='push'>".$n."</h3>";
     echo "Average Rating: ".$cAvg[$i]."<br>";
     foreach($cComments[$i] as $c)
     {
@@ -24,5 +25,6 @@ else
     echo "<br>";
     $i++;
   }
+  // echo "</div>"
 }
 ?>

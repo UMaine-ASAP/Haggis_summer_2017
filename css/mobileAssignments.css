@@ -3,9 +3,10 @@
   font-style: normal;
   padding-top:5%;
   padding-bottom:5%;
-  border: 2px solid gray;
-  border-left: 0px;
-  border-right: 0px;
+}
+
+hr.dropDown{
+  border-width: 2px;
 }
 
 td.projectsButton{
