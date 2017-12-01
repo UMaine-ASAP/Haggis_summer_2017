@@ -12,3 +12,7 @@
   border: solid 1.5px #1195c6;
   margin: auto;
 }
+
+.tab {
+  display: none;
+}
