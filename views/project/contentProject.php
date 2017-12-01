@@ -3,7 +3,7 @@
 
 
 <?php
-echo $userID."<br>";
+echo $userID."<hr>";
 foreach($ids as $i)
 {
   echo $i."<br>";

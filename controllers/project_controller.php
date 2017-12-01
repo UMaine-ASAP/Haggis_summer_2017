@@ -87,14 +87,16 @@ class ProjectController
     $project = Project::id($projectid)[1];
     $list = $project->list;
     $ids = array();
+    echo sizeof($list);
 
     switch($project->isgroup)
     {
       case '0':
-        $userIDS = $list->userID;
-        foreach($userIDS as $u)
+
+        foreach($list as $u)
         {
-          $u->userID;
+
+          echo $u->userID;
 
           $ids[] = $u->userID;
           if($u->id == $userID)

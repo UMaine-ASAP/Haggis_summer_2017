@@ -88,7 +88,7 @@ Class ProjectUser {
       $userlist = array();
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],User::id($result['userID'])[1],$result['role'],$result['description']);
+        $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']);
       }
       return array(1, $userlist);
     }
