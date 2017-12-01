@@ -88,7 +88,7 @@ class ProjectController
     $list = $project->list;
     $ids = array();
     echo sizeof($list);
-    echo $list;
+    //echo $list;
     echo "<br>".$projectid;
     switch($project->isgroup)
     {
