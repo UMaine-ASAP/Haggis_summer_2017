@@ -5,6 +5,10 @@
   padding-bottom:5%;
 }
 
+hr.dropDown{
+  border-width: 2px;
+}
+
 td.projectsButton{
   padding: 10%;
   text-align: center;

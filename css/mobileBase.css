@@ -32,12 +32,17 @@ p.reg{
   margin-left: 8%;
   color: black;
   font-size: 35px;
-  padding-bottom: 8%;
+  padding-bottom: 6%;
+  padding-top: 6%;
   margin-bottom: 0;
 }
 
 .adjustTop{
   padding-top: 12%;
+}
+
+#adjustTop{
+  padding-top: 40%;
 }
 
 .adjustBottom{
@@ -69,6 +74,8 @@ table.marginTable{
   border-radius: 20px 20px 0px 0px;
 }
 
-
+hr{
+  margin: 2%;
+}
 
 .

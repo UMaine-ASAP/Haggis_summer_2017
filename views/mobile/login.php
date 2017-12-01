@@ -1,4 +1,7 @@
-<h1 class="currentPage">Login</h1>
+<h1 class="currentPage">
+  <a href="index.php" class="backButton">&lt;- Back</a>
+  Login
+</h1>
 <div> <?php echo $message; ?></div><br>
 <form action="?controller=user&action=login" method="post">
   <div class="inputLogin"><input class="typeBox standard" type='email' name='email' placeholder='Email Address'></div>

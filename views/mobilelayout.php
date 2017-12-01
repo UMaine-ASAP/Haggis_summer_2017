@@ -25,10 +25,12 @@
 
         <div class='headerLogin'>
           <?php
-          if (isset($_SESSION['token'])) {
-            echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
-          } else {
-            echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+          if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
+            if (isset($_SESSION['token'])) {
+              echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
+            } else {
+              echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+            }
           }
           ?>
         </div>

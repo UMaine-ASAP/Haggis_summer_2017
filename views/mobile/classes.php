@@ -1,10 +1,15 @@
-<h2 class="currentPage">Add Classes</h2>
+<h2 class="currentPage">
+    <a href="index.php" class="backButton">-Back<span class="glyphicons glyphicons-arrow-left"></span></a>
+  Classes
+</h2>
 <div class='container'>
   <p class="reg">To add classes, enter your class code below</p>
   <div> <?php if(isset($message)) echo $message; ?></div><br>
   <div>
     <form method='post' action='?controller=mobile&action=joinClass'>
-      <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class="smallButton" type='submit'><i size='smaller' class="glyphicon glyphicon-plus" size='smaller'></i></button></div>
+      <div class="inline">
+      <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class='plus' type='submit'>+</button></div>
+      </div>
     </form>
   </div>
 <?php
