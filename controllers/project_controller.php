@@ -81,8 +81,38 @@ class ProjectController
   //===================================================================================
   public function viewProject()
   {
+    $assignedUser=false;
+    $userID = User::getID($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
     $project = Project::id($projectid)[1];
+    $list = $project->list;
+    $ids = array();
+
+    switch($project->isgroup)
+    {
+      case '0':
+        $userIDS = $list->userID;
+        foreach($userIDS as $u)
+        {
+          $u->userID;
+
+          $ids[] = $u->userID;
+          if($u->id == $userID)
+            $assignedUser = true;
+        }
+        break;
+      case '2':
+        //Go through EventUsers(eventID)
+        break;
+      case '1':
+      foreach($list as $u)
+      {
+        $ids[] = $u->id;
+        if($u->id == $userID)
+          $assignedUser = true;
+      }
+        break;
+    }
     require_once("views/project/viewProject.php");
   }
 }

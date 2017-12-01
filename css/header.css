@@ -1,8 +1,11 @@
 header
 {
+  position:fixed;
   background-color:#7a93bc;
-  height:50px;
+  height:150px;
   width:100%;
+  border-bottom: 2px solid black;
+  z-index:2;
 }
 .header
 {
@@ -10,7 +13,7 @@ header
   text-align:center;
 
   color:white;
-  border-bottom: 2px solid black;
+
   margin: 0px;
   padding: 0px;
 
@@ -68,8 +71,10 @@ header
 
 .currentAction
 {
+  position:absolute;
+  left:50%;
   height: 100px;
   text-align: center;
+  vertical-align:bottom;
   background-color:#7a93bc;
-  border-bottom: 2px solid black;
 }

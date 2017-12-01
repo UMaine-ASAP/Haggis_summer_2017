@@ -7,7 +7,8 @@
   require_once('models/projectUser.php');
   require_once('models/project.php');
   require_once('models/eventUser.php');
-
+  require_once('models/part.php');
+  require_once('models/content.php');
   require_once('models/user.php');
   require_once('models/evaluate.php');
   require_once('models/emailnotification.php');

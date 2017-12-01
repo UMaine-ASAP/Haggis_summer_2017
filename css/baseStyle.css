@@ -10,6 +10,10 @@
   }
 }
 
+.spacer
+{
+  height:150px;
+}
 body
 {
   background-color: lightgrey;
@@ -152,6 +156,7 @@ h3
 
 .promptlink
 {
+  cursor:pointer;
   text-align:center;
 }
 .menutitle
@@ -161,7 +166,7 @@ h3
 
 .overlay
 {
-  position:absolute;
+  position:fixed;
   display:none;
   background-color: rgba(0,0,0,0.7);
   top:0;
@@ -174,7 +179,7 @@ h3
 
 .popup
 {
-  position:absolute;
+  position:fixed;
   width: 600px;
   height:500px;
   display:none;
@@ -254,4 +259,17 @@ div.addprofnote
   background:lightgrey;
   margin:5px;
   padding: 5px;
+}
+li.assignments
+{
+  color:blue;
+  cursor: pointer;
+  text-decoration:none;
+  list-style-type:none;
+  font-size:15px;
+  font-style:bold;
+}
+li.assignments:hover
+{
+  text-decoration:underline;
 }

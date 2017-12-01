@@ -3,7 +3,7 @@
 <script src="java/classCreation.js"></script>
 <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
 <h2>New Class</h2><hr>
-  <form name='createaclass' action='?controller=class&action=insertClass' method='post'>
+  <form name='createaclass' action='?controller=class&action=insertClass' method='post' oninput='coursenameout.value=coursename.value+" "+coursecode.value'>
     <input type='hidden'  name='token'        value = '<?php echo $_SESSION['token'];?>'>
 
     <div id='part1'>
@@ -11,8 +11,8 @@
       <input class='standard'  type="radio" name="newCourse" value ='no'>Add to a pre-existing course<br>
       <div id='part1-1'>
 
-        <input class='standard' type='text'    name='coursetitle'        placeholder='Name of Course'    >     <br>
-        <input class='standard' type='text'    name='coursecode'         placeholder='Course Code (ex: NMD100)' pattern="[A-Za-z]{3}[0-9]{3}" title="Three letter and three number course code"  >    <br>
+        <input class='standard' type='text'    name='coursetitle'  id='coursename'      placeholder='Name of Course'    >     <br>
+        <input class='standard' type='text'    name='coursecode'   id='coursecode'      placeholder='Course Code (ex: NMD100)' pattern="[A-Za-z]{3}[0-9]{3}" title="Three letter and three number course code"  >    <br>
         <input class='standard' type='text'    name='coursedescription'  placeholder='Course Description' >
         <br><button class='standard' type='button' value='1-1' id='part1end'>Continue</button>
 
@@ -22,7 +22,7 @@
         <?php
         foreach($courselisting as $course)
         {
-          echo "<option value='".$course->id."'>".$course->code." ".$course->title."</option>";
+          echo "<option id =".$course->code." ".$course->title." value='".$course->id."'>".$course->code." ".$course->title."</option>";
         }
         ?>
         </select>
@@ -32,6 +32,7 @@
     </div>
 
       <div id='part2'>
+        <output id='coursenameout'></output>
         <input class='standard' type='text'    name='classtitle'        placeholder='Name of Class'><br>
         <input class='standard' type='text'    name='classdescription'  placeholder='Class Description'><br>
         <input class='standard' type='text'    name='location'     placeholder='Class Location'><br>

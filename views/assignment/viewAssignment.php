@@ -42,7 +42,7 @@
         $listing = $p->list;
         foreach($listing as $u)
         {
-          echo "<li>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
+          echo "<li class='assignedname'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
         }
         echo "</ul></li>";
       }
