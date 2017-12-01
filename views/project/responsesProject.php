@@ -39,7 +39,7 @@ d3.select(".chart")
   .data(data)
     .enter()
     .append("div")
-    .style("width", function(d) {return d;})
+    .style("width", function(d) {return d+(3.72/5)+ "%";})
     .text(function(d){return d;});
     </script>
 <div class='chart'></div>

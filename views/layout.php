@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
+    <link rel="stylesheet" type="text/css" href="css/criteria.css">
+    <link rel="stylesheet" type="text/css" href="css/assignment.css">
 
 
 
@@ -48,19 +50,8 @@
     <?php require_once('views/modules/header.php');?>
   </header>
   <body>
-
-    <table>
-      <tr>
-        <td class='currentAction'>
-          <?php require_once('views/modules/currentAction.php');?>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <?php require_once('routes.php'); ?>
-        </td>
-      </tr>
-    </table>
+    <div class=spacer></div>
+      <?php require_once('routes.php'); ?>
   </body>
   <footer>
     <div class = "content">

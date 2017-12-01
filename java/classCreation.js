@@ -16,12 +16,14 @@ $(document).ready(function()
         $("#part1-1").slideDown();
         $("#part1-2").slideUp();
         $("#courseError").html(" ");
+        $('form[name="createaclass"]').attr("oninput","coursenameout.value=coursename.value+' '+coursecode.value");
       }
       else
       {
         $("#part1-2").slideDown();
         $("#part1-1").slideUp();
         $("#courseError").html(" ");
+        $('form[name="createaclass"]').attr("oninput","coursenameout.value=courselisting.id");
       }
   });
 
