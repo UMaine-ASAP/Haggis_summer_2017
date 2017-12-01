@@ -2,7 +2,7 @@
   <html>
     <head>
       <meta content='width=device-width, initial-scale=1.0' name = 'viewport'/>
-      <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="css/mobileBase.css">
       <link rel="stylesheet" type="text/css" href="css/mobileTopBar.css">
       <link rel="stylesheet" type="text/css" href="css/mobileButton.css">
