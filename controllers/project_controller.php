@@ -88,12 +88,13 @@ class ProjectController
     $list = $project->list;
     $ids = array();
     echo sizeof($list);
-
+    echo $list;
+    echo "<br>".$projectid;
     switch($project->isgroup)
     {
       case '0':
 
-        foreach($list as $u)
+        foreach($list as $pu)
         {
 
           echo $u->userID;
