@@ -19,7 +19,6 @@
       <div class='assignmentCreationHead'>
         <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
         <input class='standard' type='text' name='title' placeholder='New Assignment' required>
-        <input class='standard' name='createnew' type='submit' value='Publish'>
       </div>
 
       <div class='assignmentCreation'>
@@ -37,6 +36,10 @@
         <?php require_once('views/criteria/createCriteria.php'); ?>
       </div>
     </div>
+
+  </div>
+  <div>
+    <input class='standard' name='createnew' type='submit' value='Publish'>
   </div>
 </form>
 <?php echo $criteriaStorage; ?>

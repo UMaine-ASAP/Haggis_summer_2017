@@ -104,7 +104,7 @@ Class ProjectUser {
         $errorCode  = $e->getCode();
         $message    = $e->getMessage();
       }
-      return array($errorCode, $userlist);
+      return array($errorCode, $message);
     }
 
 
