@@ -3,7 +3,7 @@
   Projects
 </h3>
 
-<a href="index.php" class="backButton"><span class="glyphicons glyphicons-arrow-left"></span></a>
+<!--<a href="index.php" class="backButton"><span class="glyphicons glyphicons-arrow-left"></span></a>-->
 <table  class="marginTable">
 <?php
   foreach($projects as $a)
