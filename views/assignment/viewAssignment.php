@@ -7,7 +7,8 @@
     <tr>
       <td colspan='2'>
       <h2>".$a->title."</h2>
-      <a class='promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</a>";
+      <span><a class='promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</a></span>
+      <span>Project registration link: <a class='registrationlink' href=''></a>";
       // if($status === 'admin')
       // {
       //   echo "
