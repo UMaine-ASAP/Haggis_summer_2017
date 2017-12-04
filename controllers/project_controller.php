@@ -20,7 +20,7 @@ class ProjectController
       {
         EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
       }
-      echo "<h2>Project Successfully Submitted</h2>";
+      echo "<div class='projectRegistration'><h2>Project Successfully Submitted</h2></div>";
     }
     else
     {

@@ -166,6 +166,14 @@ class AssignmentController
   //==========================================================================
   public function viewAssignment()
   {
+    if(User::checkAdmin($_SESSION['token'])[1])
+    {
+        $status = 'admin';
+    }
+    else
+    {
+      $status='user';
+    }
     $assignmentID = $_GET['assignmentID'];
     $a = Assignment::id($assignmentID)[1];
     require_once("views/assignment/viewAssignment.php");

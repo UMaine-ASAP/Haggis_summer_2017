@@ -12,6 +12,7 @@
   require_once('models/user.php');
   require_once('models/evaluate.php');
   require_once('models/emailnotification.php');
+  require_once('models/event.php');
 
   function call ($controller, $action)
   {
@@ -44,6 +45,9 @@
       case 'project':
         $controller = new ProjectController();
         break;
+      case 'event':
+        $controller = new EventController();
+        break;
     }
     $controller->{$action}();
   }
@@ -56,7 +60,8 @@
                           'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword'],
                           'evaluate'  => ['submit'],
-                          'project'   => ['register','edit','evaluate','viewResponses','viewProject']);
+                          'project'   => ['register','edit','evaluate','viewResponses','viewProject'],
+                          'event'     => ['add']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))
