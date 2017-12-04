@@ -24,7 +24,7 @@ $(document).ready(function()
     xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(formsr);
-    $(document).getElementById('evalout').innerHTML='<h3>Thank you, your feedback has been submitted<h3>';
-    $(document).getElementById('evalform').hide();
+    $('#evalout').innerHTML='<h3>Thank you, your feedback has been submitted<h3>';
+    $('#evalform').hide();
   });
 });
