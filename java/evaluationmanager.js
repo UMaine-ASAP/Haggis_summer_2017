@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-  $('#evalout').hide();
+  $(document).getElementById('evalout').hide();
   $('.criteriaRating').on('input', function(e)
   {
     var curr = e.target.id;
