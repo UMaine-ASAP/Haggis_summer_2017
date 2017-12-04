@@ -260,6 +260,11 @@ div.addprofnote
   margin:5px;
   padding: 5px;
 }
+
+div.projectRegistration
+{
+  text-align: center;
+}
 li.assignments
 {
   color:blue;
