@@ -20,4 +20,4 @@ echo "</div>
   </form></div></td></tr></table></div>";
 ?>
 
-<div id='evalout'></div>
+<div id='evalout'><h3>Thank you, your feedback has been submitted<h3></div>

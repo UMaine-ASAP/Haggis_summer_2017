@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+  $('#evalout').hide();
   $('.criteriaRating').on('input', function(e)
   {
     var curr = e.target.id;
@@ -24,7 +25,7 @@ $(document).ready(function()
     xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(formsr);
-    $('#evalout').innerHTML='<h3>Thank you, your feedback has been submitted<h3>';
+    $('#evalout').show();
     $('#evalform').hide();
   });
 });
