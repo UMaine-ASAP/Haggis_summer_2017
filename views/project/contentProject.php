@@ -2,7 +2,7 @@
 
 
 
-<?php
+<!-- <?php
 echo $userID."<hr>";
 foreach($ids as $i)
 {
@@ -12,3 +12,4 @@ if($assignedUser)
   echo "You are assigned to this project";
 else
   echo "You are Not assigned to this project";
+?> -->

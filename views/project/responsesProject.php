@@ -21,7 +21,7 @@ else
 }
 ?>
 
-<style>
+<!-- <style>
 .chart div {
   font: 10px sans-serif;
   background-color: steelblue;
@@ -42,4 +42,4 @@ d3.select(".chart")
     .style("width", function(d) {return d+(3.72/5)+ "%";})
     .text(function(d){return d;});
     </script>
-<div class='chart'></div>
+<div class='chart'></div> -->
