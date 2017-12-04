@@ -1,5 +1,5 @@
 <h2 class="currentPage">
-    <a href="index.php" class="backButton">-Back<span class="glyphicons glyphicons-arrow-left"></span></a>
+    <a href="index.php" class="backButton">&lt;-Back<span class="glyphicons glyphicons-arrow-left"></span></a>
   Classes
 </h2>
 <div class='container'>
