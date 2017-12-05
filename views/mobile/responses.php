@@ -20,7 +20,7 @@ else
     echo "Average Rating: ".$cAvg[$i]."<br>";
     foreach($cComments[$i] as $c)
     {
-      echo "<div class='rcomment'>"$c."</div>";
+      echo "<div class='rcomment'>".$c."</div>";
     }
     echo "<br>";
     $i++;
