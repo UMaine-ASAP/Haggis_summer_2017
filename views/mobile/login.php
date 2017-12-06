@@ -1,7 +1,7 @@
-<h1 class="currentPage">
+<h3 class="currentPage">
   <a href="index.php" class="backButton">&lt;- Back</a>
   Login
-</h1>
+</h3>
 <div class='err'> <?php echo $message; ?></div><br>
 <form action="?controller=user&action=login&mobile=true" method="post">
   <div class="inputLogin"><input class="typeBox standard" type='email' name='email' placeholder='Email Address'></div>

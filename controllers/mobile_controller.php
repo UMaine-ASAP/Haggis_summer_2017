@@ -175,6 +175,10 @@ class MobileController
       //                              \/
       require_once("views/mobile/responses.php");
     }
+    public function events() {
+      $events = Event::getActive()[1];
+      require_once('views/mobile/events.php');
+    }
 }
 
 ?>
