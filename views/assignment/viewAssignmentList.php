@@ -12,7 +12,7 @@ Assignments(<?php echo sizeof($assignments);?>)
 <?php
 foreach($assignments as $a)
 {
-  echo "<li class='assignments' onclick='ViewAssignment(".$a->id.")' id=''>".$a->title."</li>";
+  echo "<li class='assignments' onclick='ViewAssignment(".$a->id.",".$classID.")' id=''>".$a->title."</li>";
 }
 echo "</ul>";
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')

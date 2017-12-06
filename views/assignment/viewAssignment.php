@@ -3,7 +3,7 @@
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
   <tr><td></td><td>
-  <button class='standard popupmaker' id ='eventMode'>Event mode</button></td></tr>
+  <button class='standard popupmaker' id ='event'>Event</button></td></tr>
     <tr>
       <td colspan='2'>
       <h2>".$a->title."</h2>";
@@ -56,4 +56,4 @@
   echo "</td></tr></table>";
 ?>
 
-<div class="popup" id="eventMode"><?php require_once('views/event/createEvent.php');?></div>
+<div class="popup" id="event"><?php require_once('views/event/addToEvent.php');?></div>

@@ -176,6 +176,8 @@ class AssignmentController
     }
     $assignmentID = $_GET['assignmentID'];
     $a = Assignment::id($assignmentID)[1];
+    $e = Event::all()[1];
+    $classID = $_GET['classID'];
     require_once("views/assignment/viewAssignment.php");
   }
   //==========================================================================

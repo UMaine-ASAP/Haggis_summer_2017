@@ -8,6 +8,16 @@
 By activating event mode, this will allow anyone using Haggis to review the current assignment you have selected.
 <br><br>
 <form action='?controller=event&action=add' method='post'>
-  <input type='hidden' name='assignmentID' value='<?php echo $a->id; ?>'>
-  <input type='submit' class='standard' value='begin the event'>
+  <input class='standard' type='text' name='title'><br>
+  <textarea class='standard' rows='5' cols='50' name='description'></textarea><br>
+  Start Time <input class='standard' type='time' name='startTime'>
+  End Time   <input class='standard' type='time' name='endTime'><br>
+  Start Date <input class='standard' type='date' name='startDate'>
+  End Date   <input class='standard' type='date' name='endDate'><br>
+  Make this event Active now?<br>
+  No <input class='standard' type='radio' name='active' value='0'>
+  Yes <input class='standard' type='radio' name='active' value='1'><br>
+
+
+  <input type='submit' class='standard' value='create this event'>
 </form>

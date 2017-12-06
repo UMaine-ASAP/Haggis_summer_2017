@@ -2,9 +2,9 @@ function NewAssignment(idin)
 {
   $('#viewer').load("?controller=assignment&action=createAssignmentQuick&quick=1&classID="+idin);
 }
-function ViewAssignment(idin)
+function ViewAssignment(idin, classidin)
 {
-  $('#viewer').load("?controller=assignment&action=viewAssignment&quick=1&assignmentID="+idin);
+  $('#viewer').load("?controller=assignment&action=viewAssignment&quick=1&assignmentID="+idin+"&classID="+classidin);
 }
 function GetProject(idin)
 {

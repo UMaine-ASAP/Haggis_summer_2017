@@ -7,6 +7,8 @@ class PagesController
     {
       $message = "";
 
+      $events = Event::getActive()[1];
+
       if(isset($_SESSION['message']))
       {
         $message = $_SESSION['message'];
