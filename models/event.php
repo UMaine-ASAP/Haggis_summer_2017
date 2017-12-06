@@ -1,7 +1,7 @@
 <?php
 class Event
 {
-  public $ID;
+  public $id;
   public $title;
   public $description;
   public $startTime;
@@ -15,36 +15,30 @@ class Event
   public $registrationCode;
 
 //=================================================================================== STRUCT
-  public function __construct($id, $criteriaID, $rating, $comment, $projectID, $authorID)
+  public function __construct($id, $title, $description, $startTime, $endTime, $starDate, $endDate, $active, $transparancy, $pubic, $visible, $registrationCode)
   {
-    $this->id = $id;
-    $this->criteriaID = $criteriaID;
-    $this->rating=$rating;
-    $this->comment = $comment;
-    $this->projectID = $projectID;
-    $this->author=$authorID;
+    $this->id           = $id;
+    $this->title        = $title;
+    $this->description  = $description;
+    $this->startTime    = $startTime;
+    $this->endTime      = $endTime;
+    $this->startDate    = $startDate;
+    $this->endDate      = $endDate;
+    $this->active       = $active;
+    $this->transparancy = $transparancy;
+    $this->public       = $public;
+    $this->visible      = $visible;
+    $this->registrationCode = $registrationCode;
   }
-//=================================================================================== INSERT/UPDATE
-  public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)
+//=================================================================================== INSERT
+  public static function  create($title, $description, $startTime, $endTime, $starDate, $endDate, $active, $transparancy, $pubic, $visible, $registrationCode)
   {
     $errorCode;
     $message;
-    $data;
-    $sql;
     $db = Db::getInstance();
-    $check = Evaluate::check($authorID, $projectID, $criteriaID)[1];
-    if($check === false)
-    {
-      $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID,author) VALUES (?,?,?,?,?)";
-      $data = array($criteriaID, $rating, $comment, $projectID, $authorID);
-    }
-    else
-    {
-      $sql = "UPDATE evaluation SET  rating = ?, comment = ? WHERE evaluationID = ?";
-      $data = array($rating, $comment,$check);
-    }
+    $sql = "INSERT INTO event (title, description, startTime, startDate, endDate, active, transparancy, public, visible, registrationCode) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $data = array($title, $description, $startTime, $endTime, $starDate, $endDate, $active, $transparancy, $pubic, $visible, $registrationCode);
     $stmt = $db->prepare($sql);
-
     try
     {
         $stmt->execute($data);
@@ -59,25 +53,23 @@ class Event
     return array($errorCode, $message);
   }
 
-   //=================================================================================== GET CRITERIA BY Project
-    public static function projectID($projectID)
+   //=================================================================================== GET BY ID
+    public static function id($id)
     {
         $errorCode;
         $message;
         $db = Db::getInstance();
-        $sql = "SELECT * FROM evaluation WHERE projectID = ?";
-        $data = array($projectID);
+        $sql = "SELECT * FROM event WHERE ID = ?";
+        $data = array($id);
         try
         {
           $stmt = $db->prepare($sql);
           $stmt->execute($data);
           $evaluations = array();
-          while($r = $stmt->fetch(PDO::FETCH_ASSOC))
-          {
-            $author = User::id($r['author'])[1];
-            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $author);
-          }
-          $message = $evaluations;
+          $r = $stmt->fetch(PDO::FETCH_ASSOC)
+
+          $message = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+                                $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
           $errorCode = 1;
         }
         catch(PDOException $e)
@@ -87,25 +79,25 @@ class Event
         }
         return array($errorCode, $message);
     }
-    //=================================================================================== Check if already submitted
-     public static function check($authorid, $projectid, $criteriaid)
+    //=================================================================================== get the Active Events
+     public static function getActive()
      {
          $errorCode;
          $message;
          $db = Db::getInstance();
-         $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
-         $data = array($authorid, $projectid, $criteriaid);
+         $sql = "SELECT * FROM event WHERE active = 1";
          try
          {
            $stmt = $db->prepare($sql);
            $stmt->execute($data);
-           $evaluations = array();
-           $message = false;
-           if($r = $stmt->fetch(PDO::FETCH_ASSOC))
+           $events = array();
+
+           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $message = $r['evaluationID'];
+             $events[] = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+                                   $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
            }
-           //$message = $evaluations;
+           $message = $events;
            $errorCode = 1;
          }
          catch(PDOException $e)
