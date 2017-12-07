@@ -57,7 +57,8 @@ class ProjectController
     else
     {
       $e = Event::id($_GET['target'])[1];
-      require_once('views/project/registerEventProject.php');
+      header('Location: ?controller=project&action=registerEvent&target='.$eventID); 
+
     }
   }
 
