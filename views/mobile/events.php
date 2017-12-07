@@ -11,7 +11,7 @@
   {
     foreach($events as $e)
     {
-      echo "<a href='?controller=event&action=showProjects&eventID=".$e->id."'><div class='classCard'>";
+      echo "<a href='?controller=mobile&action=projects&eventID=".$e->id."'><div class='classCard'>";
       echo "<table class='cardContents'>";
       echo "<tr><td class='coursename'>".$e->title."</td></tr>";
       echo "<tr><td>".$e->startDate." - ".$e->endDate."<br></td></tr>";
