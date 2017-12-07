@@ -11,9 +11,9 @@ function ViewAssignmentProject(idin, eventid)
   $('#viewer').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin+"&eventID="+eventid);
 }
 
-function ViewEventProject(idin, eventid)
+function ViewEventProject(idin, eventid, type)
 {
-  $('#viewer').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin+"&eventID="+eventid);
+  $('#viewer').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin+"&eventID="+eventid+"&type="+type);
 }
 function GetAssignmentProject(idin)
 {
@@ -23,9 +23,9 @@ function GetEventProject(idin)
 {
   $('#ProjectView').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin);
 }
-function GetProjectResponses(idin)
+function GetProjectResponses(idin, type)
 {
-  $('#FinalView').load("?controller=project&action=viewResponses&quick=1&id="+idin);
+  $('#FinalView').load("?controller=project&action=viewResponses&quick=1&id="+idin+"&type="+type);
 }
 function EvaluateProjectAssignment(idin)
 {

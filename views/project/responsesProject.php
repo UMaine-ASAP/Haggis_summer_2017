@@ -13,9 +13,17 @@ else
     echo "Average Rating: ".$cAvg[$i]."<br>";
     foreach($cComments[$i] as $c)
     {
-      echo $c."<br>";
+      if(sizeof($c) > 0)
+      {
+        for($i = 0; $i < sizeof($c); $i++)
+        {
+          echo $c."<br>";
+        }
+      }
+      else
+        echo $c."<br>";
     }
-    echo "<br>";
+    echo "<hr>";
     $i++;
   }
 }

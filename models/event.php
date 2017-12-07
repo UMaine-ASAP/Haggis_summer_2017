@@ -13,6 +13,7 @@ class Event
   public $public;
   public $visible;
   public $registrationCode;
+  public $criterias;
 
 //=================================================================================== STRUCT
   public function __construct($id, $title, $description, $startTime, $endTime, $startDate, $endDate, $active, $transparancy, $public, $visible, $registrationCode)
@@ -29,6 +30,7 @@ class Event
     $this->public       = $public;
     $this->visible      = $visible;
     $this->registrationCode = $registrationCode;
+    $this->criterias    = Criteria::eventID($id);
   }
 //=================================================================================== INSERT
   public static function  create($title, $description, $startTime, $endTime, $startDate, $endDate, $active, $transparancy, $public, $visible, $registrationCode)
@@ -185,4 +187,31 @@ class Event
           }
           return array($errorCode, $message);
       }
+      //=================================================================================== get the Active Events
+       public static function getEventProjects($eventID)
+       {
+           $errorCode;
+           $message;
+           $db = Db::getInstance();
+           $sql = "SELECT * FROM event_eventproject WHERE eventID = ?";
+           try
+           {
+             $stmt = $db->prepare($sql);
+             $stmt->execute(array($eventID));
+             $eventProjectIDs = array();
+
+             while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+             {
+               $eventProjectIDs[] = $r['eventProjectID'];
+             }
+             $message = $eventProjectIDs;
+             $errorCode = 1;
+           }
+           catch(PDOException $e)
+           {
+             $errorCode = $e->getCode();
+             $message = $e->getMessage();
+           }
+           return array($errorCode, $message);
+       }
 }

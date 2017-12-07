@@ -57,8 +57,11 @@ class PagesController
     {
       $event = Event::id($_GET['eventID'])[1];
       $assignmentIDs = Event::getAssignments($event->id)[1];
+      $eventProjectIDs = Event::getEventProjects($event->id)[1];
       $assignments;
+      $eventProjects;
       $projectList = array();
+      $eventprojectList = array();
       foreach($assignmentIDs as $a)
       {
         $assignments =  Assignment::id($a)[1];
@@ -66,6 +69,11 @@ class PagesController
         {
           $projectList[] = $p;
         }
+      }
+      foreach($eventProjectIDs as $ep)
+      {
+        $eventprojectList[] =  EventProject::id($ep)[1];
+
       }
 
       require_once('views/pages/events.php');

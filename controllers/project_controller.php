@@ -2,7 +2,7 @@
 class ProjectController
 {
   //===================================================================================
-  public function register()
+  public function registerAssignment()
   {
     if(isset($_POST['targetid']))
     {
@@ -15,19 +15,50 @@ class ProjectController
       $mi = $_POST['middleInitial'];
       $ln = $_POST['lastname'];
       $em = $_POST['email'];
-      $projectID = Project::create($title, $desc,'2', $assignmentID)[1];
+      $projectID = EventProject::create($title, $desc,'', "-2", '0')[1];
       for($i = 0; $i < sizeof($fn); $i++)
       {
-        EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
+        $temp = EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$projectID)[1];
+        EventProject::associatewitheventuser($projectID, $temp);
+
       }
       echo "<div class='projectRegistration'><h2>Project Successfully Submitted</h2></div>";
     }
     else
     {
       $assignment = Assignment::id($_GET['target'])[1];
-      require_once('views/project/registerProject.php');
+      require_once('views/project/registerAssignmentProject.php');
     }
+  }
+  //===================================================================================
+  public function registerEvent()
+  {
+    if(isset($_POST['targetid']))
+    {
+      $eventID = $_POST['targetid'];
+      $title = $_POST['projectname'];
+      $desc = $_POST['projectdesc'];
+      $abst = " ";//$_POST['abst'];
+      //$PI = $_POST['principleInvestigator'];
+      $fn = $_POST['firstName'];
+      $mi = $_POST['middleInitial'];
+      $ln = $_POST['lastname'];
+      $em = $_POST['email'];
+      $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1];
+      EventProject::associatewithevent($eventprojectID, $eventID);
+      for($i = 0; $i < sizeof($fn); $i++)
+      {
+        $temp = EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$eventprojectID)[1];
+        EventProject::associatewitheventuser($eventprojectID, $temp);
 
+      }
+      echo "<div class='projectRegistration'><h2>Project Successfully Submitted</h2></div>";
+    }
+    else
+    {
+      $e = Event::id($_GET['target'])[1];
+      require_once('views/project/registerEventProject.php');
+    }
   }
 
   //===================================================================================
@@ -43,6 +74,7 @@ class ProjectController
     $targetid = $project->assignmentID;
     $criterias = $a->criterias;
     $projectresponses = Evaluate::projectID($projectid)[1];
+    $type = '1';
 
     require_once("views/project/evaluateProject.php");
   }
@@ -53,16 +85,27 @@ class ProjectController
     $project = Project::id($projectid)[1];
     $criterias = Criteria::eventID($_GET['eventID'])[1];
     $targetid = $_GET['eventID'];
-    $projectresponses = Evaluate::projectID($project->id)[1];
+    $projectresponses = Evaluate::projectID($project->id,'2')[1];
+    $type = '2';
 
     require_once("views/project/evaluateProject.php");
   }
   //===================================================================================
   public function viewResponses()
   {
+    $type = $_GET['type'];
     $projectid = $_GET['id'];
     $project = Project::id($projectid)[1];
-    $projectresponses = Evaluate::projectID($projectid)[1];
+    $projectresponses;
+    if($type ='1')
+    {
+      $projectresponses = Evaluate::projectID($projectid)[1];
+    }
+    if($type = '2')
+    {
+      $projectresponses = Evaluate::eventProjectID($projectid)[1];
+    }
+
     $cID = array();
     $cNames = array();
     $cAvg = array();
@@ -71,20 +114,35 @@ class ProjectController
     foreach($projectresponses as $r)
     {
       $temp = Criteria::id($r->criteriaID)[1];
-      $check = in_array($temp->id, $cID);
-      $user = $r->author;
-        if( $check != false)
+
+      $check = in_array($temp->title, $cNames);
+      $author = $r->author;
+        if($check)
         {
-          $index = array_search($temp->id, $cID);
+          $index = array_search($temp->title, $cNames);
           $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
-          $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
+          if($type == '2')
+          {
+            $cComments[$index][] = "-- ".$r->comment;
+          }
+          else
+          {
+            $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
+          }
         }
         else
         {
           $cID[] = $temp->id;
           $cNames[] = $temp->title;
           $cAvg[] = $r->rating;
-          $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
+          if($type == '2')
+          {
+            $cComments[] = array("-- ".$r->comment);
+          }
+          else
+          {
+            $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
+          }
         }
     }
 
@@ -134,10 +192,20 @@ class ProjectController
   //===================================================================================
   public function viewEventProject()
   {
+    $project;
+    $list;
     $projectid = $_GET['projectID'];
     $eventid = $_GET['eventID'];
-    $project = Project::id($projectid)[1];
-    $list = $project->list;
+    $type = $_GET['type'];
+    if($type == '1')
+    {
+      $project = Project::id($projectid)[1];
+      $list = $project->list;
+    }
+
+    if($type == '2')
+      $project = EventProject::id($projectid)[1];
+
     $ids = array();
     //echo sizeof($list);
     //echo $list;

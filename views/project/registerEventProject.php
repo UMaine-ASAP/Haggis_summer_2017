@@ -2,10 +2,10 @@
 <div class='projectRegistration'>
   <h2>Project Registration</h2>
 
-  Please submit your registration for <?php echo $assignment->title;?>
+  Please submit your registration for <?php echo $e->title;?>
 
-  <form action='?controller=project&action=register' method='post' id='projreg'>
-    <input type='hidden' name='targetid' value='<?php echo $assignment->id;?>'>
+  <form action='?controller=project&action=registerEvent' method='post' id='projreg'>
+    <input type='hidden' name='targetid' value='<?php echo $e->id;?>'>
     <div class="inputProjectRegistration"><input class='standard typeBox' type="text" name="projectname" placeholder="Project Name" required></div>
     <div class="inputProjectRegistration"><textarea class='standard typeBoxBig' cols='75' rows='5' name='projectdesc' placeholder='Short Description' required></textarea></div>
     <!-- <textarea class='standard' cols='75' rows='5' name='abst' placeholder='Abstract'></textarea><br> -->

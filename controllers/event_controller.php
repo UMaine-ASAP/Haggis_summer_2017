@@ -28,7 +28,7 @@ class EventController
       echo $currentID;
       Criteria::associateWithEvent($eventID, $currentID);
     }
-  
+
   if(isset($criteriaSetID))
   {
     foreach($idList as $id)
@@ -76,7 +76,7 @@ class EventController
   }
 
 //=================================================================================== ADD ASSINGMENT TO EVENT
-  public function addAssignments()
+  public function addAssignment()
   {
     $result = Event::addAssignment($_POST['event'], $_POST['assignmentID'])[1];
     $_SESSION['controller'] = 'pages';

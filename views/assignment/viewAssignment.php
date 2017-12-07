@@ -10,7 +10,7 @@
       if($status === 'admin')
       {
         echo "<span><a class='promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</a></span><br>
-    <span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=register&target=".$a->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=register&target=".$a->id."</a>";
+    <span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a>";
         // echo "
         // <form action ='?controller=assignment&action=editAssignment' method ='post'>
         // <button class='standard' value= '".$a->id."' name='assignmentid' type='submit'>Edit Assignment</button>
