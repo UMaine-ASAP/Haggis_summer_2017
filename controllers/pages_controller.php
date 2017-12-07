@@ -70,6 +70,7 @@ class PagesController
           $projectList[] = $p;
         }
       }
+      echo sizeof($eventProjectIDs);
       foreach($eventProjectIDs as $ep)
       {
         $eventprojectList[] =  EventProject::id($ep)[1];
