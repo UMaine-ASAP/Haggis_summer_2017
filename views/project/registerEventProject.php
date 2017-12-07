@@ -6,7 +6,7 @@
 
   <form action='?controller=project&action=registerEvent' method='post' id='projreg'>
     <input type='hidden' name='targetid' value='<?php echo $e->id;?>'>
-    <div class="inputProjectRegistration"><input class='standard typeBox' type="text" name="projectname" placeholder="Project Name" required></div>
+    <div class="inputProjectRegistration"><input class='standard typeBox' type="text" name="projectname" placeholder="Project Name" required autofocus></div>
     <div class="inputProjectRegistration"><textarea class='standard typeBoxBig' cols='75' rows='5' name='projectdesc' placeholder='Short Description' required></textarea></div>
     <!-- <textarea class='standard' cols='75' rows='5' name='abst' placeholder='Abstract'></textarea><br> -->
     <!-- <input class='standard' type="text" name='principleInvestigator' placeholder='Principle Investigator'><br> -->
