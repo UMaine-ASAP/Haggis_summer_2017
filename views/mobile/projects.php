@@ -7,7 +7,7 @@
 <table  class="marginTable">
 <?php
   echo "<tr><td><hr class='dropDown'><td><tr>";
-  if ($type = '1') {
+  if ($type == '1') {
     foreach($projects as $a)
     {
       echo "<tr><td class='assignmentTitle push' onclick='viewTab(".$a->id.")'>".$a->title."</td></tr>";
