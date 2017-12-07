@@ -22,6 +22,7 @@
       echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='projectsButton' href='?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$a->id."'>Critique</a></td></tr>";
     }
   } else {
+    echo sizeof($eventprojectList);
     foreach($eventprojectList as $a)
     {
       echo "<tr><td><hr class='dropDown'><td><tr>";
