@@ -4,6 +4,7 @@
 <script src="java/livesearch.js"></script>
 <div class='menutitle'>
 Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
+
 </div>
 <br>
 <div>

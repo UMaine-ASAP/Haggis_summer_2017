@@ -53,10 +53,12 @@ class ProjectController
 
       }
       echo "<div class='projectRegistration'><h2>Project Successfully Submitted</h2></div>";
+      header('Location: ?controller=project&action=registerEvent&target='.$eventID);
     }
     else
     {
       $e = Event::id($_GET['target'])[1];
+
       require_once('views/project/registerEventProject.php');
     }
   }

@@ -16,8 +16,7 @@ echo "</td>";
 // echo "</div></td>";
 
 echo "<td class='contentContainer'><div id='viewer'>";
-echo "<span><a class='promptlink' onclick='GetPrompt(".$event->id.")'>Prompt</a></span><br>
-<span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."</a>";
+echo "<span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."</a>";
 // require_once('views/assignment/viewAssignments.php');
 echo "</td></tr></table>";
 

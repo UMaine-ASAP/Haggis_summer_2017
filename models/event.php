@@ -193,7 +193,7 @@ class Event
            $errorCode;
            $message;
            $db = Db::getInstance();
-           $sql = "SELECT * FROM event_eventproject WHERE eventID = ?";
+           $sql = "SELECT * FROM event_eventProject WHERE eventID = ?";
            try
            {
              $stmt = $db->prepare($sql);

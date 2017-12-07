@@ -13,9 +13,9 @@
     <!-- <input class='standard' type='number' min='1' id='numOfMembers' name ='numOfMembers' value ='1'><br> -->
     <div id='membercount'>
       <div class="inputProjectRegistration"><input class='standard typeBox' type ='text' name=firstName[] placeholder='FirstName' required></div>
-      <div class="inputProjectRegistration"><input class='standard typeBox' type='text' name='middleInitial[]' max='1' placeholder='Middle Inital' required></div>
+      <div class="inputProjectRegistration"><input class='standard typeBox' type='text' name='middleInitial[]' max='1' placeholder='Middle Inital' ></div>
       <div class="inputProjectRegistration"><input class='standard typeBox' type='text' name='lastname[]' placeholder='Last Name' required></div>
-      <div class="inputProjectRegistration"><input class='standard typeBox' type='email' name='email[]' placeholder='Email Address' required></div>
+      <div class="inputProjectRegistration"><input class='standard typeBox' type='email' name='email[]' placeholder='Email Address' ></div>
     </div>
     <!-- <input class='standard' type='text' name='projectCode' placeholder='Project Code'><br> -->
 
