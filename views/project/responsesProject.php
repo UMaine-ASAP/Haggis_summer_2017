@@ -15,7 +15,7 @@ else
     {
       if(sizeof($c) > 0)
       {
-        for($i = 0; $i < sizeof($c); $i++)
+        for($j = 0; $j < sizeof($c); $j++)
         {
           echo $c."<br>";
         }

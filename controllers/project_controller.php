@@ -72,6 +72,7 @@ class ProjectController
     $projectid = $_GET['id'];
     $project = Project::id($projectid)[1];
     $targetid = $project->assignmentID;
+    $a = Assignment::id($targetid)[1];
     $criterias = $a->criterias;
     $projectresponses = Evaluate::projectID($projectid)[1];
     $type = '1';
@@ -97,14 +98,15 @@ class ProjectController
     $projectid = $_GET['id'];
     $project = Project::id($projectid)[1];
     $projectresponses;
-    if($type ='1')
+    if($type =='1')
     {
       $projectresponses = Evaluate::projectID($projectid)[1];
     }
-    if($type = '2')
+    if($type == '2')
     {
       $projectresponses = Evaluate::eventProjectID($projectid)[1];
     }
+
 
     $cID = array();
     $cNames = array();
@@ -127,7 +129,7 @@ class ProjectController
           }
           else
           {
-            $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
+            $cComments[$index][] = $r->comment." --".$author->firstName." ".$author->lastName;
           }
         }
         else
@@ -141,7 +143,7 @@ class ProjectController
           }
           else
           {
-            $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
+            $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
           }
         }
     }
@@ -151,6 +153,7 @@ class ProjectController
   //===================================================================================
   public function viewAssignmentProject()
   {
+    $type='1';
     $assignedUser=false;
     $userID = User::getID($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
@@ -160,32 +163,32 @@ class ProjectController
     //echo sizeof($list);
     //echo $list;
     //echo "<br>".$projectid;
-    switch($project->isgroup)
-    {
-      case '0':
-
-        foreach($list as $pu)
-        {
-
-          echo $u->userID;
-
-          $ids[] = $u->userID;
-          if($u->id == $userID)
-            $assignedUser = true;
-        }
-        break;
-      case '2':
-        //Go through EventUsers(eventID)
-        break;
-      case '1':
-      foreach($list as $u)
-      {
-        $ids[] = $u->id;
-        if($u->id == $userID)
-          $assignedUser = true;
-      }
-        break;
-    }
+    // switch($project->isgroup)
+    // {
+    //   case '0':
+    //
+    //     foreach($list as $pu)
+    //     {
+    //
+    //       echo $u->userID;
+    //
+    //       $ids[] = $u->userID;
+    //       if($u->id == $userID)
+    //         $assignedUser = true;
+    //     }
+    //     break;
+    //   case '2':
+    //     //Go through EventUsers(eventID)
+    //     break;
+    //   case '1':
+    //   foreach($list as $u)
+    //   {
+    //     $ids[] = $u->id;
+    //     if($u->id == $userID)
+    //       $assignedUser = true;
+    //   }
+    //     break;
+    // }
     require_once("views/project/viewAssignmentProject.php");
   }
 
