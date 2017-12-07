@@ -124,7 +124,7 @@ class MobileController
           $eventProjects;
           $projectList = array();
           $eventprojectList = array();
-          $type = '1';
+          $type = '2';
           foreach($assignmentIDs as $a)
           {
             $assignments =  Assignment::id($a)[1];

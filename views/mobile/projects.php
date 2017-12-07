@@ -1,5 +1,12 @@
 <h3 class="currentPage">
-  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=assignments&classID=".$classID ?>>&lt;- Back</a>
+  <a class="backButton" href=<?php
+    if($type == '1') {
+      echo "index.php?controller=mobile&action=assignments&classID=".$classID
+    } else {
+      echo "index.php?controller=mobile&action=events"
+    }
+
+    ?>>&lt;- Back</a>
   Projects
 </h3>
 
