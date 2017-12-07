@@ -133,6 +133,7 @@ class MobileController
               $projectList[] = $p;
             }
           }
+          echo sizeof($eventProjectIDs);
           foreach($eventProjectIDs as $ep)
           {
             $eventProjectIDs[] = EventProject::id($ep)[1];
