@@ -53,16 +53,25 @@ class PagesController
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS
-    public function assignmentCreation()
+    public function events()
     {
+      $event = Event::id($_GET['eventID'])[1];
+      $assignmentIDs = Event::getAssignments($event->id)[1];
+      $assignments;
+      $projectList = array();
+      foreach($assignmentIDs as $a)
+      {
+        $assignments =  Assignment::id($a)[1];
+        foreach($assignments->projects as $p)
+        {
+          $projectList[] = $p;
+        }
+      }
 
-      require_once('views/pages/assignments.php');
+      require_once('views/pages/events.php');
     }
 //=================================================================================== GROUPS
-    public function groups()
-    {
-      require_once('views/pages/groups.php');
-    }
+
 //=================================================================================== ERROR
     public function error()
     {

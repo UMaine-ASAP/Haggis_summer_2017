@@ -7,6 +7,7 @@ class Evaluate
   public $comment;
   public $projectID;
   public $author;
+  public $criteria;
 
 //=================================================================================== STRUCT
   public function __construct($id, $criteriaID, $rating, $comment, $projectID, $authorID)
@@ -17,6 +18,7 @@ class Evaluate
     $this->comment = $comment;
     $this->projectID = $projectID;
     $this->author=$authorID;
+    $this->criteria = Criteria::eventID($id)[1];
   }
 //=================================================================================== INSERT/UPDATE
   public static function  submit($criteriaID, $rating, $comment, $projectID, $authorID)

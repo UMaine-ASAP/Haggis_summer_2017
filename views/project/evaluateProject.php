@@ -4,10 +4,10 @@
 
 <?php
 echo "</div>
-      <div class='evaluate' id='".$a->id."'>
+      <div class='evaluate' id='".$targetid."'>
         <form id='evalform' method='post' action=''>
-        <input type='hidden' name = 'evalfor' class='evalfor' id='".$a->id."' value='".$projectid."'>";
-        foreach($a->criterias as $c)
+        <input type='hidden' name = 'evalfor' class='evalfor' id='".$targetid."' value='".$projectid."'>";
+        foreach($criterias as $c)
         {
           echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
           echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";

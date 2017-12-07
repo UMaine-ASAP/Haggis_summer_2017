@@ -6,17 +6,34 @@ function ViewAssignment(idin, classidin)
 {
   $('#viewer').load("?controller=assignment&action=viewAssignment&quick=1&assignmentID="+idin+"&classID="+classidin);
 }
-function GetProject(idin)
+function ViewAssignmentProject(idin, eventid)
 {
-  $('#ProjectView').load("?controller=project&action=viewProject&quick=1&projectID="+idin);
+  $('#viewer').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin+"&eventID="+eventid);
+}
+
+function ViewEventProject(idin, eventid)
+{
+  $('#viewer').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin+"&eventID="+eventid);
+}
+function GetAssignmentProject(idin)
+{
+  $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin);
+}
+function GetEventProject(idin)
+{
+  $('#ProjectView').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin);
 }
 function GetProjectResponses(idin)
 {
   $('#FinalView').load("?controller=project&action=viewResponses&quick=1&id="+idin);
 }
-function EvaluateProject(idin)
+function EvaluateProjectAssignment(idin)
 {
-  $('#FinalView').load("?controller=project&action=evaluate&quick=1&id="+idin);
+  $('#FinalView').load("?controller=project&action=assignmentEvaluate&quick=1&id="+idin);
+}
+function EvaluateProjectEvent(idin, eventid)
+{
+  $('#FinalView').load("?controller=project&action=eventEvaluate&quick=1&id="+idin+"&eventID="+eventid);
 }
 function GetPrompt(idin)
 {

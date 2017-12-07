@@ -19,5 +19,12 @@ By activating event mode, this will allow anyone using Haggis to review the curr
   Yes <input class='standard' type='radio' name='active' value='1'><br>
 
 
+  <div class='eventCreationCritera'>
+    <br><br>
+    <?php echo $criteriaList; ?>
+    <?php require_once('views/criteria/createCriteria.php'); ?>
+  </div>
+
+
   <input type='submit' class='standard' value='create this event'>
 </form>

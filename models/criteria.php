@@ -137,6 +137,31 @@ class Criteria
         return array($errorCode, $message);
       }
     }
+
+    //=================================================================================== Link Criteria to Event
+      public static function associateWithEvent($eventID, $criteriaID)
+      {
+        {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "INSERT INTO event_criteria (eventID, criteriaID) VALUES (?,?)";
+          $stmt = $db->prepare($sql);
+          $data = array($eventID, $criteriaID);
+          try
+          {
+              $stmt->execute($data);
+              $message = "CriteriaAddedToEvent";
+              $errorCode= 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+        }
+      }
   //=================================================================================== Link Set to User
 
     public static function associateWithUser($userID, $setID)
@@ -243,6 +268,33 @@ class Criteria
         }
         return array($errorCode, $message);
     }
+    //=================================================================================== GET CRITERIA BY ASSIGNMENT
+      public static function eventID($id)
+      {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM criteria WHERE criteriaID IN (SELECT criteriaID FROM event_criteria WHERE event_criteria.eventID = ?)";
+          $data = array($id);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $criteriaarray = array();
+            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              $criteriaarray[] = new Criteria($r['criteriaID'], $r['title'], $r['description'], $r['rateRangeMin'], $r['rateRangeMax'], $r['allowTextResponse']);
+            }
+            $message = $criteriaarray;
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
     //=================================================================================== DELETE CRITERIA ASSIGNMENT
       public static function deleteAssociation($assignmentID)
       {
