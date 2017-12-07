@@ -72,8 +72,7 @@ class PagesController
       }
       foreach($eventProjectIDs as $ep)
       {
-        $eventprojectList[] =  EventProject::id($ep)[1];
-
+        $eventProjectIDs[] = EventProject::id($ep)[1];
       }
 
       require_once('views/pages/events.php');
