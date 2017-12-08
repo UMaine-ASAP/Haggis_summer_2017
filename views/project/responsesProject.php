@@ -10,7 +10,8 @@ else
   foreach($cNames as $n)
   {
     echo "<h3>".$n."</h3>";
-    echo "Average Rating: ".$cAvg[$i]."<br>";
+    if($cAvg[$i] > 0)
+      echo "Average Rating: ".$cAvg[$i]."<br>";
     foreach($cComments[$i] as $c)
     {
       if(sizeof($c) > 0)

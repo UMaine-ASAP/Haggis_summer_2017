@@ -17,7 +17,8 @@ else
   {
     // echo "<div  class='push'>"
     echo "<h3 class='push'>".$n."</h3>";
-    echo "Average Rating: ".$cAvg[$i]."<br>";
+    if($cAvg[$i] > 0)
+      echo "Average Rating: ".$cAvg[$i]."<br>";
     foreach($cComments[$i] as $c)
     {
       echo "<div class='rcomment'>".$c."</div>";
