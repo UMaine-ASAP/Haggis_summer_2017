@@ -29,12 +29,14 @@ p.reg{
 }
 
 .currentPage{
-  margin-left: 8%;
+  /*margin-left: 8%;*/
   color: black;
-  /*font-size: 35px;*/
-  padding-bottom: 6%;
-  padding-top: 6%;
+  /* font-size: 35px; */
+  /* padding-bottom: 6%; */
+  padding: 10px;
   margin-bottom: 0;
+  width: max-content;
+  vertical-align: middle;
 }
 
 .adjustTop{
