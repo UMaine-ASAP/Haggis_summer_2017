@@ -11,13 +11,15 @@
   Critique
 </h3>
 <table  class="marginTable">
-<form id='evalform' method='post' action=<?php
-  if ($type == '1'){
-    echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID;
-  } else {
-    echo "?controller=mobile&action=eventSubmit&eventID=".$eventID;
+<form id='evalform' method='post' action='?controller=evaluate&action=submit&quick=1'>
+
+<!-- <?php
+  // if ($type == '1'){
+    // echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID;
+  // } else {
+    // echo "?controller=mobile&action=eventSubmit&eventID=".$eventID;
   }
-  ?>>
+  ?>> -->
 <input type='hidden' name = 'evalfor' class='evalfor' value="<?php echo $projectID; ?>">
 <hr>
 <?php
@@ -42,4 +44,3 @@
 ?>
 <tr><td class="submitButton"><br><input class="submitButton" type='Submit' value='Submit'></tr></td>
 </form>
-<div id="evalout"></div>
