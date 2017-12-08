@@ -154,9 +154,9 @@ class MobileController
         $type = '2';
       }
       if(isset($_POST['evalfor'])) {
-        $userid = User::getID($_SESSION['token'])[1];
         $projectID = $_POST['evalfor'];
-        if ($_POST['type'] == 1) { // Test for type project vs type event
+        if ($type == '1') { // Test for type project vs type event
+          $userid = User::getID($_SESSION['token'])[1];
           for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
           {
             Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid, 1 )[1];
@@ -165,7 +165,7 @@ class MobileController
         } else {
           for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
           {
-            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid, 2 )[1];
+            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, -1, 2 )[1];
           }
           $direction = header("Location: index.php?controller=mobile&action=events");
         }
