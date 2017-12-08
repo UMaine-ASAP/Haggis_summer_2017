@@ -125,6 +125,7 @@ class MobileController
           $projectList = array();
           $eventprojectList = array();
           $type = '2';
+          $eventID = $_GET['eventID'];
           foreach($assignmentIDs as $a)
           {
             $assignments =  Assignment::id($a)[1];
@@ -133,7 +134,6 @@ class MobileController
               $projectList[] = $p;
             }
           }
-          echo sizeof($eventProjectIDs);
           foreach($eventProjectIDs as $ep)
           {
             $eventprojectList[] = EventProject::id($ep)[1];
