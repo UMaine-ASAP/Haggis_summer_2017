@@ -1,3 +1,13 @@
+<?php
+  if(isset($_GET['quick']))
+  {
+    require_once('routes.php');
+  }
+  else
+  {
+
+    ?>
+
 <DOCTYPE html>
   <html>
   <head>
@@ -9,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
+    <link rel="stylesheet" type="text/css" href="css/criteria.css">
+    <link rel="stylesheet" type="text/css" href="css/assignment.css">
 
 
 
@@ -33,29 +45,23 @@
     ?>
 
   </head>
-  <div class="overlay"></div>
-  <header>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="java/popup.js"></script>
-    <?php require_once('views/modules/header.php');?>
-  </header>
-  <body>
 
-    <table>
-      <tr>
-        <td class='currentAction'>
-          <?php require_once('views/modules/currentAction.php');?>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <?php require_once('routes.php'); ?>
-        </td>
-      </tr>
-    </table>
-  </body>
-  <footer>
-    <div class = "content">
-    </div>
-  </footer>
+        <div class="overlay"></div>
+        <header>
+          <script src="vendor/jquery.min.js"></script>
+          <script src="java/popup.js"></script>
+          <?php require_once('views/modules/header.php');?>
+        </header>
+        <body>
+          <div class=spacer></div>
+            <?php require_once('routes.php'); ?>
+        </body>
+        <footer>
+          <div class = "content">
+          </div>
+        </footer>
+
   </html>
+  <?php
+    }
+   ?>

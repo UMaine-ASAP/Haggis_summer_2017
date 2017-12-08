@@ -1,7 +1,19 @@
 .assignmentCreationHead
 {
  text-align:center;
- vertical-align:bottom;
+ vertical-align:top;
+}
+
+a.projectitem
+{
+  cursor:pointer;
+}
+
+li.assignedname
+{
+  text-decoration:none;
+  color: black;
+  cursor:initial;
 }
 
 
@@ -17,14 +29,31 @@ input[name=createnew]
   font-size:40px;
   float: right;
 }
+
+.creationcontainer
+{
+  display:flex;
+}
 .assignmentCreationGroup
 {
+  width:300px;
+  height:100%;
+  border-right: 1px solid black;
   vertical-align:top;
+  float:left;
+  overflow:hidden;
 }
 
 .assignmentCreation
 {
 
+}
+
+.assignmentcreationcontainer
+{
+  float:left;
+  width:100%;
+  overflow:hidden;
 }
 
 .assignmentCreationCriteria

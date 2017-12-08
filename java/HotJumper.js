@@ -1,24 +1,41 @@
 function NewAssignment(idin)
 {
-  $('#viewer').load("/Haggis_summer_2017/controllers/createAssignmentController.php?classID="+idin);
+  $('#viewer').load("?controller=assignment&action=createAssignmentQuick&quick=1&classID="+idin);
 }
-function ViewAssignment(idin)
+function ViewAssignment(idin, classidin)
 {
-  $('#viewer').load("/Haggis_summer_2017/controllers/fetchAssignmentController.php?assignmentID="+idin);
+  $('#viewer').load("?controller=assignment&action=viewAssignment&quick=1&assignmentID="+idin+"&classID="+classidin);
 }
-function GetProject(idin)
+function ViewAssignmentProject(idin, eventid)
 {
-  $('#ProjectView').load("/Haggis_summer_2017/controllers/viewProjectController.php?projectID="+idin);
+  $('#viewer').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin+"&eventID="+eventid);
 }
-function GetProjectResponses(idin)
+
+function ViewEventProject(idin, eventid, type)
 {
-  $('#FinalView').load("/Haggis_summer_2017/controllers/responsesProjectController.php?id="+idin);
+  $('#viewer').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin+"&eventID="+eventid+"&type="+type);
 }
-function EvaluateProject(idin)
+function GetAssignmentProject(idin)
 {
-  $('#FinalView').load("/Haggis_summer_2017/controllers/evaluateProjectController.php?id="+idin);
+  $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin);
+}
+function GetEventProject(idin)
+{
+  $('#ProjectView').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin);
+}
+function GetProjectResponses(idin, type)
+{
+  $('#FinalView').load("?controller=project&action=viewResponses&quick=1&id="+idin+"&type="+type);
+}
+function EvaluateProjectAssignment(idin)
+{
+  $('#FinalView').load("?controller=project&action=assignmentEvaluate&quick=1&id="+idin);
+}
+function EvaluateProjectEvent(idin, eventid)
+{
+  $('#FinalView').load("?controller=project&action=eventEvaluate&quick=1&id="+idin+"&eventID="+eventid);
 }
 function GetPrompt(idin)
 {
-  $('#ProjectView').load("/Haggis_summer_2017/controllers/detailsAssignmentController.php?id="+idin);
+  $('#ProjectView').load("?controller=assignment&action=details&quick=1&id="+idin);
 }

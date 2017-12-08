@@ -80,17 +80,31 @@ Class ProjectUser {
     public static function project($id)
     {
       $message;
+      $errorCode;
+      $userlist = array();
       $db = Db::getInstance();
       $sql = "SELECT * FROM projectUser WHERE projectID = ?";
       $data = array($id);
-      $stmt = $db->prepare($sql);
-      $stmt->execute($data);
-      $userlist = array();
-      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      $userlist[]= "test";
+      try
       {
-        $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],User::id($result['userID'])[1],$result['role'],$result['description']);
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']);
+
+        }
+        $errorCode = 1;
+        $message = $userlist;
       }
-      return array(1, $userlist);
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
     }
 
 

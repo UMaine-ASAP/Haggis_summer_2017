@@ -6,10 +6,14 @@
   require_once('models/criteria.php');
   require_once('models/projectUser.php');
   require_once('models/project.php');
-
+  require_once('models/eventUser.php');
+  require_once('models/part.php');
+  require_once('models/content.php');
   require_once('models/user.php');
   require_once('models/evaluate.php');
   require_once('models/emailnotification.php');
+  require_once('models/event.php');
+  require_once('models/eventProject.php');
 
   function call ($controller, $action)
   {
@@ -39,18 +43,26 @@
       case 'evaluate':
         $controller = new EvaluateController();
         break;
+      case 'project':
+        $controller = new ProjectController();
+        break;
+      case 'event':
+        $controller = new EventController();
+        break;
     }
     $controller->{$action}();
   }
 
 
-  $controllers = array (  'pages'     => ['index','classes','groups','assignments','error'],
+  $controllers = array (  'pages'     => ['index','classes','groups','assignments', 'events','error'],
                           'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass','addToClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
-                          'assignment'=> ['listAssignments', 'createAssignment','delete','editAssignment'],
-                          'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses'],
-                          'evaluate'  => ['submit']);
+                          'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details'],
+                          'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
+                          'evaluate'  => ['submit'],
+                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject'],
+                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

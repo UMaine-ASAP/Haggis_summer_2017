@@ -37,7 +37,9 @@ $(document).ready(function()
       cards[i].id= i;
       cards[i].getElementsByClassName('criteriadescription')[0].id = 'criteriadescription'+i;
       cards[i].getElementsByClassName('removeCriteria')[0].id= i;
-      cards[i].$('input:radio').attr('name', 'textresponse'+i);
+      var list = cards[i].querySelectorAll('input[type="radio"]');
+      for(var j=0; j<list.length; j++)
+        list[j].setAttribute('name', 'textresponse'+i);
     }
   });
 

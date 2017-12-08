@@ -10,27 +10,32 @@
       <link rel="stylesheet" type="text/css" href="css/mobileClasses.css">
       <link rel="stylesheet" type="text/css" href="css/mobileAssignments.css">
       <link rel="stylesheet" type="text/css" href="css/mobileProjects.css">
+      <link rel="stylesheet" type="text/css" href="css/mobileEvaluations.css">
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
     <div class="overlay"></div>
     <header>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="vendor/jquery.min.js"></script>
       <div class='header'>
         <div class='headerTitle'>
           <h1 class="pageTitle"><a class='pageTitle' href='index.php'>Haggis</a></h1>
         </div>
 
-
+        <?php if(true) { ?>
         <div class='headerLogin'>
           <?php
-          if (isset($_SESSION['token'])) {
-            echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
-          } else {
-            echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+          if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
+            if (isset($_SESSION['token'])) {
+              echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
+            } else {
+              echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+            }
           }
           ?>
         </div>
+      <?php }
+      ?>
       </div>
     </header>
     <body>

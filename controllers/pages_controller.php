@@ -7,6 +7,8 @@ class PagesController
     {
       $message = "";
 
+      $events = Event::getActive()[1];
+
       if(isset($_SESSION['message']))
       {
         $message = $_SESSION['message'];
@@ -41,7 +43,7 @@ class PagesController
         unset($_SESSION['returnto']);
       }
       else
-        $classID = $_GET['classID'];
+        $classID = Klass::joinCode($_GET['classcode']);
       $assignments = Assignment::classID($classID)[1];  //pulls assignments for the relevent class
       $status = 'user';                                   //checks for admin or user status
       $class = Klass::classid($classID)[1];
@@ -51,16 +53,33 @@ class PagesController
       require_once('views/pages/classes.php');
     }
 //=================================================================================== ASSIGNMENTS
-    public function assignmentCreation()
+    public function events()
     {
+      $event = Event::id($_GET['eventID'])[1];
+      $assignmentIDs = Event::getAssignments($event->id)[1];
+      $eventProjectIDs = Event::getEventProjects($event->id)[1];
+      $assignments;
+      $eventProjects;
+      $projectList = array();
+      $eventprojectList = array();
+      foreach($assignmentIDs as $a)
+      {
+        $assignments =  Assignment::id($a)[1];
+        foreach($assignments->projects as $p)
+        {
+          $projectList[] = $p;
+        }
+      }
+      for($i = 0; $i <sizeof($eventProjectIDs) ;$i++)
 
-      require_once('views/pages/assignments.php');
+        $eventprojectList[] =  EventProject::id($eventProjectIDs[$i])[1];
+
+
+
+      require_once('views/pages/events.php');
     }
 //=================================================================================== GROUPS
-    public function groups()
-    {
-      require_once('views/pages/groups.php');
-    }
+
 //=================================================================================== ERROR
     public function error()
     {

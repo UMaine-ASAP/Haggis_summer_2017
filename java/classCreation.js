@@ -16,12 +16,14 @@ $(document).ready(function()
         $("#part1-1").slideDown();
         $("#part1-2").slideUp();
         $("#courseError").html(" ");
+        $('form[name="createaclass"]').attr("oninput","coursenameout.value=coursename.value+' '+coursecode.value");
       }
       else
       {
         $("#part1-2").slideDown();
         $("#part1-1").slideUp();
         $("#courseError").html(" ");
+        $('form[name="createaclass"]').attr("oninput","coursenameout.value=courselisting.id");
       }
   });
 
@@ -126,11 +128,15 @@ $(document).ready(function()
       }
       else
       {
+
+        //date1 = format(k .getMonth()+1)+"/"+format(k .getDate())+"/"+format(k .getFullYear());
+        //date2 = format(l .getMonth()+1)+"/"+format(l .getDate())+"/"+format(l .getFullYear());
+
         var reviewout = "Name: " + e +"<br>";
         reviewout += "Description: " + f +"<br>";
         reviewout += "Location: " + g +"<br>";
         reviewout += "Time: " + i +" - " + j + "<br>";
-        reviewout += "Date: " + k +" - " + k + "<br>";
+        reviewout += "Date: " + k +" - " + l + "<br>";
         reviewout += "Days: ";
         for(var i = 0; i < m.length; i++)
         {

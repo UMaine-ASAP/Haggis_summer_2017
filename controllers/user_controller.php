@@ -31,7 +31,11 @@ class UserController
       if($outcome[0] != 1)
       {
         $_SESSION['message'] = $outcome[1];
-        header('Location: index.php');
+        if ($_GET['mobile']) {
+          header('Location: index.php?controller=mobile&action=login');
+        } else {
+          header('Location: index.php');
+        }
       }
       else
       {

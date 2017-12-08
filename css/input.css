@@ -29,6 +29,11 @@ button.standard
   margin : 5px;
 }
 
+output
+{
+  font-size:30px;
+}
+
 textarea.standard
 {
   border: 1px solid black;

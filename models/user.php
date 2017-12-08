@@ -288,7 +288,7 @@ Class User {
       return array($errorCode, $message);
     }
 //=================================================================================== INSERT TOKEN
-  function insertToken($userID, $token)
+  static function insertToken($userID, $token)
   {
     $errorCode;
     $message;
