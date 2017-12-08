@@ -26,7 +26,7 @@
   foreach($criteria as $a)
   {
     // Needs URL, controller function,and page to view people's projects
-    if($c->minRange === $c->maxRange)
+    if($a->minRange === $a->maxRange)
     {
       echo "<div><tr><td class='criteriaTitle push'>".$a->title."</tr></td>";
       echo "<tr><td class='push'><span>".$a->description."</span><br></tr></td>";
