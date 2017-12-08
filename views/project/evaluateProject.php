@@ -15,7 +15,7 @@ echo "</div>
           {
             echo "<div><h3>".$c->title."</h3><br>".$c->description."<br>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
-            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='hidden' value='0'>";
+            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='hidden' value='-1'>";
             echo "<textarea rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:'></textarea>";
             echo "</div><hr class='minor'>";
           }

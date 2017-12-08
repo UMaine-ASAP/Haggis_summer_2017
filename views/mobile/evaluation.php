@@ -32,7 +32,7 @@
       echo "<tr><td class='push'><span>".$a->description."</span><br></tr></td>";
       echo "<tr><td><input class='criteriaID' name='criteriaID[]' type='hidden' value='".$a->id."'></tr></td>";
       echo "<tr><td><input name='type' type='hidden' value='".$type."'></tr></td>";
-      echo "<tr><input class='criteriaRating slider' name='criteriaRating[]' id='".$a->id."' type='hidden' value='0'></div></tr></td>"; //slider
+      echo "<tr><input class='criteriaRating slider' name='criteriaRating[]' id='".$a->id."' type='hidden' value='-1'></div></tr></td>"; //slider
       echo "<tr><td class='adjustTop center commentBot'><textarea class='commentBox' name='criteriaComment[]' type='text' placeholder='Comments...' required></textarea></tr></td>";
     }
     else
