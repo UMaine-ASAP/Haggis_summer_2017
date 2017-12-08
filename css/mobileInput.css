@@ -1,9 +1,7 @@
 div.inputLogin{
   width: 100%;
   text-align: center;
-  padding-bottom: 20%;
-  padding-top: 3%;
-  margin: auto;
+  padding: 0 0 2em 0;
 }
 div.inputProjectRegistration{
   width: 100%;
@@ -39,12 +37,12 @@ input.bigButton{
 }
 
 .typeBox{
-  height: 30px;
+  height: 1em;
   width: 75%;
   border-radius: 20px;
   border-color: black;
   border-width: 1px;
-  padding-left: 10px;
+  padding: 1em;
 }
 
 .typeBoxBig{
