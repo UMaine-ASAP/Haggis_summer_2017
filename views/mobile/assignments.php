@@ -1,7 +1,14 @@
-<h3 class="currentPage">
-  <a href="index.php?controller=mobile&action=classes" class="backButton">&lt;- Back</a>
-  Assignments (<?php echo sizeof($assignments);?>)
-</h3>
+
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href="index.php?controller=mobile&action=classes" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+  <div class='currpagecontainer'>
+    <h3 class="currentPage">Assignments (<?php echo sizeof($assignments);?>)</h3>
+  </div>
+</div>
+
+
 <br>
 <table class="marginTable">
 <?php

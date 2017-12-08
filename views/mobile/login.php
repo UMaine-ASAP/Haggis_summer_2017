@@ -1,7 +1,14 @@
-<h3 class="currentPage">
-  <a href="index.php" class="backButton">&lt;- Back</a>
-  Login
-</h3>
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href="index.php" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+  <div class='currpagecontainer'>
+    <h3 class="currentPage">Login</h3>
+  </div>
+</div>
+
+
+
 <div class='err'> <?php echo $message; ?></div><br>
 <form action="?controller=user&action=login&mobile=true" method="post">
   <div class="inputLogin"><input class="typeBox standard" type='email' name='email' placeholder='Email Address'></div>

@@ -176,7 +176,8 @@ class MobileController
         } else {
           $criteria = Criteria::eventID($_GET['eventID'])[1];
         }
-        $_SESSION['eventID'] = $eventID;
+        if(isset($eventID))
+          $_SESSION['eventID'] = $eventID;
         require_once('views/mobile/evaluation.php');
       }
     }

@@ -1,5 +1,5 @@
 <h3 class="currentPage">
-  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
+  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><i class="glyphicons glyphicons-arrow-left">Back</a>
   Project Responses
 </h3>
 <script type ="text/javascript" src="vendor/Chart.bundle.min.js"></script>

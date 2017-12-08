@@ -27,9 +27,17 @@ a.smallButton{
 }
 
 .backButton{
+
   padding: 3%;
   color: white;
   border: none;
   background-color: #1195c6;
   border-radius: 20px;
+  float: left;
+  width: 100px;
+  height: 40px;
+  padding:auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }

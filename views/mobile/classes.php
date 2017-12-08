@@ -1,7 +1,15 @@
-<h2 class="currentPage">
-    <a href="index.php" class="backButton">&lt;-Back<span class="glyphicons glyphicons-arrow-left"></span></a>
-  Classes
-</h2>
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href="index.php" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+
+
+    <div class='currpagecontainer'>
+      <h3 class="currentPage">Classes</h3>
+    </div>
+  </div>
+
+
 <div class='container'>
   <p class="reg">To add classes, enter your class code below</p>
   <div> <?php if(isset($message)) echo $message; ?></div><br>

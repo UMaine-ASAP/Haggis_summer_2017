@@ -1,7 +1,13 @@
-<h3 class="currentPage">
-  <a class="backButton" href="index.php">&lt;- Back</a>
-  Live Events
-</h3>
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href="index.php" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+  <div class='currpagecontainer'>
+    <h3 class="currentPage">Live Events</h3>
+  </div>
+</div>
+
+
   <!-- <div>
     <input class='joinedInputMedium' type='text' name='searchString' placeholder='search'><button class='joinedButtonMedium' type='submit'><i class="glyphicon glyphicon-search" size='smaller'></i></button>
   </div> -->

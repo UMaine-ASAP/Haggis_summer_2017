@@ -1,15 +1,21 @@
 <script src='java/evaluationmanager.js'></script>
 
-<h3 class="currentPage">
-  <a class="backButton" href=<?php
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href=<?php
     if ($type == "1") {
       echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID;
     } else {
       echo "index.php?controller=mobile&action=projects&eventID=".$eventID;
     }
-    ?>>&lt;- Back</a>
-  Critique
-</h3>
+    ?> class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+  <div class='currpagecontainer'>
+    <h3 class="currentPage">Critique</h3>
+  </div>
+</div>
+
+
 <table  class="marginTable">
 <form id='evalform' method='post' action='?controller=evaluate&action=submit&quick=1&mobile=1'>
 

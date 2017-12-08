@@ -1,8 +1,14 @@
-<script src="java/userCreation.js"></script>
-<h2 class="currentPage">
-  <a class="backButton" href="index.php?controller=mobile&action=login">&lt;- Back</a>
-  Sign Up
-</h2> <!-- removed <hr> -->
+<div class='titlespan'>
+<div class='bbcontainer'>
+  <a href="index.php?controller=mobile&action=login" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+</div>
+  <div class='currpagecontainer'>
+    <h3 class="currentPage">Sign Up</h3>
+  </div>
+</div>
+
+
+
 
 <form action='?controller=user&action=register' method='post'>
   <div class="inputRegister inline push"><input class='typeBox firstLast standard' type='text' name='firstname' placeholder='First' autofocus required></div>

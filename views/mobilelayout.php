@@ -22,18 +22,20 @@
           <h1 class="pageTitle"><a class='pageTitle' href='index.php'>Haggis</a></h1>
         </div>
 
-
-        <!-- <div class='headerLogin'>
+        <?php if(true) { ?>
+        <div class='headerLogin'>
           <?php
-          //if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
-          //  if (isset($_SESSION['token'])) {
-          //    echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
-        //    } else {
-          //    echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
-        //    }
-      //    }
+          if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
+            if (isset($_SESSION['token'])) {
+              echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
+            } else {
+              echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+            }
+          }
           ?>
-        </div> -->
+        </div>
+      <?php }
+      ?>
       </div>
     </header>
     <body>

@@ -82,3 +82,67 @@ div.projectRegistration
 {
   text-align:center;
 }
+
+
+.glyphicon
+{
+  vertical-align:middle;
+}
+.glyphicon-plus
+{
+  font-size:60px;
+  vertical-align:center;
+}
+.glyphicon-search
+{
+  font-size:20px;
+}
+
+.glyphicon-arrow-left
+{
+  color: white;
+  font-size: 20px;
+}
+
+.backarrow
+{
+  color:white;
+}
+.bbcontainer
+{
+  vertical-align:middle;
+}
+.currpagecontiner
+{
+  text-align:center;
+}
+
+
+h3
+{
+  display:inline;
+
+  margin:0;
+  padding:0;
+}
+
+.titlespan
+{
+  margin:auto;
+  text-align:center;
+  padding: 5px;
+  width: 100%;
+  height: 10%;
+ vertical-align:top;
+ display: flex;
+
+}
+
+/*.container
+{
+  width:100%;
+  display:inline-block;
+  float:center;
+}*/
+p
+{text-align:center;}

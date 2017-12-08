@@ -1,3 +1,13 @@
+<?php
+  if(isset($_GET['quick']))
+  {
+    require_once('routes.php');
+  }
+  else
+  {
+
+    ?>
+
 <DOCTYPE html>
   <html>
   <head>
@@ -35,29 +45,23 @@
     ?>
 
   </head>
-  <?php
-    if(isset($_GET['quick']))
-    {
-      require_once('routes.php');
-    }
-    else
-    {
-      ?>
-  <div class="overlay"></div>
-  <header>
-    <script src="vendor/jquery.min.js"></script>
-    <script src="java/popup.js"></script>
-    <?php require_once('views/modules/header.php');?>
-  </header>
-  <body>
-    <div class=spacer></div>
-      <?php require_once('routes.php'); ?>
-  </body>
-  <footer>
-    <div class = "content">
-    </div>
-  </footer>
+
+        <div class="overlay"></div>
+        <header>
+          <script src="vendor/jquery.min.js"></script>
+          <script src="java/popup.js"></script>
+          <?php require_once('views/modules/header.php');?>
+        </header>
+        <body>
+          <div class=spacer></div>
+            <?php require_once('routes.php'); ?>
+        </body>
+        <footer>
+          <div class = "content">
+          </div>
+        </footer>
+
+  </html>
   <?php
     }
    ?>
-  </html>
