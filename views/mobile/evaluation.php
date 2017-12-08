@@ -15,7 +15,7 @@
   if ($type == '1'){
     echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID;
   } else {
-    echo "?controller=mobile&action=evaluate&eventID=".$eventID."&projectID=".$projectID;
+    echo "?controller=mobile&action=eventSubmit&eventID=".$eventID;
   }
   ?>>
 <input type='hidden' name = 'evalfor' class='evalfor' value="<?php echo $projectID; ?>">

@@ -179,6 +179,19 @@ class MobileController
         require_once('views/mobile/evaluation.php');
       }
     }
+
+    public function eventSubmit()
+    {
+      $eventID = $_GET['eventID'];
+      $type = 2;
+      $userid = -1;
+      $targetID = $_POST['evalfor'];
+      for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
+      {
+        echo Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
+      }
+      header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
+    }
 //=================================================================================== RESPONSES PROJECT
     public function responses()
     {
