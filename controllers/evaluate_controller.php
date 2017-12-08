@@ -14,9 +14,15 @@ class EvaluateController
       $targetID = $_POST['evalfor'];
       for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
       {
-        echo Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
+        Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
       }
-      //header('Location: index.php');
+
+      if(isset($_GET['mobile']))
+      {
+        $eventID = $_SESSION['eventID'];
+        header('Location: ?controller=mobile&action=projects&eventID='.$eventID);
+        unset($_SESSION['eventID']);
+      }
     }
 }
 ?>

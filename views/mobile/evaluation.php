@@ -11,7 +11,7 @@
   Critique
 </h3>
 <table  class="marginTable">
-<form id='evalform' method='post' action='?controller=evaluate&action=submit&quick=1'>
+<form id='evalform' method='post' action='?controller=evaluate&action=submit&quick=1&mobile=1'>
 
 <!-- <?php
   // if ($type == '1'){
