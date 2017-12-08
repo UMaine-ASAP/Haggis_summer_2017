@@ -23,13 +23,12 @@ table{
 .pagetitle{
   font-size: 48px;
   color: white;
-  padding-top: 4%;
+  line-height: 100%;
 }
 
 div.headerTitle{
   display: inline-block;
-  margin-top: -3%;
-  margin-left: 5%;
+  padding: 10px;
 }
 
 a.login{

@@ -19,7 +19,7 @@
       <script src="vendor/jquery.min.js"></script>
       <div class='header'>
         <div class='headerTitle'>
-          <h1 class="pageTitle"><a class='pageTitle' href='index.php'>Haggis</a></h1>
+          <a class='pageTitle' href='index.php'>Haggis</a>
         </div>
 
         <?php if(true) { ?>
