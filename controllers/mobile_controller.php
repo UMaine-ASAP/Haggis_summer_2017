@@ -165,9 +165,9 @@ class MobileController
         } else {
           for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
           {
-            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, -1, 2 )[1];
+            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $eventID, -1, 2 )[1];
           }
-          $direction = header("Location: index.php?controller=mobile&action=events");
+          $direction = header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
         }
       }
       else {
