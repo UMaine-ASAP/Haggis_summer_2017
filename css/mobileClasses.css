@@ -1,21 +1,26 @@
 td.cardContents{
+
+background-clip: padding-box;
   text-indent: 10px;
   text-align: left;
 }
 
 div.classCard{
+
   margin: auto;
   margin-top: 15%;
   width: 60%;
   height: 20%;
-  border-width: 1.5px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 20px;
-  background-color: white;
+  border: 1px solid black;
+  border-radius: 1.5em;
+  /*padding: 2px;*/
+
 }
 
 table.cardContents{
-  margin: 0;
+  overflow: hidden;
+  background-color: white;
+  margin: 0px;
   height: 100%;
+  border-radius: 1.5em;
 }

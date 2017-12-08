@@ -4,7 +4,7 @@
   <a href="index.php?controller=mobile&action=classes" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 </div>
   <div class='currpagecontainer'>
-    <h3 class="currentPage">Assignments (<?php echo sizeof($assignments);?>)</h3>
+    <h3 class="currentPage">Assignments(<?php echo sizeof($assignments);?>)</h3>
   </div>
 </div>
 

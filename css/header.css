@@ -71,8 +71,9 @@ header
 
 .currentAction
 {
-  position:absolute;
-  left:50%;
+  /*position:absolute;
+  left:50%;*/
+  float:center;
   height: 100px;
   text-align: center;
   vertical-align:bottom;
