@@ -2,7 +2,7 @@
 
 <h3 class="currentPage">
   <a class="backButton" href=<?php
-    if (type == "1") {
+    if ($type == "1") {
       echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID;
     } else {
       echo "index.php?controller=mobile&action=projects&eventID=".$eventID;
