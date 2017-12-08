@@ -35,19 +35,23 @@ class Evaluate
     $check = Evaluate::check($authorID, $targetID, $criteriaID)[1];
     if($type === '1')
     {
-      $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID, author, type) VALUES (?,?,?,?,?,?)";
-      $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
+      if($check)
+      {
+        $sql = "UPDATE evaluation SET  rating = ?, comment = ? WHERE evaluationID = ?";
+        $data = array($rating, $comment,$check);
+      }
+      else
+      {
+        $sql = "INSERT INTO evaluation (criteriaID, rating, comment, projectID, author, type) VALUES (?,?,?,?,?,?)";
+        $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
+      }
     }
     if($type === '2')
     {
       $sql = "INSERT INTO evaluation (criteriaID, rating, comment, eventProjectID, author, type) VALUES (?,?,?,?,?,?)";
       $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
     }
-    if($check)
-    {
-      $sql = "UPDATE evaluation SET  rating = ?, comment = ? WHERE evaluationID = ?";
-      $data = array($rating, $comment,$check);
-    }
+
     $stmt = $db->prepare($sql);
 
     try
