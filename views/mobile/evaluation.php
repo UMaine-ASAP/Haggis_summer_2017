@@ -30,7 +30,7 @@
     echo "<tr><td class='push'><span>On a scale of ".$a->minRange." to ".$a->maxRange."</span><br></tr></td>";
     echo "<tr><td class='push'><span>".$a->description."</span><br></tr></td>";
     echo "<tr><td><input class='criteriaID' name='criteriaID[]' type='hidden' value='".$a->id."'></tr></td>";
-    echo "<tr><td><input name='type' type='hidden' value='1'></tr></td>";
+    echo "<tr><td><input name='type' type='hidden' value='".$type."'></tr></td>";
     echo "<tr><td class='adjustTop push'><input class='criteriaRatingout' name='x' id='".$a->id."' value='".((int)$a->maxRange/2)."'></tr></td>";  //number
     echo "<tr><td class='adjustTop'><div id='sliderWidth'><input class='criteriaRating slider' name='criteriaRating[]' id='".$a->id."' type='range' min='".$a->minRange."' max='".$a->maxRange."'></div></tr></td>"; //slider
     if ($a->allowTextResponse) {
