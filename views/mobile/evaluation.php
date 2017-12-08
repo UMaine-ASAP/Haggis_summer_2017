@@ -1,11 +1,23 @@
 <script src='java/evaluationmanager.js'></script>
 
 <h3 class="currentPage">
-  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>>&lt;- Back</a>
+  <a class="backButton" href=<?php
+    if (type == "1") {
+      echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID;
+    } else {
+      echo "index.php?controller=mobile&action=projects&eventID=".$eventID;
+    }
+    ?>>&lt;- Back</a>
   Critique
 </h3>
 <table  class="marginTable">
-<form id='evalform' method='post' action=<?php echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID; ?>>
+<form id='evalform' method='post' action=<?php
+  if (type == '1'){
+    echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID;
+  } else {
+    echo "?controller=mobile&action=evaluate&eventID=".$eventID."&projectID=".$projectID;
+  }
+  ?>>
 <input type='hidden' name = 'evalfor' class='evalfor' value="<?php echo $projectID; ?>">
 <hr>
 <?php

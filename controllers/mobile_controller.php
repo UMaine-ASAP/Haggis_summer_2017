@@ -171,7 +171,11 @@ class MobileController
         }
       }
       else {
-        $criteria = Criteria::assignmentID($assignmentID)[1];
+        if ($type == '1'){
+          $criteria = Criteria::assignmentID($assignmentID)[1];
+        } else {
+          $criteria = Criteria::eventID($_GET['eventID'])[1];
+        }
         require_once('views/mobile/evaluation.php');
       }
     }
