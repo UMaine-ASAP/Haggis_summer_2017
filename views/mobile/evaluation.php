@@ -12,7 +12,7 @@
 </h3>
 <table  class="marginTable">
 <form id='evalform' method='post' action=<?php
-  if (type == '1'){
+  if ($type == '1'){
     echo "?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$projectID;
   } else {
     echo "?controller=mobile&action=evaluate&eventID=".$eventID."&projectID=".$projectID;

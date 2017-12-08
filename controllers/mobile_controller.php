@@ -150,7 +150,7 @@ class MobileController
         $type = '1';
       } else {
         $eventID = $_GET['eventID'];
-        $targetID = $_GET['projectID']; // targetID
+        $projectID = $_GET['projectID']; // targetID
         $type = '2';
       }
       if(isset($_POST['evalfor'])) {
