@@ -1,3 +1,4 @@
+
 <?php
 Class Project {
   public $id;
@@ -69,7 +70,11 @@ Class Project {
       $project;
       if($result['isGroup'] === '0')
       {
-          $project =new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+      }
+      if($result['isGroup'] == '2')
+      {
+        $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], EventUser::eventID($result['projectID'])[1]);
       }
       else
       {

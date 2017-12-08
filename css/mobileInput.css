@@ -5,6 +5,13 @@ div.inputLogin{
   padding-top: 3%;
   margin: auto;
 }
+div.inputProjectRegistration{
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5%;
+  padding-top: 3%;
+  margin: auto;
+}
 
 div.inputRegister{
   width: 100%;
@@ -40,13 +47,36 @@ input.bigButton{
   padding-left: 10px;
 }
 
-.typeBoxSmall{
-  height: 3.5%;
-  width: 65%;
+.typeBoxBig{
+  height: 15.5%;
+  width: 75%;
   border-radius: 20px;
   border-color: black;
   border-width: 1px;
   padding-left: 10px;
+}
+
+.typeBoxSmall{
+  height: 3.5%;
+  width: 69%;
+  border-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: black;
+  border-width: 1px;
+  padding-left: 10px;
+}
+
+button.plus{
+  height: 3.5%;
+  width: 6%;
+  background-color: white;
+  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-color: black;
+  border-left: none;
+  border-width: 1px;
 }
 
 .inline{

@@ -22,27 +22,31 @@ echo "</td>";
 echo "<td class='contentContainer'><div id='viewer'>";
 echo $message;
 require_once('views/assignment/viewAssignments.php');
-echo "</td></tr></table>"
+echo "</td></tr></table>";
 
+if($status === 'admin')
+{
 ?>
+    <div class ='popup' id='studentlist'>
+      <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+      <h2>Class Roster</h2><hr>
+    <?php foreach($students as $s)
+          {
+            echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";
+          }
+          if($status ==='admin')
+          {
+            echo "<form action='?controller=class&action=addToClass' method = 'post'>
+                  <input type='hidden' name ='classid' value ='".$classID."'>
+                  <select name ='student'>";
+                  foreach($allusers as $u)
+                  {
+                    echo "<option value='".$u->id."'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</option>";
+                  }
+            echo "</select><input type='submit' value='Enroll Student'></form>";
+          }?>
 
-<div class ='popup' id='studentlist'>
-  <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
-  <h2>Class Roster</h2><hr>
-<?php foreach($students as $s)
-      {
-        echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";
-      }
-      if($status ==='admin')
-      {
-        echo "<form action='?controller=class&action=addToClass' method = 'post'>
-              <input type='hidden' name ='classid' value ='".$classID."'>
-              <select name ='student'>";
-              foreach($allusers as $u)
-              {
-                echo "<option value='".$u->id."'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</option>";
-              }
-        echo "</select><input type='submit' value='Enroll Student'></form>";
-      }?>
-
-</div>
+    </div>
+<?php
+}
+?>

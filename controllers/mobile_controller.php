@@ -10,12 +10,24 @@ class MobileController
 //=================================================================================== LOGIN PAGE
     public function login()
     {
+      $message = "";
+
+      if(isset($_SESSION['message']))
+      {
+        $message = $_SESSION['message'];
+        $_SESSION['message'] = "";
+      }
       require_once('views/mobile/login.php');
     }
 //=================================================================================== REGISTRATION PAGE
     public function register()
     {
       require_once('views/mobile/register.php');
+    }
+//=================================================================================== FORGOT PASSWORD PAGE
+    public function forgotPassword()
+    {
+      require_once('views/mobile/forgotPassword.php');
     }
 //=================================================================================== CLASSES PAGE
     public function classes()
@@ -99,17 +111,128 @@ class MobileController
 //=================================================================================== DISPLAY PROJECTS
     public function projects()
     {
+      if(isset($_GET['classID'])){
+          $assignmentID = $_GET['assignmentID'];
+          $classID = $_GET['classID'];
+          $projects = Project::assignment($assignmentID)[1];
+          $type = '1';
+      } else {
+          $event = Event::id($_GET['eventID'])[1];
+          $assignmentIDs = Event::getAssignments($event->id)[1];
+          $eventProjectIDs = Event::getEventProjects($event->id)[1];
+          $assignments;
+          $eventProjects;
+          $projectList = array();
+          $eventprojectList = array();
+          $type = '2';
+          $eventID = $_GET['eventID'];
+          foreach($assignmentIDs as $a)
+          {
+            $assignments =  Assignment::id($a)[1];
+            foreach($assignments->projects as $p)
+            {
+              $projectList[] = $p;
+            }
+          }
+          foreach($eventProjectIDs as $ep)
+          {
+            $eventprojectList[] = EventProject::id($ep)[1];
+          }
+      }
       require_once('views/mobile/projects.php');
     }
-//=================================================================================== EVALUATE PROJECT
-    public function evaluate()
+//=================================================================================== EVALUATE ANY
+    public function evaluate() {
+      if(isset($_GET['classID'])){
+        $classID = $_GET['classID'];
+        $assignmentID = $_GET['assignmentID']; // targetID
+        $projectID = $_GET['projectID'];
+        $type = '1';
+      } else {
+        $eventID = $_GET['eventID'];
+        $projectID = $_GET['projectID']; // targetID
+        $type = '2';
+      }
+      if(isset($_POST['evalfor'])) {
+        $projectID = $_POST['evalfor'];
+        if ($type == '1') { // Test for type project vs type event
+          $userid = User::getID($_SESSION['token'])[1];
+          for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
+          {
+            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid, 1 )[1];
+          }
+          $direction = header("Location: index.php?controller=mobile&action=responses&classID=$classID&assignmentID=$assignmentID&id=$projectID");
+        } else {
+          for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
+          {
+            Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $eventID, -1, 2 )[1];
+          }
+          $direction = header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
+        }
+      }
+      else {
+        if ($type == '1'){
+          $criteria = Criteria::assignmentID($assignmentID)[1];
+        } else {
+          $criteria = Criteria::eventID($_GET['eventID'])[1];
+        }
+        if(isset($eventID))
+          $_SESSION['eventID'] = $eventID;
+        require_once('views/mobile/evaluation.php');
+      }
+    }
+
+    public function eventSubmit()
     {
-      require_once('views/mobile/evaluation.php');
+      $eventID = $_GET['eventID'];
+      $type = 2;
+      $userid = -1;
+      $targetID = $_POST['evalfor'];
+      for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
+      {
+        echo Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
+      }
+      header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
     }
 //=================================================================================== RESPONSES PROJECT
     public function responses()
     {
-      require_once('views/mobile/responses.php');
+      $classID = $_GET['classID'];
+      $projectid = $_GET['id'];
+      $assignmentID = $_GET['assignmentID'];
+      $project = Project::id($projectid)[1];
+      $projectresponses = Evaluate::projectID($projectid)[1];
+      $cID = array();
+      $cNames = array();
+      $cAvg = array();
+      $cComments = array();
+
+      foreach($projectresponses as $r)
+      {
+        $temp = Criteria::id($r->criteriaID)[1];
+        $check = in_array($temp->id, $cID);
+        $user = $r->author;
+          if( $check != false)
+          {
+            $index = array_search($temp->id, $cID);
+            $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
+            $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
+          }
+          else
+          {
+            $cID[] = $temp->id;
+            $cNames[] = $temp->title;
+            $cAvg[] = $r->rating;
+            $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
+          }
+      }
+      // The HTML is at this location  |
+      //                              \/
+      require_once("views/mobile/responses.php");
+    }
+    public function events() {
+      $events = Event::getActive()[1];
+      require_once('views/mobile/events.php');
     }
 }
 

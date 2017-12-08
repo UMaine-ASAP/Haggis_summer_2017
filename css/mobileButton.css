@@ -9,6 +9,7 @@ a.bigButton{
 }
 
 div.bigButton{
+  color: white;
   width: 100%;
   text-align: center;
 }
@@ -25,14 +26,18 @@ a.smallButton{
   border-radius: 20px;
 }
 
-button.smallButton{
-  border: none;
+.backButton{
+
   padding: 3%;
   color: white;
+  border: none;
   background-color: #1195c6;
   border-radius: 20px;
-}
+  float: left;
+  width: 100px;
+  height: 40px;
+  padding:auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
-i{
-  margin: auto;
 }

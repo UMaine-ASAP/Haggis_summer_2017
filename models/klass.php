@@ -103,7 +103,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
         }
         return array($errorCode, $message);
     }
-//===================================================================================
+//=================================================================================== GET DAYS OF WEEK
     public static function getDays($classID)
     {
       $message = [];
@@ -236,7 +236,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
       $classID = Klass::joinCode($joinCode);
       if($classID === null)
       {
-        $message = "Class does not exist. Please Try again";
+        $message = $joinCode." was not a valid code";
         $errorCode = -1;
       }
       else

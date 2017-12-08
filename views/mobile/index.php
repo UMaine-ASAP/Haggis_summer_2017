@@ -13,7 +13,7 @@
   <tr>
     <td class='buttonHolder'>
       <div class="bigButton">
-        <a class='bigButton'>
+        <a class='bigButton' href='?controller=mobile&action=events'>
           Live Events
         </a>
       </div>

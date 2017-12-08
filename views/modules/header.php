@@ -7,4 +7,8 @@
   <div class='headerLogin'>
   <?php require_once('views/modules/login.php');?>
   </div>
+
+  <div class='currentAction'>
+      <?php require_once('views/modules/currentAction.php');?>
+  </div>
 </div>
