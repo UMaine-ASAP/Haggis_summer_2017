@@ -4,7 +4,6 @@ div.inputLogin{
   padding-bottom: 20%;
   padding-top: 3%;
   margin: auto;
-  height: 80px;
 }
 div.inputProjectRegistration{
   width: 100%;
@@ -40,7 +39,7 @@ input.bigButton{
 }
 
 .typeBox{
-  height: 3.5%;
+  height: 20px;
   width: 75%;
   border-radius: 20px;
   border-color: black;
