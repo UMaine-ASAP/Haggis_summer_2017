@@ -62,7 +62,7 @@
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject'],
-                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent']);
+                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

@@ -85,6 +85,13 @@ class EventController
     //Load index page
     header('Location: index.php');
   }
+  //=================================================================================== ADD ASSINGMENT TO EVENT
+    public function setActive()
+    {
+      $result = Event::setActive($_GET['eventid'], $_GET['status'])[1];
+      //Load index page
+      header('Location: index.php');
+    }
 
 //=================================================================================== ERROR
   public function error()

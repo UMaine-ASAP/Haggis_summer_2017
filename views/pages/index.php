@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td class='initialSquare'>
-      <?php require_once('views/event/listActiveEvents.php'); ?>
+      <?php require_once('views/event/listEvents.php'); ?>
     </td>
 
     <?php if(isset($classes)) { ?>

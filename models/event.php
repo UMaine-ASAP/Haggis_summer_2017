@@ -83,6 +83,34 @@ class Event
         return array($errorCode, $message);
     }
     //=================================================================================== get the Active Events
+     public static function getAll()
+     {
+         $errorCode;
+         $message;
+         $db = Db::getInstance();
+         $sql = "SELECT * FROM event";
+         try
+         {
+           $stmt = $db->prepare($sql);
+           $stmt->execute();
+           $events = array();
+
+           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+           {
+             $events[] = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+                                   $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
+           }
+           $message = $events;
+           $errorCode = 1;
+         }
+         catch(PDOException $e)
+         {
+           $errorCode = $e->getCode();
+           $message = $e->getMessage();
+         }
+         return array($errorCode, $message);
+     }
+    //=================================================================================== get the Active Events
      public static function getActive()
      {
          $errorCode;
@@ -110,6 +138,73 @@ class Event
          }
          return array($errorCode, $message);
      }
+     //=================================================================================== set the Active status
+      public static function setActive($eventID, $status)
+      {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "UPDATE event SET active = ? WHERE ID = ?";
+          $data = array($status, $eventID);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $message = "sucessful";
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
+      //=================================================================================== set the Transparancy status
+       public static function setTransparent($eventID, $status)
+       {
+           $errorCode;
+           $message;
+           $db = Db::getInstance();
+           $sql = "UPDATE event SET transparancy = ? WHERE eventID = ?";
+           $data = array($status, $eventID);
+           try
+           {
+             $stmt = $db->prepare($sql);
+             $stmt->execute($data);
+             $message = $events;
+             $errorCode = 1;
+           }
+           catch(PDOException $e)
+           {
+             $errorCode = $e->getCode();
+             $message = $e->getMessage();
+           }
+           return array($errorCode, $message);
+       }
+       //=================================================================================== set the visible status
+        public static function setVisible($eventID, $status)
+        {
+            $errorCode;
+            $message;
+            $db = Db::getInstance();
+            $sql = "UPDATE event SET visible = ? WHERE eventID = ?";
+            $data = array($status, $eventID);
+            try
+            {
+              $stmt = $db->prepare($sql);
+              $stmt->execute($data);
+              $message = $events;
+              $errorCode = 1;
+            }
+            catch(PDOException $e)
+            {
+              $errorCode = $e->getCode();
+              $message = $e->getMessage();
+            }
+            return array($errorCode, $message);
+        }
+
      //=================================================================================== get the Active Events
       public static function all()
       {
