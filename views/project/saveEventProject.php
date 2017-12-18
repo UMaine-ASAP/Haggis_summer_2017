@@ -1,6 +1,7 @@
 <?php
+  $filename = str_replace(' ', '_', $project->title);
   header("Content-Type: application/vnd.ms-word");
-  header("Content-Disposition: attachment;filename=".$project->title.".doc");
+  header("Content-Disposition: attachment;filename=".$filename."_responses.doc");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
