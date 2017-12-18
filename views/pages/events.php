@@ -14,10 +14,16 @@ echo "</td>";
 // echo "<td class='studentContainer'><div id='studentviewer'>";
 // require_once('views/user/classUser.php');
 // echo "</div></td>";
+echo "<td class='contentContainer'><div id='viewer'>";
 if($status == 'admin')
 {
-  echo "<td class='contentContainer'><div id='viewer'>";
-  echo "<span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."</a><br>";
+  echo "
+    <span>Project registration link:
+      <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>
+        http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."
+        </a>
+    </span>
+    <br>";
 
   if($event->active)
     echo "<a href='?controller=event&action=setActive&eventid=".$event->id."&status=0'>Set Event inactive</a>";
@@ -25,6 +31,6 @@ if($status == 'admin')
     echo "<a href='?controller=event&action=setActive&eventid=".$event->id."&status=1'>Set Event active</a>";
 // require_once('views/assignment/viewAssignments.php');
 }
-echo "</td></tr></table>";
+echo "</div></td></tr></table>";
 
 ?>

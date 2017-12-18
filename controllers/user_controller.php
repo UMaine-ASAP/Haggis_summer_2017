@@ -8,7 +8,7 @@ class UserController
       if(isset($_POST['firstname']))
       {
         $out='';
-        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password'],$_POST['profcode']);
+        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['new-password'],$_POST['profcode']);
           switch($outcome[0])
           {
             case '1':
@@ -27,7 +27,7 @@ class UserController
   {
     if(isset($_POST['email']))
     {
-      $outcome =  User::login($_POST['email'], $_POST['password']);
+      $outcome =  User::login($_POST['email'], $_POST['current-password']);
       if($outcome[0] != 1)
       {
         $_SESSION['message'] = $outcome[1];
@@ -123,9 +123,9 @@ class UserController
 
     if (isset($_POST['passwordConfirm']))
     {
-      if($_POST['password'] == $_POST['passwordConfirm'])
+      if($_POST['new-password'] == $_POST['passwordConfirm'])
       {
-        $outcome = User::resetPassword($code, $_POST["password"]);
+        $outcome = User::resetPassword($code, $_POST["new-password"]);
         if($outcome[0] == 1)
         {
           $message = $outcome[1];

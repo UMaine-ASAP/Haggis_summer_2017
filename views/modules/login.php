@@ -12,7 +12,7 @@
   {
     $loginForm =  "<form action='?controller=user&action=login' method='post'>".
                   "<input class='standard' type='email' name='email' placeholder='Email Address'>".
-                  "<input class='standard' type='password' name='password' placeholder='Password'>".
+                  "<input class='standard' type='password' name='current-password' placeholder='Password'>".
                   "<input class='standard' type='submit' value='Login'><br>";
     $loginForm .= "<a class='popupmaker' id='registerUser' href='#'>Register</a>".
                     "<a class='popupmaker' id ='resetPassword' href='#'>Forgot Password?</a>".

@@ -52,7 +52,7 @@ class PagesController
           $status = 'admin';
       require_once('views/pages/classes.php');
     }
-//=================================================================================== ASSIGNMENTS
+//=================================================================================== EVENTS
     public function events()
     {
       $event = Event::id($_GET['eventID'])[1];
