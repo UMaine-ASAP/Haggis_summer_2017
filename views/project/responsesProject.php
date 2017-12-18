@@ -40,7 +40,6 @@ else
   padding: 3px;
   margin: 1px;
   color: white;
-  width:100%;
 }
 </style>
 
