@@ -61,7 +61,7 @@
                           'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
-                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject'],
+                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse'],
                           'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive']);
 
   if(array_key_exists($controller, $controllers))

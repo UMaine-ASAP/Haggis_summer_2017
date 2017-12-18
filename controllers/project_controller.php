@@ -69,6 +69,69 @@ class ProjectController
 
   }
   //===================================================================================
+  public function saveEventResponse()
+  {
+    $type = $_GET['type'];
+    $projectid = $_GET['id'];
+    $project = Project::id($projectid)[1];
+    $projectresponses;
+    if($type =='1')
+    {
+      $projectresponses = Evaluate::projectID($projectid)[1];
+    }
+    if($type == '2')
+    {
+      $projectresponses = Evaluate::eventProjectID($projectid)[1];
+    }
+
+
+    $cID = array();
+    $cNames = array();
+    $cAvg = array();
+    $cComments = array();
+
+    foreach($projectresponses as $r)
+    {
+      $temp = Criteria::id($r->criteriaID)[1];
+
+      $check = in_array($temp->title, $cNames);
+      $author = $r->author;
+        if($check)
+        {
+          $index = array_search($temp->title, $cNames);
+          $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
+          if($type == '2')
+          {
+            $cComments[$index][] = "-- ".$r->comment;
+          }
+          else
+          {
+            $cComments[$index][] = $r->comment." --".$author->firstName." ".$author->lastName;
+          }
+        }
+        else
+        {
+          $cID[] = $temp->id;
+          $cNames[] = $temp->title;
+          $cAvg[] = $r->rating;
+          if($type == '2')
+          {
+            $cComments[] = array("-- ".$r->comment);
+          }
+          else
+          {
+            $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
+          }
+        }
+    }
+      require_once('views/project/saveEventProject.php');
+  }
+  //===================================================================================
+  public function saveAssignmentResponse()
+  {
+
+  }
+  //===================================================================================
   public function assignmentEvaluate()
   {
     $projectid = $_GET['id'];

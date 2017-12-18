@@ -1,3 +1,5 @@
+<a href="?controller=project&action=saveEventResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a>
+
 <h3>Project Responses</h3>
 
 
