@@ -40,6 +40,30 @@
     }
   }
   ?>
+
+  <style>
+  div.chart {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+    width:50%;
+  }
+  </style>
+
+  <script src="vendor/d3/d3.js"></script>
+  <script src="java/datadisplay.js"></script>
+  <script >
+  var thisdata = <?php echo json_encode($cAvg); ?>;
+  $(document).ready(function()
+  {
+    charting();
+  });
+  </script>
+
+  <div class='chart'></div>
 </body>
 
 

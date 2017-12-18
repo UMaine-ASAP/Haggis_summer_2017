@@ -33,13 +33,14 @@ else
 ?>
 
 <style>
-.chart div {
+div.chart {
   font: 10px sans-serif;
   background-color: steelblue;
   text-align: right;
   padding: 3px;
   margin: 1px;
   color: white;
+  width:50%;
 }
 </style>
 
