@@ -73,15 +73,17 @@ class ProjectController
   {
     $type = $_GET['type'];
     $projectid = $_GET['id'];
-    $project = Project::id($projectid)[1];
+    $project;
     $projectresponses;
     if($type =='1')
     {
       $projectresponses = Evaluate::projectID($projectid)[1];
+      $project = Project::id($projectid)[1];
     }
     if($type == '2')
     {
       $projectresponses = Evaluate::eventProjectID($projectid)[1];
+      $project = EventProject::id($projectid)[1];
     }
 
 
@@ -161,15 +163,17 @@ class ProjectController
   {
     $type = $_GET['type'];
     $projectid = $_GET['id'];
-    $project = Project::id($projectid)[1];
+    $project;
     $projectresponses;
     if($type =='1')
     {
       $projectresponses = Evaluate::projectID($projectid)[1];
+      $project = Project::id($projectid)[1];
     }
     if($type == '2')
     {
       $projectresponses = Evaluate::eventProjectID($projectid)[1];
+      $project = EventProject::id($projectid)[1];
     }
 
 
