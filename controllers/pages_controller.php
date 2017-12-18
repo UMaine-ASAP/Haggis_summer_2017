@@ -55,7 +55,17 @@ class PagesController
 //=================================================================================== EVENTS
     public function events()
     {
-      $event = Event::id($_GET['eventID'])[1];
+      $event;
+      if(isset($_SESSION['returnto']))
+      {
+        $event = Event::id($_SESSION['returnto'])[1];
+        unset($_SESSION['returnto']);
+      }
+      else
+      {
+        $event = Event::id($_GET['eventID'])[1];
+      }
+
       $assignmentIDs = Event::getAssignments($event->id)[1];
       $eventProjectIDs = Event::getEventProjects($event->id)[1];
       $assignments;

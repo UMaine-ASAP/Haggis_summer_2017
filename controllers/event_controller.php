@@ -90,6 +90,9 @@ class EventController
     {
       $result = Event::setActive($_GET['eventid'], $_GET['status'])[1];
       //Load index page
+      $_SESSION['controller'] = 'pages';
+      $_SESSION['action'] = 'events';
+      $_SESSION['returnto'] = $_GET['eventid'];
       header('Location: index.php');
     }
 
