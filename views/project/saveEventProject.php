@@ -12,6 +12,7 @@
 </head>
 <body>
   <h3>Project Responses</h3>
+    <div class='chart'></div>
   <?php
   $i=0;
   if(sizeof($cNames)<1)
@@ -41,8 +42,14 @@
   }
   ?>
 
-  <style>
-  div.chart {
+
+
+
+</body>
+</html>
+
+<style>
+  .chart div{
     font: 10px sans-serif;
     background-color: steelblue;
     text-align: right;
@@ -51,22 +58,14 @@
     color: white;
     width:50%;
   }
-  </style>
+</style>
 
-  <script src="vendor/d3/d3.js"></script>
-  <script src="java/datadisplay.js"></script>
-  <script >
-  var thisdata = <?php echo json_encode($cAvg); ?>;
-  $(document).ready(function()
-  {
-    charting();
-  });
-  </script>
-
-  <div class='chart'></div>
-</body>
-
-
-
-
-</html>
+<script src="vendor/d3/d3.js"></script>
+<script src="java/datadisplay.js"></script>
+<script>
+var thisdata = <?php echo json_encode($dataout); ?>;
+$(document).ready(function()
+{
+  charting();
+});
+</script>

@@ -91,6 +91,7 @@ class ProjectController
     $cNames = array();
     $cAvg = array();
     $cComments = array();
+    $dataout = array();
 
     foreach($projectresponses as $r)
     {
@@ -125,6 +126,10 @@ class ProjectController
             $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
           }
         }
+    }
+    for($i = 0; $i<sizeof($cNames);$i++)
+    {
+      $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
     }
       require_once('views/project/saveEventProject.php');
   }
@@ -181,6 +186,7 @@ class ProjectController
     $cNames = array();
     $cAvg = array();
     $cComments = array();
+    $dataout = array();
 
     foreach($projectresponses as $r)
     {
@@ -215,6 +221,10 @@ class ProjectController
             $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
           }
         }
+    }
+    for($i = 0; $i<sizeof($cNames);$i++)
+    {
+      $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
     }
 
     require_once("views/project/responsesProject.php");
