@@ -32,7 +32,7 @@ else
 }
 ?>
 
-<!-- <style>
+<style>
 .chart div {
   font: 10px sans-serif;
   background-color: steelblue;
@@ -40,17 +40,18 @@ else
   padding: 3px;
   margin: 1px;
   color: white;
+  width:100%;
 }
 </style>
+
 <script src="vendor/d3/d3.js"></script>
-<script>
-var data = [1.5, 3.3, 6, 4.1, 8.9];
-d3.select(".chart")
-  .selectAll("div")
-  .data(data)
-    .enter()
-    .append("div")
-    .style("width", function(d) {return d+(3.72/5)+ "%";})
-    .text(function(d){return d;});
-    </script>
-<div class='chart'></div> -->
+<script src="java/datadisplay.js"></script>
+<script >
+var thisdata = <?php echo json_encode($cAvg); ?>;
+$(document).ready(function()
+{
+  charting();
+});
+</script>
+
+<div class='chart'></div>
