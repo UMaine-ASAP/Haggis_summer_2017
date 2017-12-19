@@ -46,17 +46,20 @@ foreach($classes as $class)
   $daySize = sizeof($class->days);
   if($daySize > 0 )
   {
-    for($i = 0; $i<$daySize; $i++)
+    for($i = 0; $i<$daySize-1; $i++)
     {
       echo substr($class->days[$i],0,2);
       if($i == $daySize-2)
       {
-        echo ", and ".substr($class->days[$i+1],0,2);
-        $i = $daySize;
+        $i++;
+        echo ", and ".substr($class->days[$i],0,2);
       }
       else
+      {
         echo ", ";
+      }
     }
+
   }
   echo "</table></div></a>";
 }

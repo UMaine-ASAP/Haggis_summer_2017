@@ -248,6 +248,11 @@ p.lable
   display:inline-block;
 }
 
+#NewAssignment
+{
+  cursor:pointer;
+}
+
 .addprofbox
 {
   margin:0 auto;

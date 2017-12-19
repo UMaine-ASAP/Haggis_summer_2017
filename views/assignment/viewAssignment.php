@@ -2,8 +2,10 @@
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
-  <tr><td></td><td>
-  <button class='standard popupmaker' id ='event'>Event</button></td></tr>
+  <tr><td></td><td>";
+  if($status == 'admin')
+    echo "<button class='standard popupmaker' id ='event'>Event</button>";
+    echo "</td></tr>
     <tr>
       <td colspan='2'>
       <h2>".$a->title."</h2>";

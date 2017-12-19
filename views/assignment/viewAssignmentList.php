@@ -1,5 +1,9 @@
 
 <script src="java/livesearch.js"></script>
+<?php
+if($status === 'admin')
+echo "<a id='NewAssignment' onclick='NewAssignment(".$classID.")'><div>New Assignment +</div></a>";
+?>
 <div class='menutitle'>
 Assignments(<?php echo sizeof($assignments);?>)
 </div>
