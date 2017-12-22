@@ -11,7 +11,7 @@ echo "</div>
 
         foreach($criterias as $c)
         {
-          if($c->minRange === $c->maxRange)
+          if($c->ratingMin === $c->ratingMax)
           {
             echo "<div><h3>".$c->title."</h3><br>".$c->description."<br>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
@@ -21,10 +21,16 @@ echo "</div>
           }
           else
           {
-            echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."<br>";
+            echo "<div><h3>".$c->title."</h3> on scale of ".$c->ratingMin." to ".$c->ratingMax."<br>".$c->description."<br>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
-            echo "<input disabled class='standard criteriaRatingout' name ='x' id='".$c->id."' value='".((int)$c->maxRange/2)."'><br>";
-            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='range' max='".$c->maxRange."' min='".$c->minRange."' value='".((int)$c->maxRange/2)."'>";
+            echo "<input disabled class='standard criteriaRatingout' name ='x' id='".$c->id."' value='".((int)$c->ratingMax/2)."'><br>";
+            echo "<div><table><tr>";
+            foreach($c->criterias as $subc)
+            {
+              echo "<td>".$subc->description."</td>";
+            }
+            echo "</tr></table></div>";
+            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='range' max='".$c->ratingMax."' min='".$c->ratingMin."' value='".((int)$c->ratingMax/2)."'>";
             if($c->allowTextResponse === '1')
               echo "<textarea rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:'></textarea>";
             echo "</div><hr class='minor'>";

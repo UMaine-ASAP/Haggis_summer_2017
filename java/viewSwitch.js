@@ -2,6 +2,7 @@ $(document).ready(function()
 {
   $("#groupcreator").hide();
 
+
   $('input[name="makegroup"]').change(function()
   {
     var name = $(this).val();

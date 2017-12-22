@@ -44,38 +44,21 @@ class AssignmentController
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
       $criteriaSetID;
-      if(isset($_POST['savedSetName']))
+
+      $counter = 1;
+      foreach($_POST['criterianame'] as $criName)
       {
-        $criteriaSetID = Criteria::createSet($_POST['savedSetName'], $_POST['savedSetDescription'])[1];
-        $userID = User::getID($_SESSION['token'])[1];
-        Criteria::associateWithUser($userID, $criteriaSetID);
-      }
-
-
-      for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
-      {
-        $allowTextResponse = 1;
-        if($_POST['textresponse'.$i] === 'no')
-          $allowTextResponse = 0;
-        $currentID;
-        if($_POST['graded'][$i] === 'yes')
+        $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+        $counter2 = 0;
+        foreach($_POST[$counter] as $cri)
         {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
+          $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+          CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+          $counter2++;
         }
-        else
-        {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], '0', '0', $allowTextResponse)[1];
-        }
-
-        $idList[] = $currentID;
-        echo $currentID;
-        Criteria::associateWithAssignment($assignmentID, $currentID);
+        CriteriaSet::associateWithAssignment($assignmentID, $criteriaSetID);
+        $counter++;
       }
-    }
-    if(isset($criteriaSetID))
-    {
-      foreach($idList as $id)
-      Criteria::addToSet($criteriaSetID, $id);
     }
 
     //GROUP/PROJECT CREATION

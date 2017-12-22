@@ -16,7 +16,7 @@ class Assignment
     $this->description=$description;
     $this->duetime = date_format(date_create($duetime), 'g:i a');
     $this->duedate = date_format(date_create($duedate), 'm/d/Y');
-    $this->criterias = Criteria::assignmentID($id)[1];
+    $this->criterias = CriteriaSet::assignmentID($id)[1];
     $this->projects = $projectsin;
   }
 

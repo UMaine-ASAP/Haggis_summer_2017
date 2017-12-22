@@ -136,7 +136,67 @@ class ProjectController
   //===================================================================================
   public function saveAssignmentResponse()
   {
+    $type = $_GET['type'];
+    $projectid = $_GET['id'];
+    $project;
+    $projectresponses;
+    if($type =='1')
+    {
+      $projectresponses = Evaluate::projectID($projectid)[1];
+      $project = Project::id($projectid)[1];
+    }
+    if($type == '2')
+    {
+      $projectresponses = Evaluate::eventProjectID($projectid)[1];
+      $project = EventProject::id($projectid)[1];
+    }
 
+
+    $cID = array();
+    $cNames = array();
+    $cAvg = array();
+    $cComments = array();
+    $dataout = array();
+
+    foreach($projectresponses as $r)
+    {
+
+      $temp = CriteriaSet::id($r->criteriaID)[1][0];
+
+      $check = in_array($temp->title, $cNames);
+      $author = $r->author;
+        if($check)
+        {
+          $index = array_search($temp->title, $cNames);
+          $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
+          if($type == '2')
+          {
+            $cComments[$index][] = "-- ".$r->comment;
+          }
+          else
+          {
+            $cComments[$index][] = $r->comment." --".$author->firstName." ".$author->lastName;
+          }
+        }
+        else
+        {
+          $cID[] = $temp->id;
+          $cNames[] = $temp->title;
+          $cAvg[] = $r->rating;
+          if($type == '2')
+          {
+            $cComments[] = array("-- ".$r->comment);
+          }
+          else
+          {
+            $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
+          }
+        }
+    }
+    for($i = 0; $i<sizeof($cNames);$i++)
+    {
+      $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
+    }
   }
   //===================================================================================
   public function assignmentEvaluate()
@@ -190,7 +250,8 @@ class ProjectController
 
     foreach($projectresponses as $r)
     {
-      $temp = Criteria::id($r->criteriaID)[1];
+
+      $temp = CriteriaSet::id($r->criteriaID)[1][0];
 
       $check = in_array($temp->title, $cNames);
       $author = $r->author;

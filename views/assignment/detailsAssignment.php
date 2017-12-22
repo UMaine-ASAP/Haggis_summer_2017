@@ -10,6 +10,10 @@ Due Date:".$a->duedate."<br>
 foreach($a->criterias as $c)
 {
 
-  echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
+  echo "<div><h3>".$c->title."</h3> on scale of ".$c->ratingMin." to ".$c->ratingMax."</div>";
+  foreach($c->criterias as $subc)
+  {
+    echo "<div>".$subc->description." - ".$subc->ratingValue."</div>";
+  }
 }
 ?>
