@@ -154,7 +154,7 @@ class UserController
   function emailConfirmation(){
     $code = $_GET['code'];
     $outcome = User::confirmEmail($code);
-    $message = $outcome[1];
+    $_SESSION['message'] = $outcome[1];
     header('Location: index.php');
   }
 //=================================================================================== SEND EMAIL CONFIRMATION

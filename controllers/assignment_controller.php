@@ -166,12 +166,14 @@ class AssignmentController
   //==========================================================================
   public function details()
   {
-    $t;
-    if(isset($_GET['id']))
+    $t;                           //$t is a temp variable
+    if(isset($_GET['id']))        // Check if we have a GET variable, typical if user clicked to a particular class
       $t = $_GET['id'];
     else
-      $t = $_SESSION['targetid'];
+      $t = $_SESSION['targetid'];// Else we check if the session stored the variable to auto return to class after a previous action
     $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
+
+    
     require_once('views/assignment/detailsAssignment.php');
   }
 }

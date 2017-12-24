@@ -1,14 +1,37 @@
 $(document).ready(function()
 {
   $('#evalout').hide();
-  $('.criteriaRating').on('input', function(e)
+
+  $('.picker').on('click', function(event)
   {
-    var curr = e.target.id;
-    var currval = $(this).val();
-    $('#'+curr+".criteriaRatingout").attr('value', currval);
+    if(event.target.id == "picker")
+    {
+      var thisElem = event.target;
+      var criID = thisElem.getAttribute("scoreTarget");
+      var criScore = thisElem.getAttribute("scoreVal");
+      var criteriaOutputs = document.getElementsByClassName('criteriaRating');
+      for(var i = 0; i < criteriaOutputs.length; i++)
+      {
+        var currCri = criteriaOutputs[i];
+        if(currCri.id == criID)
+        {
+          currCri.setAttribute('value', criScore);
+        }
+      }
+       var others = document.getElementsByClassName("s"+criID);
+
+
+      for(var i = 0; i < others.length;i++)
+      {
+        others[i].style.border="1px solid black";
+        others[i].style.backgroundColor = "white";
+      }
+      event.target.style.border="2px solid red";
+      event.target.style.backgroundColor="yellow";
+    }
   });
 
-  $('#evalsubmit').on('click',function(e)
+  $('.chooser').on('click',function(e)
   {
     e.preventDefault();
     var formsr = $('#evalform').serialize();
@@ -29,3 +52,14 @@ $(document).ready(function()
     $('#evalform').hide();
   });
 });
+
+
+function getAllSiblings(elem, filter) {
+    var sibs = [];
+    elem = elem.parentNode.firstChild;
+    do {
+        if (elem.nodeType === 3) continue; // text node
+        if (!filter || filter(elem)) sibs.push(elem);
+    } while (elem = elem.nextSibling)
+    return sibs;
+}

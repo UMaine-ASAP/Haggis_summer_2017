@@ -21,18 +21,18 @@ echo "</div>
           }
           else
           {
-            echo "<div><h3>".$c->title."</h3> on scale of ".$c->ratingMin." to ".$c->ratingMax."<br>".$c->description."<br>";
+            echo "<div><h3>".$c->title."</h3>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
-            echo "<input disabled class='standard criteriaRatingout' name ='x' id='".$c->id."' value='".((int)$c->ratingMax/2)."'><br>";
-            echo "<div><table><tr>";
+            echo "<div class='criteriaSelectionContainer'>";
+            $cellwidth = 100/sizeof($c->criterias);
             foreach($c->criterias as $subc)
             {
-              echo "<td>".$subc->description."</td>";
+              echo "<div clickable='true' class='s".$c->id." picker' id='picker' scoreTarget = '".$c->id."'scoreVal='".$subc->ratingValue."' style='width:".$cellwidth."%'><div class='criRatingVal'><strong>".$subc->ratingValue." points</strong></div><div class='criRatingDesc'><span class='criRatingDescInside'>".$subc->description."</span></div></div>";
             }
-            echo "</tr></table></div>";
-            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='range' max='".$c->ratingMax."' min='".$c->ratingMin."' value='".((int)$c->ratingMax/2)."'>";
+            echo "</div>";
+            echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='hidden'  value='0'>";
             if($c->allowTextResponse === '1')
-              echo "<textarea rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:'></textarea>";
+              echo "<textarea rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'></textarea>";
             echo "</div><hr class='minor'>";
           }
         }
