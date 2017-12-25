@@ -143,17 +143,27 @@ class MobileController
     }
 //=================================================================================== EVALUATE ANY
     public function evaluate() {
-      if(isset($_GET['classID'])){
+
+      //EVALUATION FORM LOADING
+      if(isset($_GET['classID']))
+      {
         $classID = $_GET['classID'];
         $assignmentID = $_GET['assignmentID']; // targetID
         $projectID = $_GET['projectID'];
+        $criteria = CriteriaSet::assignmentID($assignmentID)[1];
         $type = '1';
-      } else {
+      }
+      else
+      {
         $eventID = $_GET['eventID'];
         $projectID = $_GET['projectID']; // targetID
+        $criteria = Criteria::eventID($_GET['eventID'])[1];
         $type = '2';
       }
-      if(isset($_POST['evalfor'])) {
+
+      //EVALUATION SUBMISSION
+      if(isset($_POST['evalfor']))
+      {
         $projectID = $_POST['evalfor'];
         if ($type == '1') { // Test for type project vs type event
           $userid = User::getID($_SESSION['token'])[1];
@@ -162,7 +172,9 @@ class MobileController
             Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $projectID, $userid, 1 )[1];
           }
           $direction = header("Location: index.php?controller=mobile&action=responses&classID=$classID&assignmentID=$assignmentID&id=$projectID");
-        } else {
+        }
+        else
+        {
           for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
           {
             Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $eventID, -1, 2 )[1];
@@ -170,17 +182,12 @@ class MobileController
           $direction = header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
         }
       }
-      else {
-        if ($type == '1'){
-          $criteria = Criteria::assignmentID($assignmentID)[1];
-        } else {
-          $criteria = Criteria::eventID($_GET['eventID'])[1];
-        }
+
         if(isset($eventID))
           $_SESSION['eventID'] = $eventID;
         require_once('views/mobile/evaluation.php');
       }
-    }
+
 
     public function eventSubmit()
     {
@@ -189,9 +196,7 @@ class MobileController
       $userid = -1;
       $targetID = $_POST['evalfor'];
       for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
-      {
         echo Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
-      }
       header("Location: index.php?controller=mobile&action=events&eventID=".$eventID);
     }
 //=================================================================================== RESPONSES PROJECT
@@ -206,30 +211,39 @@ class MobileController
       $cNames = array();
       $cAvg = array();
       $cComments = array();
+      $dataout = array();
 
       foreach($projectresponses as $r)
       {
-        $temp = Criteria::id($r->criteriaID)[1];
-        $check = in_array($temp->id, $cID);
-        $user = $r->author;
-          if( $check != false)
+
+        $temp = CriteriaSet::id($r->criteriaID)[1][0];
+
+        $check = in_array($temp->title, $cNames);
+        $author = $r->author;
+          if($check)
           {
-            $index = array_search($temp->id, $cID);
+            $index = array_search($temp->title, $cNames);
             $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
-            $cComments[$index][] = $r->comment." --".$user->firstName." ".$user->lastName;
+            $cComments[$index][] = "-- ".$r->comment;
           }
           else
           {
             $cID[] = $temp->id;
             $cNames[] = $temp->title;
             $cAvg[] = $r->rating;
-            $cComments[] = array($r->comment." --".$user->firstName." ".$user->lastName);
+            $cComments[] = array("-- ".$r->comment);
+
           }
+      }
+      for($i = 0; $i<sizeof($cNames);$i++)
+      {
+        $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
       }
       // The HTML is at this location  |
       //                              \/
       require_once("views/mobile/responses.php");
     }
+
     public function events() {
       $events = Event::getActive()[1];
       require_once('views/mobile/events.php');

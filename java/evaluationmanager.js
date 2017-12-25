@@ -31,11 +31,95 @@ $(document).ready(function()
     }
   });
 
-  $('.chooser').on('click',function(e)
+  $('.evalsubmit').on('click',function(e)
   {
     e.preventDefault();
+
+    var commentboxes = document.getElementsByClassName('criteriaComment');
+    var criteriaRatings = document.getElementsByClassName('criteriaRating');
+    var criteriaMsgs = document.getElementsByClassName('criteriaMsg');
+    var progress = true;
+    for(var i = 0; i < commentboxes.length; i++)
+    {
+      var thisbox = commentboxes[i];
+      var thisrating = criteriaRatings[i];
+      criteriaMsgs[i].innerHTML = "";
+      if(thisbox.value == "")
+      {
+        criteriaMsgs[i].style.border='2px dashed red';
+        criteriaMsgs[i].innerHTML +=  'Missing Comment';
+        progress = false;
+      }
+      if(thisrating.value == -2)
+      {
+        criteriaMsgs[i].style.border='2px dashed red';
+        if(criteriaMsgs[i].innerHTML != "")
+          criteriaMsgs[i].innerHTML += ', ';
+        criteriaMsgs[i].innerHTML += 'Missing choice';
+        progress = false;
+      }
+      else
+      {
+        criteriaMsgs[i].style.border='0px dashed red';
+        thisbox.style.border='1px solid black';
+      }
+    }
+    if(progress)
+    {
+      var formsr = $('#evalform').serialize();
+      var isMobile = $('#evalform').attr('isMobile');
+      //console.log(formsr);
+      var projectID = $('input[name="evalfor"]').val();
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send(formsr);
+
+      if(!isMobile)
+      {
+        $('#evalout').show();
+        $('#evalform').hide();
+      }
+      else
+      {
+        alert("Evaluation Submitted");
+        window.location.href = document.getElementsByClassName('backButton')[0].getAttribute('href');
+      }
+    }
+  });
+});
+
+
+function getAllSiblings(elem, filter) {
+    var sibs = [];
+    elem = elem.parentNode.firstChild;
+    do {
+        if (elem.nodeType === 3) continue; // text node
+        if (!filter || filter(elem)) sibs.push(elem);
+    } while (elem = elem.nextSibling)
+    return sibs;
+}
+
+function submitEval(e)
+{
+  e.preventDefault();
+
+  var commentboxes = document.getElementsByClassName('criteriaComment');
+  var progress = true;
+  for(var i = 0; i < commentboxes.length; i++)
+  {
+    var thisbox = commentboxes[i];
+    if(thisbox.value == "")
+    {
+      thisbox.style.border='2px dashed red';
+      thisbox.setAttribute('placeholder', "This Element is Required");
+      progress = false;
+    }
+  }
+  if(progress)
+  {
     var formsr = $('#evalform').serialize();
-    console.log(formsr);
+    //console.log(formsr);
     var projectID = $('input[name="evalfor"]').val();
     var xmlhttp = new XMLHttpRequest();
     // xmlhttp.onreadystatechange = function()
@@ -50,16 +134,5 @@ $(document).ready(function()
     xmlhttp.send(formsr);
     $('#evalout').show();
     $('#evalform').hide();
-  });
-});
-
-
-function getAllSiblings(elem, filter) {
-    var sibs = [];
-    elem = elem.parentNode.firstChild;
-    do {
-        if (elem.nodeType === 3) continue; // text node
-        if (!filter || filter(elem)) sibs.push(elem);
-    } while (elem = elem.nextSibling)
-    return sibs;
+  }
 }
