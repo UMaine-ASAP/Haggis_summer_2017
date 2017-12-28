@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/baseStyle.css">
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
-
+    <link rel="stylesheet" type="text/css" href="css/project.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
     <link rel="stylesheet" type="text/css" href="css/criteria.css">

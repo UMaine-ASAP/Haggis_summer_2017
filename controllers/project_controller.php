@@ -298,37 +298,33 @@ class ProjectController
     $userID = User::getID($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
     $project = Project::id($projectid)[1];
+    $contents = Content::project($projectid)[1];
     $list = $project->list;
     $ids = array();
-    //echo sizeof($list);
-    //echo $list;
-    //echo "<br>".$projectid;
-    // switch($project->isgroup)
-    // {
-    //   case '0':
-    //
-    //     foreach($list as $pu)
-    //     {
-    //
-    //       echo $u->userID;
-    //
-    //       $ids[] = $u->userID;
-    //       if($u->id == $userID)
-    //         $assignedUser = true;
-    //     }
-    //     break;
-    //   case '2':
-    //     //Go through EventUsers(eventID)
-    //     break;
-    //   case '1':
-    //   foreach($list as $u)
-    //   {
-    //     $ids[] = $u->id;
-    //     if($u->id == $userID)
-    //       $assignedUser = true;
-    //   }
-    //     break;
-    // }
+
+    switch($project->isgroup)
+    {
+      case '0':
+
+        foreach($list as $u)
+        {
+          $ids[] = $u->userID;
+          if($u->userID === $userID)
+            $assignedUser = true;
+        }
+        break;
+      case '2':
+        //Go through EventUsers(eventID)
+        break;
+      case '1':
+        foreach($list as $u)
+        {
+          $ids[] = $u->id;
+          if($u->id == $userID)
+            $assignedUser = true;
+        }
+        break;
+    }
     require_once("views/project/viewAssignmentProject.php");
   }
 
@@ -356,5 +352,77 @@ class ProjectController
 
     require_once("views/project/viewEventProject.php");
   }
+  //===================================================================================
+  public function submit()
+  {
+
+    $format = $_POST['format'];
+      switch($format)
+      {
+        case 'link':
+          $submission = Content::create($_POST['contentTitle'],$format,'0','NA',$_POST['data'],$_POST['projectID'],$_POST['author'])[1];
+          break;
+        case 'text':
+          $submission = Content::create($_POST['contentTitle'],$format,'0','NA',$_POST['data'],$_POST['projectID'],$_POST['author'])[1];
+          break;
+        case 'image':
+          $target_dir = "submissions/images/";
+          $target_file = $target_dir . basename($_FILES["data"]["name"]);
+          $uploadOk = 1;
+          $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $check = $_FILES["data"]["name"];
+            echo $check;
+            if(move_uploaded_file($_FILES["data"]["tmp_name"], $target_file))
+            {
+              echo "The File " . basename($_FILES["data"]["name"]). "has Been Uploaded.";
+              $submission = Content::create($_POST['contentTitle'],$format,'0',$target_dir.basename($_FILES["data"]["name"]),'NA',$_POST['projectID'],$_POST['author'])[1];
+              echo $submission."<br>";
+            }
+            else
+            {
+              echo "File not uploaded<br>";
+            }
+          break;
+        case 'file':
+          $target_dir = "submissions/files/";
+          $target_file = $target_dir . basename($_FILES["data"]["name"]);
+          $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+          $check = $_FILES["data"]["name"];
+          echo $imageFileType;
+          echo $check;
+          echo $target_file;
+          if(move_uploaded_file($_FILES["data"]["tmp_name"], $target_file))
+          {
+            echo "<BR>The File " . basename($_FILES["data"]["name"]). "has Been Uploaded.";
+            $submission = Content::create($_POST['contentTitle'],$format,'0',$target_dir.basename($_FILES["data"]["name"]),basename($_FILES["data"]["name"]),$_POST['projectID'],$_POST['author'])[1];
+            echo $submission."<br>";
+          }
+          else
+          {
+            echo "<BR>File not uploaded<br>";
+          }
+          break;
+      }
+        //echo $_POST['contentTitle']." has been successfully submitted.";
+        ?>
+        <script type='text/javascript'>
+        self.close();
+        </script>
+        <?php
+  }
+//===================================================================================
+public function delete()
+{
+
+  $id = $_GET['id'];
+  echo $id;
+  Content::delete($id);
+  ?>
+  <script type='text/javascript'>
+  self.close();
+  </script>
+  <?php
+}
+
 }
 ?>

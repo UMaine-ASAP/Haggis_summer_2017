@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/New_York');
   require_once('models/klass.php');         //we pull our models in and get them ready to be used by the controllers
   require_once('models/group.php');
   require_once('models/course.php');
@@ -62,7 +63,7 @@
                           'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
-                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse'],
+                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete'],
                           'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive']);
 
   if(array_key_exists($controller, $controllers))
