@@ -36,7 +36,7 @@ if(isset($contents))
         echo "<td class ='stuff'><a href='".$con->data."'>".$con->data."</a></td>";
         break;
       case 'text':
-        echo "<td class ='stuff'>".$con->data."</td>";
+        echo "<td class ='stuff'>".nl2br($con->data)."</td>";
         break;
       case 'image':
         echo "<td class ='stuff'><a target='_blank' href='".$con->location."'><img src='".$con->location."' width='500'></a></td>";

@@ -5,7 +5,7 @@
 echo "<div class='details' id='".$a->id."'>
 Due Date:".$a->duedate."<br>
 <h3>Prompt</h3>
-".$a->description."<br>";
+".nl2br($a->description)."<br>";
 $ratingValues = array();
 
 $rubric = $a->rubric;

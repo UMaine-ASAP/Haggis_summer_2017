@@ -5,12 +5,15 @@ $(document).ready(function()
     $(".assignmentCreationGroup").hide();
     $("#assignmentCreationReview").hide();
     $("#step1").css("background-color", "lightgreen");
+
+
 });
 
-function updateName(event)
+function updateTarget(event, targetClassName)
 {
-  var contents = event.target.value;
-  var nameChangeTargets = document.getElementsByClassName('assignmentName');
+  var tempcontents = event.target.value;
+  var contents = tempcontents.replace(/\n/g, '<br>');
+  var nameChangeTargets = document.getElementsByClassName(targetClassName);
   for(var i = 0; i < nameChangeTargets.length; i++)
   {
     nameChangeTargets[i].innerHTML = contents;

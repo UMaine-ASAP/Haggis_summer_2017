@@ -22,11 +22,11 @@
         <div class='creation'>
           <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
           <h4>Assignment Title</h4>
-          <input class='standard' oninput='updateName(event)' type='text' name='title' placeholder='New Assignment' required><br>
+          <input class='standard' oninput='updateTarget(event, "assignmentName")' type='text' name='title' placeholder='New Assignment' required><br>
           <h4>Prompt:</h4>
-          <textarea class='standard' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
-          <div class='sidebyside'><div><h4>Due Date:</h4><input class='standard' type='date' name='duedate' required></div>
-        <div><h4>Due Time:</h4><input class='standard' type='time' name='duetime' required></div></div>
+          <textarea class='standard' oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
+          <div class='sidebyside'><div><h4>Due Date:</h4><input oninput='updateTarget(event, "dueDateOut")' class='standard' type='date' name='duedate' required></div>
+        <div><h4>Due Time:</h4><input oninput='updateTarget(event, "dueTimeOut")' class='standard' type='time' name='duetime' required></div></div>
         critiques given between peers on this assignment should be:<br>
         <input type='radio' name='accountability' value='private'>anonymous
         <input type='radio' name='accountability' value='public' checked>public<br>
@@ -86,8 +86,16 @@
       <!-- step 4 -->
       <div id='assignmentCreationReview'>
         <div class='creation'>
-          <div id='rubricviewer'>
-          </div>
+          <h4>Assignment Name:</h4>
+          <div class ='assignmentName'></div>
+          <h4>Prompt:</h4>
+          <div class ='promptOut'></div>
+          <h4>Due Date:</h4>
+          <div class ='dueDateOut'></div>
+          <h4>Due Time:</h4>
+          <div class ='dueTimeOut'></div>
+          <h4>Rubric:</h4>
+          <div id='rubricviewer'></div>
         </div>
 
         <div class='help'>

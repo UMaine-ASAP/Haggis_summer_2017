@@ -67,5 +67,6 @@ foreach($classes as $class)
 ?>
 
 
-
+<div id='createClass' class='popup'>
+  <?php require_once('views/class/insertClass.php');?>
 </div>
