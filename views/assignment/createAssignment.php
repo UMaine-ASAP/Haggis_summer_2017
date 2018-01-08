@@ -1,4 +1,4 @@
-<script src="java/criteriaCreationManager.js"></script>
+
 <script src="java/viewSwitch.js"></script>
 <script src="java/assignmentCreationManager.js"></script>
 

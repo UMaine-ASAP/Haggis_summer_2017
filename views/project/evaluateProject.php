@@ -29,7 +29,9 @@ echo "</div>
             $cellwidth = 100/sizeof($c->criterias);
             foreach($c->criterias as $subc)
             {
-              echo "<div clickable='true' class='s".$c->id." picker' id='picker' scoreTarget = '".$c->id."'scoreVal='".$subc->ratingValue."' style='width:".$cellwidth."%'><div class='criRatingVal'><strong>".$subc->ratingValue." points</strong></div><div class='criRatingDesc'><span class='criRatingDescInside'>".$subc->description."</span></div></div>";
+              echo "<div onclick='makeselection(this)' class='s".$c->id." picker' id='picker' scoreTarget = '".$c->id."'scoreVal='".$subc->ratingValue."' style='width:".$cellwidth."%'>
+                      ".$subc->ratingValue." points
+                      <hr>".$subc->description."</div>";
             }
             echo "</div>";
             echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='hidden'  value='-2'>";

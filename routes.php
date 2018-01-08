@@ -16,7 +16,7 @@ date_default_timezone_set('America/New_York');
   require_once('models/emailnotification.php');
   require_once('models/event.php');
   require_once('models/eventProject.php');
-
+  require_once('models/rubric.php');
   function call ($controller, $action)
   {
 
@@ -64,7 +64,7 @@ date_default_timezone_set('America/New_York');
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete'],
-                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive']);
+                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

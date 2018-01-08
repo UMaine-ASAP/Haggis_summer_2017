@@ -205,7 +205,7 @@ class ProjectController
     $project = Project::id($projectid)[1];
     $targetid = $project->assignmentID;
     $a = Assignment::id($targetid)[1];
-    $criterias = $a->criterias;
+    $criterias = $a->rubric->criteriaSets;
     $projectresponses = Evaluate::projectID($projectid)[1];
     $type = '1';
 
@@ -216,7 +216,8 @@ class ProjectController
   {
     $projectid = $_GET['id'];
     $project = Project::id($projectid)[1];
-    $criterias = Criteria::eventID($_GET['eventID'])[1];
+    $rubric = Rubric::eventID($_GET['eventID'])[1];
+    $criterias = $rubric->criteriaSets;
     $targetid = $_GET['eventID'];
     $projectresponses = Evaluate::projectID($project->id,'2')[1];
     $type = '2';

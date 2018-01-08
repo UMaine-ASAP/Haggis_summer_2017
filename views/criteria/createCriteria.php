@@ -1,14 +1,17 @@
+<script src="java/criteriaCreationManager.js"></script>
+<?php if(isset($NumofGroups)){?>
 <div class='sidebyside'>
 <div><h2>Rubric for: <h2></div>
 <div><h2 class="assignmentName"></h2></div>
 </div>
-<h4>Scoring Range:</h4>
-<input class='standard' name='scoringRange' type='number' id='scoringrange' value='1'>
-<div id='rubriccontainer'>
+<?php } ?>
+<strong>Scoring Range:</strong>
+<input class='standard' name='scoringRange[]' type='number' id='scoringrange' value='1'  required>
+<div id='rubriccontainer' class='rubriccontainer'>
   <table id='rubricview'>
     <tr id='colheaders'>
       <th>Criteria</th>
-      <th class='scoreheader'><input class='standard' type='number' name='criteriascore[]' maxlength='3' style='width:50px'></th>
+      <th class='scoreheader'><input class='standard' type='number' name='criteriascore[]' maxlength='3' style='width:50px' required></th>
     </tr>
     <tr id='bottomRow'>
       <td id='rubricbottomrow'colspan='2' class='addCriteria'>

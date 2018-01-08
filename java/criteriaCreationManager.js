@@ -36,7 +36,7 @@ function changeRange(rangein)
   var colheaderleading="";
   for(var i = 0; i < rangein; i++)
   {
-    colheaderleading += "<th class='scoreheader'><input class='standard' type='number' name='rangePoint[]' maxlength='3' style='width:50px'></th>";
+    colheaderleading += "<th class='scoreheader'><input class='standard' type='number' name='rangePoint[]' maxlength='3' style='width:50px' required></th>";
   }
   document.getElementById('colheaders').innerHTML = colheaderstart + colheaderleading;
   document.getElementById('rubricbottomrow').setAttribute("colspan", rangein+1);
@@ -63,6 +63,8 @@ function changeRange(rangein)
         newcell.setAttribute("style", "width="+(100/(parseInt(rangein)+1))+"%");
         var textarea = document.createElement("textarea");
         textarea.id = contentsID+"-"+j;
+        textarea.required = true;
+        textarea.className='standard';
         textarea.setAttribute("name", contentsID+"[]" )
         textarea.rows=6;
         textarea.cols=50;
@@ -96,7 +98,7 @@ function addCriteria(countin, rangein)
   var criteriacard = document.createElement("div");
   criteriacard.id = countin;
   criteriacard.className='criteriaCard';
-  criteriacard.innerHTML = "<div class='removeCriteria' id='"+countin+"' onclick='removeCriteria(this.id)'><i class='glyphicon glyphicon-remove' ></i></div><input class='standard criterianame' type='text' name='criterianame[]' id='"+countin+"-0' oninput='updateContents(event)' placeholder='Criteria Name'>";
+  criteriacard.innerHTML = "<div class='removeCriteria' id='"+countin+"' onclick='removeCriteria(this.id)'><i class='glyphicon glyphicon-remove' ></i></div><input class='standard criterianame' type='text' name='criterianame[]' id='"+countin+"-0' oninput='updateContents(event)' placeholder='Criteria Name' required>";
   criteriacontainer.appendChild(criteriacard);
   var criteriadesccontainer = document.createElement("div");
   criteriadesccontainer.id = countin;
@@ -108,7 +110,9 @@ function addCriteria(countin, rangein)
     var textarea = document.createElement("textarea");
     textarea.rows=6;
     textarea.cols=50;
+    textarea.required = true;
     textarea.id = countin+"-"+i;
+    textarea.className = 'standard';
     textarea.setAttribute("name", countin+"[]")
     textarea.setAttribute("oninput", "updateContents(event)");
     criteriadesccontainer.appendChild(textarea);

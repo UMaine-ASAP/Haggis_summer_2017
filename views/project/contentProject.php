@@ -1,7 +1,7 @@
 <script src='java/contentSubmissionManager.js'></script>
 <input class='standard' id ='projectID' type='hidden' name='projectID' value='<?php echo $projectid;?>'>
 <?php
-if($assignedUser)
+if(isset($assignedUser) && $assignedUser )
 {
   echo "<div id='submissionFormContainer'><h4>Make a submission</h4>";
   echo " Link<input class ='typeselect' type='radio' name='type' value='link' checked>";
@@ -22,10 +22,11 @@ if($assignedUser)
 }
 ?> <h3>Project Submissions</h3> <?php
 echo "<table>";
-if(sizeof($contents) == 0)
+if(isset($contents) && sizeof($contents) == 0)
   echo "<tr><td>No submissions to show</td></tr>";
 
 else
+if(isset($contents))
   foreach($contents as $con)
   {
     echo "<tr><td class='title'>".$con->title."</td></tr><tr>";

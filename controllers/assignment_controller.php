@@ -12,8 +12,8 @@ class AssignmentController
   public function delete()
   {
     $message;
-    $assignmentID = $_POST['assignmentID'];
-    Assignment::delete($assignmentID);
+    $assignmentID = $_POST['assignmentid'];
+    echo Assignment::delete($assignmentID)[1];
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
@@ -39,16 +39,20 @@ class AssignmentController
     $message;
     $assignmentID;
     $klass = Klass::classid($_POST['classid'])[1];
+    $userID = User::getID($_SESSION['token'])[1];
 
     if(isset($_POST['title']))
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
       $criteriaSetID;
+      $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+      Rubric::associateWithAssignment($assignmentID, $rubricID);
 
       $counter = 1;
       foreach($_POST['criterianame'] as $criName)
       {
         $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+        Rubric::associateWithRubric($rubricID, $criteriaSetID);
         $counter2 = 0;
         foreach($_POST[$counter] as $cri)
         {
@@ -56,7 +60,7 @@ class AssignmentController
           CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
           $counter2++;
         }
-        CriteriaSet::associateWithAssignment($assignmentID, $criteriaSetID);
+
         $counter++;
       }
     }
@@ -173,7 +177,7 @@ class AssignmentController
       $t = $_SESSION['targetid'];// Else we check if the session stored the variable to auto return to class after a previous action
     $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
 
-    
+
     require_once('views/assignment/detailsAssignment.php');
   }
 }

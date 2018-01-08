@@ -8,9 +8,16 @@ Due Date:".$a->duedate."<br>
 ".$a->description."<br>";
 $ratingValues = array();
 
-$c = $a->criterias[0];
-foreach($c->criterias as $subc)         //Collect the values as the column headers
-  $ratingValues[] = $subc->ratingValue;
+$rubric = $a->rubric;
+$c = $rubric->criteriaSets;
+$subc = $c[0]->criterias;
+
+for($i = 0; $i<sizeof($subc);$i++)
+{
+  $ratingValues[] = $subc[$i]->ratingValue;
+}
+
+
 
 //Start constructing the table to hold the rubric
 $rubricForm =  "<div><table>
@@ -23,7 +30,8 @@ for($i = 0; $i< sizeof($ratingValues);$i++)
 
 $rubricForm .= "</tr>";
 
-foreach($a->criterias as $c)
+
+foreach($rubric->criteriaSets as $c)
 {
   $rubricForm .= "<tr><td>".$c->title."</td>";
   foreach($c->criterias as $subc)

@@ -2,34 +2,35 @@ $(document).ready(function()
 {
   $('#evalout').hide();
 
-  $('.picker').on('click', function(event)
-  {
-    if(event.target.id == "picker")
-    {
-      var thisElem = event.target;
-      var criID = thisElem.getAttribute("scoreTarget");
-      var criScore = thisElem.getAttribute("scoreVal");
-      var criteriaOutputs = document.getElementsByClassName('criteriaRating');
-      for(var i = 0; i < criteriaOutputs.length; i++)
-      {
-        var currCri = criteriaOutputs[i];
-        if(currCri.id == criID)
-        {
-          currCri.setAttribute('value', criScore);
-        }
-      }
-       var others = document.getElementsByClassName("s"+criID);
-
-
-      for(var i = 0; i < others.length;i++)
-      {
-        others[i].style.border="1px solid black";
-        others[i].style.backgroundColor = "white";
-      }
-      event.target.style.border="2px solid red";
-      event.target.style.backgroundColor="yellow";
-    }
-  });
+  // $('.picker').on('click', function(e)
+  // {
+  //   if(e.target.id == "picker")
+  //   {
+  //     var thisElem = e.target;
+  //     var criID = thisElem.getAttribute("scoreTarget");
+  //     var criScore = thisElem.getAttribute("scoreVal");
+  //     var criteriaOutputs = document.getElementsByClassName('criteriaRating');
+  //
+  //     for(var i = 0; i < criteriaOutputs.length; i++)
+  //     {
+  //       var currCri = criteriaOutputs[i];
+  //       if(currCri.id == criID)
+  //       {
+  //         currCri.setAttribute('value', criScore);
+  //       }
+  //     }
+  //      var others = document.getElementsByClassName("s"+criID);
+  //
+  //
+  //     for(var i = 0; i < others.length;i++)
+  //     {
+  //       others[i].style.border="1px solid black";
+  //       others[i].style.backgroundColor = "white";
+  //     }
+  //     event.target.style.border="2px solid red";
+  //     event.target.style.backgroundColor="yellow";
+  //   }
+  // });
 
   $('.evalsubmit').on('click',function(e)
   {
@@ -135,4 +136,34 @@ function submitEval(e)
     $('#evalout').show();
     $('#evalform').hide();
   }
+}
+
+function makeselection(thiselement)
+{
+    if(thiselement.id == "picker")
+    {
+      // var thisElem = thiselement.target;
+      var criID = thiselement.getAttribute("scoreTarget");
+      var criScore = thiselement.getAttribute("scoreVal");
+      var criteriaOutputs = document.getElementsByClassName('criteriaRating');
+
+      for(var i = 0; i < criteriaOutputs.length; i++)
+      {
+        var currCri = criteriaOutputs[i];
+        if(currCri.id == criID)
+        {
+          currCri.setAttribute('value', criScore);
+        }
+      }
+       var others = document.getElementsByClassName("s"+criID);
+
+
+      for(var i = 0; i < others.length;i++)
+      {
+        others[i].style.border="1px solid black";
+        others[i].style.backgroundColor = "white";
+      }
+      event.target.style.border="2px solid red";
+      event.target.style.backgroundColor="yellow";
+    }
 }

@@ -150,14 +150,16 @@ class MobileController
         $classID = $_GET['classID'];
         $assignmentID = $_GET['assignmentID']; // targetID
         $projectID = $_GET['projectID'];
-        $criteria = CriteriaSet::assignmentID($assignmentID)[1];
+        $rubric = Rubric::assignmentID($assignmentID)[1];
+        $criteria = $rubric->criteriaSets;
         $type = '1';
       }
       else
       {
         $eventID = $_GET['eventID'];
         $projectID = $_GET['projectID']; // targetID
-        $criteria = Criteria::eventID($_GET['eventID'])[1];
+        $rubric = Rubric::eventID($eventID)[1];
+        $criteria = $rubric->criteriaSets;
         $type = '2';
       }
 

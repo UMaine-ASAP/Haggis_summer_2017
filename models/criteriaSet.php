@@ -82,7 +82,7 @@ class CriteriaSet
           $criteriaArray = array();
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
-            $criteriaArray[] = new CriteriaSet($r['criteriaSetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
+            $criteriaArray[] = new CriteriaSet($r['criteriasetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
           }
           $message = $criteriaArray;
           $errorCode= 1;
@@ -116,56 +116,7 @@ class CriteriaSet
     }
     return array($errorCode, $message);
   }
-  //=================================================================================== Linke Criteria to Assignment
-    public static function associateWithAssignment($assignmentID, $criteriaSetID)
-    {
-      {
-        $errorCode;
-        $message;
-        $db = Db::getInstance();
-        $sql = "INSERT INTO assignment_criteriaset (assignmentID, criteriaSetID) VALUES (?,?)";
-        $stmt = $db->prepare($sql);
-        $data = array($assignmentID, $criteriaSetID);
-        try
-        {
-            $stmt->execute($data);
-            $message = "CriteriaAddedToAssignment";
-            $errorCode= 1;
-        }
-        catch(PDOException $e)
-        {
-          $errorCode = $e->getCode();
-          $message = $e->getMessage();
-        }
-        return array($errorCode, $message);
-      }
-    }
-    //=================================================================================== GET CRITERIA BY ASSIGNMENT
-      public static function assignmentID($assignmentid)
-      {
-          $errorCode;
-          $message;
-          $db = Db::getInstance();
-          $sql = "SELECT * FROM criteriaset WHERE criteriaSetID IN (SELECT criteriaSetID FROM assignment_criteriaset WHERE assignment_criteriaset.assignmentID = ?)";
-          $data = array($assignmentid);
-          try
-          {
-            $stmt = $db->prepare($sql);
-            $stmt->execute($data);
-            $criteriaarray = array();
-            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
-            {
-              $criteriaarray[] = new CriteriaSet($r['criteriaSetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
-            }
-            $message = $criteriaarray;
-            $errorCode = 1;
-          }
-          catch(PDOException $e)
-          {
-            $errorCode = $e->getCode();
-            $message = $e->getMessage();
-          }
-          return array($errorCode, $message);
-      }
+
+
 }
 ?>
