@@ -11,6 +11,33 @@
 }
 .removeCriteria
 {
-
   float:right;
+}
+
+#rubricview
+{
+  border: 2px solid black;
+  height:30px;
+}
+
+
+
+th
+{
+  border: 2px solid black;
+  height: 15px;
+}
+
+td.criDesc
+{
+  overflow: hidden;
+  height: 30px;
+}
+
+#rubricbottomrow
+{
+  border:1px solid black;
+  text-align:center;
+  padding:5px;
+  height: 15px;
 }

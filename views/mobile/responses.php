@@ -1,31 +1,35 @@
-<h3 class="currentPage">
+
   <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><i class="glyphicons glyphicons-arrow-left">Back</a>
-  Project Responses
-</h3>
-<script type ="text/javascript" src="vendor/Chart.bundle.min.js"></script>
-<script type ="text/javascript" src="vendor/jquery.min.js"></script>
-<script type ="text/javascript" src="java/bargraph.js"></script>
+    <br>
+  <h3 class="currentPage">  Project Responses</h3>
 
+    <div class='chart'></div>
 
-<?php
-$i=0;
-if(sizeof($cNames)<1)
-  echo "No Evaluations yet, Be the first!";
-else
-{
-  foreach($cNames as $n)
-  {
-    // echo "<div  class='push'>"
-    echo "<h3 class='push'>".$n."</h3>";
-    if($cAvg[$i] > 0)
-      echo "Average Rating: ".$cAvg[$i]."<br>";
-    foreach($cComments[$i] as $c)
+    <?php
+    $i=0;
+    if(sizeof($cNames)<1)
+      echo "No Evaluations yet, Be the first!";
+    else
     {
-      echo "<div class='rcomment'>".$c."</div>";
+      foreach($cNames as $n)
+      {
+        echo "<h3>".$n."</h3>";
+        if($cAvg[$i] > 0)
+          echo "Average Rating: ".$cAvg[$i]."<br>";
+        foreach($cComments[$i] as $c)
+        {
+          if(sizeof($c) > 0)
+          {
+            for($j = 0; $j < sizeof($c); $j++)
+            {
+              echo $c."<br>";
+            }
+          }
+          else
+            echo $c."<br>";
+        }
+        echo "<hr>";
+        $i++;
+      }
     }
-    echo "<br>";
-    $i++;
-  }
-  // echo "</div>"
-}
-?>
+    ?>

@@ -6,7 +6,7 @@ class Assignment
   public $description;
   public $duetime;
   public $duedate;
-  public $criterias;
+  public $rubric;
   public $projects;
 //=================================================================================== STRUCT
   public function __construct($id, $title, $description, $duetime, $duedate, $projectsin)
@@ -16,7 +16,7 @@ class Assignment
     $this->description=$description;
     $this->duetime = date_format(date_create($duetime), 'g:i a');
     $this->duedate = date_format(date_create($duedate), 'm/d/Y');
-    $this->criterias = Criteria::assignmentID($id)[1];
+    $this->rubric = Rubric::assignmentID($id)[1];
     $this->projects = $projectsin;
   }
 
@@ -158,9 +158,8 @@ public static function linkToClass($classID, $assignmentID)
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $message = $assignmentarray = array();
       Criteria::deleteAssociation($assignmentID);
-      $message .= " | assignment deleted";
+      $message = "assignment deleted";
       $errorCode = 1;
     }
     catch(PDOException $e)

@@ -1,5 +1,15 @@
-<a href="?controller=project&action=saveAssignmentResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a>
-
+<?php
+  $filename = str_replace(' ', '_', $project->title);
+  header("Content-Type: application/vnd.ms-word");
+  header("Content-Disposition: attachment;filename=".$filename."_responses.doc");
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns ="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=Windows-1252\">
+<title>Saves as a Word Doc</title>
+</head>
 <h3>Project Responses</h3>
 
 <div class='chart'></div>

@@ -1,0 +1,25 @@
+.eventcreationcontainer
+{
+  display:flex;
+  height:100%;
+}
+
+.eventcreationbasics
+{
+  width: 40%;
+  text-align:center;
+}
+.eventCreationCritera
+{
+  width:60%;
+  text-align:center;
+}
+
+.eventsubmit
+{
+  position:relative;
+
+  bottom:-100px;
+  font-size:15px;
+  height:60px;
+}

@@ -12,8 +12,8 @@ class AssignmentController
   public function delete()
   {
     $message;
-    $assignmentID = $_POST['assignmentID'];
-    Assignment::delete($assignmentID);
+    $assignmentID = $_POST['assignmentid'];
+    echo Assignment::delete($assignmentID)[1];
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
@@ -39,43 +39,30 @@ class AssignmentController
     $message;
     $assignmentID;
     $klass = Klass::classid($_POST['classid'])[1];
+    $userID = User::getID($_SESSION['token'])[1];
 
     if(isset($_POST['title']))
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
       $criteriaSetID;
-      if(isset($_POST['savedSetName']))
-      {
-        $criteriaSetID = Criteria::createSet($_POST['savedSetName'], $_POST['savedSetDescription'])[1];
-        $userID = User::getID($_SESSION['token'])[1];
-        Criteria::associateWithUser($userID, $criteriaSetID);
-      }
+      $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+      Rubric::associateWithAssignment($assignmentID, $rubricID);
 
-
-      for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
+      $counter = 1;
+      foreach($_POST['criterianame'] as $criName)
       {
-        $allowTextResponse = 1;
-        if($_POST['textresponse'.$i] === 'no')
-          $allowTextResponse = 0;
-        $currentID;
-        if($_POST['graded'][$i] === 'yes')
+        $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+        Rubric::associateWithRubric($rubricID, $criteriaSetID);
+        $counter2 = 0;
+        foreach($_POST[$counter] as $cri)
         {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
-        }
-        else
-        {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], '0', '0', $allowTextResponse)[1];
+          $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+          CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+          $counter2++;
         }
 
-        $idList[] = $currentID;
-        echo $currentID;
-        Criteria::associateWithAssignment($assignmentID, $currentID);
+        $counter++;
       }
-    }
-    if(isset($criteriaSetID))
-    {
-      foreach($idList as $id)
-      Criteria::addToSet($criteriaSetID, $id);
     }
 
     //GROUP/PROJECT CREATION
@@ -183,12 +170,14 @@ class AssignmentController
   //==========================================================================
   public function details()
   {
-    $t;
-    if(isset($_GET['id']))
+    $t;                           //$t is a temp variable
+    if(isset($_GET['id']))        // Check if we have a GET variable, typical if user clicked to a particular class
       $t = $_GET['id'];
     else
-      $t = $_SESSION['targetid'];
+      $t = $_SESSION['targetid'];// Else we check if the session stored the variable to auto return to class after a previous action
     $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
+
+
     require_once('views/assignment/detailsAssignment.php');
   }
 }

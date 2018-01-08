@@ -14,6 +14,11 @@
 {
   height:150px;
 }
+
+.spacer2
+{
+  height: 60px;
+}
 body
 {
   background-color: white;
@@ -98,8 +103,21 @@ h3
 {
   font-size:10px;
 }
+.glyphicon-plus[size='medium']
+{
+  font-size:30px;
+}
 
 .glyphicon-plus[size='smaller']
+{
+  font-size:10px;
+}
+
+.glyphicon-arrow-left
+{
+  font-size:10px;
+}
+.glyphicon-arrow-right
 {
   font-size:10px;
 }
@@ -175,6 +193,7 @@ h3
   right:0;
   width:100%;
   height:100%;
+  z-index:1;
 }
 
 .popup
@@ -191,7 +210,7 @@ h3
   margin-top: -250px;
   color:black;
   padding:20px;
-  z-index:3;
+  z-index:4;
 }
 /*#createclass
 {
@@ -282,4 +301,46 @@ li.assignments
 li.assignments:hover
 {
   text-decoration:underline;
+}
+
+.criteriaSelectionContainer
+{
+  display:flex;
+}
+.picker
+{
+  height:100px;
+  border: 1px solid black;
+  padding:5px;
+  margin:10px;
+  text-align:center;
+  vertical-align:top;
+  cursor:pointer;
+  box-shadow: 10px 10px 5px #000000;
+  border-radius: 5px 5px 5px 5px;
+}
+
+
+.criRatingVal .criRatingDesc
+{
+  height:50px;
+  margin:auto;
+  padding:10px;
+  pointer-events:none;
+
+}
+
+.criRatingDesc
+{
+  vertical-align:bottom;
+}
+.criRatingVal
+{
+  margin-bottom:10px;
+  vertical-align:top;
+}
+
+.criRatingDescInside
+{
+  vertical-align:middle;
 }

@@ -1,6 +1,8 @@
+
 <?php
   if(isset($_GET['quick']))
   {
+    require_once('views/modules/scriptloader.php');
     require_once('routes.php');
   }
   else
@@ -13,15 +15,18 @@
   <head>
     <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0, minimum-scale=0.2' name = 'viewport'/>
     <meta name ="HandheldFriendly" content = "true" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/baseStyle.css">
     <link rel="stylesheet" type="text/css" href="css/input.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
-
+    <link rel="stylesheet" type="text/css" href="css/project.css">
     <link rel="stylesheet" type="text/css" href="css/class.css">
     <link rel="stylesheet" type="text/css" href="css/group.css">
     <link rel="stylesheet" type="text/css" href="css/criteria.css">
     <link rel="stylesheet" type="text/css" href="css/assignment.css">
+    <link rel="stylesheet" type="text/css" href="css/event.css">
+
+
 
 
 
@@ -50,10 +55,11 @@
         <div class="overlay"></div>
         <header>
           <script src="vendor/jquery.min.js"></script>
-          <script src="java/popup.js"></script>
+
           <?php require_once('views/modules/header.php');?>
         </header>
         <body>
+          <?php require_once('views/modules/scriptloader.php');?>
           <div class=spacer></div>
             <?php require_once('routes.php'); ?>
         </body>

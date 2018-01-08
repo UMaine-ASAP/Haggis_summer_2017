@@ -1,53 +1,142 @@
 
-function addACritiera(counter)
+function addACritiera(counter,scale)
 {
   var div = document.createElement('div');
   div.className='criteriaCard';
   div.id = counter;
-  div.innerHTML = "<input class='standard' name='criteriaName[]' placeholder='name of criteria' list='criterias' required>\
+  var htmlstuff ='';
+
+  htmlstuff = "<input class='standard criteriaName' id='"+counter+"' name='criteriaName[]' placeholder='name of criteria' list='criterias' required oninput='updatelable(event)'>\
   <div  class='removeCriteria' id='"+counter+"'><i class='glyphicon glyphicon-remove'></i></div>\
-  graded on a scale from <input type='number' class='standard' name='from[]' placeholder='#' min='0' max='1000'> to\
-  <input class='standard' type='number' name='to[]' placeholder='#'min='0' max='1000'>\
-  <input class='standard' type='checkbox' id='noGrade'>n/a\
-    <input type='hidden' name='graded[]' value='yes'>\
-  <br>\
-  <textarea class='standard criteriadescription' id='criteriadescription"+counter+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required></textarea><br>\
+  <br><div class='descriptholder' id='"+counter+"'>";
+  for(var i = 0; i<scale;i++)
+    htmlstuff += "<textarea class='standard criteriadescription' id='"+counter+"-"+i+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required oninput='updateDescript(event)'></textarea>";
+  htmlstuff += "<br>\
   allow additional text response\
   <input class='standard' type='radio' name='textresponse"+counter+"' value='yes' checked>yes\
   <input class='standard' type='radio' name='textresponse"+counter+"' value='no'>no";
 
+  div.innerHTML = htmlstuff;
   document.getElementById('criteriacardcontainer').appendChild(div);
+
+  var row = document.createElement('tr');
+  row.className='criteriaholder';
+  row.id = counter;
+  var htmlstuff = "<td class='lable' id='"+counter+"'>Lable</td>";
+  for(var i = 0; i < scale; i++)
+  {
+    htmlstuff += "<td class='rubricdescription' id='"+counter+"-"+i+"'>"+i+"</td>";
+  }
+  row.innerHTML = htmlstuff;
+  document.getElementById('rubricview').appendChild(row);
+}
+
+
+function changetablesize(input)
+{
+  var number = input;
+  var criteriaLable = "<td class='lable' id='##'>Lable</td>";
+  var output = "";
+  var newheader = "<th>Criteria</th>";
+
+  var elements = document.getElementsByClassName('criteriaholder');
+
+  for(var i = 0; i < input;i++)
+  {
+    newheader += "<th><input class='standard' type='number' name='criteriascore[]' maxlength='3' style='width:50px'></th>";
+    output += "<td>"+i+"</td>";
+  }
+  document.getElementById('colheaders').innerHTML=newheader;
+  for(var i = 0; i < elements.length;i++)
+  {
+    var newbit = criteriaLable.replace("##", i);
+    elements[i].innerHTML = newbit+output;
+  }
+
+  var descriptoinholders = document.getElementsByClassName('descriptholder');
+  for(var i = 0; i < descriptoinholders.length; i++)
+  {
+    var currID = descriptoinholders[i].id;
+    var boxes ='';
+    for(var j = 0; j<input;j++)
+      boxes += "<textarea class='standard criteriadescription' id='"+currID+"-"+j+"' name='criteriadescription[]' cols='40' rows='3' placeholder='description of this criteria (to guide your students)' required oninput='updateDescript(event)'></textarea>";
+    descriptoinholders[i].innerHTML = boxes;
+  }
+
+
+  // document.getElementsByClassName('criteriaholder').value = output;
+}
+
+function updatelable(event)
+{
+  var val = event.target.value;
+  var ident = event.target.id;
+  var elements = document.getElementsByClassName('lable');
+  for(var i = 0; i < elements.length; i++)
+  {
+    if(elements[i].id == ident)
+    {
+      elements[i].innerHTML = val;
+    }
+  }
+}
+
+function updateDescript(event)
+{
+  var val = event.target.value;
+  var ident = event.target.id;
+  var elements = document.getElementsByClassName('rubricdescription');
+  for(var i = 0; i < elements.length; i++)
+  {
+    if(elements[i].id == ident)
+    {
+      elements[i].innerHTML = val;
+    }
+  }
+}
+
+function removeACriteria(counter)
+{
+  var curr = $(this).attr('id');
+  $('#'+curr+'.criteriaCard').remove();
+
+  var cards = document.getElementsByClassName('criteriaCard');
+  var textareas = document.getElementsByClassName('criteriadescription');
+  var exitbox = document.getElementsByClassName('removeCriteria');
+  for(var i = 0; i<cards.length;i++)
+  {
+    cards[i].id= i;
+    cards[i].getElementsByClassName('criteriadescription')[0].id = 'criteriadescription'+i;
+    cards[i].getElementsByClassName('removeCriteria')[0].id= i;
+    var list = cards[i].querySelectorAll('input[type="radio"]');
+    for(var j=0; j<list.length; j++)
+      list[j].setAttribute('name', 'textresponse'+i);
+  }
 }
 
 $(document).ready(function()
 {
   var counter = 0;
+  var scale = 1;
   $(document).on("click",".removeCriteria", function(e)
   {
     if(counter > 0);
       counter--;
-    var curr = $(this).attr('id');
-    $('#'+curr+'.criteriaCard').remove();
-
-    var cards = document.getElementsByClassName('criteriaCard');
-    var textareas = document.getElementsByClassName('criteriadescription');
-    var exitbox = document.getElementsByClassName('removeCriteria');
-    for(var i = 0; i<cards.length;i++)
-    {
-      cards[i].id= i;
-      cards[i].getElementsByClassName('criteriadescription')[0].id = 'criteriadescription'+i;
-      cards[i].getElementsByClassName('removeCriteria')[0].id= i;
-      var list = cards[i].querySelectorAll('input[type="radio"]');
-      for(var j=0; j<list.length; j++)
-        list[j].setAttribute('name', 'textresponse'+i);
-    }
+    removeACriteria(counter);
   });
 
 
   $('#addCriteria').click(function(){
     counter++;
-    addACritiera(counter);
+    addACritiera(counter, scale);
   });
+
+  $('#scoringrange').change(function(event)
+  {
+    scale = event.target.value;
+    changetablesize(scale);
+  });
+
 
 
   $('#save').click(function(){
@@ -85,4 +174,6 @@ $(document).ready(function()
       description = "";
     document.getElementById('criteriadescription'+id).value = description;
   })
+
+
 });

@@ -282,31 +282,52 @@ class Event
           }
           return array($errorCode, $message);
       }
-      //=================================================================================== get the Active Events
-       public static function getEventProjects($eventID)
-       {
-           $errorCode;
-           $message;
-           $db = Db::getInstance();
-           $sql = "SELECT * FROM event_eventProject WHERE eventID = ?";
-           try
-           {
-             $stmt = $db->prepare($sql);
-             $stmt->execute(array($eventID));
-             $eventProjectIDs = array();
+    //=================================================================================== get the Active Events
+     public static function getEventProjects($eventID)
+     {
+         $errorCode;
+         $message;
+         $db = Db::getInstance();
+         $sql = "SELECT * FROM event_eventProject WHERE eventID = ?";
+         try
+         {
+           $stmt = $db->prepare($sql);
+           $stmt->execute(array($eventID));
+           $eventProjectIDs = array();
 
-             while($r = $stmt->fetch(PDO::FETCH_ASSOC))
-             {
-               $eventProjectIDs[] = $r['eventProjectID'];
-             }
-             $message = $eventProjectIDs;
-             $errorCode = 1;
-           }
-           catch(PDOException $e)
+           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $errorCode = $e->getCode();
-             $message = $e->getMessage();
+             $eventProjectIDs[] = $r['eventProjectID'];
            }
-           return array($errorCode, $message);
-       }
+           $message = $eventProjectIDs;
+           $errorCode = 1;
+         }
+         catch(PDOException $e)
+         {
+           $errorCode = $e->getCode();
+           $message = $e->getMessage();
+         }
+         return array($errorCode, $message);
+     }
+   //=================================================================================== get the Active Events
+    public static function delete($eventID)
+    {
+        $errorCode;
+        $message;
+        $db = Db::getInstance();
+        $sql = "DELETE FROM event WHERE ID = ?";
+        try
+        {
+          $stmt = $db->prepare($sql);
+          $stmt->execute(array($eventID));
+          $message = "Event Deleted";
+          $errorCode = 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e->getMessage();
+        }
+        return array($errorCode, $message);
+    }
 }

@@ -1,25 +1,31 @@
-<script src="java/popup.js"></script>
+
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
-  <tr><td></td><td>";
-  if($status == 'admin')
-    echo "<button class='standard popupmaker' id ='event'>Event</button>";
+  <tr><td colspan='2'><span><button class='standard promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</button></span>";
+  if($status === 'admin')
+  {
+    echo "<button class='standard popupmaker' id='addToEvent'>Add To Event</button>";
+    echo "<button class='standard popupmaker' id='deleteAssignment'>Delete Assignment</button><br>";
+    echo "<span>Project registration link:
+        <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
+          http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
+
+  }
+
     echo "</td></tr>
     <tr>
-      <td colspan='2'>
+      <td colspan='2' style='text-align:center'>
       <h2>".$a->title."</h2>";
       if($status === 'admin')
       {
-        echo "<span><a class='promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</a></span><br>
-    <span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a>";
-        // echo "
+
         // <form action ='?controller=assignment&action=editAssignment' method ='post'>
         // <button class='standard' value= '".$a->id."' name='assignmentid' type='submit'>Edit Assignment</button>
         // </form>
         // <button class='standard' id='delete' name='".$a->id."' type='button'>Delete Assignment</button>";
       }
-  echo "</td></tr><tr><td class='ProjectList'>";
+  echo "</td></tr><tr><td class='ProjectList' style='text-align:center'>";
   ////////////////////////////////////////////////////// PROJECT LISTING
   $projects = $a->projects;
   $ps = sizeof($projects);
@@ -30,15 +36,15 @@
     $test = $sample->isgroup;
     if($test === '0')
     {
-      echo "students (".$ps.")<hr class='minor'><ul>";
+      echo "students (".$ps.")<hr class='minor'>";
     }
     else
     {
-      echo "groups (".$ps.")<hr class='minor'><ul>";
+      echo "groups (".$ps.")<hr class='minor'>";
     }
     foreach($projects as $p)
     {
-      echo "<li><a onclick='GetAssignmentProject(".$p->id.")' class='projectitem' id='".$p->id."'>".$p->title."</a></li>";
+      echo "<div><button onclick='GetAssignmentProject(".$p->id.")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
       if($p->isgroup ==='1' || $p->isgroup ==='2')
       {
         echo "<ul>";
@@ -50,12 +56,13 @@
         echo "</ul></li>";
       }
     }
-    echo "</ul>";
+    echo "</div>";
   }
   echo "</td><td id=ProjectView>";
   $_SESSION['targetid'] = $a->id;
-  require_once("views/assignment/detailsAssignment.php");//?id=".$a->id);
+  require_once("views/assignment/detailsAssignment.php");
   echo "</td></tr></table>";
 ?>
 
-<div class="popup" id="event"><?php require_once('views/event/addToEvent.php');?></div>
+<div class="popup" id="addToEvent"><?php require_once('views/event/addToEvent.php');?></div>
+<div class="popup" id="deleteAssignment"><?php require_once('views/assignment/deleteAssignment.php');?></div>

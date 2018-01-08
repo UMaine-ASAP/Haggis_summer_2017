@@ -11,17 +11,16 @@ Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
   <input class='joinedInputSmaller' onkeyup='searchNhighlight(document.getElementById("searchString").value, "projects", "orange")' type='text' id='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-search"></i></button>
 </div>
 <br>
-<ul id="projectlist">
+
 <?php
 foreach($projectList as $p)
 {
-  echo "<li class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''>".$p->title."</li>";
+  echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
 }
 foreach($eventprojectList as $p)
 {
-  echo "<li class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",2)' id=''>".$p->title."</li>";
+  echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",2)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
 }
 
-echo "</ul>";
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
 ?>
