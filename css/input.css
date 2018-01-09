@@ -175,3 +175,10 @@ button.joinedButtonSmaller
   padding:none;
   margin:none;
 }
+
+.fancyText
+{
+  width:70%;
+  margin:0;
+  padding:0;
+}

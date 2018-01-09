@@ -59,6 +59,19 @@ function toassignment()
 function toreview()
 {
   var criTable = document.getElementById('rubricview').cloneNode(true);
+  criTableInputs = criTable.getElementsByTagName('input');
+
+  for(var i = criTableInputs.length-1; i >-1; i--)
+  {
+
+    var currInput = criTableInputs[i];
+
+    var newElem = document.createElement('span');
+    newElem.innerHTML = currInput.value;
+    currInput.parentNode.setAttribute('style', 'text-align:center');
+    currInput.parentNode.replaceChild(newElem, currInput);
+
+  }
   criTable.deleteRow(criTable.rows.length-1);
 
   var tableHolder = document.getElementById('rubricviewer');

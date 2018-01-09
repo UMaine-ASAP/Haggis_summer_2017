@@ -1,4 +1,4 @@
-//use:   <script src="java/draganddrop.js"></script>
+//use:   <script src="js/draganddrop.js"></script>
 //                        to include in your application
 //Derived from this site: https://www.w3schools.com/html/html5_draganddrop.asp
 //

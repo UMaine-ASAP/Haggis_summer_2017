@@ -1,4 +1,4 @@
-<script src='java/contentSubmissionManager.js'></script>
+<script src='js/contentSubmissionManager.js'></script>
 <input class='standard' id ='projectID' type='hidden' name='projectID' value='<?php echo $projectid;?>'>
 <?php
 if(isset($assignedUser) && $assignedUser )
@@ -14,7 +14,9 @@ if(isset($assignedUser) && $assignedUser )
             <input type='hidden' name='author' value='".$userID."'>
             <input class='standard' id='contentTitle' type='text' name='contentTitle' placeholder='Title'><br>
             <input class='standard' id='format' type='hidden' name='format' value='link'>
-            <input class='standard' id='data' type='text' name='data' placeholder='http://'><br>
+            <div id='dataentry'>
+              <input class='standard' id='data' type='text' name='data' placeholder='http://'>
+            </div>
             <input class='standard' type='submit' name='submit' id='submitContent' value='Submit'>
             </form>
         </div>";

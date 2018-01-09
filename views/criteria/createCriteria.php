@@ -1,4 +1,4 @@
-<script src="java/criteriaCreationManager.js"></script>
+<script src="js/criteriaCreationManager.js"></script>
 <?php if(isset($NumofGroups)){?>
 <div class='sidebyside'>
 <div><h2>Rubric for: <h2></div>
@@ -7,6 +7,7 @@
 <?php } ?>
 <strong>Scoring Range:</strong>
 <input class='standard' name='scoringRange[]' type='number' id='scoringrange' value='1'  required>
+<h3>Rubric View</h3>
 <div id='rubriccontainer' class='rubriccontainer'>
   <table id='rubricview'>
     <tr id='colheaders'>
@@ -23,12 +24,10 @@
 
 
 
-
-<div id='criteriacardcontainer'></div>
-
-
-<button type='button' class='standard addCriteria' >add another criteria &emsp; &emsp; +</button>
-
+<div class='criteriacardcontainer'>
+  <div id='criteriacardcontainer'></div>
+  <button type='button' class='standard addCriteria mediumbutton' style="width:300px;text-align:center" >add another criteria &emsp; &emsp; +</button>
+</div>
 
 
 

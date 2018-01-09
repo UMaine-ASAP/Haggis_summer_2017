@@ -29,22 +29,22 @@ $(document).ready(function()
   {
     if($(this).val() ==='file')
     {
-      $('#data').replaceWith($("<input class='standard' id='data' type='file' name='data'>"));
+      $('#dataentry').html("<input class='standard' id='data' type='file' name='data'>");
       $('#format').val('file');
     }
     if($(this).val() ==='link')
     {
-      $('#data').replaceWith($("<input class='standard' id='data' type='text' name='data' placeholder='http://'>"));
+      $('#dataentry').html("<input class='standard' id='data' type='text' name='data' placeholder='http://'>");
       $('#format').val('text');
     }
     if($(this).val() ==='image')
     {
-      $('#data').replaceWith($("<input class='standard' id='data' type='file' name='data'>"));
+      $('#dataentry').html("<input class='standard' id='data' type='file' name='data'>");
       $('#format').val('image');
     }
     if($(this).val() ==='text')
     {
-      $('#data').replaceWith($("<textarea id='data' class='standard' cols='70' rows='10' name='data' placeholder='Enter Text'></textarea>"));
+      $('#dataentry').load("views/assignment/assignmentTextArea.php");
       $('#format').val('text');
     }
   });

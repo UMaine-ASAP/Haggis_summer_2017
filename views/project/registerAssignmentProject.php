@@ -1,4 +1,4 @@
-<!-- <script src='java/formScaler.js'></script> -->
+<!-- <script src='js/formScaler.js'></script> -->
 <div class='projectRegistration'>
   <h2>Project Registration</h2>
 

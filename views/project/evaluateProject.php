@@ -1,4 +1,4 @@
-<script src="java/evaluationmanager.js"></script>
+<script src="js/evaluationmanager.js"></script>
 
 <h3>Evaluate</h3>
 

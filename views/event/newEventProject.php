@@ -2,7 +2,7 @@
 
 Please submit your registration for <?php echo $assignment->title;?>
 
-<script src='java/formScaler.js'></script>
+<script src='js/formScaler.js'></script>
 <form>
   <input type="text" name="projectname" placeholder="Project Name"><br>
   <textarea cols='75' rows='5' placeholder='Short Description'></textarea><br>

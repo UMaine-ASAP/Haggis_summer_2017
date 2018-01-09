@@ -26,14 +26,7 @@
   {
     $sample = $projects[0];
     $test = $sample->isgroup;
-    if($test === '0')
-    {
-      echo "students (".$ps.")<hr class='minor'>";
-    }
-    else
-    {
-      echo "groups (".$ps.")<hr class='minor'>";
-    }
+    echo "projects (".$ps.")<hr class='minor'>";
     foreach($projects as $p)
     {
       echo "<div><button onclick='GetAssignmentProject(".$p->id.")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";

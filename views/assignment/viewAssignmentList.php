@@ -1,4 +1,4 @@
-<script src="java/livesearch.js"></script>
+<script src="js/livesearch.js"></script>
 <?php
 if($status === 'admin')
 echo "<a id='NewAssignment' onclick='NewAssignment(".$classID.")'><button type='button' class='standard mediumbutton'>New Assignment +</button></a>";

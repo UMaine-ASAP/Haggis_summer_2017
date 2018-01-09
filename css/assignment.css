@@ -25,9 +25,11 @@ input[name=title]
 
 .largebutton
 {
-  width: 200px;
+  width: 175px;
   font-size:40px;
   float: right;
+  margin:0;
+  padding:0;
 }
 
 .mediumbutton
@@ -66,6 +68,7 @@ input[name=title]
   float:left;
   width:75%;
   height:100%;
+  padding:10px;
 }
 
 .assignmentCreation
@@ -78,10 +81,12 @@ input[name=title]
 .help
 {
   /* background-color:red; */
-  height:100%;
-  border: 2px dashed red;
+  padding:10px;
+  margin:10px;
+  height:80%;
+  border: 1px solid black;
   margin-left:75%;
-  text-align:center;
+  text-align:left;
 }
 
 .task
@@ -103,8 +108,15 @@ input[name=title]
 
 .flowcontrol
 {
+  position:absolute;
+  bottom:10px;
+  right:10px;
+}
+.flowcontrolbuttons
+{
   text-align:center;
-  margin:auto;
+  margin:10px;
+  padding:10px;
 }
 
 .sidebyside

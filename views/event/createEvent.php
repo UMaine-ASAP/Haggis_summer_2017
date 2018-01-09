@@ -1,4 +1,4 @@
-<script src='java/formScaler.js'></script>
+<script src='js/formScaler.js'></script>
 
 <h2>Event Creation</h2>
 

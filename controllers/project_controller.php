@@ -71,6 +71,7 @@ class ProjectController
   //===================================================================================
   public function saveEventResponse()
   {
+
     $type = $_GET['type'];
     $projectid = $_GET['id'];
     $project;
@@ -227,6 +228,7 @@ class ProjectController
   //===================================================================================
   public function viewResponses()
   {
+    $admin = User::checkAdmin($_SESSION['token'])[1];
     $type = $_GET['type'];
     $projectid = $_GET['id'];
     $project;
@@ -266,7 +268,12 @@ class ProjectController
           }
           else
           {
-            $cComments[$index][] = $r->comment." --".$author->firstName." ".$author->lastName;
+            $tempText = "- ".$r->comment;
+            if($admin)
+            {
+              $tempText .= " --".$author->firstName." ".$author->lastName;
+            }
+            $cComments[$index][] = $tempText;
           }
         }
         else
@@ -280,7 +287,12 @@ class ProjectController
           }
           else
           {
-            $cComments[] = array($r->comment." --".$author->firstName." ".$author->lastName);
+            $tempText = "- ".$r->comment;
+            if($admin)
+            {
+              $tempText .= " --".$author->firstName." ".$author->lastName;
+            }
+            $cComments[] = array($tempText);
           }
         }
     }

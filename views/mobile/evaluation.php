@@ -1,4 +1,4 @@
-<script src='java/evaluationmanager.js'></script>
+<script src='js/evaluationmanager.js'></script>
 <?php
 $linkout;
   if ($type == "1") {
@@ -55,7 +55,7 @@ $linkout;
       {
         echo "<div onclick='makeselection(this)' class='s".$c->id." picker' id='picker' scoreTarget = '".$c->id."'scoreVal='".$subc->ratingValue."' style='width:".$cellwidth."%'>
                 ".$subc->ratingValue." points
-                <hr>".$subc->description."</div>";
+                <br>".$subc->description."</div>";
       }
       echo "</div>";
       echo "<input class='criteriaRating' name='criteriaRating[]' id='".$c->id."' type='hidden'  value='-2'>";

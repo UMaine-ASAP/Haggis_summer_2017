@@ -15,6 +15,9 @@
   <head>
     <meta content='width=device-width, intial-scale=1.0, maximum-scale=1.0, minimum-scale=0.2' name = 'viewport'/>
     <meta name ="HandheldFriendly" content = "true" />
+    <script src='js/tinymce/tinymce.min.js'></script>
+    <script>tinymce.init({selector: '.fancyText'});</script>
+
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/baseStyle.css">
     <link rel="stylesheet" type="text/css" href="css/input.css">

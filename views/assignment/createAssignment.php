@@ -1,6 +1,6 @@
 
-<script src="java/viewSwitch.js"></script>
-<script src="java/assignmentCreationManager.js"></script>
+<script src="js/viewSwitch.js"></script>
+<script src="js/assignmentCreationManager.js"></script>
 
 
 <h2>Create an Assignment</h2>
@@ -24,21 +24,29 @@
           <h4>Assignment Title</h4>
           <input class='standard' oninput='updateTarget(event, "assignmentName")' type='text' name='title' placeholder='New Assignment' required><br>
           <h4>Prompt:</h4>
-          <textarea class='standard' oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
+          <textarea class='fancyText' oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
           <div class='sidebyside'><div><h4>Due Date:</h4><input oninput='updateTarget(event, "dueDateOut")' class='standard' type='date' name='duedate' required></div>
         <div><h4>Due Time:</h4><input oninput='updateTarget(event, "dueTimeOut")' class='standard' type='time' name='duetime' required></div></div>
-        critiques given between peers on this assignment should be:<br>
-        <input type='radio' name='accountability' value='private'>anonymous
-        <input type='radio' name='accountability' value='public' checked>public<br>
+        <!-- critiques given between peers on this assignment should be:<br> -->
+        <!-- <input type='radio' name='accountability' value='private'>anonymous
+        <input type='radio' name='accountability' value='public' checked>public<br> -->
+        <input type='hidden' name='accountability' value='private'>
 
         </div>
         <div class='help' >
           <h2> Step 1 - Basic Information</h2>
           <p>In this section we will focus on the basic information</p>
-          <p class='aName'>Give your assignment a name. This will be how your students will identify the assignement</p>
+          <ul>
+            <li><p><strong>Title</strong>: This will be how your students will identify the assignement</p></li>
+            <li><p><strong>Prompt</strong>: Describe the assignment's details, deliverables, and expectations</p></li>
+            <li><p><strong>Due Date</strong>: This is the day that the Assignment is due.</p></li>
+            <li><p><strong>Due Time</strong>: This is the time the Assignment is due.</p></li>
+          </ul>
 
-          <div class='flowcontrol'>
-            <button class='standard largebutton' type='button' onclick='tocriteria()'>Next <i class="glyphicon glyphicons-arrow-right"></i></button>
+        </div>
+        <div class='flowcontrol'>
+          <div class='flowcontrolbuttons'>
+            <button class='standard largebutton' type='button' onclick='tocriteria()'>Next</button>
           </div>
         </div>
       </div>
@@ -52,16 +60,23 @@
         </div>
         <div class='help'>
           <h2>Step 2 - Rubric Creation</h2>
-          First choose the scoring range you wish your criteria to take.
-          This represents the points each rubric item can be scored at.
+          <p>In this step, we will create the rubric that will be used to evaluate the projects created for this assignment</p>
+          <ul>
+            <li><p><strong>1</strong>. First select the scoring range. This will define how many points are awarded per selection</p></li>
+            <li><p><strong>2</strong>. Add Criteria</p></li>
+            <ul>
+              <li><p>Cards are generated below the rubric view.</p></li>
+              <li><p>Fill in the Criteria's name</p></li>
+              <li><p>Below each criteria are text boxes for you to define what represents that criteria's point level's description</p></li>
+            </ul>
+            <li><p><strong>3</strong>. Use the Rubric View to ensure information is entered correctly</p></li>
+          </ul>
 
-          The table to the left will populate itself as a quick overiview of the work you complete using the cards below.
-          Press the plus sign to add another criteria
-
-          Use the cards to edit each criteria and a description of each of its point values
-          <div class='flowcontrol'>
+        </div>
+        <div class='flowcontrol'>
+          <div class='flowcontrolbuttons'>
             <button class='standard largebutton' type='button' onclick='toassignment()' id="reviewAssignment">Next</button>
-            <button class='standard largebutton' type='button' onclick='tostart()'><i class="glyphicon glyphicons-arrow-left"></i>Back</button>
+            <button class='standard largebutton' type='button' onclick='tostart()'>Back</button>
           </div>
         </div>
       </div>
@@ -76,9 +91,41 @@
         </div>
         <div class='help'>
           <h2>Step 3 - Assign To Students</h2>
-          <div class='flowcontrol'>
-            <button class='standard largebutton' type='button' onclick='toreview()'>Next <i class="glyphicon glyphicons-arrow-right"></i></button>
-            <button class='standard largebutton' type='button' onclick='tocriteria()'><i class="glyphicon glyphicons-arrow-left"></i> Back</button>
+          <p>In this step we will assign students to work on this assignment</p>
+          <ul>
+            <li><strong>Single</strong>: Students work on this project alone</li>
+            <ul>
+              <li>Check the box next to each name to assign student</li>
+              <li><strong>Selection Options</strong></li>
+              <ul>
+                <li><strong>All</strong>: Selects all students</li>
+                <li><strong>None</strong>: Deselects all students</li>
+                <li><strong>Invert</strong>: Inverts selection</li>
+              </ul>
+            </ul>
+            <li><strong>Group</strong>: Students work together on this assignment</li>
+            <ul>
+              <li><strong>Auto Group Creation</strong></li>
+              <ul>
+                <li>In the text box next to the button 'Make groups', enter the number of groups to be generated</li>
+                <li>Click 'Make groups' button. Magic happens</li>
+              </ul>
+              <li><strong>Manual Group Creation</strong></li>
+              <ul>
+                <li>Each name can be dragged to a spot</li>
+                <li>Drag the name to the dash lined container to create a new group</li>
+                <li>Drag the name to an existing group to add that person to the group</li>
+                <li>Names can be dragged out of groups back into the origional container</li>
+                <li>Single clicking a name selects it. Select multiple names and drag them to a container to move an entire batch at a time</li>
+              </ul>
+            </ul>
+          </ul>
+
+        </div>
+        <div class='flowcontrol'>
+          <div class='flowcontrolbuttons'>
+            <button class='standard largebutton' type='button' onclick='toreview()'>Next</button>
+            <button class='standard largebutton' type='button' onclick='tocriteria()'>Back</button>
           </div>
         </div>
       </div>
@@ -100,13 +147,17 @@
 
         <div class='help'>
           <h2>Step 4 - Review and Publish</h2>
-
-          <div class='flowcontrol'>
+          <p>Review the entries created from Steps 1 and 2.</p>
+          <p>Any entries that you find are in error, return to that step to make the correction</p>
+          <p>If all elements are to your satisfaction, click the 'Publish' button.</p>
+          <p>Assigned students will recieve a notification e-mail letting them know the assignment is ready</p>
+        </div>
+        <div class='flowcontrol'>
+          <div class='flowcontrolbuttons'>
             <button class='standard largebutton' name='createnew' type='submit'>Publish</button>
-            <button class='standard largebutton' type='button' onclick='toassignment()'><i class="glyphicon glyphicons-arrow-left"></i>Back</button>
+            <button class='standard largebutton' type='button' onclick='toassignment()'>Back</button>
           </div>
         </div>
-
       </div>
 
   </div>

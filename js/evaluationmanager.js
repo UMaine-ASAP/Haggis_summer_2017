@@ -35,10 +35,12 @@ $(document).ready(function()
   $('.evalsubmit').on('click',function(e)
   {
     e.preventDefault();
-
+    var isMobile = $('#evalform').attr('isMobile');
+    alert(isMobile);
     var commentboxes = document.getElementsByClassName('criteriaComment');
     var criteriaRatings = document.getElementsByClassName('criteriaRating');
     var criteriaMsgs = document.getElementsByClassName('criteriaMsg');
+
     var progress = true;
     for(var i = 0; i < commentboxes.length; i++)
     {
@@ -68,7 +70,7 @@ $(document).ready(function()
     if(progress)
     {
       var formsr = $('#evalform').serialize();
-      var isMobile = $('#evalform').attr('isMobile');
+
       //console.log(formsr);
       var projectID = $('input[name="evalfor"]').val();
       var xmlhttp = new XMLHttpRequest();
@@ -76,7 +78,7 @@ $(document).ready(function()
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.send(formsr);
 
-      if(!isMobile)
+      if(isMobile =='false')
       {
         $('#evalout').show();
         $('#evalform').hide();

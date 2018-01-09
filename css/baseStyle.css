@@ -344,3 +344,15 @@ li.assignments:hover
 {
   vertical-align:middle;
 }
+.criteriacardcontainer
+{
+  text-align:center;
+  border: 1px solid black;
+  padding:5px;
+  margin:5px;
+}
+#criteriacardcontainer
+{
+  text-align:left;
+
+}

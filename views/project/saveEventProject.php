@@ -61,7 +61,7 @@
 </style>
 
 <script src="vendor/d3/d3.js"></script>
-<script src="java/datadisplay.js"></script>
+<script src="js/datadisplay.js"></script>
 <script>
 var thisdata = <?php echo json_encode($dataout); ?>;
 $(document).ready(function()

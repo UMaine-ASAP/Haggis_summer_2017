@@ -1,5 +1,5 @@
-<script src="java/livesearch.js"></script>
-<script src="java/checkboxManager.js"></script>
+<script src="js/livesearch.js"></script>
+<script src="js/checkboxManager.js"></script>
 
 <div>
     <input type='hidden' class='standard' value =<?php echo $NumofGroups;?> name='numofGroups'> <!--Helps form to work-->

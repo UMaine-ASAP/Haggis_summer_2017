@@ -1,4 +1,4 @@
-<script src="java/userCreation.js"></script>
+<script src="js/userCreation.js"></script>
 <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
 <h2>New User Registration</h2><hr>
 
