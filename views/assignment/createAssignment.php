@@ -15,18 +15,35 @@
 </table>
 
 <form action='?controller=assignment&action=createAssignment' method='post'>
+
 <div class='creationcontainer'>
 
       <!-- step 1 -->
       <div class='assignmentCreation'>
         <div class='creation'>
           <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
+
           <h4>Assignment Title</h4>
           <input class='standard' oninput='updateTarget(event, "assignmentName")' type='text' name='title' placeholder='New Assignment' required><br>
           <h4>Prompt:</h4>
           <textarea class='fancyText' oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
-          <div class='sidebyside'><div><h4>Due Date:</h4><input oninput='updateTarget(event, "dueDateOut")' class='standard' type='date' name='duedate' required></div>
-        <div><h4>Due Time:</h4><input oninput='updateTarget(event, "dueTimeOut")' class='standard' type='time' name='duetime' required></div></div>
+          <div class='sidebyside'>
+            <div class='sidebysidesub'>
+              <h4>Due Date:</h4>
+              <input oninput='updateTarget(event, "dueDateOut")' class='standard' type='date' name='duedate' required>
+            </div>
+            <div class='sidebysidesub'>
+              <h4>Due Time:</h4>
+              <input oninput='updateTarget(event, "dueTimeOut")' class='standard' type='time' name='duetime' required>
+            </div>
+            <div class='sidebysidesub'>
+              <h4>Choose the assignment Type</h4>
+              <input type='radio' name='assignmenttype' onclick='changeType(event, "typeChoice")' value='submissionAssignment' checked>Submission Based<br>
+              <input type='radio' name='assignmenttype' onclick='changeType(event, "typeChoice")' value='peerEval'>Peer Evaluation
+            <input type='hidden' id='typeChoice' value='true' name='submissionAssignment'>
+          </div>
+          </div>
+
         <!-- critiques given between peers on this assignment should be:<br> -->
         <!-- <input type='radio' name='accountability' value='private'>anonymous
         <input type='radio' name='accountability' value='public' checked>public<br> -->
@@ -41,6 +58,11 @@
             <li><p><strong>Prompt</strong>: Describe the assignment's details, deliverables, and expectations</p></li>
             <li><p><strong>Due Date</strong>: This is the day that the Assignment is due.</p></li>
             <li><p><strong>Due Time</strong>: This is the time the Assignment is due.</p></li>
+            <li><p><strong>Assignment Type</strong></p></li>
+            <ul>
+              <li><strong>Submission Based</strong>: Assignments that require some form of submission</li>
+              <li><strong>Peer Evaluation</strong>: Creates a peer evaluation based assignment</li>
+            </ul>
           </ul>
 
         </div>
@@ -84,6 +106,7 @@
       <!-- step 3 -->
       <div class='assignmentCreationGroup'>
         <div class='creation'>
+          <div class='error'id="warningMessage"></div>
           <input class='standard' type='radio' name='makegroup' value='false' checked>Single
           <input class='standard' type='radio' name='makegroup' value='true'>Group
           <div id='groupcreator'><?php require_once('views/group/createGroup.php');?></div>
@@ -108,7 +131,7 @@
               <li><strong>Auto Group Creation</strong></li>
               <ul>
                 <li>In the text box next to the button 'Make groups', enter the number of groups to be generated</li>
-                <li>Click 'Make groups' button. Magic happens</li>
+                <li>Click 'Make groups' button. The system will randomly assign students to the groups</li>
               </ul>
               <li><strong>Manual Group Creation</strong></li>
               <ul>

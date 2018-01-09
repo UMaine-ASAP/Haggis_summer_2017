@@ -66,7 +66,7 @@ input[name=title]
 .creation
 {
   float:left;
-  width:75%;
+  width:70%;
   height:100%;
   padding:10px;
 }
@@ -85,7 +85,7 @@ input[name=title]
   margin:10px;
   height:80%;
   border: 1px solid black;
-  margin-left:75%;
+  margin-left:70%;
   text-align:left;
 }
 
@@ -102,8 +102,8 @@ input[name=title]
 .taskholder
 {
   border: 1px solid black;
-  margin:none;
-  padding:none;
+  margin:10px;
+  padding:5px;
 }
 
 .flowcontrol
@@ -121,9 +121,15 @@ input[name=title]
 
 .sidebyside
 {
-  width:50%;
-  margin: 0 auto;
+  width:100%;
   display:flex;
+  text-align:center;
+}
+.sidebysidesub
+{
+  width: 250px;
+  margin: auto;
+  text-align:center;
 }
 
 .aName

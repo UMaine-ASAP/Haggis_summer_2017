@@ -40,8 +40,20 @@ class AssignmentController
     $assignmentID;
     $klass = Klass::classid($_POST['classid'])[1];
     $userID = User::getID($_SESSION['token'])[1];
+    $type;
+    $create = false;
 
-    if(isset($_POST['title']))
+    if(isset($_POST['peerEval']))
+    {
+      $type = 3;
+      $create = true;
+    }
+    if(isset($_POST['submissionAssignment']))
+    {
+      $type = 0;
+      $create = true;
+    }
+    if($create)
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
       $criteriaSetID;
@@ -63,52 +75,53 @@ class AssignmentController
 
         $counter++;
       }
-    }
 
-    //GROUP/PROJECT CREATION
-    if($_POST['makegroup'] == 'true')
-    {
-      $numofGroups = sizeof($_POST['labels']);
-      $groupcounter = 1;
-      foreach($_POST['labels'] as $label)
+
+      //GROUP/PROJECT CREATION
+      if($_POST['makegroup'] == 'true')
       {
-        $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
-        $userIDs = array();
-        $counter = 0;
-        $groupcounter++;
-        foreach($_POST[$label] as $element)
+        $numofGroups = sizeof($_POST['labels']);
+        $groupcounter = 1;
+        foreach($_POST['labels'] as $label)
         {
-          $userIDs[] = $element;
+          $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
+          $userIDs = array();
+          $counter = 0;
+          $groupcounter++;
+          foreach($_POST[$label] as $element)
+          {
+            $userIDs[] = $element;
+          }
+          $message = Group::create($projectID, $userIDs)[1];
+          for($i=0; $i < sizeof($userIDs); $i++)
+          {
+            $user = User::id($userIDs[$i])[1];
+            //echo "<script> alert(".$user->email.");</script>";
+            EmailNotification::sendEmail($user->email,
+                                       "New Assignment: '".$_POST['title']."'",
+                                       "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
+          }
         }
-        $message = Group::create($projectID, $userIDs)[1];
-        for($i=0; $i < sizeof($userIDs); $i++)
+      }
+      else
+      {
+        $ids = $_POST['person'];
+        for($i = 0; $i < sizeof($ids);$i++)
         {
-          $user = User::id($userIDs[$i])[1];
-          //echo "<script> alert(".$user->email.");</script>";
+          $user = User::id($ids[$i])[1];
+          $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
+          $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
           EmailNotification::sendEmail($user->email,
-                                     "New Assignment: '".$_POST['title']."'",
-                                     "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
+                                      "New Assignment: '".$_POST['title']."'",
+                                      "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for a new assignment in course ".$klass->coursename.".\nThe assignment is due ".date_format(date_create($_POST['duedate']), 'm/d/Y').", at ".date_format(date_create($_POST['duetime']), 'g:i a').".\n\nDo not reply to this email, the inbox is not monitoried.");
         }
-      }
-    }
-    else
-    {
-      $ids = $_POST['person'];
-      for($i = 0; $i < sizeof($ids);$i++)
-      {
-        $user = User::id($ids[$i])[1];
-        $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
-        $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
-        EmailNotification::sendEmail($user->email,
-                                    "New Assignment: '".$_POST['title']."'",
-                                    "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for a new assignment in course ".$klass->coursename.".\nThe assignment is due ".date_format(date_create($_POST['duedate']), 'm/d/Y').", at ".date_format(date_create($_POST['duetime']), 'g:i a').".\n\nDo not reply to this email, the inbox is not monitoried.");
-      }
 
+      }
+      //Setup a redicrection back to the class page we were working in
+      $_SESSION['controller'] = 'pages';
+      $_SESSION['action'] = 'classes';
+      $_SESSION['returnto'] = $_POST['classid'];
     }
-    //Setup a redicrection back to the class page we were working in
-    $_SESSION['controller'] = 'pages';
-    $_SESSION['action'] = 'classes';
-    $_SESSION['returnto'] = $_POST['classid'];
     //Load index page
     header('Location: index.php');
   }
