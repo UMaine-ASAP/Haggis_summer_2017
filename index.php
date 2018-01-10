@@ -2,7 +2,7 @@
 
   session_start();                          //starts a local session
 
-  if(true)                                  //For debugging only
+  if(false)                                  //For debugging only
   {                                         //    Set false to remove all error
     ini_set('display_errors', 1);           //    reporting.
     ini_set('display_startup_errors',1);
