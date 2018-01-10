@@ -20,7 +20,7 @@ class UserController
           }
           $_SESSION['message'] = $out;
       }
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== LOGIN
   function login()
@@ -34,7 +34,7 @@ class UserController
         if ($_GET['mobile']) {
           header('Location: index.php?controller=mobile&action=login');
         } else {
-          header('Location: index.php');
+          echo("<script>location.href = 'index.php';</script>");
         }
       }
       else
@@ -45,7 +45,7 @@ class UserController
         $_SESSION['middleInitial'] = $UserData[2];
         $_SESSION['token'] = $UserData[3];
         echo("<script>location.href = 'index.php';</script>");
-        // header('Location: index.php');
+        // echo("<script>location.href = 'index.php';</script>");
       }
     }
   }
@@ -55,7 +55,7 @@ class UserController
     if(isset($_SESSION['token']))
       User::logout($_SESSION['token']);
     session_unset();													//unsets all Session variables effecitvly logging the user out of current session
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== EDIT USER
   function editUser()
@@ -148,7 +148,7 @@ class UserController
     {
       $outcome = User::sendResetEmail($_POST['email']);
       $_SESSION['message'] = $outcome[1];
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
     }
   }
 //=================================================================================== EMAIL CONFIRMATION
@@ -156,7 +156,7 @@ class UserController
     $code = $_GET['code'];
     $outcome = User::confirmEmail($code);
     $_SESSION['message'] = $outcome[1];
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== SEND EMAIL CONFIRMATION
   function sendEmailConfirmation()

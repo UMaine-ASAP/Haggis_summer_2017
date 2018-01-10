@@ -55,7 +55,7 @@ class ClassController
       }
     }
     $_SESSION['message'] = "Class Successfully Created";
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== JOIN CLASS
   public function joinClass()
@@ -67,7 +67,7 @@ class ClassController
     }
     else
       $courses = Course::all()[1];
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 
   //=================================================================================== ADD TO CLASS
@@ -80,7 +80,7 @@ class ClassController
       $_SESSION['controller'] = 'pages';
       $_SESSION['action'] = 'classes';
       $_SESSION['returnto'] = $classID;
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
     }
 //=================================================================================== UPDATE CLASS
   public function updateClass()

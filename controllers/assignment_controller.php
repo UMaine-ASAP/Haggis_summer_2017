@@ -17,7 +17,7 @@ class AssignmentController
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 
   //========================================================================== EDIT ASSIGNMENT
@@ -123,7 +123,7 @@ class AssignmentController
       $_SESSION['returnto'] = $_POST['classid'];
     }
     //Load index page
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
   //==========================================================================
   public function createAssignmentQuick()

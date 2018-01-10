@@ -31,7 +31,7 @@ class EventController
 
 
 
-  header('Location: index.php');
+  echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== SHOW PROJECTS OF EVENT
   public function showProjects()
@@ -77,7 +77,7 @@ class EventController
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classid'];
     //Load index page
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
   //=================================================================================== ADD ASSINGMENT TO EVENT
     public function setActive()
@@ -87,14 +87,14 @@ class EventController
       $_SESSION['controller'] = 'pages';
       $_SESSION['action'] = 'events';
       $_SESSION['returnto'] = $_GET['eventid'];
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
     }
   //=================================================================================== ERROR
     public function delete()
     {
         $eventID = $_GET['id'];
         $result = Event::delete($eventID);
-        header('Location: index.php');
+        echo("<script>location.href = 'index.php';</script>");
 
     }
 
