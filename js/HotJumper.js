@@ -15,9 +15,9 @@ function ViewEventProject(idin, eventid, type)
 {
   $('#viewer').load("?controller=project&action=viewEventProject&quick=1&projectID="+idin+"&eventID="+eventid+"&type="+type);
 }
-function GetAssignmentProject(idin)
+function GetAssignmentProject(idin,type)
 {
-  $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin);
+  $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+idin+"&type="+type);
 }
 function GetEventProject(idin)
 {

@@ -2,14 +2,19 @@
 <?php
   echo "<div class='assignment' id='id".$a->id."'>
   <table>
-  <tr><td colspan='2'>
-  <h2>Assignment: ".$a->title."</h2>
-  <span><button class='standard promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</button></span>";
+  <tr><td colspan='2'>";
+  if($type ==='submission')
+    echo "<h2>Assignment: ".$a->title."</h2>";
+  else
+    echo "<h2>Evaluation: ".$a->title."</h2>";
+  echo "<span><button class='standard promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</button></span>";
   if($status === 'admin')
   {
-    echo "<button class='standard popupmaker' id='addToEvent'>Add To Event</button>";
+    if($type ==='submission')
+      echo "<button class='standard popupmaker' id='addToEvent'>Add To Event</button>";
     echo "<button class='standard popupmaker' id='deleteAssignment'>Delete Assignment</button><br>";
-    echo "<span>Project registration link:
+    if($type ==='submission')
+      echo "<span>Project registration link:
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
           http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
 
@@ -29,7 +34,11 @@
     echo "projects (".$ps.")<hr class='minor'>";
     foreach($projects as $p)
     {
-      echo "<div><button onclick='GetAssignmentProject(".$p->id.")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
+      echo "<div><button onclick='GetAssignmentProject(";
+
+      echo $p->id.',"'.$type.'"';
+
+      echo ")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
       if($p->isgroup ==='1' || $p->isgroup ==='2')
       {
         echo "<ul>";

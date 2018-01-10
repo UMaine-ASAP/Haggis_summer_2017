@@ -45,17 +45,17 @@ class AssignmentController
 
     if(isset($_POST['peerEval']))
     {
-      $type = 3;
+      $type = 'peer';
       $create = true;
     }
     if(isset($_POST['submissionAssignment']))
     {
-      $type = 0;
+      $type = 'submission';
       $create = true;
     }
     if($create)
     {
-      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
+      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id, $type)[1];
       $criteriaSetID;
       $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
       Rubric::associateWithAssignment($assignmentID, $rubricID);
@@ -174,8 +174,10 @@ class AssignmentController
     {
       $status='user';
     }
+
     $assignmentID = $_GET['assignmentID'];
     $a = Assignment::id($assignmentID)[1];
+    $type = $a->type;
     $e = Event::all()[1];
     $classID = $_GET['classID'];
     require_once("views/assignment/viewAssignment.php");

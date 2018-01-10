@@ -307,6 +307,7 @@ class ProjectController
   public function viewAssignmentProject()
   {
     $type='1';
+    $assignmentType = $_GET['type'];
     $assignedUser=false;
     $userID = User::getID($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
