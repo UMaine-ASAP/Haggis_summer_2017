@@ -44,7 +44,8 @@ class UserController
         $_SESSION['lastName'] = $UserData[1];
         $_SESSION['middleInitial'] = $UserData[2];
         $_SESSION['token'] = $UserData[3];
-        header('Location: index.php');
+        echo("<script>location.href = 'index.php';</script>");
+        // header('Location: index.php');
       }
     }
   }
