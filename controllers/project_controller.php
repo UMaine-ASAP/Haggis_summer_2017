@@ -369,7 +369,12 @@ class ProjectController
   //===================================================================================
   public function submit()
   {
-
+    if(true)                                  //For debugging only
+    {                                         //    Set false to remove all error
+      ini_set('display_errors', 1);           //    reporting.
+      ini_set('display_startup_errors',1);
+      error_reporting(E_ALL);
+    }
     $format = $_POST['format'];
       switch($format)
       {
@@ -418,11 +423,7 @@ class ProjectController
           break;
       }
         //echo $_POST['contentTitle']." has been successfully submitted.";
-        ?>
-        <script type='text/javascript'>
-        self.close();
-        </script>
-        <?php
+
   }
 //===================================================================================
 public function delete()

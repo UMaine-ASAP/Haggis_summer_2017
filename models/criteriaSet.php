@@ -82,7 +82,7 @@ class CriteriaSet
           $criteriaArray = array();
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
-            $criteriaArray[] = new CriteriaSet($r['criteriasetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
+            $criteriaArray[] = new CriteriaSet($r['criteriaSetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
           }
           $message = $criteriaArray;
           $errorCode= 1;

@@ -22,7 +22,7 @@ $(document).ready(function()
   $('#submitContent').on('click',function()
   {
     var projectID = $('#projectID').val();
-    $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+projectID);
+    $('#ProjectView').load("?controller=project&action=viewAssignmentProject&quick=1&projectID="+projectID+"&type=submission");
   });
 
   $('.typeselect').on('click',function()

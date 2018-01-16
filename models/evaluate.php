@@ -100,7 +100,7 @@ class Evaluate
           {
             $author = User::id($r['author'])[1];
 
-            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'], $author, $r['type']);
+            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], $author, $r['type']);
           }
           $message = $evaluations;
           $errorCode = 1;
@@ -127,7 +127,7 @@ class Evaluate
            $evaluations = array();
            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'], "anonymous", $r['type']);
+             $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], "anonymous", $r['type']);
            }
            $message = $evaluations;
            $errorCode = 1;

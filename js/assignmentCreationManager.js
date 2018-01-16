@@ -25,9 +25,16 @@ function changeType(event, targetIdName)
   var newValue = event.target.value;
   document.getElementById(targetIdName).setAttribute("name",  newValue);
   if(newValue == 'peerEval')
-  document.getElementById('warningMessage').innerHTML = "Warning, this assignment is setup to be a peer Evaluation. Assign only with Single Assignment";
+  {
+    document.getElementById('makegroupTrue').setAttribute('type', 'hidden');
+    document.getElementById('makegroupFalse').checked = true;
+    document.getElementById('warningMessage').innerHTML = "Warning, this assignment is setup to be a peer Evaluation. Assign only with Single Assignment";
+  }
   else
-  document.getElementById('warningMessage').innerHTML="";
+  {
+      document.getElementById('makegroupTrue').setAttribute('type', 'radio');
+    document.getElementById('warningMessage').innerHTML="";
+  }
 }
 
 function tostart()

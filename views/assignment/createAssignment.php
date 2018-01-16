@@ -26,7 +26,7 @@
           <h4>Assignment Title</h4>
           <input class='standard' oninput='updateTarget(event, "assignmentName")' type='text' name='title' placeholder='New Assignment' required><br>
           <h4>Prompt:</h4>
-          <textarea class='fancyText' oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
+          <textarea  oninput='updateTarget(event, "promptOut")' name='assignmentdescription' cols='70' rows='20' placeholder="Assignment's Description" required></textarea><br>
           <div class='sidebyside'>
             <div class='sidebysidesub'>
               <h4>Due Date:</h4>
@@ -107,8 +107,8 @@
       <div class='assignmentCreationGroup'>
         <div class='creation'>
           <div class='error'id="warningMessage"></div>
-          <input class='standard' type='radio' name='makegroup' value='false' checked>Single
-          <input class='standard' type='radio' name='makegroup' value='true'>Group
+          <input class='standard' id='makegroupFalse' type='radio' name='makegroup' value='false' checked>Single
+          <input class='standard' id='makegroupTrue' type='radio' name='makegroup' value='true'>Group
           <div id='groupcreator'><?php require_once('views/group/createGroup.php');?></div>
           <div id ='singleassignment'><?php require_once('views/user/classUser.php');?></div>
         </div>
@@ -177,7 +177,7 @@
         </div>
         <div class='flowcontrol'>
           <div class='flowcontrolbuttons'>
-            <button class='standard largebutton' name='createnew' type='submit'>Publish</button>
+            <input class='standard largebutton' name='createnew' type='submit' value='Publish'>
             <button class='standard largebutton' type='button' onclick='toassignment()'>Back</button>
           </div>
         </div>

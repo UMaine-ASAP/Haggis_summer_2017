@@ -54,7 +54,7 @@ class Rubric
           $stmt->execute($data);
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
-            $criteriaSets[] = new CriteriaSet($r['criteriasetID'], $r['title'],$r['description'],$r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
+            $criteriaSets[] = new CriteriaSet($r['criteriaSetID'], $r['title'],$r['description'],$r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
           }
           $message = $criteriaSets;
           $errorCode= 1;
