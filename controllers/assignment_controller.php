@@ -17,7 +17,7 @@ class AssignmentController
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
-    echo("<script>location.href = 'index.php';</script>");
+    //echo("<script>location.href = 'index.php';</script>");
   }
 
   //========================================================================== EDIT ASSIGNMENT
@@ -108,6 +108,7 @@ class AssignmentController
         $ids = $_POST['person'];
         for($i = 0; $i < sizeof($ids);$i++)
         {
+          echo $i;
           $user = User::id($ids[$i])[1];
           $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
           $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
@@ -123,7 +124,7 @@ class AssignmentController
       $_SESSION['returnto'] = $_POST['classid'];
     }
     //Load index page
-    echo("<script>location.href = 'index.php';</script>");
+    // echo("<script>location.href = 'index.php';</script>");
   }
   //==========================================================================
   public function createAssignmentQuick()

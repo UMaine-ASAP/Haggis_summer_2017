@@ -369,20 +369,18 @@ class ProjectController
   //===================================================================================
   public function submit()
   {
-    if(true)                                  //For debugging only
-    {                                         //    Set false to remove all error
-      ini_set('display_errors', 1);           //    reporting.
-      ini_set('display_startup_errors',1);
-      error_reporting(E_ALL);
-    }
+    $message ="";
+    $successful = false;
     $format = $_POST['format'];
       switch($format)
       {
         case 'link':
           $submission = Content::create($_POST['contentTitle'],$format,'0','NA',$_POST['data'],$_POST['projectID'],$_POST['author'])[1];
+          $successful = true;
           break;
         case 'text':
           $submission = Content::create($_POST['contentTitle'],$format,'0','NA',$_POST['data'],$_POST['projectID'],$_POST['author'])[1];
+          $successful = true;
           break;
         case 'image':
           $target_dir = "submissions/images/";
@@ -390,16 +388,10 @@ class ProjectController
           $uploadOk = 1;
           $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $check = $_FILES["data"]["name"];
-            echo $check;
             if(move_uploaded_file($_FILES["data"]["tmp_name"], $target_file))
             {
-              echo "The File " . basename($_FILES["data"]["name"]). "has Been Uploaded.";
+              $successful = true;
               $submission = Content::create($_POST['contentTitle'],$format,'0',$target_dir.basename($_FILES["data"]["name"]),'NA',$_POST['projectID'],$_POST['author'])[1];
-              echo $submission."<br>";
-            }
-            else
-            {
-              echo "File not uploaded<br>";
             }
           break;
         case 'file':
@@ -407,22 +399,21 @@ class ProjectController
           $target_file = $target_dir . basename($_FILES["data"]["name"]);
           $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
           $check = $_FILES["data"]["name"];
-          echo $imageFileType;
-          echo $check;
-          echo $target_file;
           if(move_uploaded_file($_FILES["data"]["tmp_name"], $target_file))
           {
-            echo "<BR>The File " . basename($_FILES["data"]["name"]). "has Been Uploaded.";
             $submission = Content::create($_POST['contentTitle'],$format,'0',$target_dir.basename($_FILES["data"]["name"]),basename($_FILES["data"]["name"]),$_POST['projectID'],$_POST['author'])[1];
-            echo $submission."<br>";
-          }
-          else
-          {
-            echo "<BR>File not uploaded<br>";
+            $successful = true;
           }
           break;
       }
-        //echo $_POST['contentTitle']." has been successfully submitted.";
+      if($successful)
+         $message = $_POST['contentTitle']." has been successfully submitted.";
+      else
+      {
+        $message = $_POST['contentTitle']." was not submitted.";
+      }
+        // echo "<script>window.close();</script>";
+        echo $message;
 
   }
 //===================================================================================

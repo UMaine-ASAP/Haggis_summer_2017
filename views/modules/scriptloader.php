@@ -1,3 +1,6 @@
+<?php
+if($action != 'submit') { ?>
+
 <script src="js/popup.js"></script>
 
 <script src='js/tinymce/tinymce.min.js'></script>
@@ -6,3 +9,4 @@
                       plugins:'code',
                       toolbar:['undo redo | styleselect | bold italic | link image | alignleft aligncenter alignright | code']
                       });</script>
+<?php } ?>

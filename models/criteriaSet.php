@@ -25,7 +25,7 @@ class CriteriaSet
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "INSERT INTO criteriaset (title, description, ratingMin, ratingMax, allowTextResponse) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO criteriaSet (title, description, ratingMin, ratingMax, allowTextResponse) VALUES (?,?,?,?,?)";
     $stmt = $db->prepare($sql);
     $data = array($title, $description, $ratingMin, $ratingMax, $allowTextResponse);
     try
@@ -73,7 +73,7 @@ class CriteriaSet
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "SELECT * FROM criteriaset WHERE criteriaSetID = ? GROUP BY title";
+      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID = ? GROUP BY title";
       $stmt = $db->prepare($sql);
       $data = array($id);
       try
@@ -100,7 +100,7 @@ class CriteriaSet
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "INSERT INTO criteria_criteriaset (criteriaID, criteriaSetID) VALUES (?,?)";
+    $sql = "INSERT INTO criteria_criteriaSet (criteriaID, criteriaSetID) VALUES (?,?)";
     $stmt = $db->prepare($sql);
     try
     {

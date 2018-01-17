@@ -26,7 +26,7 @@ function changeType(event, targetIdName)
   document.getElementById(targetIdName).setAttribute("name",  newValue);
   if(newValue == 'peerEval')
   {
-    document.getElementById('makegroupTrue').setAttribute('type', 'hidden');
+    $('#makegrouptruespan').hide();
     document.getElementById('makegroupFalse').checked = true;
     document.getElementById('warningMessage').innerHTML = "Warning, this assignment is setup to be a peer Evaluation. Assign only with Single Assignment";
   }

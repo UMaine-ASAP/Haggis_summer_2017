@@ -36,7 +36,6 @@ $(document).ready(function()
   {
     e.preventDefault();
     var isMobile = $('#evalform').attr('isMobile');
-    alert(isMobile);
     var commentboxes = document.getElementsByClassName('criteriaComment');
     var criteriaRatings = document.getElementsByClassName('criteriaRating');
     var criteriaMsgs = document.getElementsByClassName('criteriaMsg');
@@ -71,9 +70,15 @@ $(document).ready(function()
     {
       var formsr = $('#evalform').serialize();
 
-      //console.log(formsr);
+      console.log(formsr);
       var projectID = $('input[name="evalfor"]').val();
       var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+             // Typical action to be performed when the document is ready:
+             document.getElementById('evalout').innerHTML = xmlhttp.responseText;
+          }
+      };
       xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xmlhttp.send(formsr);

@@ -5,17 +5,19 @@ class EvaluateController
 //=================================================================================== INDEX
     public function submit()
     {
+
       $type = $_POST['type'];
       $userid = -1;
       if(isset($_SESSION['token']))
       {
         $userid = User::getID($_SESSION['token'])[1];
       }
-      $targetID = $_POST['evalfor'];
       for($i = 0; $i<sizeof($_POST['criteriaID']);$i++)
       {
-        Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $targetID, $userid, $type )[1];
+        $result = Evaluate::submit($_POST['criteriaID'][$i], $_POST['criteriaRating'][$i], $_POST['criteriaComment'][$i], $_POST['evalfor'], $userid, $type )[1];
+
       }
+      echo "<h3>Your evaluation was successfully submitted</h3>";
 
       if(isset($_GET['mobile']))
       {

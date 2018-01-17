@@ -78,7 +78,7 @@ class Evaluate
     catch(PDOException $e)
     {
       $errorCode = $e->getCode();
-      $message = $e->getMessage();
+      $message = $e->getMessage()."<br>".$stmt->debugDumpParams();
     }
     return array($errorCode, $message);
   }

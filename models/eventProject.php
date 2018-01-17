@@ -64,7 +64,7 @@ Class EventProject {
         $errorCode;
         $message;
         $db = Db::getInstance();
-        $sql = "SELECT * FROM eventProject WHERE ID IN (SELECT eventProjectID FROM event_eventProject WHERE event_eventProject.eventID = ?)";
+        $sql = "SELECT * FROM eventProject WHERE eventProjectID IN (SELECT eventProjectID FROM event_eventProject WHERE event_eventProject.eventID = ?)";
         $data = array($eventID);
         try
         {
@@ -90,12 +90,12 @@ Class EventProject {
     public static function id($id)
     {
       $db = Db::getInstance();
-      $sql = "SELECT * FROM eventProject WHERE ID = ?";
+      $sql = "SELECT * FROM eventProject WHERE eventProjectID = ?";
       $data = array($id);
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-      $project = new EventProject($result['ID'],$result['title'],$result['description'],$result['abstract'],$result['projectID'], $result['projectEventCode']);
+      $project = new EventProject($result['eventProjectID'],$result['title'],$result['description'],$result['abstract'],$result['projectID'], $result['projectEventCode']);
       return array(1, $project);
     }
 //=================================================================================== CREATE

@@ -51,6 +51,9 @@ date_default_timezone_set('America/New_York');
       case 'event':
         $controller = new EventController();
         break;
+      case 'testing':
+        $controller = new TestingController();
+        break;
     }
     $controller->{$action}();
   }
@@ -64,7 +67,8 @@ date_default_timezone_set('America/New_York');
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete'],
-                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete']);
+                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete'],
+                          'testing'   => ['test']);
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

@@ -107,8 +107,8 @@
       <div class='assignmentCreationGroup'>
         <div class='creation'>
           <div class='error'id="warningMessage"></div>
-          <input class='standard' id='makegroupFalse' type='radio' name='makegroup' value='false' checked>Single
-          <input class='standard' id='makegroupTrue' type='radio' name='makegroup' value='true'>Group
+          <span id='makegroupfalsespan'><input class='standard' id='makegroupFalse' type='radio' name='makegroup' value='false' checked>Single</span>
+          <span id='makegrouptruespan'><input class='standard' id='makegroupTrue' type='radio' name='makegroup' value='true'>Group</span>
           <div id='groupcreator'><?php require_once('views/group/createGroup.php');?></div>
           <div id ='singleassignment'><?php require_once('views/user/classUser.php');?></div>
         </div>

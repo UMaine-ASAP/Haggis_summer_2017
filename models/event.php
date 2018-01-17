@@ -62,7 +62,7 @@ class Event
         $errorCode;
         $message;
         $db = Db::getInstance();
-        $sql = "SELECT * FROM event WHERE ID = ?";
+        $sql = "SELECT * FROM event WHERE eventID = ?";
         $data = array($id);
         try
         {
@@ -71,7 +71,7 @@ class Event
           $evaluations = array();
           $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
-          $message = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+          $message = new Event($r['eventID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
                                 $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
           $errorCode = 1;
         }
@@ -97,7 +97,7 @@ class Event
 
            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $events[] = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+             $events[] = new Event($r['eventID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
                                    $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
            }
            $message = $events;
@@ -125,7 +125,7 @@ class Event
 
            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $events[] = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+             $events[] = new Event($r['eventID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
                                    $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
            }
            $message = $events;
@@ -144,7 +144,7 @@ class Event
           $errorCode;
           $message;
           $db = Db::getInstance();
-          $sql = "UPDATE event SET active = ? WHERE ID = ?";
+          $sql = "UPDATE event SET active = ? WHERE eventID = ?";
           $data = array($status, $eventID);
           try
           {
@@ -220,7 +220,7 @@ class Event
 
             while($r = $stmt->fetch(PDO::FETCH_ASSOC))
             {
-              $events[] = new Event($r['ID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
+              $events[] = new Event($r['eventID'], $r['title'], $r['description'], $r['startTime'], $r['endTime'], $r['startDate'],$r['endDate'],
                                     $r['active'],$r['transparancy'], $r['public'], $r['visible'], $r['registrationCode']);
             }
             $message = $events;
@@ -315,7 +315,7 @@ class Event
         $errorCode;
         $message;
         $db = Db::getInstance();
-        $sql = "DELETE FROM event WHERE ID = ?";
+        $sql = "DELETE FROM event WHERE eventID = ?";
         try
         {
           $stmt = $db->prepare($sql);
