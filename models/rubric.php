@@ -44,7 +44,7 @@ class Rubric
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "SELECT * FROM criteriaset WHERE criteriasetID IN (SELECT criteriasetID FROM rubric_criteriaset WHERE rubric_criteriaset.rubricID = ?)";
+      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID IN (SELECT criteriaSetID FROM rubric_criteriaset WHERE rubric_criteriaset.rubricID = ?)";
       $stmt = $db->prepare($sql);
       $data = array($rubricID);
       $criteriaSets = array();
