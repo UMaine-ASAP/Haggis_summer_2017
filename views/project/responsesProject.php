@@ -1,4 +1,4 @@
-<a href="?controller=project&action=saveAssignmentResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a>
+<!-- <a href="?controller=project&action=saveAssignmentResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a> -->
 
 <h3>Project Responses</h3>
 
