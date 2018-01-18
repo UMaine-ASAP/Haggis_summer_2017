@@ -83,7 +83,7 @@ Class ProjectUser {
       $errorCode;
       $localList = array();
       $db = Db::getInstance();
-      $sql = "SELECT * FROM projectuser WHERE projectID = ?";
+      $sql = "SELECT * FROM projectUser WHERE projectID = ?";
       $data = array($id);
       try
       {
