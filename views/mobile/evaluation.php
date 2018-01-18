@@ -19,7 +19,7 @@ $linkout;
 
 
 
-<form id='evalform' method='post' action='' isMobile='true'>
+<form class='evalform' id='evalform' method='post' action='' isMobile='true'>
   <input type='hidden' name = 'type' value='<?php echo $type; ?>'>
 
 <!-- <?php
@@ -67,10 +67,7 @@ $linkout;
       echo "</div><hr class='minor'>";
     }
   }
-  echo "<input class='standard evalsubmit' id='evalsubmit' type='button' value='Submit Evaluation' >
-</form></div></td></tr></table></div>";
 
-
+  echo "<br><input class='submitButton evalsubmit' type='button' value='Submit Evaluation'>";
+  echo "</form></div></td></tr></table></div>";
 ?>
-<br><input class="submitButton evalsubmit" type='button' value='Submit Evaluation'
-</form>
