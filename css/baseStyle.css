@@ -305,18 +305,19 @@ li.assignments:hover
 
 .criteriaSelectionContainer
 {
-  display:flex;
+  text-align:center;
+
 }
 .picker
 {
   height:100px;
   border: 1px solid black;
   padding:5px;
-  margin:10px;
+  margin:0 auto;
+  width: 400px;
   text-align:center;
   vertical-align:top;
   cursor:pointer;
-  box-shadow: 10px 10px 5px #000000;
   border-radius: 5px 5px 5px 5px;
 }
 

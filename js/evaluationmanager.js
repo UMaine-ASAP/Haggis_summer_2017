@@ -32,6 +32,27 @@ $(document).ready(function()
   //   }
   // });
 
+  $('.slider').on('input', function(e)
+  {
+    var thiselement = e.target;
+    var criID = thiselement.getAttribute("id");
+    var criScore = thiselement.value;
+    var criteriaOutputs = document.getElementsByClassName('s'+criID);
+    for(var i = 0; i < criteriaOutputs.length; i++)
+    {
+      var currCri = criteriaOutputs[i];
+
+      if(currCri.getAttribute("scoreVal") == criScore)
+      {
+        currCri.setAttribute('style', "display:block");
+      }
+      else
+      {
+        currCri.setAttribute('style', "display:none");
+      }
+    }
+  });
+
   $('.evalsubmit').on('click',function(e)
   {
     e.preventDefault();
@@ -44,20 +65,11 @@ $(document).ready(function()
     for(var i = 0; i < commentboxes.length; i++)
     {
       var thisbox = commentboxes[i];
-      var thisrating = criteriaRatings[i];
       criteriaMsgs[i].innerHTML = "";
       if(thisbox.value == "")
       {
         criteriaMsgs[i].style.border='2px dashed red';
         criteriaMsgs[i].innerHTML +=  'Missing Comment';
-        progress = false;
-      }
-      if(thisrating.value == -2)
-      {
-        criteriaMsgs[i].style.border='2px dashed red';
-        if(criteriaMsgs[i].innerHTML != "")
-          criteriaMsgs[i].innerHTML += ', ';
-        criteriaMsgs[i].innerHTML += 'Missing choice';
         progress = false;
       }
       else
@@ -70,7 +82,7 @@ $(document).ready(function()
     {
       var formsr = $('#evalform').serialize();
 
-      console.log(formsr);
+      // console.log(formsr);
       var projectID = $('input[name="evalfor"]').val();
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
@@ -108,69 +120,44 @@ function getAllSiblings(elem, filter) {
     return sibs;
 }
 
-function submitEval(e)
-{
-  e.preventDefault();
+// function submitEval(e)
+// {
+//   e.preventDefault();
+//
+//   var commentboxes = document.getElementsByClassName('criteriaComment');
+//   var progress = true;
+//   for(var i = 0; i < commentboxes.length; i++)
+//   {
+//     var thisbox = commentboxes[i];
+//     if(thisbox.value == "")
+//     {
+//       thisbox.style.border='2px dashed red';
+//       thisbox.setAttribute('placeholder', "This Element is Required");
+//       progress = false;
+//     }
+//   }
+//   if(progress)
+//   {
+//     var formsr = $('#evalform').serialize();
+//     //console.log(formsr);
+//     var projectID = $('input[name="evalfor"]').val();
+//     var xmlhttp = new XMLHttpRequest();
+//     // xmlhttp.onreadystatechange = function()
+//     // {
+//     //   if(this.readyState==4 && this.status==200)
+//     //   {
+//     //     document.getElementById("evalout").append(this.responseText)
+//     //   }
+//     // };
+//     xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
+//     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xmlhttp.send(formsr);
+//     $('#evalout').show();
+//     $('#evalform').hide();
+//   }
+// }
 
-  var commentboxes = document.getElementsByClassName('criteriaComment');
-  var progress = true;
-  for(var i = 0; i < commentboxes.length; i++)
-  {
-    var thisbox = commentboxes[i];
-    if(thisbox.value == "")
-    {
-      thisbox.style.border='2px dashed red';
-      thisbox.setAttribute('placeholder', "This Element is Required");
-      progress = false;
-    }
-  }
-  if(progress)
-  {
-    var formsr = $('#evalform').serialize();
-    //console.log(formsr);
-    var projectID = $('input[name="evalfor"]').val();
-    var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.onreadystatechange = function()
-    // {
-    //   if(this.readyState==4 && this.status==200)
-    //   {
-    //     document.getElementById("evalout").append(this.responseText)
-    //   }
-    // };
-    xmlhttp.open("POST", "?controller=evaluate&action=submit&quick=1", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send(formsr);
-    $('#evalout').show();
-    $('#evalform').hide();
-  }
-}
-
-function makeselection(thiselement)
-{
-    if(thiselement.id == "picker")
-    {
-      // var thisElem = thiselement.target;
-      var criID = thiselement.getAttribute("scoreTarget");
-      var criScore = thiselement.getAttribute("scoreVal");
-      var criteriaOutputs = document.getElementsByClassName('criteriaRating');
-
-      for(var i = 0; i < criteriaOutputs.length; i++)
-      {
-        var currCri = criteriaOutputs[i];
-        if(currCri.id == criID)
-        {
-          currCri.setAttribute('value', criScore);
-        }
-      }
-       var others = document.getElementsByClassName("s"+criID);
-
-
-      for(var i = 0; i < others.length;i++)
-      {
-        others[i].style.border="1px solid black";
-        others[i].style.backgroundColor = "white";
-      }
-      event.target.style.border="2px solid red";
-      event.target.style.backgroundColor="yellow";
-    }
-}
+// function makeselection(thiselement)
+// {
+//
+// }

@@ -33,10 +33,10 @@ $rubricForm .= "</tr>";
 
 foreach($rubric->criteriaSets as $c)
 {
-  $rubricForm .= "<tr><td>".$c->title."</td>";
+  $rubricForm .= "<tr><td class='criDesc'>".$c->title."</td>";
   foreach($c->criterias as $subc)
   {
-    $rubricForm .= "<td>".$subc->description."</td>";
+    $rubricForm .= "<td class='criDesc'>".$subc->description."</td>";
   }
 
 }
