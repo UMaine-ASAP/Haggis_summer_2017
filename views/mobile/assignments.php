@@ -24,4 +24,4 @@ foreach($assignments as $a)
 ?>
 </table>
 
-<script src="java/toggleTab.js"></script>
+<script src="js/toggleTab.js"></script>

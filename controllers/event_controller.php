@@ -6,38 +6,32 @@ class EventController
 //=================================================================================== INDEX
   public function add()
   {
-
+    $userID = User::getID($_SESSION['token'])[1];
     $eventID = Event::create($_POST['title'], $_POST['description'], $_POST['startTime'], $_POST['endTime'], $_POST['startDate'], $_POST['endDate'], $_POST['active'], '1', '1', '1', '1')[1];
+    $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+    Rubric::associateWithEvent($eventID, $rubricID);
+    $criteriaSetID;
 
-    for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
+    $counter = 1;
+    foreach($_POST['criterianame'] as $criName)
     {
-      $allowTextResponse = 1;
-      if($_POST['textresponse'.$i] === 'no')
-        $allowTextResponse = 0;
-      $currentID;
-      if($_POST['graded'][$i] === 'yes')
+      $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+      Rubric::associateWithRubric($rubricID, $criteriaSetID);
+      $counter2 = 0;
+      foreach($_POST[$counter] as $cri)
       {
-        $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
+        $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+        CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+        $counter2++;
       }
-      else
-      {
-        $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], '0', '0', $allowTextResponse)[1];
-      }
-
-      $idList[] = $currentID;
-      echo $currentID;
-      Criteria::associateWithEvent($eventID, $currentID);
+      // CriteriaSet::associateWithEvent($eventID, $criteriaSetID);
+      $counter++;
     }
 
-  if(isset($criteriaSetID))
-  {
-    foreach($idList as $id)
-    Criteria::addToSet($criteriaSetID, $id);
-  }
 
 
 
-    header('Location: index.php');
+  echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== SHOW PROJECTS OF EVENT
   public function showProjects()
@@ -83,8 +77,26 @@ class EventController
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classid'];
     //Load index page
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
+  //=================================================================================== ADD ASSINGMENT TO EVENT
+    public function setActive()
+    {
+      $result = Event::setActive($_GET['eventid'], $_GET['status'])[1];
+      //Load index page
+      $_SESSION['controller'] = 'pages';
+      $_SESSION['action'] = 'events';
+      $_SESSION['returnto'] = $_GET['eventid'];
+      echo("<script>location.href = 'index.php';</script>");
+    }
+  //=================================================================================== ERROR
+    public function delete()
+    {
+        $eventID = $_GET['id'];
+        $result = Event::delete($eventID);
+        echo("<script>location.href = 'index.php';</script>");
+
+    }
 
 //=================================================================================== ERROR
   public function error()

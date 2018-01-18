@@ -87,7 +87,7 @@ class Klass {  //We use class with a k, using just class confuses PHP
               case "friday":
                 $data = array($classID, 6);
                 break;
-              case "saturda":
+              case "saturday":
                 $data = array($classID, 7);
                 break;
             }

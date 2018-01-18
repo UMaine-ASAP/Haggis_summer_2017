@@ -81,11 +81,10 @@ Class ProjectUser {
     {
       $message;
       $errorCode;
-      $userlist = array();
+      $localList = array();
       $db = Db::getInstance();
       $sql = "SELECT * FROM projectUser WHERE projectID = ?";
       $data = array($id);
-      $userlist[]= "test";
       try
       {
         $stmt = $db->prepare($sql);
@@ -93,11 +92,10 @@ Class ProjectUser {
 
         while($result = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $userlist[] = new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']);
-
+          $localList[] = new ProjectUser($result['projectUserID'], $result['projectID'],$result['userID'],$result['role'],$result['description']);
         }
         $errorCode = 1;
-        $message = $userlist;
+        $message = $localList;
       }
       catch(PDOException $e)
       {

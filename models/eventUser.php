@@ -52,13 +52,13 @@ class EventUser
     $message;
     $db = Db::getInstance();
     $data= array($em);
-    $sql = "SELECT ID FROM eventUser WHERE email = ?";
+    $sql = "SELECT eventUserID FROM eventUser WHERE email = ?";
     try
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
       $errorCode = 1;
-      $message = $stmt->fetch()['ID'];
+      $message = $stmt->fetch()['eventUserID'];
     }
     catch(PDOException $e)
     {
@@ -78,7 +78,7 @@ class EventUser
     $userlist = array();
     while($result = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-      $userlist[] =  new EventUser($result['ID'], $result['userID'],$result['userLevel'],$result['eventID'],$result['firstName'],$result['middleInitial'],$result['lastName'],$result['email']);
+      $userlist[] =  new EventUser($result['eventUserID'], $result['userID'],$result['userLevel'],$result['eventID'],$result['firstName'],$result['middleInitial'],$result['lastName'],$result['email']);
     }
     return array(1,$userlist);
   }

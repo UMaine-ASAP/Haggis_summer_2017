@@ -5,11 +5,43 @@
 echo "<div class='details' id='".$a->id."'>
 Due Date:".$a->duedate."<br>
 <h3>Prompt</h3>
-".$a->description."<br>";
+".nl2br($a->description)."<br>";
+$ratingValues = array();
 
-foreach($a->criterias as $c)
+$rubric = $a->rubric;
+$c = $rubric->criteriaSets;
+$subc = $c[0]->criterias;
+
+for($i = 0; $i<sizeof($subc);$i++)
 {
-
-  echo "<div><h3>".$c->title."</h3> on scale of ".$c->minRange." to ".$c->maxRange."<br>".$c->description."</div>";
+  $ratingValues[] = $subc[$i]->ratingValue;
 }
+
+
+
+//Start constructing the table to hold the rubric
+$rubricForm =  "<div><table>
+                <tr>
+                <th>Criteria</th>";
+
+
+for($i = 0; $i< sizeof($ratingValues);$i++)
+  $rubricForm .= "<th>".$ratingValues[$i]."</th>";
+
+$rubricForm .= "</tr>";
+
+
+foreach($rubric->criteriaSets as $c)
+{
+  $rubricForm .= "<tr><td class='criDesc'>".$c->title."</td>";
+  foreach($c->criterias as $subc)
+  {
+    $rubricForm .= "<td class='criDesc'>".$subc->description."</td>";
+  }
+
+}
+$rubricForm .= "</tr></table></div>";
+
+echo $rubricForm;
+
 ?>

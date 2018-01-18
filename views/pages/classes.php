@@ -1,17 +1,31 @@
-<script src="java/currentActionfixer.js"></script>
-<script src="java/HotJumper.js"></script>
+<script src="js/currentActionfixer.js"></script>
+<script src="js/HotJumper.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script>fixer("#currentAction",
-        "<?php echo $class->coursecode; ?>",
-        "<?php if($status ==='admin')
-          echo "<div><a href='#' id='studentlist' class='popupmaker'>(".sizeof($students)." students)</a></div>";
-          echo "<p>Join Code: <joincode>".$class->joinCode."</joincode></p>"; ?>");</script>
-<?php
+
+
+
+        <?php
+          if($status=='admin')
+          {
+            ?>
+            <script>fixer("#currentAction",
+                    "<?php echo $class->coursecode; ?>",
+                    "<div><a href='#' id='studentlist' class='popupmaker'>(<?php echo sizeof($students);?> students)</a></div><p>Join Code: <joincode><?php echo $class->joinCode;?></joincode></p>");</script>
+          <?php
+          }
+          else
+          {
+            ?>
+            <script>fixer("#currentAction","<?php echo $class->coursecode; ?>","");</script>
+
+
+          <?php
+          }
+
 
 echo "<table><tr><td class='menuContainer'>";
- if($status === 'admin')
-echo "<a id='NewAssignment' onclick='NewAssignment(".$classID.")'>New Assignment +</a>";
 require_once('views/assignment/viewAssignmentList.php');
 echo "</td>";
 

@@ -1,23 +1,43 @@
-<script src="java/currentActionfixer.js"></script>
-<script src="java/HotJumper.js"></script>
+<script src="js/currentActionfixer.js"></script>
+<script src="js/HotJumper.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script>fixer("#currentAction",
-        "<?php echo $event->title; ?>","");</script>
 <?php
+$eventStatus;
+  if($event->active == '1')
+    $eventStatus = "<h4 style='color:green;'>Active</h4>";
+  else
+    $eventStatus = "<h4 style='color:red;'>Inactive</h4>";
+
+if($status=='admin')
+{
+  ?>
+  <script>fixer("#currentAction",
+          "<?php echo $event->title; ?>",
+          "<a class='popupmaker' id='eventOptions'><input class='standard' type='button' value='Options'></a> <?php echo $eventStatus; ?>");</script>
+<?php
+}
+else
+{
+  ?>
+  <script>fixer("#currentAction",
+          "<?php echo $event->title; ?>",
+          "");</script>
+
+<?php
+}
 
 echo "<table><tr><td class='menuContainer'>";
 
- require_once('views/project/viewEventProjectList.php');
+require_once('views/project/viewEventProjectList.php');
 echo "</td>";
 
 // echo "<td class='studentContainer'><div id='studentviewer'>";
 // require_once('views/user/classUser.php');
 // echo "</div></td>";
-
 echo "<td class='contentContainer'><div id='viewer'>";
-echo "<span>Project registration link: <a class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."</a>";
-// require_once('views/assignment/viewAssignments.php');
-echo "</td></tr></table>";
 
+
+echo "</div></td></tr></table>";
+if($status=='admin')
+  require_once("views/event/eventOptions.php");
 ?>

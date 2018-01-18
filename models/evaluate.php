@@ -7,12 +7,13 @@ class Evaluate
   public $comment;
   public $projectID;
   public $eventProjectID;
+  public $userID;
   public $author;
   public $type;
   public $criteria;
 
 //=================================================================================== STRUCT
-  public function __construct($id, $criteriaID, $rating, $comment, $projectID, $eventProjectID, $authorID, $type)
+  public function __construct($id, $criteriaID, $rating, $comment, $projectID, $eventProjectID, $userID, $authorID, $type)
   {
     $this->id = $id;
     $this->criteriaID = $criteriaID;
@@ -20,6 +21,7 @@ class Evaluate
     $this->comment = $comment;
     $this->projectID = $projectID;
     $this->eventProjectID = $eventProjectID;
+    $this->userID  = $userID;
     $this->author = $authorID;
     $this->type = $type;
     $this->criteria = Criteria::eventID($id)[1];
@@ -32,7 +34,7 @@ class Evaluate
     $data;
     $sql;
     $db = Db::getInstance();
-    $check = Evaluate::check($authorID, $targetID, $criteriaID)[1];
+    $check = Evaluate::check($authorID, $targetID, $criteriaID, $type)[1];
     if($type === '1')
     {
       if($check)
@@ -46,10 +48,23 @@ class Evaluate
         $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
       }
     }
-    if($type === '2')
+    else if($type === '2')
     {
       $sql = "INSERT INTO evaluation (criteriaID, rating, comment, eventProjectID, author, type) VALUES (?,?,?,?,?,?)";
       $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
+    }
+    else if($type === '3')
+    {
+      if($check)
+      {
+        $sql = "UPDATE evaluation SET  rating = ?, comment = ? WHERE evaluationID = ?";
+        $data = array($rating, $comment,$check);
+      }
+      else
+      {
+        $sql = "INSERT INTO evaluation (criteriaID, rating, comment, userID, author, type) VALUES (?,?,?,?,?,?)";
+        $data = array($criteriaID, $rating, $comment, $targetID, $authorID,$type);
+      }
     }
 
     $stmt = $db->prepare($sql);
@@ -63,7 +78,7 @@ class Evaluate
     catch(PDOException $e)
     {
       $errorCode = $e->getCode();
-      $message = $e->getMessage();
+      $message = $e->getMessage()."<br>".$stmt->debugDumpParams();
     }
     return array($errorCode, $message);
   }
@@ -85,7 +100,7 @@ class Evaluate
           {
             $author = User::id($r['author'])[1];
 
-            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'], $author, $r['type']);
+            $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], $author, $r['type']);
           }
           $message = $evaluations;
           $errorCode = 1;
@@ -112,7 +127,7 @@ class Evaluate
            $evaluations = array();
            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
            {
-             $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'], "anonymous", $r['type']);
+             $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], "anonymous", $r['type']);
            }
            $message = $evaluations;
            $errorCode = 1;
@@ -125,13 +140,18 @@ class Evaluate
          return array($errorCode, $message);
      }
     //=================================================================================== Check if already submitted
-     public static function check($authorid, $projectid, $criteriaid)
+     public static function check($authorid, $targetID, $criteriaid, $type)
      {
          $errorCode;
          $message;
          $db = Db::getInstance();
-         $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
-         $data = array($authorid, $projectid, $criteriaid);
+         $sql;
+         if($type === '1')
+          $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
+        else if($type === '3')
+          $sql = "SELECT * FROM evaluation WHERE author = ? AND userID = ? AND criteriaID = ?";
+
+         $data = array($authorid, $targetID, $criteriaid);
          try
          {
            if($authorid ==='-1')

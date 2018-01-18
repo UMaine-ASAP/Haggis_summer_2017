@@ -1,21 +1,31 @@
-input.submitButton{
+input.evalsubmit{
   text-align: center;
+  width: 100%;
+  margin: 0 auto;
   color: white;
   padding: 5% 25% 5% 25%;
   background-color: #1195c6;
   border-radius: 30px;
-  margin: auto;
   border: none;
 }
 
-.submitButton{
+/* .evalsubmit{
   text-align: center;
   padding-bottom: 6%;
+  margin: 0 auto !important;
+} */
+
+form.evalform
+{
+  text-align:center;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .slider {
     -webkit-appearance: none;
-    width: 100%;
+    margin: 20px auto;
+    width: 80% !important;
     height: 12px;
     border-radius: 10px;
     background: #bee8f7;
@@ -60,4 +70,37 @@ input.submitButton{
   padding-bottom:5%;
 }
 
+
+.picker
+{
+  height:100px;
+  border: 1px solid black;
+  padding:5px;
+  margin:10px;
+  text-align:center;
+  vertical-align:middle;
+  cursor:pointer;
+  border-radius: 5px 5px 5px 5px;
+}
+
+
+
+.criRatingVal .criRatingDesc
+{
+  height:50px;
+  margin:auto;
+  padding:10px;
+  vertical-align:middle;
+  pointer-events:none
+}
+
+.criRatingVal
+{
+  margin-bottom:10px;
+}
+
+.criRatingDescInside
+{
+  vertical-align:middle;
+}
 .

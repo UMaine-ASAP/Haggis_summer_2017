@@ -7,7 +7,7 @@ class PagesController
     {
       $message = "";
 
-      $events = Event::getActive()[1];
+      $events = Event::getAll()[1];
 
       if(isset($_SESSION['message']))
       {
@@ -52,10 +52,20 @@ class PagesController
           $status = 'admin';
       require_once('views/pages/classes.php');
     }
-//=================================================================================== ASSIGNMENTS
+//=================================================================================== EVENTS
     public function events()
     {
-      $event = Event::id($_GET['eventID'])[1];
+      $event;
+      if(isset($_SESSION['returnto']))
+      {
+        $event = Event::id($_SESSION['returnto'])[1];
+        unset($_SESSION['returnto']);
+      }
+      else
+      {
+        $event = Event::id($_GET['eventID'])[1];
+      }
+
       $assignmentIDs = Event::getAssignments($event->id)[1];
       $eventProjectIDs = Event::getEventProjects($event->id)[1];
       $assignments;
@@ -73,7 +83,20 @@ class PagesController
       for($i = 0; $i <sizeof($eventProjectIDs) ;$i++)
 
         $eventprojectList[] =  EventProject::id($eventProjectIDs[$i])[1];
-
+        $status = 'none';
+        if(isset($_SESSION['token']))
+        {
+          $classes = Klass::userClasses($_SESSION['token'])[1];
+          $courselisting = Course::all()[1];
+          if(User::checkAdmin($_SESSION['token'])[1])
+          {
+              $status = 'admin';
+          }
+          else
+          {
+            $status='user';
+          }
+        }
 
 
       require_once('views/pages/events.php');

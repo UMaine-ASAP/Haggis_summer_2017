@@ -1,5 +1,8 @@
+<!-- <a href="?controller=project&action=saveAssignmentResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a> -->
+
 <h3>Project Responses</h3>
 
+<div class='chart'></div>
 
 <?php
 $i=0;
@@ -30,25 +33,24 @@ else
 }
 ?>
 
-<!-- <style>
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
-}
+<style>
+  .chart div{
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+    width:50%;
+  }
 </style>
+
 <script src="vendor/d3/d3.js"></script>
-<script>
-var data = [1.5, 3.3, 6, 4.1, 8.9];
-d3.select(".chart")
-  .selectAll("div")
-  .data(data)
-    .enter()
-    .append("div")
-    .style("width", function(d) {return d+(3.72/5)+ "%";})
-    .text(function(d){return d;});
-    </script>
-<div class='chart'></div> -->
+<script src="js/datadisplay.js"></script>
+<script >
+var thisdata = <?php echo json_encode($dataout); ?>;
+$(document).ready(function()
+{
+  charting();
+});
+</script>

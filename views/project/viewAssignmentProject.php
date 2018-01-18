@@ -1,15 +1,16 @@
+<div class='projectupper'>
 
-<table>
-  <tr>
-    <td id='options' class='options'>
-      <h2><?php echo $project->title;?>'s Project</h2>
-      <a class='projectitem' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</a>
-      <a class='projectitem' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Evaluate Project</a>
-    </td>
-  </tr>
-  <tr>
-    <td id='FinalView'>
-      <?php require_once('contentProject.php');?>
-    </td>
-  </tr>
-</table>
+      <h2><?php
+      if($assignmentType === "submission")
+       echo $project->title."'s project";
+      else
+        echo "Evaluate ".$project->title;
+       ?></h2>
+      <button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</button>
+      <button class='standard projectitem mediumbutton' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Evaluate</button>
+</div>
+
+
+    <div id='FinalView'>
+      <?php if($assignmentType === 'submission') require_once('contentProject.php');?>
+    </div>

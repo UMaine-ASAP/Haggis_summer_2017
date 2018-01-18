@@ -70,9 +70,10 @@ Class Project {
       $project;
       if($result['isGroup'] === '0')
       {
-          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+          $projectuserlist = ProjectUser::project($id)[1];
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], $projectuserlist);
       }
-      if($result['isGroup'] == '2')
+      else if($result['isGroup'] === '2')
       {
         $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], EventUser::eventID($result['projectID'])[1]);
       }

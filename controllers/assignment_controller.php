@@ -12,12 +12,12 @@ class AssignmentController
   public function delete()
   {
     $message;
-    $assignmentID = $_POST['assignmentID'];
-    Assignment::delete($assignmentID);
+    $assignmentID = $_POST['assignmentid'];
+    echo Assignment::delete($assignmentID)[1];
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
-    header('Location: index.php');
+    //echo("<script>location.href = 'index.php';</script>");
   }
 
   //========================================================================== EDIT ASSIGNMENT
@@ -39,91 +39,91 @@ class AssignmentController
     $message;
     $assignmentID;
     $klass = Klass::classid($_POST['classid'])[1];
+    $userID = User::getID($_SESSION['token'])[1];
+    $type;
+    $create = false;
 
-    if(isset($_POST['title']))
+    if(isset($_POST['peerEval']))
     {
-      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id)[1];
+      $type = 'peer';
+      $create = true;
+    }
+    if(isset($_POST['submissionAssignment']))
+    {
+      $type = 'submission';
+      $create = true;
+    }
+    if($create)
+    {
+      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id, $type)[1];
       $criteriaSetID;
-      if(isset($_POST['savedSetName']))
+      $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+      Rubric::associateWithAssignment($assignmentID, $rubricID);
+
+      $counter = 1;
+      foreach($_POST['criterianame'] as $criName)
       {
-        $criteriaSetID = Criteria::createSet($_POST['savedSetName'], $_POST['savedSetDescription'])[1];
-        $userID = User::getID($_SESSION['token'])[1];
-        Criteria::associateWithUser($userID, $criteriaSetID);
+        $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+        Rubric::associateWithRubric($rubricID, $criteriaSetID);
+        $counter2 = 0;
+        foreach($_POST[$counter] as $cri)
+        {
+          $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+          CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+          $counter2++;
+        }
+
+        $counter++;
       }
 
 
-      for($i = 0; $i < sizeof($_POST['criteriaName']);$i++)
+      //GROUP/PROJECT CREATION
+      if($_POST['makegroup'] == 'true')
       {
-        $allowTextResponse = 1;
-        if($_POST['textresponse'.$i] === 'no')
-          $allowTextResponse = 0;
-        $currentID;
-        if($_POST['graded'][$i] === 'yes')
+        $numofGroups = sizeof($_POST['labels']);
+        $groupcounter = 1;
+        foreach($_POST['labels'] as $label)
         {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], $_POST['from'][$i], $_POST['to'][$i], $allowTextResponse)[1];
+          $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
+          $userIDs = array();
+          $counter = 0;
+          $groupcounter++;
+          foreach($_POST[$label] as $element)
+          {
+            $userIDs[] = $element;
+          }
+          $message = Group::create($projectID, $userIDs)[1];
+          for($i=0; $i < sizeof($userIDs); $i++)
+          {
+            $user = User::id($userIDs[$i])[1];
+            //echo "<script> alert(".$user->email.");</script>";
+            EmailNotification::sendEmail($user->email,
+                                       "New Assignment: '".$_POST['title']."'",
+                                       "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
+          }
         }
-        else
-        {
-          $currentID = Criteria::insert($_POST['criteriaName'][$i], $_POST['criteriadescription'][$i], '0', '0', $allowTextResponse)[1];
-        }
-
-        $idList[] = $currentID;
-        echo $currentID;
-        Criteria::associateWithAssignment($assignmentID, $currentID);
       }
-    }
-    if(isset($criteriaSetID))
-    {
-      foreach($idList as $id)
-      Criteria::addToSet($criteriaSetID, $id);
-    }
-
-    //GROUP/PROJECT CREATION
-    if($_POST['makegroup'] == 'true')
-    {
-      $numofGroups = sizeof($_POST['labels']);
-      $groupcounter = 1;
-      foreach($_POST['labels'] as $label)
+      else
       {
-        $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
-        $userIDs = array();
-        $counter = 0;
-        $groupcounter++;
-        foreach($_POST[$label] as $element)
+        $ids = $_POST['person'];
+        for($i = 0; $i < sizeof($ids);$i++)
         {
-          $userIDs[] = $element;
-        }
-        $message = Group::create($projectID, $userIDs)[1];
-        for($i=0; $i < sizeof($userIDs); $i++)
-        {
-          $user = User::id($userIDs[$i])[1];
-          //echo "<script> alert(".$user->email.");</script>";
+          $user = User::id($ids[$i])[1];
+          $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
+          $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
           EmailNotification::sendEmail($user->email,
-                                     "New Assignment: '".$_POST['title']."'",
-                                     "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
+                                      "New Assignment: '".$_POST['title']."'",
+                                      "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for a new assignment in course ".$klass->coursename.".\nThe assignment is due ".date_format(date_create($_POST['duedate']), 'm/d/Y').", at ".date_format(date_create($_POST['duetime']), 'g:i a').".\n\nDo not reply to this email, the inbox is not monitoried.");
         }
-      }
-    }
-    else
-    {
-      $ids = $_POST['person'];
-      for($i = 0; $i < sizeof($ids);$i++)
-      {
-        $user = User::id($ids[$i])[1];
-        $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
-        $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
-        EmailNotification::sendEmail($user->email,
-                                    "New Assignment: '".$_POST['title']."'",
-                                    "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for a new assignment in course ".$klass->coursename.".\nThe assignment is due ".date_format(date_create($_POST['duedate']), 'm/d/Y').", at ".date_format(date_create($_POST['duetime']), 'g:i a').".\n\nDo not reply to this email, the inbox is not monitoried.");
-      }
 
+      }
+      //Setup a redicrection back to the class page we were working in
+      $_SESSION['controller'] = 'pages';
+      $_SESSION['action'] = 'classes';
+      $_SESSION['returnto'] = $_POST['classid'];
     }
-    //Setup a redicrection back to the class page we were working in
-    $_SESSION['controller'] = 'pages';
-    $_SESSION['action'] = 'classes';
-    $_SESSION['returnto'] = $_POST['classid'];
     //Load index page
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
   //==========================================================================
   public function createAssignmentQuick()
@@ -174,8 +174,10 @@ class AssignmentController
     {
       $status='user';
     }
+
     $assignmentID = $_GET['assignmentID'];
     $a = Assignment::id($assignmentID)[1];
+    $type = $a->type;
     $e = Event::all()[1];
     $classID = $_GET['classID'];
     require_once("views/assignment/viewAssignment.php");
@@ -183,12 +185,14 @@ class AssignmentController
   //==========================================================================
   public function details()
   {
-    $t;
-    if(isset($_GET['id']))
+    $t;                           //$t is a temp variable
+    if(isset($_GET['id']))        // Check if we have a GET variable, typical if user clicked to a particular class
       $t = $_GET['id'];
     else
-      $t = $_SESSION['targetid'];
+      $t = $_SESSION['targetid'];// Else we check if the session stored the variable to auto return to class after a previous action
     $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
+
+
     require_once('views/assignment/detailsAssignment.php');
   }
 }

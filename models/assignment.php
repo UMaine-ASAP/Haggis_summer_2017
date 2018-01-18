@@ -6,28 +6,30 @@ class Assignment
   public $description;
   public $duetime;
   public $duedate;
-  public $criterias;
+  public $rubric;
   public $projects;
+  public $type;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin)
+  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein)
   {
     $this->id = $id;
     $this->title = $title;
     $this->description=$description;
     $this->duetime = date_format(date_create($duetime), 'g:i a');
     $this->duedate = date_format(date_create($duedate), 'm/d/Y');
-    $this->criterias = Criteria::assignmentID($id)[1];
+    $this->rubric = Rubric::assignmentID($id)[1];
     $this->projects = $projectsin;
+    $this->type = $typein;
   }
 
 //=================================================================================== INSERT ASSIGNMENT
-  public static function create($title, $description, $duetime, $duedate, $classid)
+  public static function create($title, $description, $duetime, $duedate, $classid, $type)
   {
     $errorCode;
     $message;
     $db= Db::getInstance();
-    $sql = "INSERT INTO assignment(title, description, dueTime, dueDate) VALUES(?,?,?,?)";
-    $data = array($title, $description, $duetime, $duedate);
+    $sql = "INSERT INTO assignment(title, description, dueTime, dueDate, assignmentType) VALUES(?,?,?,?,?)";
+    $data = array($title, $description, $duetime, $duedate,$type);
     try
     {
       $stmt = $db->prepare($sql);
@@ -82,7 +84,7 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $errorCode = 1;
-      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1]);
+      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
     }
     catch(PDOException $e)
     {
@@ -106,7 +108,7 @@ public static function linkToClass($classID, $assignmentID)
         $assignmentarray = array();
         while($r = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1]);
+          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
         }
         $message = $assignmentarray;
         $errorCode = 1;
@@ -134,7 +136,7 @@ public static function linkToClass($classID, $assignmentID)
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
 
-            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1]);
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
           }
           $message = $assignmentarray;
           $errorCode = 1;
@@ -158,9 +160,8 @@ public static function linkToClass($classID, $assignmentID)
     {
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $message = $assignmentarray = array();
       Criteria::deleteAssociation($assignmentID);
-      $message .= " | assignment deleted";
+      $message = "assignment deleted";
       $errorCode = 1;
     }
     catch(PDOException $e)

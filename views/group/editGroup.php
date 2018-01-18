@@ -1,6 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="java/draganddrop.js"></script>
-<script src="java/formScaler.js"></script>
+<script src="js/draganddrop.js"></script>
+<script src="js/formScaler.js"></script>
 
 <h2>Edit Groups</h2>
 

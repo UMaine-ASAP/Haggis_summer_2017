@@ -2,7 +2,7 @@
 
   session_start();                          //starts a local session
 
-  if(false)                                  //For debugging only
+  if(true)                                  //For debugging only
   {                                         //    Set false to remove all error
     ini_set('display_errors', 1);           //    reporting.
     ini_set('display_startup_errors',1);
@@ -18,9 +18,10 @@
   //    the user was last in. example: user creates a class, user should be
   //    returned to the class they were in when completing the creation action
   $controller;        //used to store the controller defenition
-  $action;            //used to store the action defenition
-  $mobile = $detect->isMobile();
+  $action;            //used to store the action definition
+  $mobile = $detect->isMobile(); //detects if the browser is mobile format
   //pulls session redirect information then clears them
+
   if(isset($_SESSION['returnto']))
   {
     $controller = $_SESSION['controller'];
@@ -28,6 +29,7 @@
     unset($_SESSION['controller']);
     unset($_SESSION['action']);
   }
+
   //grab the data from the URL
   else if(isset($_GET['controller']) && isset($_GET['action']))
   {

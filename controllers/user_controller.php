@@ -8,7 +8,7 @@ class UserController
       if(isset($_POST['firstname']))
       {
         $out='';
-        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['password'],$_POST['profcode']);
+        $outcome = User::create($_POST['firstname'], $_POST['lastname'], $_POST['middleinitial'], $_POST['email'], $_POST['new-password'],$_POST['profcode']);
           switch($outcome[0])
           {
             case '1':
@@ -20,21 +20,21 @@ class UserController
           }
           $_SESSION['message'] = $out;
       }
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== LOGIN
   function login()
   {
     if(isset($_POST['email']))
     {
-      $outcome =  User::login($_POST['email'], $_POST['password']);
+      $outcome =  User::login($_POST['email'], $_POST['current-password']);
       if($outcome[0] != 1)
       {
         $_SESSION['message'] = $outcome[1];
         if ($_GET['mobile']) {
           header('Location: index.php?controller=mobile&action=login');
         } else {
-          header('Location: index.php');
+          echo("<script>location.href = 'index.php';</script>");
         }
       }
       else
@@ -44,7 +44,8 @@ class UserController
         $_SESSION['lastName'] = $UserData[1];
         $_SESSION['middleInitial'] = $UserData[2];
         $_SESSION['token'] = $UserData[3];
-        header('Location: index.php');
+        echo("<script>location.href = 'index.php';</script>");
+        // echo("<script>location.href = 'index.php';</script>");
       }
     }
   }
@@ -54,7 +55,7 @@ class UserController
     if(isset($_SESSION['token']))
       User::logout($_SESSION['token']);
     session_unset();													//unsets all Session variables effecitvly logging the user out of current session
-    header('Location: index.php');
+    echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== EDIT USER
   function editUser()
@@ -123,9 +124,9 @@ class UserController
 
     if (isset($_POST['passwordConfirm']))
     {
-      if($_POST['password'] == $_POST['passwordConfirm'])
+      if($_POST['new-password'] == $_POST['passwordConfirm'])
       {
-        $outcome = User::resetPassword($code, $_POST["password"]);
+        $outcome = User::resetPassword($code, $_POST["new-password"]);
         if($outcome[0] == 1)
         {
           $message = $outcome[1];
@@ -147,15 +148,15 @@ class UserController
     {
       $outcome = User::sendResetEmail($_POST['email']);
       $_SESSION['message'] = $outcome[1];
-      header('Location: index.php');
+      echo("<script>location.href = 'index.php';</script>");
     }
   }
 //=================================================================================== EMAIL CONFIRMATION
   function emailConfirmation(){
     $code = $_GET['code'];
     $outcome = User::confirmEmail($code);
-    $message = $outcome[1];
-    require_once('views/pages/index.php');
+    $_SESSION['message'] = $outcome[1];
+    echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== SEND EMAIL CONFIRMATION
   function sendEmailConfirmation()
