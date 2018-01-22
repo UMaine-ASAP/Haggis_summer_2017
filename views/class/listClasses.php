@@ -49,7 +49,7 @@ foreach($classes as $class)
     for($i = 0; $i<$daySize; $i++)
     {
       echo substr($class->days[$i],0,2);
-      if($i == $daySize-1)
+      if($i == $daySize-2)
       {
         $i++;
         echo ", and ".substr($class->days[$i],0,2);
