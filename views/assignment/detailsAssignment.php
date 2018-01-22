@@ -1,6 +1,9 @@
-<h2> Assignment Details</h2>
 
 <?php
+if($type ==='submission')
+  echo "<h2>Assignment Details</h2>";
+else
+  echo "<h2>Peer Evaluation Details</h2>";
 ////////////////////////////////////////////////////// CLASS DETAILS
 echo "<div class='details' id='".$a->id."'>
 Due Date:".$a->duedate."<br>
