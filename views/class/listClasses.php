@@ -54,7 +54,7 @@ foreach($classes as $class)
         $i++;
         echo ", and ".substr($class->days[$i],0,2);
       }
-      else
+      else if($i <$daySize-1)
       {
         echo ", ";
       }
