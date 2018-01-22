@@ -46,7 +46,7 @@ foreach($classes as $class)
   $daySize = sizeof($class->days);
   if($daySize > 0 )
   {
-    for($i = 0; $i<$daySize-1; $i++)
+    for($i = 0; $i<$daySize; $i++)
     {
       echo substr($class->days[$i],0,2);
       if($i == $daySize-2)
