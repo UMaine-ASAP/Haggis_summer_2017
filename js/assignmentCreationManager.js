@@ -32,7 +32,8 @@ function changeType(event, targetIdName)
   }
   else
   {
-      document.getElementById('makegroupTrue').setAttribute('type', 'radio');
+    $('#makegrouptruespan').show();
+    document.getElementById('makegroupTrue').setAttribute('type', 'radio');
     document.getElementById('warningMessage').innerHTML="";
   }
 }
