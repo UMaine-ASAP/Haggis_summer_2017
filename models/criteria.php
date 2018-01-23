@@ -67,7 +67,7 @@ class Criteria
     $errorCode;
     $message;
     $db = Db::getInstance();
-    $sql = "SELECT * FROM criteria WHERE criteriaID IN (SELECT criteriaID FROM criteria_criteriaset WHERE criteria_criteriaset.criteriaSetID = ?)";
+    $sql = "SELECT * FROM criteria WHERE criteriaID IN (SELECT criteriaID FROM criteria_criteriaSet WHERE criteria_criteriaSet.criteriaSetID = ?)";
     $stmt = $db->prepare($sql);
     $data = array($criteriaSetId);
     try
