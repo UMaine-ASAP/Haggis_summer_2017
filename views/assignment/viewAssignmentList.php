@@ -1,10 +1,11 @@
 <script src="js/livesearch.js"></script>
 <?php
+$assignmentListSize = sizeof($assignments);
 if($status === 'admin')
 echo "<a id='NewAssignment' onclick='NewAssignment(".$classID.")'><button type='button' class='standard mediumbutton'>New Assignment +</button></a>";
 ?>
 <div class='menutitle'>
-Assignments(<?php echo sizeof($assignments);?>)
+Assignments(<?php $assignmentListSize ?>)
 </div>
 <br>
 <div>
@@ -13,9 +14,16 @@ Assignments(<?php echo sizeof($assignments);?>)
 <br>
 
 <?php
-foreach($assignments as $a)
+if($assignmentListSize > 0)
 {
-  echo "<div class='assignments' onclick='ViewAssignment(".$a->id.",".$classID.")' id=''><button class='standard' style='list-style-type: none;width:80%'>".$a->title."</button></div>";
+  foreach($assignments as $a)
+  {
+    echo "<div class='assignments' onclick='ViewAssignment(".$a->id.",".$classID.")' id=''><button class='standard' style='list-style-type: none;width:80%'>".$a->title."</button></div>";
+  }
+}
+else
+{
+  echo "There are currently no assignments.";
 }
 
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
