@@ -43,6 +43,7 @@ echo "</div>
             echo "</div><hr class='minor'>";
           }
         }
+        echo "<div class='error' id='masterError'></div>";
         echo "<input class='standard evalsubmit' id='evalsubmit' type='button' value='Submit Evaluation' >
   </form></div></td></tr></table></div>";
 ?>

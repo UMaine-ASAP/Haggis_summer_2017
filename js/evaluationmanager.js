@@ -60,6 +60,7 @@ $(document).ready(function()
     var commentboxes = document.getElementsByClassName('criteriaComment');
     var criteriaRatings = document.getElementsByClassName('criteriaRating');
     var criteriaMsgs = document.getElementsByClassName('criteriaMsg');
+    var masterError = document.getElementById('masterError');
 
     var progress = true;
     for(var i = 0; i < commentboxes.length; i++)
@@ -70,12 +71,16 @@ $(document).ready(function()
       {
         criteriaMsgs[i].style.border='2px dashed red';
         criteriaMsgs[i].innerHTML +=  'Missing Comment';
+        masterError.style.border='2px dashed red';
+        masterError.innerHTML = "There are one or more errors. Please review all entries";
         progress = false;
       }
       else
       {
         criteriaMsgs[i].style.border='0px dashed red';
         thisbox.style.border='1px solid black';
+        masterError.style.border='0px solid black';
+        masterError.innerHTML = "";
       }
     }
     if(progress)
