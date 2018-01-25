@@ -5,7 +5,7 @@ if($status === 'admin')
 echo "<a id='NewAssignment' onclick='NewAssignment(".$classID.")'><button type='button' class='standard mediumbutton'>New Assignment +</button></a>";
 ?>
 <div class='menutitle'>
-Assignments(<?php $assignmentListSize ?>)
+Assignments(<?php echo $assignmentListSize ?>)
 </div>
 <br>
 <div>
