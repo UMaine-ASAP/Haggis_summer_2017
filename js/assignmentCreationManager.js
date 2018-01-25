@@ -5,9 +5,23 @@ $(document).ready(function()
     $(".assignmentCreationGroup").hide();
     $("#assignmentCreationReview").hide();
     $("#step1").css("background-color", "lightgreen");
+    document.getElementById("criteraCopyManager").style.display = 'none';
+
+    // $(".copyAssignment").on('input',function(event)
+    // {
+    //   var elementvalue = $(this).val();
+    //   alert(elementvalue;
+    // });
 
 
 });
+
+// function copyAssignment(event)
+// {
+//   var elementvalue = event.target.value;
+//   alert(elementvalue);
+//
+// }
 
 function updateTarget(event, targetClassName)
 {
@@ -16,8 +30,15 @@ function updateTarget(event, targetClassName)
   var nameChangeTargets = document.getElementsByClassName(targetClassName);
   for(var i = 0; i < nameChangeTargets.length; i++)
   {
-    nameChangeTargets[i].innerHTML = contents;
+    nameChangeTargets[i].innerHTML = " "+contents;
   }
+}
+
+function showTargetHideOther(event, targetID, otherID)
+{
+  document.getElementById(targetID).style.display = 'inline';
+  document.getElementById(otherID).style.display = 'none';
+  document.getElementById('copyRubric').value= event.target.value;
 }
 
 function changeType(event, targetIdName)
@@ -76,25 +97,28 @@ function toassignment()
 
 function toreview()
 {
-  var criTable = document.getElementById('rubricview').cloneNode(true);
-  criTableInputs = criTable.getElementsByTagName('input');
-
-  for(var i = criTableInputs.length-1; i >-1; i--)
+  if(document.getElementById('copyRubric').value == 'false')
   {
+    var criTable = document.getElementById('rubricview').cloneNode(true);
+    criTableInputs = criTable.getElementsByTagName('input');
 
-    var currInput = criTableInputs[i];
+    for(var i = criTableInputs.length-1; i >-1; i--)
+    {
 
-    var newElem = document.createElement('span');
-    newElem.innerHTML = currInput.value;
-    currInput.parentNode.setAttribute('style', 'text-align:center');
-    currInput.parentNode.replaceChild(newElem, currInput);
+      var currInput = criTableInputs[i];
 
+      var newElem = document.createElement('span');
+      newElem.innerHTML = currInput.value;
+      currInput.parentNode.setAttribute('style', 'text-align:center');
+      currInput.parentNode.replaceChild(newElem, currInput);
+
+    }
+    criTable.deleteRow(criTable.rows.length-1);
+
+    var tableHolder = document.getElementById('rubricviewer');
+    tableHolder.innerHTML= "";
+    tableHolder.appendChild(criTable);
   }
-  criTable.deleteRow(criTable.rows.length-1);
-
-  var tableHolder = document.getElementById('rubricviewer');
-  tableHolder.innerHTML= "";
-  tableHolder.appendChild(criTable);
 
   $(".assignmentCreationGroup").hide();
   $(".assignmentCreationCriteria").hide();

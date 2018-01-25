@@ -22,7 +22,9 @@
       <div class='assignmentCreation'>
         <div class='creation'>
           <input class='standard' type='hidden' name='classid' value='<?php echo $class->id; ?>'>
-
+          <!-- <h4>Recreate from a previous assignment?</h4>
+          Yes <input type='radio' name='copyAssignment'   value='yes'>
+          No  <input type='radio' name='copyAssignment' value='no' checked> -->
           <h4>Assignment Title</h4>
           <input class='standard' oninput='updateTarget(event, "assignmentName")' type='text' name='title' placeholder='New Assignment' required><br>
           <h4>Prompt:</h4>
@@ -77,8 +79,22 @@
       <!-- step 2 -->
       <div id='assignmentCreationCriteria' class='assignmentCreationCriteria'>
         <div class='creation'>
-          <?php echo $criteriaList; ?>
-          <?php require_once('views/criteria/createCriteria.php'); ?>
+          <div class='chooseCriteria'>
+            <h4>Copy Rubric from a previous assignment</h4>
+            <input type='hidden' id="copyRubric" name='copyRubric' value='false'>
+            <input type='hidden' id="copyRubricID" name ='copyRubricID' value='0'>
+            Yes <input type='radio' name='choosecopy' onclick="showTargetHideOther(event, 'criteraCopyManager', 'criteriaCreationManager')" value='true'>
+            No  <input type='radio' name='choosecopy' onclick="showTargetHideOther(event, 'criteriaCreationManager', 'criteraCopyManager')" value='false' checked>
+          </div>
+          <hr>
+          <div id='criteriaCreationManager'>
+            <?php echo $criteriaList; ?>
+            <?php require_once('views/criteria/createCriteria.php'); ?>
+          </div>
+          <div id='criteraCopyManager'>
+            <?php require_once('views/criteria/copyCriteria.php'); ?>
+          </div>
+
         </div>
         <div class='help'>
           <h2>Step 2 - Rubric Creation</h2>
@@ -187,3 +203,5 @@
 
 </form>
 <?php echo $criteriaStorage; ?>
+
+<div class='popup'

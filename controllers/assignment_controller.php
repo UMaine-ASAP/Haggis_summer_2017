@@ -40,6 +40,7 @@ class AssignmentController
     $assignmentID;
     $klass = Klass::classid($_POST['classid'])[1];
     $userID = User::getID($_SESSION['token'])[1];
+    $rubrics = Rubric::byAuthor($userID)[1];
     $type;
     $create = false;
 
@@ -57,24 +58,32 @@ class AssignmentController
     {
       $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id, $type)[1];
       $criteriaSetID;
-      $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
-      Rubric::associateWithAssignment($assignmentID, $rubricID);
-
-      $counter = 1;
-      foreach($_POST['criterianame'] as $criName)
+      if($_POST['copyRubric'] == 'true')
       {
-        $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
-        Rubric::associateWithRubric($rubricID, $criteriaSetID);
-        $counter2 = 0;
-        foreach($_POST[$counter] as $cri)
-        {
-          $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
-          CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
-          $counter2++;
-        }
-
-        $counter++;
+        Rubric::associateWithAssignment($assignmentID,$_POST['copyRubricID']);
       }
+      else
+      {
+        $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+        Rubric::associateWithAssignment($assignmentID, $rubricID);
+
+        $counter = 1;
+        foreach($_POST['criterianame'] as $criName)
+        {
+          $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+          Rubric::associateWithRubric($rubricID, $criteriaSetID);
+          $counter2 = 0;
+          foreach($_POST[$counter] as $cri)
+          {
+            $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+            CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+            $counter2++;
+          }
+
+          $counter++;
+        }
+      }
+
 
 
       //GROUP/PROJECT CREATION
@@ -134,6 +143,8 @@ class AssignmentController
     $idList = array();
     $NumofGroups = 3;
     $userList;
+    $userID = User::getID($_SESSION['token'])[1];
+    $rubrics = Rubric::byAuthor($userID)[1];
 
     //fetch criterias to be used in assignment creation
     $criterias = Criteria::all()[1];
@@ -194,6 +205,46 @@ class AssignmentController
 
 
     require_once('views/assignment/detailsAssignment.php');
+  }
+  //==========================================================================
+  public function getRubric()
+  {
+    $rubric = Rubric::id($_POST['rubricID'])[1];
+    $ratingValues = array();
+    $c = $rubric->criteriaSets;
+    $subc = $c[0]->criterias;
+
+    for($i = 0; $i<sizeof($subc);$i++)
+    {
+      $ratingValues[] = $subc[$i]->ratingValue;
+    }
+
+
+
+    //Start constructing the table to hold the rubric
+    $rubricForm =  "<div><table>
+                    <tr>
+                    <th>Criteria</th>";
+
+
+    for($i = 0; $i< sizeof($ratingValues);$i++)
+      $rubricForm .= "<th>".$ratingValues[$i]."</th>";
+
+    $rubricForm .= "</tr>";
+
+
+    foreach($rubric->criteriaSets as $c)
+    {
+      $rubricForm .= "<tr><td class='criDesc'>".$c->title."</td>";
+      foreach($c->criterias as $subc)
+      {
+        $rubricForm .= "<td class='criDesc'>".$subc->description."</td>";
+      }
+
+    }
+    $rubricForm .= "</tr></table></div>";
+
+    echo $rubricForm;
   }
 }
 ?>

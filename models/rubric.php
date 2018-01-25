@@ -210,6 +210,64 @@ class Rubric
         }
         return array($errorCode, $message);
     }
+    //=================================================================================== Linke Criteria to Assignment
+      public static function all()
+      {
+        {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM rubric";
+          $stmt = $db->prepare($sql);
+          $listofRubric = array();
+          try
+          {
+            $stmt->execute();
+            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              $listofRubric[] = new Rubric($r['rubricID'],$r['title'],$r['description'],$r['author']);
+
+            }
+            $errorCode= 1;
+            $message=$listofRubric;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+        }
+      }
+      //=================================================================================== Linke Criteria to Assignment
+        public static function byAuthor($authorID)
+        {
+          {
+            $errorCode;
+            $message;
+            $db = Db::getInstance();
+            $sql = "SELECT * FROM rubric WHERE author = ?";
+            $stmt = $db->prepare($sql);
+            $data = array($authorID);
+            $listofRubric = array();
+            try
+            {
+              $stmt->execute($data);
+              while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+              {
+                $listofRubric[] = new Rubric($r['rubricID'],$r['title'],$r['description'],$r['author']);
+              }
+              $errorCode= 1;
+              $message=$listofRubric;
+            }
+            catch(PDOException $e)
+            {
+              $errorCode = $e->getCode();
+              $message = $e->getMessage();
+            }
+            return array($errorCode, $message);
+          }
+        }
 
 }
 

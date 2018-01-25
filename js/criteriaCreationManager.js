@@ -36,7 +36,7 @@ function changeRange(rangein)
   var colheaderleading="";
   for(var i = 0; i < rangein; i++)
   {
-    colheaderleading += "<th class='scoreheader'><input class='standard' type='number' name='rangePoint[]' maxlength='3' style='width:50px' required></th>";
+    colheaderleading += "<th class='scoreheader'><input class='standard' type='number' name='rangePoint[]' maxlength='3' style='width:50px'></th>";
   }
   document.getElementById('colheaders').innerHTML = colheaderstart + colheaderleading;
   document.getElementById('rubricbottomrow').setAttribute("colspan", rangein+1);
@@ -189,6 +189,7 @@ function updateAll()
       content = "Criteria Name";
     document.getElementById(currID).innerHTML = content;
   }
+  
 }
 
 function updateContents(event)
