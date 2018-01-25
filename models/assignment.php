@@ -48,6 +48,7 @@ class Assignment
     return array($errorCode, $message);
 
   }
+  
 //=================================================================================== ASSOCIATE WITH CLASS
 public static function linkToClass($classID, $assignmentID)
 {

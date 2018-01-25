@@ -84,7 +84,10 @@ h3
 {
   height:50px;
   text-align:center;
+  vertical-align: middle;
   color:red;
+  font-size:15px;
+  font-weight:bold;
   animation-name:attentionGetter;
   animation-duration: 2s;
 }
