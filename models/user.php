@@ -114,7 +114,7 @@ Class User {
       $to = $email;
       $subject = 'Haggis Email confirmation';
       $message = 'You registered for an account. Click the link below to confirm your email address \n  ' .
-      "http://wwww.chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=emailConfirmation&code=$result\n" .
+      "http://chitna.asap.um.maine.edu/Haggis_summer_2017/?controller=user&action=emailConfirmation&code=$result\n" .
       "  If you didn't register for an account ignore this email";
       $headers = 'From: confirmAccount@haggis.com' . "\r\n" . 'confirmAccount: confirmAccount@haggis.com';
       mail($to, $subject, $message, $headers);
