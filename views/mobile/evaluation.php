@@ -65,6 +65,7 @@ $linkout;
       if($c->allowTextResponse === '1')
         echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'></textarea>";
       echo "</div><hr class='minor'>";
+      echo "<div class='error' id='masterError'></div>";
     }
   }
 
