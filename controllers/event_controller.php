@@ -8,29 +8,35 @@ class EventController
   {
     $userID = User::getID($_SESSION['token'])[1];
     $eventID = Event::create($_POST['title'], $_POST['description'], $_POST['startTime'], $_POST['endTime'], $_POST['startDate'], $_POST['endDate'], $_POST['active'], '1', '1', '1', '1')[1];
-    $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
-    Rubric::associateWithEvent($eventID, $rubricID);
+
     $criteriaSetID;
-
-    $counter = 1;
-    foreach($_POST['criterianame'] as $criName)
+    if($_POST['copyRubric'] == 'true')
     {
-      $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
-      Rubric::associateWithRubric($rubricID, $criteriaSetID);
-      $counter2 = 0;
-      foreach($_POST[$counter] as $cri)
-      {
-        $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
-        CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
-        $counter2++;
-      }
-      // CriteriaSet::associateWithEvent($eventID, $criteriaSetID);
-      $counter++;
+      Rubric::associateWithEvent($eventID, $_POST['copyRubricID']);
+
     }
+    else
+    {
+      $rubricID = Rubric::create($_POST['title'], "", $userID)[1];
+      Rubric::associateWithEvent($eventID, $rubricID);
+      $criteriaSetID;
 
-
-
-
+      $counter = 1;
+      foreach($_POST['criterianame'] as $criName)
+      {
+        $criteriaSetID = CriteriaSet::insert($criName,"",$_POST['rangePoint'][0],$_POST['rangePoint'][sizeof($_POST['rangePoint'])-1], "1")[1];
+        Rubric::associateWithRubric($rubricID, $criteriaSetID);
+        $counter2 = 0;
+        foreach($_POST[$counter] as $cri)
+        {
+          $criteriaID = Criteria::insert($criName, $cri, $_POST['rangePoint'][$counter2])[1];
+          CriteriaSet::addCriteriaToSet($criteriaSetID, $criteriaID);
+          $counter2++;
+        }
+        // CriteriaSet::associateWithEvent($eventID, $criteriaSetID);
+        $counter++;
+      }
+    }
   echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== SHOW PROJECTS OF EVENT
@@ -60,6 +66,8 @@ class EventController
     $criterias = Criteria::all()[1];
     $criteriaList = "<datalist id='criterias'>";
     $criteriaStorage="";
+    $userID = User::getID($_SESSION['token'])[1];
+    $rubrics = Rubric::byAuthor($userID)[1];
     foreach($criterias as $c)
     {
       $criteriaList .= "<option value='".$c->title."'>";
@@ -93,7 +101,7 @@ class EventController
     public function delete()
     {
         $eventID = $_GET['id'];
-        $result = Event::delete($eventID);
+        $result = Event::delete($eventID)[1];
         echo("<script>location.href = 'index.php';</script>");
 
     }

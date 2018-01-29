@@ -7,7 +7,7 @@
     echo "<h2>Assignment: ".$a->title."</h2>";
   else
     echo "<h2>Evaluation: ".$a->title."</h2>";
-  echo "<span><button class='standard promptlink' onclick='GetPrompt(".$a->id.")'>Prompt</button></span>";
+  echo "<span><button class='standard promptlink' type='button' onclick='GetPrompt(".$a->id.",\"$type\")'>Prompt</button></span>";
   if($status === 'admin')
   {
     if($type ==='submission')

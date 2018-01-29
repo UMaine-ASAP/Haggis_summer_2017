@@ -2,6 +2,7 @@ var range = 1;
 var count = 0;
 $(document).ready(function()
 {
+  document.getElementById("criteraCopyManager").style.display = 'none';
   var temprange;
   $("#scoringrange").on('focusin', function(event)
   {
@@ -29,6 +30,13 @@ $(document).ready(function()
 
 
 });
+
+function showTargetHideOther(event, targetID, otherID)
+{
+  document.getElementById(targetID).style.display = 'inline';
+  document.getElementById(otherID).style.display = 'none';
+  document.getElementById('copyRubric').value= event.target.value;
+}
 
 function changeRange(rangein)
 {
@@ -189,7 +197,7 @@ function updateAll()
       content = "Criteria Name";
     document.getElementById(currID).innerHTML = content;
   }
-  
+
 }
 
 function updateContents(event)

@@ -35,7 +35,7 @@ function EvaluateProjectEvent(idin, eventid)
 {
   $('#FinalView').load("?controller=project&action=eventEvaluate&quick=1&id="+idin+"&eventID="+eventid);
 }
-function GetPrompt(idin)
+function GetPrompt(idin, type)
 {
-  $('#ProjectView').load("?controller=assignment&action=details&quick=1&id="+idin);
+  $('#ProjectView').load("?controller=assignment&action=details&quick=1&id="+idin+"&type="+type);
 }

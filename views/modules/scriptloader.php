@@ -1,5 +1,5 @@
 <?php
-if($action == 'createAssignmentQuick' || isset($sop)) { ?>
+if($action == 'createAssignmentQuick' || $action=='viewAssignment' || $action=='' || isset($sop)) { ?>
 
 <script src="js/popup.js"></script>
 

@@ -13,6 +13,4 @@
    ?>
  </select>
 </div>
-<div id='criteriaDump'>
-
-</div>
+<div id='criteriaDump'></div>

@@ -27,7 +27,21 @@
   <div class='eventCreationCritera'>
     <h4>Rubric Creation</h4>
     <?php echo $criteriaList; ?>
-    <?php require_once('views/criteria/createCriteria.php'); ?>
+    <div class='chooseCriteria'>
+      <h4>Copy Rubric from a previous assignment</h4>
+      <input type='hidden' id="copyRubric" name='copyRubric' value='false'>
+      <input type='hidden' id="copyRubricID" name ='copyRubricID' value='0'>
+      Yes <input type='radio' name='choosecopy' onclick="showTargetHideOther(event, 'criteraCopyManager', 'criteriaCreationManager')" value='true'>
+      No  <input type='radio' name='choosecopy' onclick="showTargetHideOther(event, 'criteriaCreationManager', 'criteraCopyManager')" value='false' checked>
+    </div>
+    <hr>
+    <div id='criteriaCreationManager'>
+      <?php echo $criteriaList; ?>
+      <?php require_once('views/criteria/createCriteria.php'); ?>
+    </div>
+    <div id='criteraCopyManager'>
+      <?php require_once('views/criteria/copyCriteria.php'); ?>
+    </div>
   </div>
 
 </div>

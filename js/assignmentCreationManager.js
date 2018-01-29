@@ -5,7 +5,7 @@ $(document).ready(function()
     $(".assignmentCreationGroup").hide();
     $("#assignmentCreationReview").hide();
     $("#step1").css("background-color", "lightgreen");
-    document.getElementById("criteraCopyManager").style.display = 'none';
+    
 
     // $(".copyAssignment").on('input',function(event)
     // {
@@ -34,12 +34,7 @@ function updateTarget(event, targetClassName)
   }
 }
 
-function showTargetHideOther(event, targetID, otherID)
-{
-  document.getElementById(targetID).style.display = 'inline';
-  document.getElementById(otherID).style.display = 'none';
-  document.getElementById('copyRubric').value= event.target.value;
-}
+
 
 function changeType(event, targetIdName)
 {

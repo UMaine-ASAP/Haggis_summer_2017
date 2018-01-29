@@ -202,7 +202,7 @@ class AssignmentController
     else
       $t = $_SESSION['targetid'];// Else we check if the session stored the variable to auto return to class after a previous action
     $a = Assignment::id($t)[1];  //pulls assignments for the relevent class
-
+    $type = $_GET['type'];
 
     require_once('views/assignment/detailsAssignment.php');
   }
