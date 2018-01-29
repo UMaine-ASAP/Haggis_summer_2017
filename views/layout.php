@@ -2,6 +2,7 @@
 <?php
   if(isset($_GET['quick']))
   {
+
     require_once('views/modules/scriptloader.php');
     require_once('routes.php');
   }
@@ -62,7 +63,7 @@
           <?php require_once('views/modules/header.php');?>
         </header>
         <body>
-          <?php require_once('views/modules/scriptloader.php');?>
+          <?php $sop = true; require_once('views/modules/scriptloader.php');?>
           <div class=spacer></div>
             <?php require_once('routes.php'); ?>
         </body>

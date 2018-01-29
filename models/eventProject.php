@@ -54,7 +54,7 @@ Class EventProject {
 
       while($result = $stmt->fetch(PDO::FETCH_ASSOC))
       {
-        $courses[]= new EventProject($result['ID'],$result['title'],$result['description'],$result['abstract'],$result['projectID'], $result['projectEventCode']);
+        $courses[]= new EventProject($result['eventProjectID'],$result['title'],$result['description'],$result['abstract'],$result['projectID'], $result['projectEventCode']);
       }
       return array(1, $courses);
     }

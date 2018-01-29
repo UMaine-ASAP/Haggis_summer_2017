@@ -15,11 +15,13 @@ Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
 <?php
 foreach($projectList as $p)
 {
-  echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
+  if($p->id != '')
+    echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
 }
 foreach($eventprojectList as $p)
 {
-  echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",2)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
+  if($p->id != '')
+    echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",2)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
 }
 
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')

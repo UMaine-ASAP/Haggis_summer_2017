@@ -5,7 +5,8 @@
   <?php
 
     echo "Share this link with event participants to allow them to register their projects with this event.<br>
-      <input  disabled size='75' id='copiablereglink' value='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>
+      <input type='text' size='75' id='copiablereglink' 
+      value='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>
       <button class='standard' onclick='copy()'>Copy Link</button>";
 
       echo "<hr>";
@@ -27,12 +28,36 @@
 </div>
 
 <script>
+
+
+
+
+  function copyToClipboard()
+  {
+    var text = document.getElementById('copiablereglink').value;
+    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+    alert('text');
+  }
+
+
+
 function copy()
 {
   var copyText = document.getElementById("copiablereglink");
-  copyText.select();
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
+  try
+  {
+    copyText.select();
+    document.execCommand("Copy");
+    alert("Copied the text: " + copyText.value);
+  }
+  catch (e)
+  {
+    alert("copy action did not execute");
+  }
+
+
+
+
 }
 
 function deleteEvent(inid)

@@ -44,8 +44,8 @@ class ProjectController
       $mi = $_POST['middleInitial'];
       $ln = $_POST['lastname'];
       $em = $_POST['email'];
-      $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1];
-      EventProject::associatewithevent($eventprojectID, $eventID);
+      echo $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1]."<br>";
+      echo EventProject::associatewithevent($eventprojectID, $eventID)[1]."<br>";
       for($i = 0; $i < sizeof($fn); $i++)
       {
         $temp = EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$eventprojectID)[1];
@@ -53,7 +53,7 @@ class ProjectController
 
       }
       echo "<div class='projectRegistration'><h2>Project Successfully Submitted</h2></div>";
-      header('Location: ?controller=project&action=registerEvent&target='.$eventID);
+      //echo("<script>location.href = '?controller=project&action=registerEvent&target=".$eventID."';</script>");
     }
     else
     {

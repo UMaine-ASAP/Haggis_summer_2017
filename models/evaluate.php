@@ -146,10 +146,18 @@ class Evaluate
          $message;
          $db = Db::getInstance();
          $sql;
-         if($type === '1')
-          $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
-        else if($type === '3')
-          $sql = "SELECT * FROM evaluation WHERE author = ? AND userID = ? AND criteriaID = ?";
+         switch($type)
+         {
+           case '1':
+            $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
+            break;
+          case '2':
+            $sql = "SELECT * FROM evaluation WHERE author = ? AND projectID = ? AND criteriaID = ?";
+            break;
+          case '3':
+            $sql = "SELECT * FROM evaluation WHERE author = ? AND userID = ? AND criteriaID = ?";
+            break;
+         }
 
          $data = array($authorid, $targetID, $criteriaid);
          try
