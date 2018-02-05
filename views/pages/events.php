@@ -13,7 +13,7 @@ if($status=='admin')
   ?>
   <script>fixer("#currentAction",
           "<?php echo $event->title; ?>",
-          "<a class='popupmaker' id='eventOptions'><input class='standard' type='button' value='Options'></a> <?php echo $eventStatus; ?>");</script>
+          "<a class='popupmaker' onclick='createPopup(\"eventOptions\")' id='eventOptions'><input class='standard' type='button' value='Options'></a> <?php echo $eventStatus; ?>");</script>
 <?php
 }
 else

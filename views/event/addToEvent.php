@@ -1,4 +1,4 @@
-<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+<div class='exit' onclick='closePopup("addToEvent")'><i class="glyphicon glyphicon-remove"></i></div>
 <h2>Add <?php echo $a->title; ?> to Event</h2><hr>
 
 <form method='post' action='?controller=event&action=addAssignment'>

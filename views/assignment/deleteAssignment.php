@@ -1,5 +1,5 @@
 
-<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+<div class='exit' onclick='closePopup("deleteAssignment")'><i class="glyphicon glyphicon-remove"></i></div>
 <h2>New User Registration</h2><hr>
 
 Are you sure you wish to delete this assignment?<br>

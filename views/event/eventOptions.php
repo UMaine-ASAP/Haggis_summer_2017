@@ -1,11 +1,11 @@
 <div id='eventOptions' class='popup'>
-  <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+  <div class='exit' onclick='closePopup("eventOptions")'><i class="glyphicon glyphicon-remove"></i></div>
   <h2>Event Options</h2>
   <hr>
   <?php
 
     echo "Share this link with event participants to allow them to register their projects with this event.<br>
-      <input type='text' size='75' id='copiablereglink' 
+      <input type='text' size='75' id='copiablereglink'
       value='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerEvent&target=".$event->id."'>
       <button class='standard' onclick='copy()'>Copy Link</button>";
 

@@ -203,5 +203,3 @@
 
 </form>
 <?php echo $criteriaStorage; ?>
-
-<div class='popup'

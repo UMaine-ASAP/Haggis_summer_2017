@@ -1,4 +1,4 @@
-<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+<div class='exit' onclick='closePopup("resetPassword")'><i class="glyphicon glyphicon-remove"></i></div>
 
 <h2>Password Reset Request</h2><hr>
 <form name="form" action="?controller=user&action=passwordResetRequest" method="post">

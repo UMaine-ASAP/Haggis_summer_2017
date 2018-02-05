@@ -20,8 +20,8 @@
       <input class='standard' type='password' name='current-password' placeholder='Password'>
       <input  class='standard submitlogin' type='submit' value='Login'><br>
     </form>
-    <a class='popupmaker' id='registerUser' href='#'>Register</a>
-    <a class='popupmaker' id ='resetPassword' href='#'>Forgot Password?</a>
+    <a  id='registerUser' onclick="createPopup('registerUser')">Register</a>
+    <a  id ='resetPassword' onclick="createPopup('resetPassword')" href='#'>Forgot Password?</a>
 
 
     <?php

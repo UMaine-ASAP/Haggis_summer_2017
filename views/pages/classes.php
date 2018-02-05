@@ -12,7 +12,7 @@
             ?>
             <script>fixer("#currentAction",
                     "<?php echo $class->coursecode; ?>",
-                    "<div><a href='#' id='studentlist' class='popupmaker'>(<?php echo sizeof($students);?> students)</a></div><p>Join Code: <joincode><?php echo $class->joinCode;?></joincode></p>");</script>
+                    "<div><a href='#' id='studentlist' onclick='createPopup(\"studentlist\")'>(<?php echo sizeof($students);?> students)</a></div><p>Join Code: <joincode><?php echo $class->joinCode;?></joincode></p>");</script>
           <?php
           }
           else
@@ -42,7 +42,7 @@ if($status === 'admin')
 {
 ?>
     <div class ='popup' id='studentlist'>
-      <div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+      <div class='exit' onclick='closePopup("studentlist")'><i class="glyphicon glyphicon-remove"></i></div>
       <h2>Class Roster</h2><hr>
     <?php foreach($students as $s)
           {

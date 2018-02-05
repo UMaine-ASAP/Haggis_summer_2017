@@ -11,8 +11,8 @@
   if($status === 'admin')
   {
     if($type ==='submission')
-      echo "<button class='standard popupmaker' id='addToEvent'>Add To Event</button>";
-    echo "<button class='standard popupmaker' id='deleteAssignment'>Delete Assignment</button><br>";
+      echo "<button class='standard popupmaker' onclick='createPopup(\"addToEvent\")' id='addToEvent'>Add To Event</button>";
+    echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button><br>";
     if($type ==='submission')
       echo "<span>Project registration link:
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>

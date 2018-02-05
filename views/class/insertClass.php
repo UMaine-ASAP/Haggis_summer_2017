@@ -1,7 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/randomCode.js"></script>
 <script src="js/classCreation.js"></script>
-<div class='exit'><i class="glyphicon glyphicon-remove"></i></div>
+<div class='exit'   onclick='closePopup("createClass")'   ><i class="glyphicon glyphicon-remove"></i></div>
 <h2>New Class</h2><hr>
   <form name='createaclass' action='?controller=class&action=insertClass' method='post' oninput='coursenameout.value=coursename.value+" "+coursecode.value'>
     <input type='hidden'  name='token'        value = '<?php echo $_SESSION['token'];?>'>
