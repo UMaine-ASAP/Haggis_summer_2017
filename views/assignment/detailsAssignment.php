@@ -7,8 +7,9 @@ else
 ////////////////////////////////////////////////////// CLASS DETAILS
 echo "<div class='details' id='".$a->id."'>
 Due Date:".$a->duedate."<br>
+Due Time:".$a->duetime."<br>
 <h3>Prompt</h3>
-".nl2br($a->description)."<br>";
+".nl2br($a->description)."<br><hr><br>";
 $ratingValues = array();
 
 $rubric = $a->rubric;

@@ -16,3 +16,5 @@
 </div> -->
 
 <h3>Choose an Assignment</h3>
+
+Select an assignment from the list on the left
