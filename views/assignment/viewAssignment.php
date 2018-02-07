@@ -17,6 +17,7 @@
       echo "<span>Project registration link:
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
           http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
+      echo "<a href='?controller=assignment&action=assignEval&assignmentID=".$a->id."'>Assign Evaluations</a>";
 
   }
 

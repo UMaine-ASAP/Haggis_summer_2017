@@ -5,6 +5,7 @@ Class ProjectUser {
   public $userID;
   public $role;
   public $description;
+  public $user;
 //=================================================================================== STRUCT
   public function __construct($id, $projectID, $userID ,$role, $description) {
         $this->id = $id;
@@ -12,6 +13,7 @@ Class ProjectUser {
         $this->userID = $userID;
         $this->role = $role;
         $this->description = $description;
+        $this->user = User::id($userID);
     }
 
 //=================================================================================== CREATE

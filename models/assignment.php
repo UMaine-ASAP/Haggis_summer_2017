@@ -9,6 +9,7 @@ class Assignment
   public $rubric;
   public $projects;
   public $type;
+  public $classID;
 //=================================================================================== STRUCT
   public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein)
   {
@@ -20,6 +21,7 @@ class Assignment
     $this->rubric = Rubric::assignmentID($id)[1];
     $this->projects = $projectsin;
     $this->type = $typein;
+    $this->classID = Assignment::getClassID($id)[1];
   }
 
 //=================================================================================== INSERT ASSIGNMENT
@@ -48,7 +50,7 @@ class Assignment
     return array($errorCode, $message);
 
   }
-  
+
 //=================================================================================== ASSOCIATE WITH CLASS
 public static function linkToClass($classID, $assignmentID)
 {
@@ -173,8 +175,27 @@ public static function linkToClass($classID, $assignmentID)
     return array($errorCode, $message);
   }
   //=================================================================================== DELETE CLASS
-  public static function getAssigned($assignmentID)
+  public static function getClassID($assignmentID)
   {
-
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT classID FROM assignment_class WHERE assignmentID = ?";
+    $data = array($assignmentID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $r = $stmt->fetch(PDO::FETCH_ASSOC);
+      $message = $r['classID'];
+      $errorCode = 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = "ASSIGNMENT DELETION ".$e->getMessage();
+    }
+    return array($errorCode, $message);
   }
+
 }

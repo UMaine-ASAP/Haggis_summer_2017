@@ -246,5 +246,14 @@ class AssignmentController
 
     echo $rubricForm;
   }
+  //==========================================================================
+  public function assignEval()
+  {
+    $assignmentID = $_GET['assignmentID'];
+    $assignment = Assignment::id($assignmentID)[1];
+    $projects = $assignment->projects;
+    $classUsers = User::klass($assignment->classID)[1];
+    require_once('views/assignment/assignEvaluations.php');
+  }
 }
 ?>
