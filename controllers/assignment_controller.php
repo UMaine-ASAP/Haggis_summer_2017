@@ -8,7 +8,7 @@ class AssignmentController
     $assignment = Assignment::all()[1];
     require_once('views/assignment/viewAssignments.php');
   }
-
+//==========================================================================
   public function delete()
   {
     $message;
@@ -17,7 +17,7 @@ class AssignmentController
     $_SESSION['controller'] = 'pages';
     $_SESSION['action'] = 'classes';
     $_SESSION['returnto'] = $_POST['classID'];
-    //echo("<script>location.href = 'index.php';</script>");
+    echo("<script>location.href = 'index.php';</script>");
   }
 
   //========================================================================== EDIT ASSIGNMENT
