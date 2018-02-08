@@ -272,6 +272,15 @@ class AssignmentController
     $_SESSION['returnto'] = $_POST['classID'];
     echo("<script>location.href = 'index.php';</script>");
   }
+  //==========================================================================
+  public function setPrivacy()
+  {
+    Assignment::updatePrivacy($_POST['status'], $_POST['assignmentID']);
+    $_SESSION['controller'] = 'pages';
+    $_SESSION['action'] = 'classes';
+    $_SESSION['returnto'] = $_POST['classID'];
+    echo("<script>location.href = 'index.php';</script>");
+  }
 
 
 

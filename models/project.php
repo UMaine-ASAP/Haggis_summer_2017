@@ -73,7 +73,7 @@ Class Project {
       {
         case '0':
           $projectuserlist = ProjectUser::project($id)[1];
-          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], $projectuser);
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], $projectuserlist);
           break;
         case '2':
           $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], EventUser::eventID($result['projectID'])[1]);

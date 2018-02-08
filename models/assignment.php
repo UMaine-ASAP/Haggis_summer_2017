@@ -11,8 +11,9 @@ class Assignment
   public $type;
   public $classID;
   public $assigned;
+  public $privacy;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein, $assignedin)
+  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein, $assignedin, $privacyin)
   {
     $this->id = $id;
     $this->title = $title;
@@ -24,6 +25,7 @@ class Assignment
     $this->type = $typein;
     $this->classID = Assignment::getClassID($id)[1];
     $this->assigned = $assignedin;
+    $this->privacy = $privacyin;
   }
 
 //=================================================================================== INSERT ASSIGNMENT
@@ -89,7 +91,7 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $errorCode = 1;
-      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
+      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag'],$r['privacy']);
     }
     catch(PDOException $e)
     {
@@ -113,7 +115,7 @@ public static function linkToClass($classID, $assignmentID)
         $assignmentarray = array();
         while($r = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
+          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag'],$r['privacy']);
         }
         $message = $assignmentarray;
         $errorCode = 1;
@@ -141,7 +143,7 @@ public static function linkToClass($classID, $assignmentID)
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
 
-            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag'],$r['privacy']);
           }
           $message = $assignmentarray;
           $errorCode = 1;
@@ -217,7 +219,29 @@ public static function linkToClass($classID, $assignmentID)
     catch(PDOException $e)
     {
       $errorCode = $e->getCode();
-      $message = "ASSIGNMENT DELETION ".$e->getMessage();
+      $message = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //===================================================================================
+  public static function updatePrivacy($status, $assignmentID)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "UPDATE assignment SET privacy = ? WHERE assignmentID = ?";
+    $data = array($status, $assignmentID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $message = "updated";
+      $errorCode = 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = $e->getMessage();
     }
     return array($errorCode, $message);
   }

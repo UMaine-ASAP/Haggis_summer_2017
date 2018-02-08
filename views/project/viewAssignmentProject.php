@@ -6,7 +6,10 @@
       else
         echo "Evaluate ".$project->title;
        ?></h2>
-      <button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</button>
+       <?php
+       if($assignment->privacy == '0')
+        echo "<button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</button>";
+        ?>
       <button class='standard projectitem mediumbutton' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Evaluate</button>
 </div>
 

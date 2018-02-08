@@ -312,6 +312,7 @@ class ProjectController
     $userID = User::getID($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
     $project = Project::id($projectid)[1];
+    $assignment = Assignment::id($project->assignmentID)[1];
     $contents = Content::project($projectid)[1];
     $list = $project->list;
     $ids = array();

@@ -15,3 +15,4 @@ This will change the visibility of this asisgnment to your students.<br>
     echo "Do you wish to activate this assignment, making it visible to students?<br><input type ='hidden' name='status' value='1'><br><input class='standard' type='submit' value='Activate Assignment'>";
   }
   ?>
+</form>

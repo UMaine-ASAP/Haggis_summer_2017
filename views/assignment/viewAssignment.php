@@ -13,6 +13,7 @@
     if($type ==='submission')
       echo "<button class='standard popupmaker' onclick='createPopup(\"addToEvent\")' id='addToEvent'>Add To Event</button>";
     echo "<button class='standard popupmaker' onclick='createPopup(\"setActive\")' id='setActive'>Set Active Status</button>";
+    echo "<button class='standard popupmaker' onclick='createPopup(\"setPrivacy\")' id='setPrivacy'>Responses Visibility</button>";
     echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button><br>";
     if($type ==='submission')
       echo "<span>Project registration link:
@@ -64,3 +65,4 @@
 <div class="popup" id="addToEvent"><?php require_once('views/event/addToEvent.php');?></div>
 <div class="popup" id="deleteAssignment"><?php require_once('views/assignment/deleteAssignment.php');?></div>
 <div class="popup" id="setActive"><?php require_once("views/assignment/setStatus.php");?></div>
+<div class="popup" id="setPrivacy"><?php require_once("views/assignment/setPrivacy.php");?></div>
