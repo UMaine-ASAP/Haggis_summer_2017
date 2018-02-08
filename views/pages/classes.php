@@ -57,7 +57,7 @@ if($status === 'admin')
             echo "<div class='sidebysidesub'><h4>Enroll Students</h4><form action='?controller=class&action=addToClass' method = 'post'>
                   <input type='hidden' name ='classid' value ='".$classID."'>
                   Select one or more students to be added to this class:<br>
-                  <select name ='student' size='15' multiple>";
+                  <select name ='student[]' size='15' multiple>";
                   foreach($allusers as $u)
                   {
                     echo "<option value='".$u->id."'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</option>";

@@ -73,10 +73,10 @@ class ClassController
   //=================================================================================== ADD TO CLASS
     public function addToClass()
     {
-      $id = $_POST['student'];
 
       $classID = $_POST['classid'];
-      $_SESSION['message'] = Klass::addToClass($id, $classID)[1];
+      foreach($_POST['student'] as $s)
+      $_SESSION['message'] = Klass::addToClass($s, $classID)[1];
       $_SESSION['controller'] = 'pages';
       $_SESSION['action'] = 'classes';
       $_SESSION['returnto'] = $classID;
