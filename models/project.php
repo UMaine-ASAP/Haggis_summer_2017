@@ -68,17 +68,19 @@ Class Project {
       $stmt->execute($data);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       $project;
-      if($result['isGroup'] === '0')
+
+      switch($result['isGroup'])
       {
+        case '0':
           $projectuserlist = ProjectUser::project($id)[1];
-          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], $projectuser
-      else if($result['isGroup'] === '2')
-      {
-        $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], EventUser::eventID($result['projectID'])[1]);
-      }
-      else
-      {
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], $projectuser);
+          break;
+        case '2':
+          $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], EventUser::eventID($result['projectID'])[1]);
+          break;
+        default:
           $project = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], Group::getByProjectID($result['projectID'])[1]);
+          break;
       }
       return array(1, $project);
     }

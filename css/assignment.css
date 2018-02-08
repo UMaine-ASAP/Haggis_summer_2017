@@ -128,8 +128,10 @@ input[name=title]
 .sidebysidesub
 {
   width: 250px;
-  margin: auto;
+  margin: auto 0;
+  margin-top: -4px;
   text-align:center;
+  vertical-align:top;
 }
 
 .aName

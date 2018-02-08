@@ -44,21 +44,27 @@ if($status === 'admin')
     <div class ='popup' id='studentlist'>
       <div class='exit' onclick='closePopup("studentlist")'><i class="glyphicon glyphicon-remove"></i></div>
       <h2>Class Roster</h2><hr>
+      <div class='sidebyside'>
+        <div class='sidebysidesub'>
+          <h4>Currently Enrolled Students</h4>
     <?php foreach($students as $s)
           {
             echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";
           }
+          echo "</div>";
           if($status ==='admin')
           {
-            echo "<form action='?controller=class&action=addToClass' method = 'post'>
+            echo "<div class='sidebysidesub'><h4>Enroll Students</h4><form action='?controller=class&action=addToClass' method = 'post'>
                   <input type='hidden' name ='classid' value ='".$classID."'>
-                  <select name ='student'>";
+                  Select one or more students to be added to this class:<br>
+                  <select name ='student' size='15' multiple>";
                   foreach($allusers as $u)
                   {
                     echo "<option value='".$u->id."'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</option>";
                   }
-            echo "</select><input type='submit' value='Enroll Student'></form>";
+            echo "</select><br><input type='submit' value='Enroll Student(s)'></form></div>";
           }?>
+        </div>
 
     </div>
 <?php
