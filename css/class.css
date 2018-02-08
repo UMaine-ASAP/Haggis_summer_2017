@@ -51,6 +51,7 @@
 
 .enrolledStudents
 {
+  height:100%;
   overflow:scroll;
 }
 .classesJoin:hover
