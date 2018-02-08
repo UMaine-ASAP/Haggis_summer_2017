@@ -51,7 +51,11 @@
 
 .enrolledStudents
 {
-  height 400px;
+  text-align:left;
+  width:150px;
+  margin: 0 auto;
+  border: 1px solid black;
+  height: 250px;
   overflow:scroll;
 }
 .classesJoin:hover

@@ -47,7 +47,8 @@ if($status === 'admin')
       <div class='sidebyside'>
         <div class='sidebysidesub'>
           <h4>Currently Enrolled Students</h4>
-          <div class='enrolledStudents'>
+          <p></p>
+          <div class='enrolledStudents'><br>
     <?php foreach($students as $s)
           {
             echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";

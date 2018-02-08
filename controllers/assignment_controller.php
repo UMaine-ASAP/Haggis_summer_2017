@@ -56,7 +56,12 @@ class AssignmentController
     }
     if($create)
     {
-      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id, $type)[1];
+      $assignFlag = 0;
+      if($_POST['active'] == "yes")
+      {
+        $assignFlag = 1;
+      }
+      $assignmentID = Assignment::create($_POST['title'],$_POST['assignmentdescription'],$_POST['duetime'],$_POST['duedate'],$klass->id, $type, $assignFlag)[1];
       $criteriaSetID;
       if($_POST['copyRubric'] == 'true')
       {
@@ -106,6 +111,7 @@ class AssignmentController
           {
             $user = User::id($userIDs[$i])[1];
             //echo "<script> alert(".$user->email.");</script>";
+            if($assignFlag == 1)
             EmailNotification::sendEmail($user->email,
                                        "New Assignment: '".$_POST['title']."'",
                                        "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
@@ -120,6 +126,7 @@ class AssignmentController
           $user = User::id($ids[$i])[1];
           $projectID = Project::create($user->firstName." ".$user->lastName, $_POST['title'], "0", $assignmentID)[1];
           $projectUser = ProjectUser::create($projectID, $user->id, "student", $_POST['assignmentdescription'])[1];
+          if($assignFlag == 1)
           EmailNotification::sendEmail($user->email,
                                       "New Assignment: '".$_POST['title']."'",
                                       "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for a new assignment in course ".$klass->coursename.".\nThe assignment is due ".date_format(date_create($_POST['duedate']), 'm/d/Y').", at ".date_format(date_create($_POST['duetime']), 'g:i a').".\n\nDo not reply to this email, the inbox is not monitoried.");
@@ -255,5 +262,19 @@ class AssignmentController
     $classUsers = User::klass($assignment->classID)[1];
     require_once('views/assignment/assignEvaluations.php');
   }
+
+  //==========================================================================
+  public function setStatus()
+  {
+    Assignment::updateAssigned($_POST['status'], $_POST['assignmentID']);
+    $_SESSION['controller'] = 'pages';
+    $_SESSION['action'] = 'classes';
+    $_SESSION['returnto'] = $_POST['classID'];
+    echo("<script>location.href = 'index.php';</script>");
+  }
+
+
+
+
 }
 ?>

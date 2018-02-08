@@ -172,6 +172,10 @@
       <!-- step 4 -->
       <div id='assignmentCreationReview'>
         <div class='creation'>
+          <div>
+            <h4> Assign Now?</h4>
+            No<input type='radio' name='active' value='no' checked>  Yes<input type='radio' name='active' value='yes'>
+          </div>
           <h4>Assignment Name:</h4>
           <div class ='assignmentName'></div>
           <h4>Prompt:</h4>

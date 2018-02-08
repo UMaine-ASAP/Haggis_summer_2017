@@ -10,8 +10,9 @@ class Assignment
   public $projects;
   public $type;
   public $classID;
+  public $assigned;
 //=================================================================================== STRUCT
-  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein)
+  public function __construct($id, $title, $description, $duetime, $duedate, $projectsin, $typein, $assignedin)
   {
     $this->id = $id;
     $this->title = $title;
@@ -22,16 +23,17 @@ class Assignment
     $this->projects = $projectsin;
     $this->type = $typein;
     $this->classID = Assignment::getClassID($id)[1];
+    $this->assigned = $assignedin;
   }
 
 //=================================================================================== INSERT ASSIGNMENT
-  public static function create($title, $description, $duetime, $duedate, $classid, $type)
+  public static function create($title, $description, $duetime, $duedate, $classid, $type, $assigned)
   {
     $errorCode;
     $message;
     $db= Db::getInstance();
-    $sql = "INSERT INTO assignment(title, description, dueTime, dueDate, assignmentType) VALUES(?,?,?,?,?)";
-    $data = array($title, $description, $duetime, $duedate,$type);
+    $sql = "INSERT INTO assignment(title, description, dueTime, dueDate, assignmentType, assignedFlag) VALUES(?,?,?,?,?,?)";
+    $data = array($title, $description, $duetime, $duedate,$type, $assigned);
     try
     {
       $stmt = $db->prepare($sql);
@@ -87,7 +89,7 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $errorCode = 1;
-      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
+      $message = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'], Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
     }
     catch(PDOException $e)
     {
@@ -111,7 +113,7 @@ public static function linkToClass($classID, $assignmentID)
         $assignmentarray = array();
         while($r = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
+          $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
         }
         $message = $assignmentarray;
         $errorCode = 1;
@@ -139,7 +141,7 @@ public static function linkToClass($classID, $assignmentID)
           while($r = $stmt->fetch(PDO::FETCH_ASSOC))
           {
 
-            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType']);
+            $assignmentarray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1], $r['assignmentType'], $r['assignedFlag']);
           }
           $message = $assignmentarray;
           $errorCode = 1;
@@ -188,6 +190,28 @@ public static function linkToClass($classID, $assignmentID)
       $stmt->execute($data);
       $r = $stmt->fetch(PDO::FETCH_ASSOC);
       $message = $r['classID'];
+      $errorCode = 1;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode = $e->getCode();
+      $message = "ASSIGNMENT DELETION ".$e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //===================================================================================
+  public static function updateAssigned($status, $assignmentID)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "UPDATE assignment SET assignedFlag = ? WHERE assignmentID = ?";
+    $data = array($status, $assignmentID);
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $message = "updated";
       $errorCode = 1;
     }
     catch(PDOException $e)

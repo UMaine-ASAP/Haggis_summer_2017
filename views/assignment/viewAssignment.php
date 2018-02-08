@@ -12,12 +12,14 @@
   {
     if($type ==='submission')
       echo "<button class='standard popupmaker' onclick='createPopup(\"addToEvent\")' id='addToEvent'>Add To Event</button>";
+    echo "<button class='standard popupmaker' onclick='createPopup(\"setActive\")' id='setActive'>Set Active Status</button>";
     echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button><br>";
     if($type ==='submission')
       echo "<span>Project registration link:
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
           http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
       echo "<a href='?controller=assignment&action=assignEval&assignmentID=".$a->id."'>Assign Evaluations</a>";
+
 
   }
 
@@ -61,3 +63,4 @@
 
 <div class="popup" id="addToEvent"><?php require_once('views/event/addToEvent.php');?></div>
 <div class="popup" id="deleteAssignment"><?php require_once('views/assignment/deleteAssignment.php');?></div>
+<div class="popup" id="setActive"><?php require_once("views/assignment/setStatus.php");?></div>
