@@ -156,7 +156,7 @@ Class User {
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "SELECT * FROM user";
+      $sql = "SELECT * FROM user ORDER BY lastName ASC, firstName ASC";
       $userList = array();								//used to store User objects
       try
       {
@@ -213,7 +213,7 @@ Class User {
       $errorCode;
       $message;
       $db= Db::getInstance();
-      $sql = "SELECT * FROM user WHERE userID IN (SELECT userID FROM classUser WHERE classID = ?)";
+      $sql = "SELECT * FROM user WHERE userID IN (SELECT userID FROM classUser WHERE classID = ?) ORDER BY lastName ASC, firstName ASC";
       $data = array($classID);
       try
       {
