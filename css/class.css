@@ -49,7 +49,10 @@
  transform: translate(-8px, -8px);
 }
 
-
+.enrolledStudents
+{
+  overflow:scroll;
+}
 .classesJoin:hover
 {
   background-color: white;
