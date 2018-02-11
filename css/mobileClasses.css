@@ -6,10 +6,10 @@ background-clip: padding-box;
 
 div.classCard{
 
-  margin: auto;
-  margin-top: 15%;
-  width: 60%;
-  height: 20%;
+  margin: 10px auto;
+  padding: 5px;
+  width: 80%;
+  text-align:center;
   border: 1px solid black;
   border-radius: 1.5em;
   /*padding: 2px;*/

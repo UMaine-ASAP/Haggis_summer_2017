@@ -9,7 +9,7 @@ $linkout;
   ?>
 <div class='titlespan'>
 <div class='bbcontainer'>
-  <a href=<?php echo $linkout;?> class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+  <a href=<?php echo $linkout;?> ><button class="buttonLink"><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
 </div>
   <div class='currpagecontainer'>
     <h3 class="currentPage">Critique</h3>
@@ -69,6 +69,6 @@ $linkout;
     }
   }
 
-  echo "<br><input class='submitButton evalsubmit' type='button' value='Submit Evaluation'>";
+  echo "<br><input class='buttonLink' type='button' value='Submit Evaluation'>";
   echo "</form></div></td></tr></table></div>";
 ?>

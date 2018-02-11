@@ -19,18 +19,20 @@
       <div class="inputClasses push inline"><input class='typeBoxSmall' type='text' name='joinCode' placeholder='Class Code'></div><div class="inline"><button class='plus' type='submit'>+</button></div>
       </div>
     </form>
+    <h4>Your Classes:</h4>
   </div>
+
 <?php
 foreach($classes as $class)
 {
 
   echo "<a href='?controller=mobile&action=assignments&classID=".$class->id."'><div class='classCard'>";
-  echo "<table class='cardContents'>";
-  echo "<tr><td class='courseName'>".$class->coursecode."</td></tr>";
-  echo "<tr><td class='cardContents'>".$class->title."<br></td></tr>";
-  echo "<tr><td class='cardContents'>Location: ".$class->location."</td></tr>";
-  echo "<tr><td class='cardContents'>Meets at: ".$class->timeStart." to ".$class->timeEnd."</td></tr>";
-  echo "<tr><td class='cardContents'>On: ";
+
+  echo "<h3>".$class->coursecode."</h3><hr>";
+  echo "<h4>".$class->title."</h4><br>";
+  echo "Location: ".$class->location."<br>";
+  echo "Meets at: ".$class->timeStart." to ".$class->timeEnd."<br>";
+  echo "On: ";
   $daySize = sizeof($class->days);
   if($daySize > 0 )
   {
@@ -46,7 +48,7 @@ foreach($classes as $class)
         echo ", ";
     }
   }
-  echo "</table></div></a>";
+  echo "</div></a>";
 }
-
 ?>
+</div>

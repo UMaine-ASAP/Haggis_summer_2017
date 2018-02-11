@@ -1,5 +1,5 @@
 
-  <a class="backButton" href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><i class="glyphicons glyphicons-arrow-left">Back</a>
+  <a  href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><button class="buttonLink"><i class="glyphicons glyphicons-arrow-left">Back</button></a>
     <br>
   <h3 class="currentPage">  Project Responses</h3>
 

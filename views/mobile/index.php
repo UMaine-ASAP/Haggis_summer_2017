@@ -7,14 +7,14 @@
   <?php
   if (isset($_SESSION['token'])) {
     echo  "<tr><td class='buttonHolder'><div class='bigButton'>";
-    echo  "<a class='bigButton' href='?controller=mobile&action=classes'>My Classes</a></div></td></tr>";
+    echo  "<a href='?controller=mobile&action=classes'><button class='buttonLinkLarge'>My Classes</button></a></div></td></tr>";
   }
   ?>
   <tr>
     <td class='buttonHolder'>
       <div class="bigButton">
-        <a class='bigButton' href='?controller=mobile&action=events'>
-          Live Events
+        <a href='?controller=mobile&action=events'>
+          <button class='buttonLinkLarge'>Live Events</button>
         </a>
       </div>
     </td>

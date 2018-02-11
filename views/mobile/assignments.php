@@ -1,7 +1,7 @@
 
 <div class='titlespan'>
 <div class='bbcontainer'>
-  <a href="index.php?controller=mobile&action=classes" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+  <a href="index.php?controller=mobile&action=classes" ><button class='buttonLink'><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
 </div>
   <div class='currpagecontainer'>
     <h3 class="currentPage">Assignments</h3>
