@@ -115,6 +115,8 @@ class MobileController
           $assignmentID = $_GET['assignmentID'];
           $classID = $_GET['classID'];
           $projects = Project::assignment($assignmentID)[1];
+          $assignment=Assignment::id($assignmentID)[1];
+          $isadmin = User::checkAdmin($_SESSION['token'])[1];
           $type = '1';
       } else {
           $event = Event::id($_GET['eventID'])[1];

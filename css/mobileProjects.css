@@ -3,16 +3,20 @@
   font-style: normal;
 }
 
-.responsesButton{
-  text-align: center;
-  color: #1195c6;
-  padding: 4.5% 21% 4.5% 21%;
-  background-color: white;
-  border-radius: 30px;
-  border: solid 1.5px #1195c6;
-  margin: auto;
+
+.projectsCard
+{
+  padding: 10px;
+  margin: 20px auto;
+  width:80%;
+  text-align:center;
+  border: 1px solid black;
+  border-radius: 20px;
 }
 
-.tab {
-  display: none;
+
+
+.buttoncontainer
+{
+  display:inline;
 }

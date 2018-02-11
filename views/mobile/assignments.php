@@ -4,24 +4,22 @@
   <a href="index.php?controller=mobile&action=classes" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
 </div>
   <div class='currpagecontainer'>
-    <h3 class="currentPage">Assignments(<?php echo sizeof($assignments);?>)</h3>
+    <h3 class="currentPage">Assignments</h3>
   </div>
 </div>
 
 
 <br>
-<table class="marginTable">
 <?php
 foreach($assignments as $a)
 {
-  echo "<tr><td><hr class='dropDown'><td><tr>";
-  echo "<tr><td class='assignmentTitle push' onclick='viewTab(".$a->id.")'>".$a->title."</td></tr>";
-  echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='projectsButton' href='?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$a->id."'>Projects</a></td></tr>";
+  if($a->assigned)
+  {
+    echo "<div class='assignmentCard' id='$a->id'>";
+    echo "<h3>".$a->title."</h3>";
+    echo "<br><a href='?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$a->id."'><button class='buttonLink'>View Projects</button></a></div>";
+  }
 }
-  echo "</ul>";
-  echo "<tr><td><hr class='dropDown'><td><tr>";
-
 ?>
-</table>
 
 <script src="js/toggleTab.js"></script>

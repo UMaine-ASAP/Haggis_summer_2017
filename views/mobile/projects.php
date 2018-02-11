@@ -16,28 +16,26 @@
 
 
 
-<!--<a href="index.php" class="backButton"><span class="glyphicons glyphicons-arrow-left"></span></a>-->
-<table  class="marginTable">
+
 <?php
   if ($type == '1') {
     foreach($projects as $a)
     {
-      echo "<tr><td><hr class='dropDown'><td><tr>";
-      echo "<tr><td class='assignmentTitle push' onclick='viewTab(".$a->id.")'>".$a->title."</td></tr>";
-      echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='responsesButton' href='?controller=mobile&action=responses&classID=".$classID."&assignmentID=".$assignmentID."&id=".$a->id."'>Responses</a>";
-      echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='projectsButton' href='?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$a->id."'>Critique</a></td></tr>";
+      echo "<div class='projectsCard' id='$a->id'>";
+      echo "<h3>".$a->title."</h3><hr><div class='buttoncontainer'>";
+      if($assignment->privacy == '0' || $isadmin)
+        echo "<a  href='?controller=mobile&action=responses&classID=".$classID."&assignmentID=".$assignmentID."&id=".$a->id."'><button class='buttonLink'>View Responses</button></a>";
+      echo "<a  href='?controller=mobile&action=evaluate&classID=".$classID."&assignmentID=".$assignmentID."&projectID=".$a->id."'><button class='buttonLink'>Give Critique</button></a></div></div>";
     }
   } else {
     foreach($eventprojectList as $a)
     {
-      echo "<tr><td><hr class='dropDown'><td><tr>";
-      echo "<tr><td class='assignmentTitle push' onclick='viewTab(".$a->id.")'>".$a->title."</td></tr>";
-      //echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='responsesButton' href='?controller=mobile&action=responses&classID=".$classID."&assignmentID=".$assignmentID."&id=".$a->id."'>Responses</a>";
-      echo "<tr class='tab ".$a->id."'><td class='projectsButton'><a class='projectsButton' href='?controller=mobile&action=evaluate&eventID=".$eventID."&projectID=".$a->id."'>Critique</a></td></tr>";
+      echo "<div class='projectsCard id='$a->id'>";
+      echo "<h3>$a->title</h3><hr><br>";
+      echo "<a  href='?controller=mobile&action=evaluate&eventID=".$eventID."&projectID=".$a->id."'><button class='buttonLink'>Critique</button></a></div>";
     }
   }
-  echo "<tr><td><hr class='dropDown'><td><tr>";
 ?>
-</table>
+
 
 <script src="js/toggleTab.js"></script>

@@ -41,3 +41,14 @@ a.smallButton{
   padding-bottom: 10px;
 
 }
+
+.buttonLink
+{
+  color:white;
+  padding: 5px;
+  text-decoration:none;
+  margin: 5px;
+  background-color: #1195c6;
+  border-radius:30px;
+  font-size:16px;
+}

@@ -7,7 +7,7 @@
         echo "Evaluate ".$project->title;
        ?></h2>
        <?php
-       if($assignment->privacy == '0')
+       if($assignment->privacy == '0' || $isadmin)
         echo "<button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</button>";
         ?>
       <button class='standard projectitem mediumbutton' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Evaluate</button>

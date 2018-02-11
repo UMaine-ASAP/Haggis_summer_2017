@@ -310,6 +310,7 @@ class ProjectController
     $assignmentType = $_GET['type'];
     $assignedUser=false;
     $userID = User::getID($_SESSION['token'])[1];
+    $isadmin = User::checkAdmin($_SESSION['token'])[1];
     $projectid = $_GET['projectID'];
     $project = Project::id($projectid)[1];
     $assignment = Assignment::id($project->assignmentID)[1];

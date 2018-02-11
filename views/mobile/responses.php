@@ -22,7 +22,7 @@
           {
             for($j = 0; $j < sizeof($c); $j++)
             {
-              echo $c."<br>";
+              echo "<span>".$c."</span><br>";
             }
           }
           else

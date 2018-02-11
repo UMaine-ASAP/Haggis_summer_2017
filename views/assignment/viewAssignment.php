@@ -12,8 +12,16 @@
   {
     if($type ==='submission')
       echo "<button class='standard popupmaker' onclick='createPopup(\"addToEvent\")' id='addToEvent'>Add To Event</button>";
-    echo "<button class='standard popupmaker' onclick='createPopup(\"setActive\")' id='setActive'>Set Active Status</button>";
-    echo "<button class='standard popupmaker' onclick='createPopup(\"setPrivacy\")' id='setPrivacy'>Responses Visibility</button>";
+    if($a->assigned == '1')
+      echo "<button class='standard popupmaker' onclick='createPopup(\"setActive\")' id='setActive'>Assignment is Active</button>";
+    else
+      echo "<button class='standard popupmaker' onclick='createPopup(\"setActive\")' id='setActive'>Assignment is Inactive</button>";
+    if($a->privacy == '1')
+      echo "<button class='standard popupmaker' onclick='createPopup(\"setPrivacy\")' id='setPrivacy'>Privacy is Active</button>";
+    else
+      echo "<button class='standard popupmaker' onclick='createPopup(\"setPrivacy\")' id='setPrivacy'>Privacy is Inactive</button>";
+
+
     echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button><br>";
     if($type ==='submission')
       echo "<span>Project registration link:
