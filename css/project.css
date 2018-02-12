@@ -18,7 +18,7 @@
 }
 
 .projectList{
-  overflow:scroll;
+  overflow:auto;
 }
 
 #submissionFormContainer
