@@ -16,7 +16,7 @@ Projects(<?php echo sizeof($projectList);?>)
 foreach($projectList as $p)
 {
   echo "<li class='projects' onclick='ViewAssignmentProject(".$p->id.",".$event->id.")' id=''>".$p->title."</li>";
-  if($p->isgroup) echo "group";
+  if($p->isgroup) echo "<li>group</li>";
 }
 echo "</ul>";
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
