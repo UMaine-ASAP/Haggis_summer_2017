@@ -19,6 +19,7 @@
 
 .projectList{
   overflow:auto;
+  height:100%;
 }
 
 #submissionFormContainer
