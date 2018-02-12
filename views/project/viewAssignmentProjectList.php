@@ -10,6 +10,7 @@ Projects(<?php echo sizeof($projectList);?>)
   <input class='joinedInputSmaller' onkeyup='searchNhighlight(document.getElementById("searchString").value, "projects", "orange")' type='text' id='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-search"></i></button>
 </div>
 <br>
+<div class='projectList'>
 <ul id="projectlist">
 <?php
 foreach($projectList as $p)
@@ -19,3 +20,4 @@ foreach($projectList as $p)
 echo "</ul>";
 //if(isset($_GET['action']) && $_GET['action'] == 'createAssignment')
 ?>
+</div>
