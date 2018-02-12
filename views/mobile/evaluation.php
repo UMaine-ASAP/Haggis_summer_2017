@@ -69,6 +69,6 @@ $linkout;
     }
   }
 
-  echo "<br><input class='buttonLink' type='button' value='Submit Evaluation'>";
+  echo "<br><input class='buttonLink' type='submit' value='Submit Evaluation'>";
   echo "</form></div></td></tr></table></div>";
 ?>
