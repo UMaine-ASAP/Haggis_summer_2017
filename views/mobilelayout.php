@@ -27,9 +27,9 @@
           <?php
           if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
             if (isset($_SESSION['token'])) {
-              echo  "<a class='logout' href='?controller=user&action=logout'>Logout</a>";
+              echo  "<a href='?controller=user&action=logout'><button class='logout'> Logout</button></a>";
             } else {
-              echo  "<a class='login' href='?controller=mobile&action=login'>Login/Sign Up</a>";
+              echo  "<a href='?controller=mobile&action=login'><button class='login'> Login/Sign Up</button></a>";
             }
           }
           ?>

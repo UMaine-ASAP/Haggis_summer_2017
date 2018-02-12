@@ -31,18 +31,21 @@ div.headerTitle{
   padding: 10px;
 }
 
-a.login{
+.login{
   color: #1195c6;
   padding: 10% 5% 10% 5%;
   background-color: white;
   border-radius: 30px;
 }
 
-a.logout{
-  color: #1195c6;
-  padding: 10% 30% 10% 30%;
+.logout{
+  color:#1195c6;
+  padding: 5px;
+  text-decoration:none;
+  margin: 5px;
   background-color: white;
-  border-radius: 30px;
+  border-radius:30px;
+  font-size:16px;
 }
 
 div.headerLogin{
@@ -56,6 +59,10 @@ div.headerLogin{
   position: relative;
 }
 
+.logincontainer
+{
+  text-align:center;
+}
 
 
 

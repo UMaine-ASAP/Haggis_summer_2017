@@ -1,7 +1,12 @@
+<div class='titlespan'>
+  <div class='bbcontainer'>
+    <a  href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><button class="buttonLink"><span class="glyphicons glyphicons-arrow-left"></span>Back</button></a>
+    </div>
+      <div class='currpagecontainer'>
+    <h3 class="currentPage">  Project Responses</h3>
+  </div>
+</div>
 
-  <a  href=<?php echo "index.php?controller=mobile&action=projects&classID=".$classID."&assignmentID=".$assignmentID; ?>><button class="buttonLink"><i class="glyphicons glyphicons-arrow-left">Back</button></a>
-    <br>
-  <h3 class="currentPage">  Project Responses</h3>
 
     <div class='chart'></div>
 
@@ -13,9 +18,9 @@
     {
       foreach($cNames as $n)
       {
-        echo "<h3>".$n."</h3>";
+        echo "<h3>".$n."</h3><br>";
         if($cAvg[$i] > 0)
-          echo "Average Rating: ".$cAvg[$i]."<br>";
+          echo "<h4>Average Rating: ".$cAvg[$i]."</h4><br>";
         foreach($cComments[$i] as $c)
         {
           if(sizeof($c) > 0)

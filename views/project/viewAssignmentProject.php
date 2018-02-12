@@ -8,9 +8,9 @@
        ?></h2>
        <?php
        if($assignment->privacy == '0' || $isadmin)
-        echo "<button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>See Responses</button>";
+        echo "<button class='standard projectitem mediumbutton' onclick='GetProjectResponses(<?php echo $project->id;?>,1)'>View Responses</button>";
         ?>
-      <button class='standard projectitem mediumbutton' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Evaluate</button>
+      <button class='standard projectitem mediumbutton' onclick='EvaluateProjectAssignment(<?php echo $project->id;?>)'>Give Critique</button>
 </div>
 
 

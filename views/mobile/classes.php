@@ -1,6 +1,6 @@
 <div class='titlespan'>
 <div class='bbcontainer'>
-  <a href="index.php" class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+  <a href="index.php"><button class='buttonLink'><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
 </div>
 
 

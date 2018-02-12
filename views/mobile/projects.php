@@ -7,7 +7,7 @@
       echo "index.php?controller=mobile&action=events";
     }
 
-    ?> class="backButton"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+    ?>><button class='buttonLink'><span class="glyphicon glyphicon-arrow-left"></span> Back</button></a>
 </div>
   <div class='currpagecontainer'>
     <h3 class="currentPage">Projects</h3>
