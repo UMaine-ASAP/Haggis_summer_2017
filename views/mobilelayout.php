@@ -14,36 +14,35 @@
       <meta name ="HandheldFriendly" content = "true" />
     </head>
 
-    <div class="overlay"></div>
     <header>
       <script src="vendor/jquery.min.js"></script>
-      <div class='header'>
         <div class='headerTitle'>
           <a class='pageTitle' href='index.php'>Haggis</a>
         </div>
 
-        <?php if(true) { ?>
-        <div class='headerLogin'>
+        <div class='headerMenu'>
           <?php
-          if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login") {
-            if (isset($_SESSION['token'])) {
-              echo  "<a href='?controller=user&action=logout'><button class='logout'> Logout</button></a>";
-            } else {
-              echo  "<a href='?controller=mobile&action=login'><button class='login'> Login/Sign Up</button></a>";
+            if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login")
+            {
+              if (isset($_SESSION['token']))
+              {
+                echo  "<a href='?controller=user&action=logout'><button class='logout'> Logout</button></a>";
+              }
+              else
+              {
+                echo  "<a href='?controller=mobile&action=login'><button class='login'> Login/Sign Up</button></a>";
+              }
             }
-          }
           ?>
         </div>
-      <?php }
-      ?>
-      </div>
     </header>
+
     <body>
-
-    <?php require_once('routes.php'); ?>
-
+      <?php require_once('routes.php'); ?>
     </body>
+
     <footer>
-    <div class = "content"></div>
+      <div class = "content"></div>
     </footer>
+    
   </html>
