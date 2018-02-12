@@ -17,6 +17,10 @@
   vertical-align:top;
 }
 
+#projectList{
+  overflow:scroll;
+}
+
 #submissionFormContainer
 {
   border-radius: 5px 5px 5px 5px;
