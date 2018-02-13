@@ -264,15 +264,21 @@ class ProjectController
           $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
           if($type == '2')
           {
-            $cComments[$index][] = "-- ".$r->comment;
+            $cComments[$index][] = $r->comment;
           }
           else
           {
-            $tempText = "- ".$r->comment;
+            $tempText = "<p>";
             if($admin)
             {
-              $tempText .= " --".$author->firstName." ".$author->lastName;
+              $tempText .= $author->firstName." ".$author->lastName." - <q>";
             }
+            else
+            {
+              $tempText.= "<q>";
+            }
+            $tempText .= $r->comment."</q></p>";
+
             $cComments[$index][] = $tempText;
           }
         }
@@ -287,11 +293,18 @@ class ProjectController
           }
           else
           {
-            $tempText = "- ".$r->comment;
+            $tempText = "<p>";
             if($admin)
             {
-              $tempText .= " --".$author->firstName." ".$author->lastName;
+              $tempText .= $author->firstName." ".$author->lastName."<q>";
             }
+            else
+            {
+              $tempText.="<q>";
+            }
+
+            "<q>".$r->comment."</q></p>";
+
             $cComments[] = array($tempText);
           }
         }

@@ -14,20 +14,20 @@ else
   {
     echo "<h3>".$n."</h3>";
     if($cAvg[$i] > 0)
-      echo "Average Rating: ".$cAvg[$i]."<br>";
+      echo "<h4>Average Rating: ".$cAvg[$i]."</h4><br><ul>";
     foreach($cComments[$i] as $c)
     {
       if(sizeof($c) > 0)
       {
         for($j = 0; $j < sizeof($c); $j++)
         {
-          echo $c."<br>";
+          echo "<li>".$c."</li>";
         }
       }
       else
         echo $c."<br>";
     }
-    echo "<hr>";
+    echo "</ul><hr>";
     $i++;
   }
 }
