@@ -303,7 +303,7 @@ class ProjectController
               $tempText.="<q>";
             }
 
-            $temText .= "<q>".$r->comment."</q></p>";
+            $tempText .= "<q>".$r->comment."</q></p>";
 
             $cComments[] = array($tempText);
           }
