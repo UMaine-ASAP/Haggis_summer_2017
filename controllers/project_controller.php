@@ -289,7 +289,7 @@ class ProjectController
           $cAvg[] = $r->rating;
           if($type == '2')
           {
-            $cComments[] = array("-- ".$r->comment);
+            $cComments[] = array($r->comment);
           }
           else
           {
@@ -303,7 +303,7 @@ class ProjectController
               $tempText.="<q>";
             }
 
-            "<q>".$r->comment."</q></p>";
+            $temText .= "<q>".$r->comment."</q></p>";
 
             $cComments[] = array($tempText);
           }
