@@ -203,12 +203,18 @@ class ProjectController
   public function assignmentEvaluate()
   {
     $projectid = $_GET['id'];
+    $userID = User::getID($_SESSION['token'])[1];
     $project = Project::id($projectid)[1];
     $targetid = $project->assignmentID;
     $a = Assignment::id($targetid)[1];
     $criterias = $a->rubric->criteriaSets;
     $projectresponses = Evaluate::projectID($projectid)[1];
     $type = '1';
+    $critiques = Evaluate::getPrexisting($userID, $projectid)[1];
+    $returner = false;
+    if($critiques != false)
+      $returner=true;
+    //create check and return of evaluation. check by UserId, projectID - Get all responses
 
     require_once("views/project/evaluateProject.php");
   }
