@@ -18,8 +18,10 @@ echo "</div>
           foreach($critiques as $pc)
           {
             if($pc->criteriaID == $c->id)
-            $content = $pc->comment;
-            $rating = $pc->rating;
+            {
+              $content = $pc->comment;
+              $rating = $pc->rating;
+            }
           }
 
           if($c->ratingMin === $c->ratingMax)
