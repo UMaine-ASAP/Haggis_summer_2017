@@ -11,15 +11,20 @@ echo "</div>
 
         foreach($criterias as $c)
         {
-          $content;
+          $content ="";
+          $rating = 1;
+
+          if($returner)
+          foreach($critiques as $pc)
+          {
+            if($pc->criteriaID == $c->id)
+            $content = $pc->comment;
+            $rating = $pc->rating;
+          }
+
           if($c->ratingMin === $c->ratingMax)
           {
-            if($returner)
-            foreach($critiques as $pc)
-            {
-              if($pc->criteriaID == $c->id)
-              $content = $pc->comment;
-            }
+
             echo "<div><h3>".$c->title."</h3><br>".$c->description."<br>";
             echo "<div class='criteriaMsg error'></div>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
@@ -29,12 +34,6 @@ echo "</div>
           }
           else
           {
-            if($returner)
-            foreach($critiques as $pc)
-            {
-              if($pc->criteriaID == $c->id)
-              $content = $pc->comment;
-            }
             echo "<div><h3>".$c->title."</h3>";
             echo "<div class='criteriaMsg error'></div>";
             echo "<input class='standard criteriaID' name='criteriaID[]' type='hidden' value='".$c->id."'>";
@@ -49,7 +48,7 @@ echo "</div>
               echo ">".$subc->ratingValue." points<br>".$subc->description."</div>";
               $hide = true;
             }
-            echo "<br><br><input type='range' class='slider standard' name='criteriaRating[]' id='".$c->id."' min='".$c->ratingMin."' max='".$c->ratingMax."' value='".$c->ratingMin."'>";
+            echo "<br><br><input type='range' class='slider standard' name='criteriaRating[]' id='".$c->id."' min='".$c->ratingMin."' max='".$c->ratingMax."' value='".$rating."'>";
             echo "</div>";
             if($c->allowTextResponse === '1')
               echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'>$content</textarea>";
@@ -62,3 +61,32 @@ echo "</div>
 ?>
 
 <div id='evalout'><h3>Due to an error, your evaluation was not submitted. <h3></div>
+
+  <script>
+
+  $('.slider').each(function()
+{
+    console.log('triggered');
+
+    var thiselement = $(this);
+    var criID = thiselement.attr("id");
+    console.log(criID);
+    var criScore = thiselement.val();
+    var criteriaOutputs = document.getElementsByClassName('s'+criID);
+    for(var i = 0; i < criteriaOutputs.length; i++)
+    {
+      var currCri = criteriaOutputs[i];
+
+      if(currCri.getAttribute("scoreVal") == criScore)
+      {
+        currCri.setAttribute('style', "display:block");
+      }
+      else
+      {
+        currCri.setAttribute('style', "display:none");
+      }
+    }
+  });
+
+
+  </script>

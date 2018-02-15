@@ -1,5 +1,15 @@
 $(document).ready(function()
 {
+  console.log('befroetriggered');
+
+  $('.slider')each(function()
+{
+  initalizer($(this));
+
+});
+
+  console.log('afterTriggered');
+
   $('#evalout').hide();
 
   // $('.picker').on('click', function(e)
@@ -124,6 +134,34 @@ function getAllSiblings(elem, filter) {
     } while (elem = elem.nextSibling)
     return sibs;
 }
+
+
+function initalizer()
+{
+  console.log('triggered');
+
+  var thiselement = elementin;
+  var criID = thiselement.getAttribute("id");
+  console.log(criID);
+  var criScore = thiselement.value;
+  var criteriaOutputs = document.getElementsByClassName('s'+criID);
+  for(var i = 0; i < criteriaOutputs.length; i++)
+  {
+    var currCri = criteriaOutputs[i];
+
+    if(currCri.getAttribute("scoreVal") == criScore)
+    {
+      currCri.setAttribute('style', "display:block");
+    }
+    else
+    {
+      currCri.setAttribute('style', "display:none");
+    }
+  }
+});
+
+
+
 
 // function submitEval(e)
 // {

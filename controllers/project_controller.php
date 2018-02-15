@@ -255,6 +255,7 @@ class ProjectController
     $cNames = array();
     $cAvg = array();
     $cComments = array();
+    $cRatings = array();
     $dataout = array();
 
     foreach($projectresponses as $r)
