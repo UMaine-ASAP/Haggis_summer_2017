@@ -3,10 +3,10 @@ $(document).ready(function()
   console.log('befroetriggered');
 
   $('.slider').each(function()
-{
+  {
   initalizer($(this));
 
-});
+  });
 
   console.log('afterTriggered');
 
@@ -136,14 +136,14 @@ function getAllSiblings(elem, filter) {
 }
 
 
-function initalizer()
+function initalizer(elementin)
 {
   console.log('triggered');
 
   var thiselement = elementin;
-  var criID = thiselement.getAttribute("id");
+  var criID = thiselement.attr("id");
   console.log(criID);
-  var criScore = thiselement.value;
+  var criScore = thiselement.val();
   var criteriaOutputs = document.getElementsByClassName('s'+criID);
   for(var i = 0; i < criteriaOutputs.length; i++)
   {
@@ -158,7 +158,7 @@ function initalizer()
       currCri.setAttribute('style', "display:none");
     }
   }
-});
+}
 
 
 
