@@ -2,7 +2,7 @@ $(document).ready(function()
 {
   console.log('befroetriggered');
 
-  $('.slider')each(function()
+  $('.slider').each(function()
 {
   initalizer($(this));
 
