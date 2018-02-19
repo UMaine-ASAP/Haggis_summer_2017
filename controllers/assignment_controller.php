@@ -198,6 +198,7 @@ class AssignmentController
     $type = $a->type;
     $e = Event::all()[1];
     $classID = $_GET['classID'];
+    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1], '1')[1];
     require_once("views/assignment/viewAssignment.php");
   }
   //==========================================================================

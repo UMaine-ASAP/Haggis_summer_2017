@@ -187,6 +187,64 @@ class Evaluate
          }
          return array($errorCode, $message);
      }
+
+     //=================================================================================== Check if already submitted
+      public static function getEvaluated($authorid, $type)
+      {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql;
+          $peer = false;
+          switch($type)
+          {
+            case '1':
+             $sql = "SELECT  projectID FROM evaluation WHERE author = ?";
+             break;
+           case '2':
+             $sql = "SELECT  projectID FROM evaluation WHERE author = ?";
+             break;
+           case '3':
+             $sql = "SELECT  userID FROM evaluation WHERE author = ?";
+             $peer = true;
+             break;
+          }
+
+          $data = array($authorid);
+          try
+          {
+            if($authorid ==='-1')
+            {
+              $message = false;
+            }
+            else
+            {
+              $stmt = $db->prepare($sql);
+              $stmt->execute($data);
+              $projectIDs = array();
+              $message = false;
+              if($r = $stmt->fetch(PDO::FETCH_ASSOC))
+              {
+                if($peer)
+                {
+                  $projectIDs[] = $r['userID'];
+                }
+                else
+                {
+                  $projectIDs[] = $r['projectID'];
+                }
+              }
+              $message = $projectIDs;
+            }
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
      //=================================================================================== Check if already submitted
       public static function getPrexisting($authorid, $projectID)
       {

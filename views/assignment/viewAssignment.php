@@ -46,11 +46,12 @@
     echo "projects (".$ps.")<hr class='minor'>";
     foreach($projects as $p)
     {
+      $color = (in_array($p->id, $evaluated) ? 'skyblue' : 'pink');
       echo "<div><button onclick='GetAssignmentProject(";
 
       echo $p->id.',"'.$type.'"';
 
-      echo ")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
+      echo ")' class='standard projectitem' id='".$p->id."' style='background-color:$color'>".$p->title."</button>";
       if($p->isgroup ==='1' || $p->isgroup ==='2')
       {
         echo "<ul>";
