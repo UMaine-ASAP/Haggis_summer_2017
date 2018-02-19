@@ -92,10 +92,24 @@ h3
   animation-duration: 2s;
 }
 
+.key
+{
+    /* border: 1px solid black; */
+    text-align:left;
+    width:80%;
+    margin: 0 auto;
+    padding:0;
+}
+
 
 .glyphicon-plus
 {
   font-size:60px;
+}
+
+.evalstatus
+{
+  font-size:20px;
 }
 .glyphicon-search
 {

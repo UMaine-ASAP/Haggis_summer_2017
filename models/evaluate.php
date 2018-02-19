@@ -199,13 +199,13 @@ class Evaluate
           switch($type)
           {
             case '1':
-             $sql = "SELECT  projectID FROM evaluation WHERE author = ?";
+             $sql = "SELECT DISTINCT projectID FROM evaluation WHERE author = ?";
              break;
            case '2':
-             $sql = "SELECT  projectID FROM evaluation WHERE author = ?";
+             $sql = "SELECT DISTINCT projectID FROM evaluation WHERE author = ?";
              break;
            case '3':
-             $sql = "SELECT  userID FROM evaluation WHERE author = ?";
+             $sql = "SELECT DISTINCT userID FROM evaluation WHERE author = ?";
              $peer = true;
              break;
           }
@@ -223,7 +223,7 @@ class Evaluate
               $stmt->execute($data);
               $projectIDs = array();
               $message = false;
-              if($r = $stmt->fetch(PDO::FETCH_ASSOC))
+              while($r = $stmt->fetch(PDO::FETCH_ASSOC))
               {
                 if($peer)
                 {
