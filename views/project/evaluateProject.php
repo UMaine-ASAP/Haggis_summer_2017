@@ -1,4 +1,4 @@
-<script src="js/evaluationmanager.js"></script>
+<script src="js/evaluationmanager1.js"></script>
 
 <h3>Evaluate</h3>
 
@@ -62,17 +62,15 @@ echo "</div>
   </form></div></td></tr></table></div>";
 ?>
 
-<div id='evalout'><h3>Due to an error, your evaluation was not submitted. <h3></div>
+<div id='evalout'><h3>Submitting Critique...<h3></div>
 
   <script>
 
   $('.slider').each(function()
 {
-    console.log('triggered');
-
     var thiselement = $(this);
     var criID = thiselement.attr("id");
-    console.log(criID);
+
     var criScore = thiselement.val();
     var criteriaOutputs = document.getElementsByClassName('s'+criID);
     for(var i = 0; i < criteriaOutputs.length; i++)

@@ -49,6 +49,47 @@ class UserController
       }
     }
   }
+
+  //=================================================================================== LOGIN FOR JAVASCRIPT
+    function loginForJavascript()
+    {
+      // $rawData = file_get_contents("php://input");
+      // $dataList = explode('&',$rawData);
+      // echo sizeof($dataList[0])."==============";
+      // foreach($dataList as $d) echo $d."<><><><> ";
+      if(isset($_POST['email']))
+      {
+        $outcome =  User::login($_POST['email'], $_POST['current-password']);
+        if($outcome[0] != 1)
+        {
+          echo "Your username or password were incorrect. \nPlease Try again.";
+        }
+        else
+        {
+          $UserData = $outcome[1];
+          $_SESSION['firstName'] = $UserData[0];
+          $_SESSION['lastName'] = $UserData[1];
+          $_SESSION['middleInitial'] = $UserData[2];
+          $_SESSION['token'] = $UserData[3];
+          echo("You have successfully logged back in.");
+        }
+      }
+      else {
+        echo "uh oh, no email set";
+      }
+    }
+    //=================================================================================== LOGIN FOR JAVASCRIPT
+      function checkIfSessionActive()
+      {
+        if(isset($_SESSION['token']))
+        {
+          echo "current";
+        }
+        else
+        {
+          echo "expired";
+        }
+      }
 //=================================================================================== LOGOUT
   function logout()
   {

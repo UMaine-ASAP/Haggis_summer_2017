@@ -60,7 +60,7 @@ date_default_timezone_set('America/New_York');
 
 
   $controllers = array (  'pages'     => ['index','classes','groups','assignments', 'events','error'],
-                          'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation'],
+                          'user'      => ['index','register', 'passwordReset', 'passwordResetRequest','login','logout','editUser','delete','emailConfirmation', 'sendEmailConfirmation', 'loginForJavascript', 'checkIfSessionActive'],
                           'class'     => ['index', 'archiveClass', 'getUserbyClass', 'insertClass', 'joinClass','addToClass', 'updateClass', 'listCourses', 'viewClass'],
                           'group'     => ['index', 'create','edit'],
                           'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details','getRubric','assignEval','setStatus','setPrivacy'],

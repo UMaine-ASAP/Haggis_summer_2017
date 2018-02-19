@@ -204,6 +204,10 @@ class ProjectController
   {
     $projectid = $_GET['id'];
     $userID = User::getID($_SESSION['token'])[1];
+    // if($userID == "-1")
+    // {
+    //   echo "<script> var username = prompt('You have been logged out due to inactivity.\nTo continue enter your email address below,'')";
+    // }
     $project = Project::id($projectid)[1];
     $targetid = $project->assignmentID;
     $a = Assignment::id($targetid)[1];
