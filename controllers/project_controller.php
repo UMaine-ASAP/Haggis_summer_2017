@@ -282,7 +282,11 @@ class ProjectController
             $tempText = "<p>";
             if($admin)
             {
-              $tempText .= $author->firstName." ".$author->lastName." - <q>";
+              if(isset($author->firstName) && isset($author->lastName))
+                $tempText .= $author->firstName." ".$author->lastName." - <q>";
+              else {
+                $tempText .= "Author not logged - <q>";
+              }
             }
             else
             {
