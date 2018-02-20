@@ -115,9 +115,7 @@ Class Project {
       $data = array($projectID);
       $stmt = $db->prepare($sql);
       $stmt->execute($data);
-      $ids = array();
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
       return array(1, $result['assignmentID']);
     }
   }

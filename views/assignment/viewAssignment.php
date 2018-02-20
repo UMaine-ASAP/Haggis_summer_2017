@@ -1,8 +1,6 @@
 
 <?php
-  echo "<div class='assignment' id='id".$a->id."'>
-  <table>
-  <tr><td colspan='2'>";
+  echo "<div class='assignment' id='id".$a->id."'>";
   if($type ==='submission')
     echo "<h2>Assignment: ".$a->title."</h2>";
   else
@@ -28,20 +26,17 @@
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
           http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
       echo "<a href='?controller=assignment&action=assignEval&assignmentID=".$a->id."'>Assign Evaluations</a>";
-
-
   }
-
-    echo "<hr></td></tr>
-    <tr>
-      </td></tr><tr><td class='ProjectList' id='ProjectList' style='text-align:center'>";
+  echo "<hr></div><br>";
+  echo "<table ><tr><td class='projectcontainer'><div class='projectContents'>";
+  echo "<div class='ProjectList' id='ProjectList' style='text-align:center'>";
   ////////////////////////////////////////////////////// PROJECT LISTING
   require_once("views/project/viewAssignmentProjectList.php");
 
-  echo "</td><td id=ProjectView>";
+  echo "</div><div id='ProjectView'>";
   $_SESSION['targetid'] = $a->id;
   require_once("views/assignment/detailsAssignment.php");
-  echo "</td></tr></table>";
+  echo "</div></div></td></tr></table>";
 ?>
 
 <div class="popup" id="addToEvent"><?php require_once('views/event/addToEvent.php');?></div>

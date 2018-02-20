@@ -196,7 +196,7 @@ function submit()
     {
       $('#evalout').show();
       $('#evalform').hide();
-      var projectID = document.getElementsByClassName('evalfor')[0].id;
+      var projectID = document.getElementsByClassName('evalfor')[0].value;
       $('#ProjectList').load('?controller=project&action=refreshList&quick=1&projectID='+projectID);
     }
     else
