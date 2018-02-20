@@ -96,15 +96,20 @@ class AssignmentController
       {
         $numofGroups = sizeof($_POST['labels']);
         $groupcounter = 1;
+        $counter = 0;
         foreach($_POST['labels'] as $label)
         {
           $projectID = Project::create("Group ".$groupcounter , $_POST['title'], "1", $assignmentID)[1];
           $userIDs = array();
-          $counter = 0;
+
           $groupcounter++;
-          foreach($_POST[$label] as $element)
+          echo sizeof($_POST["lable".$counter]);
+          for($i = 0; $i < sizeof($_POST["lable".$counter]); $i++)
           {
-            $userIDs[] = $element;
+            $id = $_POST["lable".$counter][$i];
+            echo $id."<br>";
+            $userIDs[] = $id;
+
           }
           $message = Group::create($projectID, $userIDs)[1];
           for($i=0; $i < sizeof($userIDs); $i++)
@@ -116,7 +121,9 @@ class AssignmentController
                                        "New Assignment: '".$_POST['title']."'",
                                        "Dear ".$user->firstName." ".$user->lastName.",\nPlease check for new assignments in course ".$klass->coursename.".\nThe assignment is due ".$_POST['duedate'].", at ".$_POST['duetime'].".\n\nDo not reply to this email, the inbox is not monitoried.");
           }
+          $counter++;
         }
+
       }
       else
       {
@@ -139,7 +146,7 @@ class AssignmentController
       $_SESSION['returnto'] = $_POST['classid'];
     }
     //Load index page
-    echo("<script>location.href = 'index.php';</script>");
+    // echo("<script>location.href = 'index.php';</script>");
   }
   //==========================================================================
   public function createAssignmentQuick()

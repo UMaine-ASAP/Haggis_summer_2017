@@ -202,6 +202,7 @@ function groupFormer(input, output)
 function extractor(input, output)
 {
   var groups = document.getElementsByClassName(input);
+
   var value ="";
   var lable ="";
   var i;
@@ -209,14 +210,13 @@ function extractor(input, output)
   for(j=0; j<groups.length;j++)
   {
     data = groups[j].children;
-    lable = groups[j].getAttribute("targetuser");
-    console.log(lable);
 
     var chunk = "<input name='labels[]' type='hidden' value='"+lable+"'>";
 
     for(i=0; i<data.length;i++)
     {
-      chunk = chunk+"<input name = '"+lable+"[]' type='hidden' value='"+data[i].id+"'>";
+      lable = data[i].getAttribute("targetuser");
+      chunk = chunk+"<input name = 'lable"+j+"[]' type='hidden' value='"+lable+"'>";
     }
     value = value+ chunk;
   }

@@ -5,7 +5,7 @@ $(document).ready(function()
     $(".assignmentCreationGroup").hide();
     $("#assignmentCreationReview").hide();
     $("#step1").css("background-color", "lightgreen");
-    
+
 
     // $(".copyAssignment").on('input',function(event)
     // {

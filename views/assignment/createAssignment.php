@@ -1,6 +1,8 @@
 
+<script src="js/draganddrop.js"></script>
 <script src="js/viewSwitch.js"></script>
 <script src="js/assignmentCreationManager.js"></script>
+
 
 
 <h2>Create an Assignment</h2>

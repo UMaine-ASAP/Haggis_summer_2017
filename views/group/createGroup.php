@@ -1,5 +1,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/draganddrop.js"></script>
+
 <div><?php if(isset($message)) echo $message; ?></div>
 <table class='grouping'>
   <tr>

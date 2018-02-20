@@ -21,16 +21,16 @@ if($projects != null && $ps > 0)
 
     echo ")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
     echo ($done == 'yes' ? "<i class='evalstatus glyphicon glyphicon-check' style='color:blue'></i>" : "<i class='evalstatus glyphicon glyphicon-edit' style='color:red'></i>");
-    // if($p->isgroup ==='1' || $p->isgroup ==='2')
-    // {
-    //   echo "<ul>";
-    //   $listing = $p->list;
-    //   foreach($listing as $u)
-    //   {
-    //     echo "<li class='assignedname'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
-    //   }
-    //   echo "</ul></li>";
-    // }
+    if($p->isgroup ==='1' || $p->isgroup ==='2')
+    {
+      echo "<ul style='list-style-type: none;'>";
+      $listing = $p->list;
+      foreach($listing as $u)
+      {
+        echo "<li class='assignedname'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
+      }
+      echo "</ul></li>";
+    }
     echo "</div>";
   }
 
