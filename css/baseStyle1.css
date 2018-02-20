@@ -375,41 +375,46 @@ li.assignments:hover
 
 }
 
-.projectcontainer
-{
-  height:100%;
-  width:100%;
-  overflow:auto;
-}
-.projectContents
-{
-  width:100%;
-  /* height:100%; */
-  display:flex;
-  flex-flow: row;
-}
-
 .assignment
 {
   width:100%;
   height:30%;
+
 }
+
+.projectcontainer
+{
+  width:100%;
+  height:100%;
+  display:flex;
+}
+
+
+
+/* .projectTable
+{
+  height:100%;
+  width:100%;
+  margin: 0 auto;
+  padding:0;
+  overflow:auto;
+} */
+
 
 .ProjectList
 {
-  width:20%;
+  width:30%;
   overflow:auto;
-  /* height:100%; */
 }
 
 #ProjectView
 {
   overflow:auto;
-  width:80%;
-  /* height:100%; */
+
 }
+
+
 #FinalView
 {
   overflow:auto;
-  /* height:100%; */
 }

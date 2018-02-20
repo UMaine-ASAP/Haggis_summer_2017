@@ -28,7 +28,7 @@
       echo "<a href='?controller=assignment&action=assignEval&assignmentID=".$a->id."'>Assign Evaluations</a>";
   }
   echo "<hr></div><br>";
-  echo "<table ><tr><td class='projectcontainer'><div class='projectContents'>";
+  echo "<div class='projectcontainer'>";
   echo "<div class='ProjectList' id='ProjectList' style='text-align:center'>";
   ////////////////////////////////////////////////////// PROJECT LISTING
   require_once("views/project/viewAssignmentProjectList.php");
@@ -36,7 +36,7 @@
   echo "</div><div id='ProjectView'>";
   $_SESSION['targetid'] = $a->id;
   require_once("views/assignment/detailsAssignment.php");
-  echo "</div></div></td></tr></table>";
+  echo "</div></div>";
 ?>
 
 <div class="popup" id="addToEvent"><?php require_once('views/event/addToEvent.php');?></div>
