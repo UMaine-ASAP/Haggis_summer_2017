@@ -66,7 +66,7 @@ date_default_timezone_set('America/New_York');
                           'assignment'=> ['listAssignments', 'createAssignment','createAssignmentQuick','delete','editAssignment','viewAssignment','details','getRubric','assignEval','setStatus','setPrivacy'],
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
-                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete'],
+                          'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete','refreshList'],
                           'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete'],
                           'testing'   => ['test']);
 

@@ -106,5 +106,19 @@ Class Project {
       }
       return array(1, $projectlists);
     }
+    //=================================================================================== getassignmentID
+    public static function getAssignment($projectID)
+    {
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT assignmentID FROM project WHERE projectID = ?";
+      $data = array($projectID);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $ids = array();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      return array(1, $result['assignmentID']);
+    }
   }
 ?>

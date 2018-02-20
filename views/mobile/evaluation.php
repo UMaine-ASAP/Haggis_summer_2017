@@ -1,4 +1,4 @@
-<script src='js/evaluationmanager1.js'></script>
+<script src='js/evaluationmanager2.js'></script>
 <?php
 $linkout;
   if ($type == "1") {
