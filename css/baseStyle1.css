@@ -403,18 +403,27 @@ li.assignments:hover
 
 .ProjectList
 {
-  width:30%;
-  overflow:auto;
+  width:20%;
+  height:100%;
+
 }
 
 #ProjectView
 {
-  overflow:auto;
+
+  padding:5px;
+  margin: 10px;
+  height:100%;
+  width:100%;
 
 }
 
 
 #FinalView
 {
-  overflow:auto;
+  width:100%;
+  height:100%;
+  padding:5px;
+  margin:10px;
+
 }
