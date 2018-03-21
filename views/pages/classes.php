@@ -46,15 +46,27 @@ if($status === 'admin')
       <h2>Class Roster</h2><hr>
       <div class='sidebyside'>
         <div class='sidebysidesub'>
-          <h4>Currently Enrolled Students</h4>
-          <p></p>
-          <div class='enrolledStudents'><br>
-    <?php foreach($students as $s)
-          {
-            echo $s->firstName." ".$s->middleInitial." ".$s->lastName."<br>";
-          }
 
-          echo "</div></div>";
+          <h4>Currently Enrolled Students</h4>
+          <form action ='?controller=class&action=removeFromClass' method='post'>
+            <input type = 'hidden' name='classid' value='<?php echo $classID; ?>'>
+            Select one or more students to be removed from this class:<br>
+            <select name='student[]' size='15' multiple>
+              <?php foreach($students as $s)
+                    {
+
+                      echo "<option value='".$s->id."'>".$s->firstName." ".$s->middleInitial." ".$s->lastName."</option>";
+                    }?>
+            </select><br>
+            <?php if($status === 'admin')
+              echo "<input type='submit' value='Unenroll Student(s)'>";?>
+            </form></div>
+
+
+
+
+
+              <?php
           if($status ==='admin')
           {
             echo "<div class='sidebysidesub'><h4>Enroll Students</h4><form action='?controller=class&action=addToClass' method = 'post'>

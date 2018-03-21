@@ -44,8 +44,8 @@ class ProjectController
       $mi = $_POST['middleInitial'];
       $ln = $_POST['lastname'];
       $em = $_POST['email'];
-      echo $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1]."<br>";
-      echo EventProject::associatewithevent($eventprojectID, $eventID)[1]."<br>";
+      $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1]."<br>";
+      EventProject::associatewithevent($eventprojectID, $eventID)[1]."<br>";
       for($i = 0; $i < sizeof($fn); $i++)
       {
         $temp = EventUser::insert($fn[$i], $mi[$i], $ln[$i], $em[$i],$eventprojectID)[1];
@@ -77,7 +77,7 @@ class ProjectController
     $a = Assignment::id($assignmentID)[1];
     $type = $a->type;
     $stype = ($type == "submission" ? "1" : "2");
-    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1], $stype)[1];
+    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1], $stype, '1')[1];
     require_once('views/project/viewAssignmentProjectList.php');
   }
   //===================================================================================
@@ -215,17 +215,34 @@ class ProjectController
   public function assignmentEvaluate()
   {
     $projectid = $_GET['id'];
+    $type = $_GET['type'];
+    $assignmentid = $_GET['assignmentid'];
     $userID = User::getID($_SESSION['token'])[1];
+    $targetid;
+    $project;
+
+
+
     // if($userID == "-1")
     // {
     //   echo "<script> var username = prompt('You have been logged out due to inactivity.\nTo continue enter your email address below,'')";
     // }
-    $project = Project::id($projectid)[1];
-    $targetid = $project->assignmentID;
-    $a = Assignment::id($targetid)[1];
+    if($type != "3")
+    {
+
+      $project = Project::id($projectid)[1];
+      $targetid= $project->assignmentID;
+    }
+    else
+    {
+
+      $targetid = $projectid;
+    }
+
+    $a = Assignment::id($assignmentid)[1];
     $criterias = $a->rubric->criteriaSets;
     $projectresponses = Evaluate::projectID($projectid)[1];
-    $type = '1';
+
     $critiques = Evaluate::getPrexisting($userID, $projectid)[1];
     $returner = false;
     if($critiques != false)
@@ -255,16 +272,23 @@ class ProjectController
     $projectid = $_GET['id'];
     $project;
     $projectresponses;
-    if($type =='1')
+
+    switch($type)
     {
-      $projectresponses = Evaluate::projectID($projectid)[1];
-      $project = Project::id($projectid)[1];
+      case '1':
+        $projectresponses = Evaluate::projectID($projectid)[1];
+        $project = Project::id($projectid)[1];
+        break;
+      case '2':
+        $projectresponses = Evaluate::eventProjectID($projectid)[1];
+        $project = EventProject::id($projectid)[1];
+        break;
+      case '3':
+        $projectresponses = Evaluate::userID($projectid)[1];
+        $project = Project::id($projectid)[1];
+        break;
     }
-    if($type == '2')
-    {
-      $projectresponses = Evaluate::eventProjectID($projectid)[1];
-      $project = EventProject::id($projectid)[1];
-    }
+
 
 
     $cID = array();
@@ -346,41 +370,56 @@ class ProjectController
   //===================================================================================
   public function viewAssignmentProject()
   {
-    $type='1';
+
     $assignmentType = $_GET['type'];
+    $assignmentid = $_GET['assignmentid'];
     $assignedUser=false;
     $userID = User::getID($_SESSION['token'])[1];
     $isadmin = User::checkAdmin($_SESSION['token'])[1];
+
     $projectid = $_GET['projectID'];
     $project = Project::id($projectid)[1];
-    $assignment = Assignment::id($project->assignmentID)[1];
+    $assignment = Assignment::id($assignmentid)[1];
+    $type=($assignment->type == 'submission' ? '1' : '3');
     $contents = Content::project($projectid)[1];
     $list = $project->list;
     $ids = array();
 
-    switch($project->isgroup)
-    {
-      case '0':
+    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1],$type , $projectid)[1];
 
-        foreach($list as $u)
-        {
-          $ids[] = $u->userID;
-          if($u->userID === $userID)
-            $assignedUser = true;
-        }
-        break;
-      case '2':
-        //Go through EventUsers(eventID)
-        break;
-      case '1':
-        foreach($list as $u)
-        {
-          $ids[] = $u->id;
-          if($u->id == $userID)
-            $assignedUser = true;
-        }
-        break;
+    if($assignmentType == '3')
+    {
+      $targetUser = User::id($projectid)[1];
     }
+    else
+    {
+
+      switch($project->isgroup)
+      {
+        case '0':
+
+          foreach($list as $u)
+          {
+            $ids[] = $u->userID;
+            if($u->userID === $userID)
+              $assignedUser = true;
+          }
+          break;
+        case '2':
+          //Go through EventUsers(eventID)
+          break;
+        case '1':
+          foreach($list as $u)
+          {
+            $ids[] = $u->id;
+            if($u->id == $userID)
+              $assignedUser = true;
+          }
+          break;
+      }
+    }
+
+
     require_once("views/project/viewAssignmentProject.php");
   }
 

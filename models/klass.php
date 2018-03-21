@@ -290,7 +290,28 @@ class Klass {  //We use class with a k, using just class confuses PHP
           return array($errorCode, $message);
         }
 
-
+  //=================================================================================== Add To CLASS
+      public static function removeFromClass($userID,$classID)
+      {
+        $errorCode;
+        $message;
+        $db = Db::getInstance();
+        $sql = "DELETE FROM classUser WHERE classID = ? AND userID = ?";
+        $data = array($classID, $userID);
+        try
+        {
+          $stmt = $db->prepare($sql);
+          $stmt->execute($data);
+          $message = "Successfully removed from Class";
+          $errorCode = 1;
+        }
+        catch(PDOException $e)
+        {
+          $errorCode = $e->getCode();
+          $message = $e -> getMessage();
+        }
+        return array($errorCode, $message);
+      }
 //=================================================================================== DELETE CLASS
     public static function delete($classID)
     {

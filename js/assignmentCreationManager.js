@@ -40,18 +40,20 @@ function changeType(event, targetIdName)
 {
   var newValue = event.target.value;
   document.getElementById(targetIdName).setAttribute("name",  newValue);
-  if(newValue == 'peerEval')
-  {
-    $('#makegrouptruespan').hide();
-    document.getElementById('makegroupFalse').checked = true;
-    document.getElementById('warningMessage').innerHTML = "Warning, this assignment is setup to be a peer Evaluation. Assign only with Single Assignment";
-  }
-  else
-  {
-    $('#makegrouptruespan').show();
-    document.getElementById('makegroupTrue').setAttribute('type', 'radio');
-    document.getElementById('warningMessage').innerHTML="";
-  }
+
+  //Depreciated Code
+  // if(newValue == 'peerEval')
+  // {
+  //   $('#makegrouptruespan').hide();
+  //   document.getElementById('makegroupFalse').checked = true;
+  //   document.getElementById('warningMessage').innerHTML = "Warning, this assignment is setup to be a peer Evaluation. Assign only with Single Assignment";
+  // }
+  // else
+  // {
+  //   $('#makegrouptruespan').show();
+  //   document.getElementById('makegroupTrue').setAttribute('type', 'radio');
+  //   document.getElementById('warningMessage').innerHTML="";
+  // }
 }
 
 function tostart()

@@ -58,25 +58,37 @@ class ClassController
     echo("<script>location.href = 'index.php';</script>");
   }
 //=================================================================================== JOIN CLASS
-  public function joinClass()
+public function joinClass()
+{
+  if(isset($_POST['joinCode']))
   {
-    if(isset($_POST['joinCode']))
-    {
-      $userID = User::getID($_SESSION['token'])[1];
-      $_SESSION['message'] = Klass::joinClass($userID, $_POST['joinCode'])[1];
-    }
-    else
-      $courses = Course::all()[1];
+    $userID = User::getID($_SESSION['token'])[1];
+    $_SESSION['message'] = Klass::joinClass($userID, $_POST['joinCode'])[1];
+  }
+  else
+    $courses = Course::all()[1];
+  echo("<script>location.href = 'index.php';</script>");
+}
+
+//=================================================================================== ADD TO CLASS
+  public function addToClass()
+  {
+
+    $classID = $_POST['classid'];
+    foreach($_POST['student'] as $s)
+    Klass::addToClass($s, $classID)[1];
+    $_SESSION['controller'] = 'pages';
+    $_SESSION['action'] = 'classes';
+    $_SESSION['returnto'] = $classID;
     echo("<script>location.href = 'index.php';</script>");
   }
-
   //=================================================================================== ADD TO CLASS
-    public function addToClass()
+    public function removeFromClass()
     {
 
       $classID = $_POST['classid'];
       foreach($_POST['student'] as $s)
-      $_SESSION['message'] = Klass::addToClass($s, $classID)[1];
+      Klass::removeFromClass($s, $classID)[1];
       $_SESSION['controller'] = 'pages';
       $_SESSION['action'] = 'classes';
       $_SESSION['returnto'] = $classID;

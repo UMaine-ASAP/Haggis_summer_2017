@@ -139,6 +139,35 @@ class Evaluate
          }
          return array($errorCode, $message);
      }
+     //=================================================================================== GET CRITERIA BY Project
+      public static function userID($userid)
+      {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM evaluation WHERE userID = ?";
+          $data = array($userid);
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            $evaluations = array();
+            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              $author = User::id($r['author'])[1];
+
+              $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], $author, $r['type']);
+            }
+            $message = $evaluations;
+            $errorCode = 1;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e->getMessage();
+          }
+          return array($errorCode, $message);
+      }
     //=================================================================================== Check if already submitted
      public static function check($authorid, $targetID, $criteriaid, $type)
      {
@@ -189,28 +218,32 @@ class Evaluate
      }
 
      //=================================================================================== Check if already submitted
-      public static function getEvaluated($authorid, $type)
+      public static function getEvaluated($authorid, $type, $projectID)
       {
           $errorCode;
           $message;
           $db = Db::getInstance();
           $sql;
+          $data;
           $peer = false;
           switch($type)
           {
             case '1':
              $sql = "SELECT DISTINCT projectID FROM evaluation WHERE author = ?";
+             $data = array($authorid);
              break;
            case '2':
              $sql = "SELECT DISTINCT projectID FROM evaluation WHERE author = ?";
+             $data = array($authorid);
              break;
            case '3':
-             $sql = "SELECT DISTINCT userID FROM evaluation WHERE author = ?";
+             $sql = "SELECT DISTINCT userID FROM evaluation WHERE author = ? AND projectID = ?";
+             $data = array($authorid, $projectID);
              $peer = true;
              break;
           }
 
-          $data = array($authorid);
+
           try
           {
             if($authorid ==='-1')

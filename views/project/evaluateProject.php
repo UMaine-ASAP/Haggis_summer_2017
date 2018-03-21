@@ -14,7 +14,7 @@ echo "</div>
           $content ="";
           $rating = 1;
 
-          if($returner)
+          if(isset($returner) && $returner)
           foreach($critiques as $pc)
           {
             if($pc->criteriaID == $c->id)

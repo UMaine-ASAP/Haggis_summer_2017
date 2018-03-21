@@ -103,11 +103,11 @@ class AssignmentController
           $userIDs = array();
 
           $groupcounter++;
-          echo sizeof($_POST["lable".$counter]);
+          //echo sizeof($_POST["lable".$counter]);
           for($i = 0; $i < sizeof($_POST["lable".$counter]); $i++)
           {
             $id = $_POST["lable".$counter][$i];
-            echo $id."<br>";
+            //echo $id."<br>";
             $userIDs[] = $id;
 
           }
@@ -146,7 +146,7 @@ class AssignmentController
       $_SESSION['returnto'] = $_POST['classid'];
     }
     //Load index page
-    // echo("<script>location.href = 'index.php';</script>");
+    echo("<script>location.href = 'index.php';</script>");
   }
   //==========================================================================
   public function createAssignmentQuick()
@@ -206,8 +206,18 @@ class AssignmentController
     $stype = ($type == "submission" ? "1" : "2");
     $e = Event::all()[1];
     $classID = $_GET['classID'];
-    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1], $stype)[1];
-    require_once("views/assignment/viewAssignment.php");
+    $evaluated = Evaluate::getEvaluated(User::getID($_SESSION['token'])[1], $stype, 1)[1];
+
+    switch($type)
+    {
+      case "submission":
+        require_once("views/assignment/viewAssignment.php");
+        break;
+      case "peer":
+        $userID = User::getID($_SESSION['token'])[1];
+        require_once("views/assignment/viewPeerAssignment.php");
+        break;
+    }
   }
   //==========================================================================
   public function details()

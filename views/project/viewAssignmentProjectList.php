@@ -15,22 +15,27 @@ if($projects != null && $ps > 0)
   foreach($projects as $p)
   {
     $done = (in_array($p->id, $evaluated) ? 'yes' : 'no');
-    echo "<div><button onclick='GetAssignmentProject(";
+    echo "<div><button class='projectButton' onclick='GetAssignmentProject(";
 
     echo $p->id.',"'.$type.'"';
 
-    echo ")' class='standard projectitem' id='".$p->id."'>".$p->title."</button>";
-    echo ($done == 'yes' ? "<i class='evalstatus glyphicon glyphicon-check' style='color:blue'></i>" : "<i class='evalstatus glyphicon glyphicon-edit' style='color:red'></i>");
+    echo ")' class='standard projectitem' id='".$p->id."'><strong>".$p->title."</strong><br> ";
+
+
     if($p->isgroup ==='1' || $p->isgroup ==='2')
     {
-      echo "<ul style='list-style-type: none;'>";
       $listing = $p->list;
       foreach($listing as $u)
       {
-        echo "<li class='assignedname'>".$u->firstName." ".$u->middleInitial." ".$u->lastName."</li>";
+        echo $u->firstName." ".$u->middleInitial." ".$u->lastName."<br>";
       }
-      echo "</ul></li>";
     }
+    echo ($done == 'yes' ? "<i class='evalstatus glyphicon glyphicon-check' style='color:blue'></i>" : "<i class='evalstatus glyphicon glyphicon-edit' style='color:red'></i>");
+
+    echo "</button>";
+
+
+
     echo "</div>";
   }
 
