@@ -16,6 +16,7 @@
       echo "No Evaluations yet, Be the first!";
     else
     {
+      echo "<h2>Project Score = ".$finalAvg."</h2>";
       foreach($cNames as $n)
       {
         echo "<h3>".$n."</h3><br>";

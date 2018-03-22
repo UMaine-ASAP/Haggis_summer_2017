@@ -243,6 +243,7 @@ class MobileController
       {
         $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
       }
+      $finalAvg = number_format((array_sum($cAvg) / sizeof($cAvg)),2,'.','');
       // The HTML is at this location  |
       //                              \/
       require_once("views/mobile/responses.php");
