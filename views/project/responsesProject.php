@@ -1,7 +1,7 @@
 <!-- <a href="?controller=project&action=saveAssignmentResponse&quick=1&id=<?php echo $projectid; ?>&type=2">Save to Computer</a> -->
 
 <h3>Project Responses</h3>
-
+<h2>Project Score = <?php echo $finalAvg; ?></h2>
 <div class='chart'></div>
 
 <?php

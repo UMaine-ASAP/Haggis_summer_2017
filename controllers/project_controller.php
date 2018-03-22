@@ -273,6 +273,7 @@ class ProjectController
     $cComments = array();
     $cRatings = array();
     $dataout = array();
+    $finalAvg  = 0;
 
     foreach($projectresponses as $r)
     {
@@ -340,6 +341,10 @@ class ProjectController
     {
       $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
     }
+
+
+
+    $finalAvg = number_format((array_sum($cAvg) / sizeof($cAvg)),2,'.','');
 
     require_once("views/project/responsesProject.php");
   }
