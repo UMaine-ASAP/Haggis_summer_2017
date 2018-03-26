@@ -12,7 +12,7 @@
       <div id='part1-1'>
 
         <input class='standard' type='text'    name='coursetitle'  id='coursename'      placeholder='Name of Course'    >     <br>
-        <input class='standard' type='text'    name='coursecode'   id='coursecode'      placeholder='Set Course Code' pattern="[A-Za-z]{3}[0-9]{3}" title="Three letter and three number course code"  >    <br>
+        <input class='standard' type='text'    name='coursecode'   id='coursecode'      placeholder='Set Course Code' title="Three letter and three number course code"  >    <br>
         <input class='standard' type='text'    name='coursedescription'  placeholder='Course Description' >
         <br><button class='standard' type='button' value='1-1' id='part1end'>Continue</button>
 
