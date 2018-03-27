@@ -17,7 +17,7 @@
       <div class="inputProjectRegistration"><input class='standard typeBox' type='text' name='lastname[]' placeholder='Last Name' required></div>
       <div class="inputProjectRegistration"><input class='standard typeBox' type='email' name='email[]' placeholder='Email Address' ></div>
     </div>
-    <input class='standard' type='text' name='projectCode' placeholder='Project Code'><br>
+    <input class='inputProjectRegistration' type='text' name='projectCode' placeholder='Project Code'><br>
 
     <input class='standard bigButton' type="submit" value="Submit Project">
   </form>
