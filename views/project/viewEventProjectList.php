@@ -16,7 +16,7 @@ Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
 foreach($projectList as $p)
 {
   if($p->id != '')
-    echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
+    echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->$projectEventCode."-".$p->title."</button></div>";
 }
 foreach($eventprojectList as $p)
 {
