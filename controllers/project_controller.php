@@ -245,6 +245,7 @@ class ProjectController
     $targetid = $_GET['eventID'];
     $projectresponses = Evaluate::projectID($project->id,'2')[1];
     $type = '2';
+    $returner = false;
 
     require_once("views/project/evaluateProject.php");
   }
