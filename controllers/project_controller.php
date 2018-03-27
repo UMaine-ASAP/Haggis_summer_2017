@@ -44,7 +44,8 @@ class ProjectController
       $mi = $_POST['middleInitial'];
       $ln = $_POST['lastname'];
       $em = $_POST['email'];
-      echo $eventprojectID = EventProject::create($title, $desc,$abst,'-2', '0')[1]."<br>";
+      $pc = $_POST['projectCode'];
+      echo $eventprojectID = EventProject::create($title, $desc,$abst,'-2', $pc)[1]."<br>";
       echo EventProject::associatewithevent($eventprojectID, $eventID)[1]."<br>";
       for($i = 0; $i < sizeof($fn); $i++)
       {
