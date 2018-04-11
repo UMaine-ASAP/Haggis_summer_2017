@@ -111,5 +111,91 @@ class EventController
   {
     require_once('views/home/error.php');
   }
+//===================================================================================
+  public function projectByScore()
+  {
+    $eventID = $_GET['eventid'];
+    $eventProjects = EventProject::eventID($eventID)[1];
+    $ranking = array(0,0,0);
+    $projectRankingStorage = array(0,0,0);
+    $projectNumber = array();
+    $projectTitles = array();
+    $projectRankings = array();
+    foreach($eventProjects as $e)
+    {
+
+      $projectresponses = Evaluate::eventProjectID($e->id)[1];
+
+      $project = EventProject::id($e->projectID)[1];
+
+      $cID = array();
+      $cNames = array();
+      $cAvg = array();
+      $cComments = array();
+      $cRatings = array();
+      $dataout = array();
+      $finalAvg  = 0;
+
+
+      foreach($projectresponses as $r)
+      {
+
+        $temp = CriteriaSet::id($r->criteriaID)[1][0];
+
+        $check = in_array($temp->title, $cNames);
+        $author = $r->author;
+          if($check)
+          {
+            $index = array_search($temp->title, $cNames);
+            $cAvg[$index] = number_format((($cAvg[$index] + $r->rating)/2),2,'.','');
+
+            $cComments[$index][] = $r->comment;
+          }
+          else
+          {
+            $cID[] = $temp->id;
+            $cNames[] = $temp->title;
+            $cAvg[] = $r->rating;
+            $cComments[] = array($r->comment);
+          }
+      }
+      for($i = 0; $i<sizeof($cNames);$i++)
+      {
+        $dataout[]= array('lable' => $cNames[$i], 'rating' => $cAvg[$i]);
+      }
+
+      if(sizeof($cAvg) != 0)
+        $finalAvg = number_format((floatval(array_sum($cAvg)) / sizeof($cAvg)),2,'.','');
+      else {
+        $finalAvg = 0;
+      }
+      $projectNumber[] = $e->projectEventCode;
+      $projectTitles[] = $e->title;
+      $projectRankings[] =  $finalAvg;
+
+      if($finalAvg > $ranking[0])
+      {
+        $ranking[2] = $ranking [1];
+        $ranking[1] = $ranking [0];
+        $ranking[0] = $finalAvg;
+        $projectRankingStorage[2] = $projectRankingStorage [1];
+        $projectRankingStorage[1] = $projectRankingStorage [0];
+        $projectRankingStorage[0] = $e;
+      }
+      else if($finalAvg > $ranking[1])
+      {
+        $ranking[1] = $ranking [0];
+        $ranking[0] = $finalAvg;
+        $projectRankingStorage[1] = $projectRankingStorage [0];
+        $projectRankingStorage[0] = $e;
+      }
+      else if($finalAvg > $ranking[2])
+      {
+        $ranking[0] = $finalAvg;
+        $projectRankingStorage[0] = $e;
+      }
+    }
+    require_once('views/event/eventRankings.php');
+  }
 }
 ?>

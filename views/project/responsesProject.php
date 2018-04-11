@@ -10,7 +10,7 @@ if(sizeof($cNames)<1)
   echo "No Evaluations yet, Be the first!";
 else
 {
-  echo "<h2>Project Score = <?php echo $finalAvg; ?></h2>";
+  echo "<h2>Project Score = ".$finalAvg."</h2>";
   echo "<h2>Project Responses</h2>";
   foreach($cNames as $n)
   {

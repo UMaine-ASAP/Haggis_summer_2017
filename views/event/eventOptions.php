@@ -11,6 +11,11 @@
 
       echo "<hr>";
 
+      echo  "<a href='?controller=event&action=projectByScore&eventid=".$event->id."'>
+            <input class='standard' type='button' value='View Rankings'>
+            </a><hr>";
+
+
     if($event->active)
       echo "<a href='?controller=event&action=setActive&eventid=".$event->id."&status=0'>
             <input class='standard' type='button' value='Set Event inactive'>

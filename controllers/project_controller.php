@@ -346,7 +346,7 @@ class ProjectController
 
 
     if(sizeof($cAvg) != 0)
-      $finalAvg = number_format((array_sum($cAvg) / sizeof($cAvg)),2,'.','');
+      $finalAvg = number_format((floatval(array_sum($cAvg)) / sizeof($cAvg)),2,'.','');
     else {
       $finalAvg = 0;
     }

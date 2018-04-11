@@ -23,3 +23,44 @@
   font-size:15px;
   height:60px;
 }
+
+.rankingTable
+{
+  width: 80%;
+  margin:20px auto;
+}
+
+.cellodd
+{
+  font-size: 15px;
+  border: 1px solid black;
+  background-color: rgb(230,230,230);
+}
+
+.celleven
+{
+  font-size: 15px;
+  border: 1px solid black;
+
+}
+
+.tabletitle
+{
+  font-size: 16px;
+}
+
+.placement
+{
+  border: 1px solid black;
+  width: 30%;
+  vertical-align: top;
+  text-align:center;
+
+}
+
+.placmenttable
+{
+  width: 80%;
+  margin: 20px auto;
+  height: 200px;
+}

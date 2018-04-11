@@ -22,6 +22,8 @@
 
         <div class='headerMenu'>
           <?php
+          $loginActive = false;
+          if($loginActive == true)
             if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login")
             {
               if (isset($_SESSION['token']))
@@ -44,5 +46,5 @@
     <footer>
       <div class = "content"></div>
     </footer>
-    
+
   </html>

@@ -63,7 +63,14 @@ $linkout;
       echo "<div><input type='range' class='slider' name='criteriaRating[]' id='".$c->id."' min='".$c->ratingMin."' max='".$c->ratingMax."' value='".$c->ratingMin."'></div>";
       echo "</div>";
       if($c->allowTextResponse === '1')
-        echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'></textarea>";
+          if ($type == "1")
+          {
+            echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'></textarea>";
+          }
+          else
+          {
+            echo "<input required class='standard criteriaComment' name='criteriaComment[]' type='hidden' value=' '>";
+          }
       echo "</div><hr class='minor'>";
       echo "<div class='error' id='masterError'></div>";
     }

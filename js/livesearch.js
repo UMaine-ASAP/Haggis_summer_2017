@@ -46,3 +46,24 @@ function searchNhide(searchvalue, search)
       elements[i].style.display= "block";
     }
 }
+
+function searchNreveal(searchvalue, search)
+{
+  var sub =  searchvalue.toLowerCase();
+  var elements = document.getElementsByClassName(search);
+  if(sub != '')                               //if the text box is not empty
+    for(var i = 0; i < elements.length; i++)
+    {
+      var searchin = elements[i].innerText;
+      var index = searchin.toLowerCase().indexOf(sub);
+      if( index !=-1)
+        elements[i].style.display= "block";
+      else
+        elements[i].style.display="none";
+    }
+  else                                      //if the value of text box is empty
+    for(var i = 0; i < elements.length; i++)
+    {
+      elements[i].style.display= "none";
+    }
+}

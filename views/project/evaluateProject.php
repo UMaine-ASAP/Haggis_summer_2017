@@ -53,7 +53,11 @@ echo "</div>
             echo "<br><br><input type='range' class='slider standard' name='criteriaRating[]' id='".$c->id."' min='".$c->ratingMin."' max='".$c->ratingMax."' value='".$rating."'>";
             echo "</div>";
             if($c->allowTextResponse === '1')
-              echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'>$content</textarea>";
+              if($type == 2)
+                echo "<input required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='hidden' value=' '>$content</textarea>";
+              else
+                echo "<textarea required rows='5' cols='75' class='standard criteriaComment' name='criteriaComment[]' type='text' placeholder='Comment:' style='width:100%'>$content</textarea>";
+
             echo "</div><hr class='minor'>";
           }
         }

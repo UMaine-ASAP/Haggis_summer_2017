@@ -67,7 +67,7 @@ date_default_timezone_set('America/New_York');
                           'mobile'    => ['index', 'login', 'register', 'classes', 'joinClass', 'assignments', 'projects', 'evaluate', 'responses', 'forgotPassword', 'events', 'eventSubmit'],
                           'evaluate'  => ['submit'],
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete','refreshList'],
-                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete'],
+                          'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete', 'projectByScore'],
                           'testing'   => ['test']);
 
   if(array_key_exists($controller, $controllers))

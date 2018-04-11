@@ -12,6 +12,24 @@
   text-align:center;
   border: 1px solid black;
   border-radius: 20px;
+  display:none;
+}
+
+.searchbox
+{
+  text-align:center;
+  margin:20px auto;
+  width: 80%;
+}
+
+.searchinput
+{
+  font-size: 20px;
+}
+
+.glyphtosearchbox
+{
+  font-size:20px;
 }
 
 

@@ -71,10 +71,10 @@ Class EventProject {
           $stmt = $db->prepare($sql);
           $stmt->execute($data);
           $eventProjectArray = array();
-          while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+          while($result = $stmt->fetch(PDO::FETCH_ASSOC))
           {
 
-            $eventProjectArray[] = new Assignment($r['assignmentID'], $r['title'], $r['description'],$r['dueTime'],$r['dueDate'],Project::assignment($r['assignmentID'])[1]);
+            $eventProjectArray[] = new EventProject($result['eventProjectID'],$result['title'],$result['description'],$result['abstract'],$result['projectID'], $result['projectEventCode']);
           }
           $message = $eventProjectArray;
           $errorCode = 1;
