@@ -36,7 +36,7 @@ $csvFile = file('input.csv');
     }
 
     $tempID = EventProject::create($title, $description, " ", -2, $CUGRnumber)[1];
-    EventProject::associatewithevent($tempID, 2)[1];
+    EventProject::associatewithevent($tempID, 4)[1];
    }
 
    ?>

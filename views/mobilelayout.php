@@ -22,7 +22,7 @@
 
         <div class='headerMenu'>
           <?php
-          $loginActive = false;
+          $loginActive = true;
           if($loginActive == true)
             if ($_SERVER['REQUEST_URI'] != "/index.php?controller=mobile&action=login")
             {
