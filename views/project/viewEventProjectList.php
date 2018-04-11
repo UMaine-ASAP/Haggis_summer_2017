@@ -8,6 +8,7 @@ Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
 </div>
 <br>
 <div>
+  Search for a project
   <input class='joinedInputSmaller' onkeyup='searchNreveal(document.getElementById("searchString").value, "projects", "orange")' type='text' id='searchString' placeholder='search'><button class='joinedButtonSmaller' type='submit'><i size='smaller' class="glyphicon glyphicon-search"></i></button>
 </div>
 <br>
