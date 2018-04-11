@@ -15,12 +15,13 @@ Projects(<?php echo sizeof($projectList)+sizeof($eventprojectList);?>)
 <?php
 foreach($projectList as $p)
 {
+
   if($p->id != '')
     echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",1)' id=''><button class='standard' style='list-style-type: none;width:80%'>".$p->title."</button></div>";
 }
 foreach($eventprojectList as $p)
 {
-  if($p->id != '')
+  if($p->id != '' && $p->projectEventCode != 0)
     echo "<div class='projects' onclick='ViewEventProject(".$p->id.",".$event->id.",2)' id=''><button class='standard' style='list-style-type: none;width:80%'><strong>".$p->projectEventCode."</strong>-".$p->title."</button></div>";
 }
 
