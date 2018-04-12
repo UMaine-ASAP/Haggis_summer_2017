@@ -118,6 +118,7 @@ class EventController
     $eventProjects = EventProject::eventID($eventID)[1];
     $ranking = array(0,0,0);
     $projectRankingStorage = array(0,0,0);
+    $countRankingStorage = array(0,0,0);
     $projectNumber = array();
     $projectTitles = array();
     $projectRankings = array();
@@ -136,6 +137,7 @@ class EventController
       $cRatings = array();
       $dataout = array();
       $finalAvg  = 0;
+      $numberofRespones = sizeof($projectresponses);
 
 
       foreach($projectresponses as $r)
@@ -171,10 +173,16 @@ class EventController
         $finalAvg = 0;
       }
 
-      $projectResponseCount[] = sizeof($cAvg);
+      $thisProjectResponseCount = 0;
+      if(sizeof($cNames) != 0)
+        $thisProjectResponseCount = $numberofRespones/sizeof($cComments);
+
+
+      $projectResponseCount[] = $thisProjectResponseCount;
       $projectNumber[] = $e->projectEventCode;
       $projectTitles[] = $e->title;
       $projectRankings[] =  $finalAvg;
+
 
       if($finalAvg > $ranking[0])
       {
@@ -184,6 +192,10 @@ class EventController
         $projectRankingStorage[2] = $projectRankingStorage [1];
         $projectRankingStorage[1] = $projectRankingStorage [0];
         $projectRankingStorage[0] = $e;
+        $countRankingStorage[2] = $countRankingStorage [1];
+        $countRankingStorage[1] = $countRankingStorage [0];
+        $countRankingStorage[0] = $thisProjectResponseCount;
+
       }
       else if($finalAvg > $ranking[1])
       {
@@ -191,11 +203,14 @@ class EventController
         $ranking[0] = $finalAvg;
         $projectRankingStorage[1] = $projectRankingStorage [0];
         $projectRankingStorage[0] = $e;
+        $countRankingStorage[1] = $countRankingStorage [0];
+        $countRankingStorage[0] = $thisProjectResponseCount;
       }
       else if($finalAvg > $ranking[2])
       {
         $ranking[0] = $finalAvg;
         $projectRankingStorage[0] = $e;
+        $countRankingStorage[0] = $thisProjectResponseCount;
       }
     }
     require_once('views/event/eventRankings.php');
