@@ -171,7 +171,7 @@ class EventController
         $finalAvg = 0;
       }
 
-      $projectResponseCount[] = sizeof($cAvg);
+      $projectResponseCount[] = sizeof($cComments[0]);
       $projectNumber[] = $e->projectEventCode;
       $projectTitles[] = $e->title;
       $projectRankings[] =  $finalAvg;
