@@ -51,7 +51,7 @@ for($i = 0; $i < sizeof($projectRankingStorage); $i++)
         echo "<tr><th class='tabletitle'>Submission Number</th><th class='tabletitle'>Project Title</th><th class='tabletitle'>People's Choice</th><th>Number of Respones</th></tr>";
       }
 
-      echo "<tr><td class='".$myclass."'>".$projectNumber[$i]."</td><td class='".$myclass."'>".$projectTitles[$i]."</td><td class='".$myclass."'>".$projectRankings[$i]."</td><td>$projectResponseCount[$i]</td></tr>";
+      echo "<tr><td class='".$myclass."'>".$projectNumber[$i]."</td><td class='".$myclass."'>".$projectTitles[$i]."</td><td class='".$myclass."'>".$projectRankings[$i]."</td><td>".$projectResponseCount[$i]."</td></tr>";
     }
   }
   ?>
