@@ -121,6 +121,7 @@ class EventController
     $projectNumber = array();
     $projectTitles = array();
     $projectRankings = array();
+    $projectResponseCount = array();
     foreach($eventProjects as $e)
     {
 
@@ -169,6 +170,8 @@ class EventController
       else {
         $finalAvg = 0;
       }
+
+      $projectResponseCount = sizeof($cAvg);
       $projectNumber[] = $e->projectEventCode;
       $projectTitles[] = $e->title;
       $projectRankings[] =  $finalAvg;

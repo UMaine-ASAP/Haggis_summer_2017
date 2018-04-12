@@ -22,7 +22,7 @@ for($i = 0; $i < sizeof($projectRankingStorage); $i++)
       break;
   }
   if($projectRankingStorage[$i] != null)
-    echo "<strong>".$projectRankingStorage[$i]->title."</strong><br>Submission Number: ".$projectRankingStorage[$i]->projectEventCode."<br>Score: ".$ranking[$i];
+    echo "<strong>".$projectRankingStorage[$i]->title."</strong><br>Submission Number: ".$projectRankingStorage[$i]->projectEventCode."<br>Score: ".$ranking[$i]."<br>Number of Respones: ".$projectResponseCount[$i];
   else
   {
     echo "Not enough evaluations submitted to poulate this position.";
