@@ -46,8 +46,10 @@ echo "</div>
               echo "<div class='s".$c->id." picker' id='s".$c->id."' scoreTarget='".$c->id."' scoreVal='".$subc->ratingValue."'";
               if($hide)
                 echo " style='display:none'";
-
-              echo ">".$subc->ratingValue." points<br>".$subc->description."</div>";
+              if($subc->ratingValue > 1)
+                echo ">".$subc->ratingValue." points<br>".$subc->description."</div>";
+              else
+                echo ">".$subc->ratingValue." point<br>".$subc->description."</div>";
               $hide = true;
             }
             echo "<br><br><input type='range' class='slider standard' name='criteriaRating[]' id='".$c->id."' min='".$c->ratingMin."' max='".$c->ratingMax."' value='".$rating."'>";
