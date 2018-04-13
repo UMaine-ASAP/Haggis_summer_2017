@@ -187,30 +187,33 @@ class EventController
       if($finalAvg > $ranking[0])
       {
         $ranking[2] = $ranking [1];
-        $ranking[1] = $ranking [0];
-        $ranking[0] = $finalAvg;
         $projectRankingStorage[2] = $projectRankingStorage [1];
-        $projectRankingStorage[1] = $projectRankingStorage [0];
-        $projectRankingStorage[0] = $e;
         $countRankingStorage[2] = $countRankingStorage [1];
+
+        $ranking[1] = $ranking [0];
+        $projectRankingStorage[1] = $projectRankingStorage [0];
         $countRankingStorage[1] = $countRankingStorage [0];
+
+        $ranking[0] = $finalAvg;
+        $projectRankingStorage[0] = $e;
         $countRankingStorage[0] = $thisProjectResponseCount;
 
       }
       else if($finalAvg > $ranking[1])
       {
         $ranking[1] = $ranking [0];
-        $ranking[0] = $finalAvg;
         $projectRankingStorage[1] = $projectRankingStorage [0];
-        $projectRankingStorage[0] = $e;
         $countRankingStorage[1] = $countRankingStorage [0];
-        $countRankingStorage[0] = $thisProjectResponseCount;
+
+        $ranking[1] = $finalAvg;
+        $projectRankingStorage[1] = $e;
+        $countRankingStorage[1] = $thisProjectResponseCount;
       }
       else if($finalAvg > $ranking[2])
       {
-        $ranking[0] = $finalAvg;
-        $projectRankingStorage[0] = $e;
-        $countRankingStorage[0] = $thisProjectResponseCount;
+        $ranking[2] = $finalAvg;
+        $projectRankingStorage[2] = $e;
+        $countRankingStorage[2] = $thisProjectResponseCount;
       }
     }
     require_once('views/event/eventRankings.php');
