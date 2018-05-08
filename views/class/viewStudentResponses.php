@@ -21,11 +21,25 @@
           if($fetchedEvals !=0)
           {
             echo "<ul>";
+            $previousprojectID =-1;
+            $currentprojectID;
             foreach($fetchedEvals as $f)
             {
-              echo "<li>".$f->comment."</li>";
+              $currentprojectID = $f->projectID;
+              if($currentprojectID != $previousprojectID)
+              {
+                $currentProject = Project::id($currentprojectID)[1];
+                $currentAssignment = Assignment::id($currentProject->assignmentID)[1];
+                echo "</ul><li>". $currentAssignment->title." ".$currentProject->title."</li><ul>";
+              }
+              else
+              {
+                echo "<li>".$f->comment."</li>";
+              }
+
+              $previousprojectID = $currentprojectID;
             }
-            echo "</ul>";
+            echo "</ul></ul>";
           }
           else
           {
