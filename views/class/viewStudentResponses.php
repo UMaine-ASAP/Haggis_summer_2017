@@ -33,10 +33,11 @@
                 echo "</ul><li>".$currentAssignment->title." - ".$currentProject->title."</li>";
                 if($currentProject->isgroup === '1')
                 {
+                  echo "<li>";
                   $listing = $currentProject->list;
                   foreach($listing as $u)
                   {
-                    echo $u->firstName;
+                    echo $u->firstName." ".$u->lastName.",";
                   }
                 }
                 echo "<ul>";
