@@ -38,7 +38,7 @@ class EvaluateController
         {
           echo "<li><a href='?controller=evaluate&action=byStudent&classID=".$classID."&authorID=".$u->id."'>".$u->firstName." ".$u->lastName."</a></li>";
         }
-        echo "</ul></td><td>";
+        echo "</ul></td><td style='overflow:auto'>";
       if(isset($_GET['authorID']))
       {
         $user = User::id($_GET['authorID'])[1];
