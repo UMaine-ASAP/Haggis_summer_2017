@@ -44,6 +44,7 @@ if($status === 'admin')
     <div class ='popup' id='studentlist'>
       <div class='exit' onclick='closePopup("studentlist")'><i class="glyphicon glyphicon-remove"></i></div>
       <h2>Class Roster</h2><hr>
+      <?php  echo "<a href='?controller=evaluate&action=byStudent&classID=".$class->id."'><button class='standard promptlink' type='button'>View Student Responses</button></a><br>";?>
       <div class='sidebyside'>
         <div class='sidebysidesub'>
           <h4>Currently Enrolled Students</h4>

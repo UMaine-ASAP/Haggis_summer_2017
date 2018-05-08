@@ -78,3 +78,14 @@
   vertical-align:bottom;
   font-size:15px;
 }
+
+.authorList
+{
+  width:200px;
+  overflow:auto;
+}
+
+.authorResults
+{
+  overflow:auto;
+}

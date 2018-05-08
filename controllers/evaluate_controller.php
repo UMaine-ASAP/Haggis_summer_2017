@@ -32,30 +32,16 @@ class EvaluateController
     {
       $classID = $_GET['classID'];
       $userList = User::klass($classID)[1];
-      echo "<table><tr>";
-        echo "<td><h3>Authors</h3><ul>";
-        foreach($userList as $u)
-        {
-          echo "<li><a href='?controller=evaluate&action=byStudent&classID=".$classID."&authorID=".$u->id."'>".$u->firstName." ".$u->lastName."</a></li>";
-        }
-        echo "</ul></td><td style='overflow:auto'>";
+      $authorID;
+      $user;
+      $selected = false;
+
       if(isset($_GET['authorID']))
       {
+        $selected = true;
         $user = User::id($_GET['authorID'])[1];
-        echo "<h1>".$user->firstName." ".$user->lastName."</h1>";
-        $fetchedEvals = Evaluate::byAuthor($_GET['authorID'])[1];
-        echo "<ul>";
-        foreach($fetchedEvals as $f)
-        {
-          echo "<li>".$f->comment."</li>";
-        }
       }
-      else
-      {
-        echo '<h2>Please Select an author to view their comments</h2>';
-      }
-      echo"</td></tr></table>";
-
+      require_once('views/class/viewStudentResponses.php');
 
     }
 }
