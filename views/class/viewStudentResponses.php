@@ -37,7 +37,7 @@
                   $listing = $currentProject->list;
                   foreach($listing as $u)
                   {
-                    echo $u->firstName." ".$u->lastName.",";
+                    echo $u->firstName." ".$u->lastName.", ";
                   }
                 }
                 echo "<ul>";
