@@ -20,12 +20,16 @@
       echo "<button class='standard popupmaker' onclick='createPopup(\"setPrivacy\")' id='setPrivacy'>Privacy is Inactive</button>";
 
 
-    echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button><br>";
+    echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button>";
+
+    echo "<a href='?controller=evaluate&action=byStudent&classID=".$a->classID."'><button class='standard promptlink' type='button'>View Student Responses</button></a><br>";
     if($type ==='submission')
       echo "<span>Project registration link:
         <a title='Share this link so non registered users can submit their project' class='registrationlink' href='http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."'>
           http://".getenv('HTTP_HOST')."/Haggis_summer_2017/?controller=project&action=registerAssignment&target=".$a->id."</a></span>";
       echo "<a href='?controller=assignment&action=assignEval&assignmentID=".$a->id."'>Assign Evaluations</a>";
+
+
   }
   echo "<hr></div><br>";
   echo "<div class='projectcontainer'>";

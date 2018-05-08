@@ -286,4 +286,45 @@ class Evaluate
           }
           return array($errorCode, $message);
       }
+      //=================================================================================== Check if already submitted
+       public static function byAuthor($authorid)
+       {
+           $errorCode;
+           $message;
+           $db = Db::getInstance();
+
+           $sql = "SELECT * FROM evaluation WHERE author = ?";
+
+           $data = array($authorid);
+           try
+           {
+
+               $stmt = $db->prepare($sql);
+               $stmt->execute($data);
+
+               if($stmt->rowCount() > 0)
+               {
+                 //$id, $criteriaID, $rating, $comment, $projectID, $eventProjectID, $userID, $authorID, $type)
+                 $evaluations = array();
+
+                 while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+                 {
+                   $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], $r['author'], $r['type']);
+                 }
+                 $message = $evaluations;
+               }
+               else
+               {
+                 $message = false;
+               }
+
+             $errorCode = 1;
+           }
+           catch(PDOException $e)
+           {
+             $errorCode = $e->getCode();
+             $message = $e->getMessage();
+           }
+           return array($errorCode, $message);
+       }
 }
