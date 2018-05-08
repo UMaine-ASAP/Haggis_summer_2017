@@ -315,7 +315,7 @@ class Evaluate
                }
                else
                {
-                 $message = false;
+                 $message = 0;
                }
 
              $errorCode = 1;

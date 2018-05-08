@@ -18,10 +18,9 @@
           echo "<h1>".$user->firstName." ".$user->lastName."</h1>";
           $fetchedEvals = Evaluate::byAuthor($user->id)[1];
 
-          if(sizeof($fetchedEvals) > 0)
+          if($fetchedEvals !=0)
           {
             echo "<ul>";
-            echo "<<<<".$fetchedEvals.">>>>";
             foreach($fetchedEvals as $f)
             {
               echo "<li>".$f->comment."</li>";
