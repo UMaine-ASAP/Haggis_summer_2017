@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Bar Chart</title>
+	<script src="vendor/chart.bundle.js"></script>
+	<script src="vendor/utils.js"></script>
+	<style>
+	* {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	.tab {
+		cursor: pointer;
+		height: 46px;
+		line-height: 46px;
+		text-align: center;
+		width: calc(20% - 44px);
+		padding-left: 30px;
+		display: inline-block;
+		border-radius: 10px 0 0 0;
+		background-color: #FFF;
+		position: relative;
+		border-top: 2px solid grey;
+		border-left: 2px solid grey;
+		border-bottom: 2px solid grey;
+	}
+	.tab:after {
+		display: block;
+		content: " ";
+		width: 100px;
+		height: 46px;
+		top: -2px;
+		position: absolute;
+		right: -29px;
+		transform:skewX(30deg);
+		-ms-transform:skewX(30deg);
+		-webkit-transform:skewX(30deg);
+		border: 2px solid grey;
+		border-left: 0;
+		border-bottom: inherit;
+		border-radius: 0 10px 0 0;
+		z-index: 1;
+		background: linear-gradient(120deg, transparent 71%, #FFFFFF 29%);
+	}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+</head>
+
+<body>
+	<!-- The tabs to control what is shown on the graph -->
+	<div style="width: 50%; height: 50px; margin: 0 25% -2px 25%; overflow-x: hidden;">
+		<div id="firstTab" class="tab" onclick="switchTab(this)">
+			Clearity
+		</div>
+		<div class="tab" onclick="switchTab(this)">
+			Functionality
+		</div>
+		<div class="tab" onclick="switchTab(this)">
+			Features
+		</div>
+		<div class="tab" onclick="switchTab(this)">
+			Looks
+		</div>
+		<div class="tab" onclick="switchTab(this)">
+			Presentation
+		</div>
+	</div>
+	
+	<!-- 
+		The canvas that is used for displaying graph.
+		The container is NEEDED... do not remove it.
+	-->
+	<div id="container" style="calc(50% - 4px); height: 80vh; margin: 0 25%; border: 2px solid grey; border-top: 0;">
+		<canvas id="canvas"></canvas>
+	</div>
+	
+	<script>
+		// This is a middleware/plugin for adding custom elements to the canvas
+		// 							WORK IN PROGRESS
+		// 						   Not ready for use.
+		
+		/*Chart.pluginService.register({
+			beforeDraw: function(chart) {
+				var width = chart.chart.width,
+					height = chart.chart.height,
+					ctx = chart.chart.ctx;
+
+				ctx.restore();
+				var fontSize = (height / 114).toFixed(2);
+				ctx.font = fontSize + "em sans-serif";
+				ctx.textBaseline = "middle";
+
+				var text = "3.1",
+					textX = Math.round((width - ctx.measureText(text).width) / 2),
+					textY = height / 2 + ((height / 114) * 11);
+
+				ctx.fillText(text, textX, textY);
+				ctx.save();
+			}
+		});*/
+
+		/**
+		* @description This is a custom function to load new visualizations to the canvas. Just creating a new chart will NOT work.
+		* @param {JSON} opts Options for loading data into the graph.
+		*
+		* A DETAILED EXAMPLE IS AT THE BOTTOM OF THE PAGE
+		*/
+		var loadChart = (opts) => {
+			// Destroy leftover data
+			if (window.myChart != undefined) {
+				window.myChart.destroy();	// destroy previous graph
+			}
+			
+			// Create new chart data from options
+			let data = {
+				labels: opts.labels,
+				datasets: opts.data
+			};
+			
+			// Add data to the canvas
+			let canvas = document.getElementById('canvas');
+			let ctx = canvas.getContext('2d');
+			window.myChart = new Chart(ctx, {
+				type: opts.type,
+				data: data,					// Insert the data JSON object created from options
+				options: {
+					responsive: true,		// Resizes when the window is being resized
+					legend: {
+						display: true,		// Display the legend or not
+						position: 'top',	// Where to display it	
+					},
+					title: {
+						display: true,
+						text: opts.title
+					},
+					animation: {
+						animateScale: false,
+						animateRotate: true
+					},
+					elements: (opts.elements || {}),
+					scales: (opts.scales || {}),
+					maintainAspectRatio: this.maintainAspectRatio, // This follows the size of the container element
+				}
+			});
+		}
+	</script>
+	<script>
+		var currTab = null;		// Holds current actively tabbed element
+		const switchTab = (element) => {
+			// Switch tab
+			if (currTab !== null) currTab.setAttribute('style', '');
+			element.setAttribute('style', 'border-bottom: 2px solid #fff; z-index: 2;');
+			currTab = element;
+			
+			
+			/////////////////////////////////////// REPLACE THIS WITH MYSQL DATA //////////////////////////////////////////
+			
+			// Generate a random set of data
+			let color = Chart.helpers.color;	// Grab the colors class
+			
+							// Used current ASAPers as labels
+			let students = ['Jason', 'Jacob', 'Dylan B', 'Meaghan', "Austin", "Spencer", "Mike G", "Ethan", "Dylan L", "Elizabeth", "Ted"];
+			let studentData = [];
+			
+			// Generate the random data
+			for (i = 0; i < students.length; i++) {
+				// Value at i  = (   0 through 2    ) + 2.5) with only 2 decimal places
+				studentData[i] = ((Math.random() * 2) + 2.5).toFixed(2); // random number between 2.5 and 4.5
+			}
+			
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			// Load the new visualization
+			loadChart({
+				type: 'horizontalBar',			// The type of graph
+				labels: students,				// An array of labels
+				title: 'Test Evaluation',		// Title of the graph
+				data: [{						// The dataset(s) ==> add more json objects for more bars/lines
+					label: 'Student Average',	// Label for the dataset
+					backgroundColor: color(window.chartColors.blue).alpha(0.25).rgbString(),	// background color for the bars/pie/doughnut/etc
+					borderColor: window.chartColors.blue,										// border color for borders and lines	
+					borderWidth: 1,				// Border/line graph width
+					data: studentData			// An array of numbers (or dates if its a timeline)
+				}],
+				scales: {						// Optional Settings
+					xAxes: [{
+						ticks: {
+							beginAtZero: true,	// Start x-axis at 0
+							max: 5				// Set the max x-axis
+						}
+					}],
+					yAxes: [{
+						stacked: false			// stack bars or not
+					}]
+				},
+				elements: {}					// For custom elements on graph (work in progress; creating a plugin for this)
+			});
+		}
+		
+		let tab1 = document.getElementById('firstTab');
+		switchTab(tab1);
+		
+		////////////////////// TO DO //////////////////////
+		//	1. create sorting algorithom                 //
+		//     • by first name                           //
+		//     • by last name                            //
+		//     • by grade                                //
+		///////////////////////////////////////////////////
+	</script>
+</body>
+
+</html>
