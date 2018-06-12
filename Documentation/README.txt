@@ -1,6 +1,7 @@
 PROJECT HAGGIS
 Authors:  Jason Dignan,
-          Jacob Hall
+          Jacob Hall,
+          Ethan Saville
 June, 2017 - Present
 Github page: https://github.com/UMaine-ASAP/Haggis_summer_2017/
 

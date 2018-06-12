@@ -73,7 +73,7 @@ class CriteriaSet
       $errorCode;
       $message;
       $db = Db::getInstance();
-      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID = ? GROUP BY title";
+      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID = ?";
       $stmt = $db->prepare($sql);
       $data = array($id);
       try
@@ -116,7 +116,65 @@ class CriteriaSet
     }
     return array($errorCode, $message);
   }
-
+  //===================================================================================== gets criteria set given class id
+  public static function classCriteriaSet($classID)
+  {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID
+        IN (SELECT criteriaSetID FROM rubric_criteriaset WHERE rubric_criteriaset.rubricID
+        IN (SELECT rubricID FROM assignment_rubric WHERE assignment_rubric.assignmentID
+        IN (SELECT assignmentID FROM assignment_class WHERE assignment_class.classID = ?)))";
+      $stmt = $db->prepare($sql);
+      $data = array($classID);
+      try
+      {
+          $stmt->execute($data);
+          $criteriaArray = array();
+          while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+          {
+            $criteriaArray[] = new CriteriaSet($r['criteriaSetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
+          }
+          $message = $criteriaArray;
+          $errorCode= 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+  }
+  //===================================================================================== GETS CRITERIA SETS FOR ASSIGNMENT
+  public static function assignmentCriteriaSet($assignmentID)
+  {
+    $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM criteriaSet WHERE criteriaSetID
+        IN (SELECT criteriaSetID FROM rubric_criteriaset WHERE rubric_criteriaset.rubricID
+        IN (SELECT rubricID FROM assignment_rubric WHERE assignment_rubric.assignmentID = ?))";
+      $stmt = $db->prepare($sql);
+      $data = array($assignmentID);
+      try
+      {
+          $stmt->execute($data);
+          $criteriaArray = array();
+          while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+          {
+            $criteriaArray[] = new CriteriaSet($r['criteriaSetID'], $r['title'], $r['description'], $r['ratingMin'],$r['ratingMax'],$r['allowTextResponse']);
+          }
+          $message = $criteriaArray;
+          $errorCode= 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+  }
 
 }
 ?>

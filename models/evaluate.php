@@ -112,6 +112,126 @@ class Evaluate
         }
         return array($errorCode, $message);
     }
+    //=================================================================================== Get all evaluations for a class given the classID
+    public static function classEvaluations($classID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM evaluation WHERE projectID IN (SELECT projectID FROM project WHERE assignmentID IN (SELECT assignmentID FROM assignment_class WHERE assignment_class.classID = ?))";
+      $data = array($classID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $evaluations = array();
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $author = User::id($r['author'])[1];
+
+          $evaluations[] = new Evaluate($r['evaluationID'], $r['criteriaID'], $r['rating'], $r['comment'], $r['projectID'], $r['eventProjectID'],$r['userID'], $author, $r['type']);
+        }
+        $message = $evaluations;
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //=================================================================================== GET EVALUATIONS BY ASSIGNMENT PER GROUP
+    public static function assignmentGroupEvaluations($assignmentID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM evaluation WHERE projectID IN
+      (SELECT projectID FROM project WHERE assignmentID = ?)";
+      $data = array($assignmentID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $evaluations = array();
+        $key = 1;
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $author = User::id($r['author'])[1];
+          $authorName;
+          if($r['author'] == -1)
+          {
+            $authorName = "Anonymous ".$key;
+          }
+          else
+          {
+            $authorName = $author->firstName." ".$author->middleInitial." ".$author->lastName;
+          }
+          $criteria = CriteriaSet::id($r['criteriaID'])[1][0];
+          $project = Project::id($r['projectID'])[1];
+
+          $evaluations[] = [
+              "rating" => $r['rating'],
+              "ratingMax" => $criteria->ratingMax,
+              "comment" => $r['comment'],
+              "authorID" => $r['author'],
+              "author" => $authorName,
+              "groupTitle" => $project->title,
+              "groupID" => Group::getGroupID($r['projectID'])[1],
+              "criteriaTitle" => $criteria->title,
+              "criteriaID" => $r['criteriaID']
+            ];
+
+          $key++;
+        }
+        $message = $evaluations;
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //=================================================================================== GET AVERAGE RATING OF GROUP SEPERATED BY CRITERIA
+    public static function averageRating($groupID, $criteriaID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM evaluation WHERE projectID IN(SELECT projectID FROM studentGroup WHERE studentgroup.studentGroupID = ?) AND criteriaID = ?";
+      $data = array($groupID, $criteriaID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $evaluations = array();
+        $ratingTotal = 0;
+        $counter = 0;
+
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $ratingTotal += $r['rating'];
+          $counter++;
+        }
+
+        if($counter > 0)
+          $averageRating = $ratingTotal/$counter;
+        else
+          $averageRating = 0;
+
+        $message = $averageRating;
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
     //=================================================================================== GET CRITERIA BY Project
      public static function eventProjectID($eventProjectID)
      {

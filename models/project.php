@@ -118,5 +118,118 @@ Class Project {
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       return array(1, $result['assignmentID']);
     }
+    //=================================================================================== gets all projects given a classID
+    public static function classProjects($classID)
+    {
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM project WHERE assignmentID
+      IN(SELECT assignmentID FROM assignment_class WHERE assignment_class.classID = ?)";
+      $data = array($classID);
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $projectlists = array();
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+      {
+        if($result['isGroup'] === '0')
+        {
+            $projectlists[] = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+        }
+      }
+      return array(1, $projectlists);
+    }
+    //=================================================================================
+    public static function userProjects($userID)
+    {
+      $message;
+      $errorCode;
+      $localList = array();
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM project WHERE projectID
+      IN(SELECT projectID FROM projectUser WHERE projectUser.userID = ?)";
+      $data = array($userID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          if($result['isGroup'] === '0')
+          {
+              $localList[] = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], ProjectUser::project($result['projectID'])[1]);
+          }
+          else
+          {
+              $localList[] = new Project($result['projectID'],$result['title'],$result['description'],$result['isGroup'],$result['assignmentID'], Group::getByProjectID($result['projectID'])[1]);
+          }
+        }
+        $errorCode = 1;
+        $message = $localList;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //================================================================================
+    public static function projectsByGroup($groupID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM project WHERE projectID IN(SELECT projectID FROM studentGroup WHERE studentGroupID = ?)";
+      $projectList = array();
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $data = array($groupID);
+        $stmt->execute($data);
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))   //goes through list
+        {
+          $evaluations = Evaluate::projectID($result['projectID'])[1];
+          $projectList[] = [$result, $evaluations];
+        }
+        $errorCode  = 1;
+        $message    = $projectList;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //=================================================================================
+    public static function peerEvaluationProjectsForUser($userID)
+    {
+      $message;
+      $errorCode;
+      $localList = array();
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM project WHERE projectID IN(SELECT projectID FROM projectuser WHERE projectuser.userID = ?)";
+      $data = array($userID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+
+        while($result = $stmt->fetch(PDO::FETCH_ASSOC))   //goes through list
+        {
+          $evaluations = Evaluate::projectID($result['projectID'])[1];
+          $localList[] = [$result, $evaluations];
+        }
+
+        $errorCode = 1;
+        $message = $localList;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
   }
 ?>

@@ -1,4 +1,3 @@
-
 <?php
   echo "<div class='assignment' id='id".$a->id."'>";
   if($type ==='submission')
@@ -21,7 +20,6 @@
 
 
     echo "<button class='standard popupmaker' onclick='createPopup(\"deleteAssignment\")' id='deleteAssignment'>Delete Assignment</button>";
-
   
     if($type ==='submission')
       echo "<span>Project registration link:
@@ -31,6 +29,7 @@
 
 
   }
+  echo "<a id='classBar' onClick='viewProjectAnalytics(".$a->id.",\"$a->type\",".$classID.", \"$status\")'><button type='button' class='standard'>Analytics</button></a>";
   echo "<hr></div><br>";
   echo "<div class='projectcontainer'>";
   echo "<div class='ProjectList' id='ProjectList' style='text-align:center'>";

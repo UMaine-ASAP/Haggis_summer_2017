@@ -54,6 +54,9 @@ date_default_timezone_set('America/New_York');
       case 'testing':
         $controller = new TestingController();
         break;
+      case 'd3':
+        $controller = new D3Controller();
+        break;
     }
     $controller->{$action}();
   }
@@ -68,7 +71,9 @@ date_default_timezone_set('America/New_York');
                           'evaluate'  => ['submit','byStudent'],
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete','refreshList'],
                           'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete', 'projectByScore'],
-                          'testing'   => ['test']);
+                          'testing'   => ['test'],
+                          'd3'        => ['classAnalytics', 'projectAnalytics']
+                        );
 
   if(array_key_exists($controller, $controllers))
     if(in_array($action, $controllers[$controller]))

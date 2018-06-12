@@ -63,7 +63,7 @@ Class Group {
         {
           $users[] = User::id($uid)[1];
         }
-        //$groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
+        $groupList[] = new Group($result['studentGroupID'],$result['projectID'],$users );
       }
       $errorCode  = 1;
       $message    = $users;
@@ -147,6 +147,97 @@ Class Group {
       $userlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
       $errorCode  = 1;
       $message    = $userlist;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //================================================================================= Group
+  public static function studentGroups($userID)
+  {
+    $errorCode;
+    $message;
+    $db = Db::getInstance();
+    $sql = "SELECT studentGroupID FROM user_studentGroup WHERE userID = ?";
+    $userlist =array();
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $data = array($userID);
+      $stmt->execute($data);
+      $userlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+      $errorCode  = 1;
+      $message    = $userlist;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //================================================================================== ASSIGNMENT
+  public static function groupsByAssignment($assignmentID)
+  {
+    $errorCode;
+    $message;
+    $users = array();
+    $db = Db::getInstance();
+    $sql = "SELECT * FROM studentGroup WHERE projectID IN(SELECT projectID FROM project WHERE assignmentID = ?)";
+    $data = array($assignmentID);
+    $groupList;               //used to store Group objects
+    $evaluationList;
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      while($result = $stmt->fetch(PDO::FETCH_ASSOC))   //goes through list
+      {
+        $userIDs = Group::user($result['studentGroupID'])[1];
+        $users = array();
+
+        foreach($userIDs as $uid)
+        {
+          $users[] = User::id($uid)[1];
+        }
+        $groupList[] = [
+          $result['studentGroupID'],
+          Project::id($result['projectID'])[1]->title,
+          $users
+        ];
+      }
+      $errorCode  = 1;
+      $message    = $groupList;
+    }
+    catch(PDOException $e)
+    {
+      $errorCode  = $e->getCode();
+      $message    = $e->getMessage();
+    }
+    return array($errorCode, $message);
+  }
+  //====================================================================================== GET STUDENTGROUPID FROM PROJECTID
+  public static function getGroupID($projectID)
+  {
+    $errorCode;
+    $message;
+    $users = array();
+    $db = Db::getInstance();
+    $sql = "SELECT studentGroupID FROM studentGroup WHERE projectID = ?";
+    $data = array($projectID);
+    $groupID;               //used to store Group objects
+    try
+    {
+      $stmt = $db->prepare($sql);
+      $stmt->execute($data);
+      $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $groupID = $r[0]['studentGroupID'];
+
+      $errorCode  = 1;
+      $message    = $groupID;
     }
     catch(PDOException $e)
     {

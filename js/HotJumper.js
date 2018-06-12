@@ -39,3 +39,7 @@ function GetPrompt(idin, type)
 {
   $('#ProjectView').load("?controller=assignment&action=details&quick=1&id="+idin+"&type="+type);
 }
+function viewProjectAnalytics(assignmentID, type, classID, status)
+{
+  $('.projectcontainer').load("?controller=d3&action=projectAnalytics&quick=1&assignmentID="+assignmentID+"&type="+type+"&classID="+classID+"&userType="+status);
+}
