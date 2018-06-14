@@ -106,6 +106,31 @@ Class ProjectUser {
       }
       return array($errorCode, $message);
     }
+  //===================================================================================
+    public static function userID($projectID)
+    {
+      $message;
+      $errorCode;
+      $localList = array();
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM projectUser WHERE projectID = ?";
+      $data = array($projectID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $localList = $result['userID'];
+        $errorCode = 1;
+        $message = $localList;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode  = $e->getCode();
+        $message    = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
 
 
   }

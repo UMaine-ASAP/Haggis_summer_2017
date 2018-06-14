@@ -1,4 +1,6 @@
 submissions
 connection.php
-baseRatingsEvaluations.json
-averageRatingsEvaluations.json
+baseRatingsEvaluationsGroup.json
+averageRatingsEvaluationsGroup.json
+baseRatingsEvaluationsPeer.json
+averageRatingsEvaluationsPeer.json

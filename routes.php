@@ -72,7 +72,7 @@ date_default_timezone_set('America/New_York');
                           'project'   => ['registerAssignment', 'registerEvent','edit','eventEvaluate','assignmentEvaluate','viewResponses','viewAssignmentProject', 'viewEventProject','saveEventResponse', 'saveAssignmentResponse', 'submit','delete','refreshList'],
                           'event'     => ['add', 'showProjects', 'addAssignment','createEvent', 'setActive','delete', 'projectByScore'],
                           'testing'   => ['test'],
-                          'd3'        => ['classAnalytics', 'projectAnalytics']
+                          'd3'        => ['projectAnalytics']
                         );
 
   if(array_key_exists($controller, $controllers))

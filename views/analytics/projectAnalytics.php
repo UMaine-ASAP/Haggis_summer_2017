@@ -75,11 +75,14 @@ svg text.label {
 	{
 		foreach ($criteriaSetList as $key => $criteria)
 		{
-			echo "<button class='standard criteriaButton' type='button' onclick='switchCriteriaAverage(".$criteria->id.", \"$criteria->title\", \"$userType\")'>".$criteria->title." Averaged Ratings</button><br>";
+			echo "<button class='standard criteriaButton' type='button' onclick='switchCriteriaAverageGroup(".$criteria->id.", \"$criteria->title\", \"$userType\")'>".$criteria->title." Averaged Ratings</button><br>";
 		}
 	}
 	else
 	{
-
+		foreach ($criteriaSetList as $key => $criteria)
+		{
+			echo "<button class='standard criteriaButton' type='button' onclick='switchCriteriaAveragePeer(".$criteria->id.", \"$criteria->title\", \"$userType\")'>".$criteria->title." Averaged Ratings</button><br>";
+		}
 	}
 ?>

@@ -1,49 +1,6 @@
 <?php
 class D3Controller
 {
-	public function classAnalytics()
-	{
-		//Need to get all users, assignments, projects, and evaluations done in this class along with the criteria for those evaluations
-	    if(isset($_SESSION['token']))
-	    {
-	      $classID = $_GET['classID'];
-	      $userList = User::klass($classID)[1];				//Gets users in class
-	      // $groupList = 
-		  $criteriaSetList = CriteriaSet::classCriteriaSet($classID)[1];
-	    }
-
-		//List of projects that were group projects that the person was involved with
-		// $groupList = array();
-		//List of people for peer evaluations
-		// $peerList = array();
-
-		// foreach ($userList as $key => $u)
-		// {
-		// 	$groupList[$u->firstName.$u->middleInitial.$u->lastName] = [];
-		// 	$peerList[$u->firstName.$u->middleInitial.$u->lastName] = [];
-
-		// 	$groups = Group::studentGroups($u->id)[1];
-		// 	foreach ($groups as $key => $g)
-		// 	{
-		// 		$projects = Project::projectsByGroup($g)[1];
-		// 		array_push($groupList[$u->firstName.$u->middleInitial.$u->lastName], $projects);
-		// 	}
-
-		// 	$peers = Project::peerEvaluationProjectsForUser($u->id)[1];
-		// 	foreach ($peers as $key => $p)
-		// 	{
-		// 		array_push($peerList[$u->firstName.$u->middleInitial.$u->lastName], $p);
-		// 	}
-		// }
-
-
-
-	    $status = 'user';                                   //checks for admin or user status
-	    if(User::checkAdmin($_SESSION['token'])[1])
-	        $status = 'admin';
-
-	    require_once('views/analytics/classAnalytics.php');
-	}
 	//==============================================================
 	public function projectAnalytics()
 	{
@@ -60,10 +17,6 @@ class D3Controller
 				$criteriaSetList = CriteriaSet::assignmentCriteriaSet($assignmentID)[1]; //Tab bars for the graph
 				$evaluationsPerGroup = Evaluate::assignmentGroupEvaluations($assignmentID)[1];//Evaluations for a project sorted by groups
 
-				// var_dump($groupList);
-				// var_dump($criteriaSetList);
-				// var_dump(Evaluate::averageRating($groupList[0][0], $criteriaSetList[0]->id)[1]);
-
 				$evaluationAverages = array();
 
 				foreach ($criteriaSetList as $key => $criteria)
@@ -75,25 +28,50 @@ class D3Controller
 							"groupID" => $group[0],
 							"criteriaTitle" => $criteria->title,
 							"criteriaID" => $criteria->id,
-							"average" => Evaluate::averageRating($group[0], $criteria->id)[1],
+							"average" => Evaluate::averageGroupRating($group[0], $criteria->id)[1],
 							"users" => $group[2]
 						];
 					}
 				}
 
-				// var_dump($evaluationAverages);
-
-				$fp = fopen('baseRatingsEvaluations.json', 'w');
+				$fp = fopen('baseRatingsEvaluationsGroup.json', 'w');
 				fwrite($fp, json_encode(array_values($evaluationsPerGroup)));
 				fclose($fp);
 
-				$fp = fopen('averageRatingsEvaluations.json', 'w');
+				$fp = fopen('averageRatingsEvaluationsGroup.json', 'w');
 				fwrite($fp, json_encode(array_values($evaluationAverages)));
 				fclose($fp);
 			}
 			elseif ($type == "peer")
 			{
-				
+				//Get students for assignment with evaluations they have received for a criteria
+				$peerEvaluations = Evaluate::assignmentPeerEvaluations($assignmentID)[1];
+				$criteriaSetList = CriteriaSet::assignmentCriteriaSet($assignmentID)[1];
+				$studentsInClass = Klass::getUsers($classID)[1];
+
+				$evaluationAverages = array();
+
+				foreach ($criteriaSetList as $key => $criteria)
+				{
+					foreach ($studentsInClass as $key => $student)
+					{
+						$evaluationAverages[] = [
+							"targetName" => $student['first']." ".$student['middle']." ".$student['last'],
+							"targetID" => $student['id'],
+							"criteriaTitle" => $criteria->title,
+							"criteriaID" => $criteria->id,
+							"average" => Evaluate::averagePeerRating($criteria->id, $assignmentID, $student['id'])[1]
+						];
+					}
+				}
+
+				$fp = fopen('baseRatingsEvaluationsPeer.json', 'w');
+				fwrite($fp, json_encode(array_values($peerEvaluations)));
+				fclose($fp);
+
+				$fp = fopen('averageRatingsEvaluationsPeer.json', 'w');
+				fwrite($fp, json_encode(array_values($evaluationAverages)));
+				fclose($fp);
 			}
 		}
 

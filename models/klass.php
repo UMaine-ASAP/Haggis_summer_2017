@@ -339,5 +339,37 @@ class Klass {  //We use class with a k, using just class confuses PHP
           }
           return array($errorCode, $message);
         }
+    //===================================================================================== GET USERS
+        public static function getUsers($classID)
+        {
+          $errorCode;
+          $message;
+          $db = Db::getInstance();
+          $sql = "SELECT * FROM user WHERE userID IN(SELECT userID FROM classuser WHERE classuser.classID = ?)";
+          $data = array($classID);
+          $userList = array();
+          try
+          {
+            $stmt = $db->prepare($sql);
+            $stmt->execute($data);
+            while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+              $userList[] = [
+                "first" => $r['firstName'],
+                "middle" => $r['middleInitial'],
+                "last" => $r['lastName'],
+                "id" => $r['userID'],
+              ];
+            }
+            $errorCode = 1;
+            $message = $userList;
+          }
+          catch(PDOException $e)
+          {
+            $errorCode = $e->getCode();
+            $message = $e -> getMessage();
+          }
+          return array($errorCode, $message);
+        }
   }
   ?>

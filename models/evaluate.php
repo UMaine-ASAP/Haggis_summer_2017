@@ -195,14 +195,107 @@ class Evaluate
       }
       return array($errorCode, $message);
     }
+    //=================================================================================== Get Peer Evaluations For An Assignment
+    public static function assignmentPeerEvaluations($assignmentID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM evaluation WHERE projectID IN
+      (SELECT projectID FROM project WHERE assignmentID = ?)";
+      $data = array($assignmentID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $evaluations = array();
+        $key = 1;
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $author = User::id($r['author'])[1];
+          $authorName;
+          if($r['author'] == -1)
+          {
+            $authorName = "Anonymous ".$key;
+          }
+          else
+          {
+            $authorName = $author->firstName." ".$author->middleInitial." ".$author->lastName;
+          }
+          $criteria = CriteriaSet::id($r['criteriaID'])[1][0];
+          $targetUser = User::id(ProjectUser::userID($r['projectID'])[1])[1];
+          $targetID = $targetUser->id;
+          $targetUser = $targetUser->firstName." ".$targetUser->middleInitial." ".$targetUser->lastName;
+
+          $evaluations[] = [
+              "rating" => $r['rating'],
+              "ratingMax" => $criteria->ratingMax,
+              "comment" => $r['comment'],
+              "authorID" => $r['author'],
+              "author" => $authorName,
+              "targetName" => $targetUser,
+              "targetID" => $targetID,
+              "criteriaTitle" => $criteria->title,
+              "criteriaID" => $r['criteriaID']
+            ];
+
+          $key++;
+        }
+        $message = $evaluations;
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
     //=================================================================================== GET AVERAGE RATING OF GROUP SEPERATED BY CRITERIA
-    public static function averageRating($groupID, $criteriaID)
+    public static function averageGroupRating($groupID, $criteriaID)
     {
       $errorCode;
       $message;
       $db = Db::getInstance();
       $sql = "SELECT * FROM evaluation WHERE projectID IN(SELECT projectID FROM studentGroup WHERE studentgroup.studentGroupID = ?) AND criteriaID = ?";
       $data = array($groupID, $criteriaID);
+      try
+      {
+        $stmt = $db->prepare($sql);
+        $stmt->execute($data);
+        $evaluations = array();
+        $ratingTotal = 0;
+        $counter = 0;
+
+        while($r = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+          $ratingTotal += $r['rating'];
+          $counter++;
+        }
+
+        if($counter > 0)
+          $averageRating = $ratingTotal/$counter;
+        else
+          $averageRating = 0;
+
+        $message = $averageRating;
+        $errorCode = 1;
+      }
+      catch(PDOException $e)
+      {
+        $errorCode = $e->getCode();
+        $message = $e->getMessage();
+      }
+      return array($errorCode, $message);
+    }
+    //=================================================================================== Get Peer Evaluations Averaged Ratings For an Assignment
+    public static function averagePeerRating($criteriaID, $assignmentID, $userID)
+    {
+      $errorCode;
+      $message;
+      $db = Db::getInstance();
+      $sql = "SELECT * FROM evaluation WHERE projectID IN(SELECT projectID FROM projectuser WHERE projectID IN(SELECT projectID FROM project WHERE assignmentID = ?) AND userID = ?) AND criteriaID = ?";
+      $data = array($assignmentID, $userID, $criteriaID);
       try
       {
         $stmt = $db->prepare($sql);
